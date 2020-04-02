@@ -1,0 +1,77 @@
+/* Modelo_Físico: */
+
+CREATE TABLE Usuario (
+    Nome char(100),
+    E_mail char(100),
+    Senha char(50),
+    IdUsuario int PRIMARY KEY
+);
+
+CREATE TABLE Roupa (
+    IdRoupa int PRIMARY KEY,
+    Descricao char(200),
+    Categoria char(50),
+    Estilo char(50),
+    Cor char(50),
+    Tamanho char(10),
+    Marca char(30),
+    Tipo char(100),
+    Material char(100)
+);
+
+CREATE TABLE Look (
+    Roupa_de_Cima char(50),
+    Roupa_de_Baixo char(50),
+    IdLook int PRIMARY KEY,
+    Acessorio char(50)
+);
+
+CREATE TABLE Tag (
+    Palavra_Chave char(50),
+    IdTag int PRIMARY KEY
+);
+
+CREATE TABLE Usuario_Roupa (
+    fk_Usuario_IdUsuario int,
+    fk_Roupa_IdRoupa int
+);
+
+CREATE TABLE Roupa_Look (
+    fk_Roupa_IdRoupa int,
+    fk_Look_IdLook int
+);
+
+CREATE TABLE Roupa_Tag (
+    fk_Roupa_IdRoupa int,
+    fk_Tag_IdTag int
+);
+ 
+ALTER TABLE Usuario_Roupa ADD CONSTRAINT FK_Usuario_Roupa_1
+    FOREIGN KEY (fk_Usuario_IdUsuario)
+    REFERENCES Usuario (IdUsuario)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Usuario_Roupa ADD CONSTRAINT FK_Usuario_Roupa_2
+    FOREIGN KEY (fk_Roupa_IdRoupa)
+    REFERENCES Roupa (IdRoupa)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Roupa_Look ADD CONSTRAINT FK_Roupa_Look_1
+    FOREIGN KEY (fk_Roupa_IdRoupa)
+    REFERENCES Roupa (IdRoupa)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Roupa_Look ADD CONSTRAINT FK_Roupa_Look_2
+    FOREIGN KEY (fk_Look_IdLook)
+    REFERENCES Look (IdLook)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Roupa_Tag ADD CONSTRAINT FK_Roupa_Tag_1
+    FOREIGN KEY (fk_Roupa_IdRoupa)
+    REFERENCES Roupa (IdRoupa)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Roupa_Tag ADD CONSTRAINT FK_Roupa_Tag_2
+    FOREIGN KEY (fk_Tag_IdTag)
+    REFERENCES Tag (IdTag)
+    ON DELETE RESTRICT;
