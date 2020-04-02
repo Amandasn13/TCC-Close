@@ -1,10 +1,11 @@
 html {
   height: 100%;
+  width: 100%;
 }
 
 body {
   background-color: #FFFFE6;
-  font-family: "Segoe UI";
+  font-family: "Segoe UI Light";
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27,14 +28,14 @@ form {
   background-color: #282828;
   width: 300px;
   padding: 5px 45px 5px 45px;
-  font-family: "Segoe UI";
+  font-family: "Segoe UI Light";
   font-weight: bold;
   color: white;
   border-color: #282828;
 }
 
 legend {
-  font-family: "Segoe UI";
+  font-family: "Segoe UI Light";
   font-size: 50px;
 }
 
@@ -63,7 +64,7 @@ input {
     padding: 2px 10px 2px 10px;*/
   width: 180px;
   height: 30px;
-  font-family: "Segoe UI";
+  font-family: "Segoe UI Light";
   font-size: 15px;
   color: #434343;
   background-color: #FFFFFF;
@@ -105,7 +106,7 @@ footer {
   border-bottom-right-radius: calc(.3rem - 1px);
   border-bottom-left-radius: calc(.3rem - 1px);
   background-color: #110e0e;
-  font-family: "Segoe UI";
+  font-family: "Segoe UI Light";
   width: 100%;
 }
 
@@ -173,4 +174,4 @@ footer {
 label {
   padding: 0% 12% 0% 12%;
 }
-/*# sourceMappingURL=Rec_Log.css.map */
+/*# sourceMappingURL=Close_Log.css.map */
