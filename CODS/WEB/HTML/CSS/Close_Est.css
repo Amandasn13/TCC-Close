@@ -154,6 +154,7 @@ footer #rodp ul {
   margin: 0px;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  float: right;
 }
 
 footer #rodp ul li {
@@ -165,6 +166,7 @@ footer #rodp ul li a {
   display: inline;
   text-decoration: none;
   color: #FFFFFF;
+  margin: 5px;
 }
 
 #persz {
