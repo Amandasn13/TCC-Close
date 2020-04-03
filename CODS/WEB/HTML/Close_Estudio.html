@@ -8,21 +8,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="CSS\Close_Est.css" rel="stylesheet">
 </head>
-<body> 
-    <header><!--Cabeçalho-->
-        <nav class="navbar navbar-default" role="navigation" id="rodp">
-            <h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>
-              <ul>
-                  <li >
-                    <img role="button" type="submit" src="IMG\Icones\unnamed.png" class="botao" height="30px" width="30px" >
-                  </li>
-                  <li >
-                      <input type="button" value="Sair" class="botao">
-                  </li>
-              </ul>
-        </nav>
-    </header>
-    <br><br>
+<body id="pg"> 
+<header><!--Cabeçalho-->
+  <nav class="navbar navbar-default" role="navigation" id="rodp">
+    <!--<h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>-->
+    <img src="IMG\Icones\CLOSE.png" class="nav navbar-nav" id="lgpr">
+    <ul>
+       <li >
+          <img role="button" type="submit" src="IMG\Icones\unnamed.png" class="botao" height="30px" width="30px" >
+       </li>
+       <li >
+          <input type="button" value="Sair" class="botao">
+       </li>
+    </ul>
+  </nav>
+</header>
+<br><br>
 <div class="row justify-content-around"><!-- Div de apresentação/dados do usuário-->
   <div class="col-4"> 
     <img src="IMG\Icones\icone.jpg" id="uimg">
@@ -95,9 +96,15 @@
     <br><br>
     <center><h2>Querendo deixar seu estúdio um pouco mais do seu jeitinho?</h2></center><br>
     <div class="row justify-content-center" id="persz"><!--Div de personalização-->
-      <div class="col-4">     
-        <div class="custom-control custom-switch"><!--toggles-->
+      <div class="col-4">    
+         <div class="custom-control custom-switch"><!--toggles-->
           <input type="checkbox" class="custom-control-input" id="tg1">
+            <!--<script type="text/javascript">
+              // Função que muda a cor do fundo quando o toogle é ativado
+              function Md_Cor(){
+              document.getElementById("pg").style.backgroundColor = '#FFFFE6';
+              }
+            </script>-->
           <label class="custom-control-label" for="tg1"></label>
         </div><br><br>
         <div class="custom-control custom-switch">

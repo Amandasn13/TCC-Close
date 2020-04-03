@@ -67,6 +67,13 @@ header #rodp ul li a {
   color: #FFFFFF;
 }
 
+header #lgpr {
+  /*font-family: Roboto;
+            color: $corpad01;*/
+  margin-left: 45px;
+  display: inline;
+}
+
 footer {
   /*position: fixed;*/
   display: inline-block;
