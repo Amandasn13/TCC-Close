@@ -8,24 +8,25 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="CSS\Close_Est.css" rel="stylesheet">
 </head>
-<body> 
-    <header><!--Cabeçalho-->
-        <nav class="navbar navbar-default" role="navigation" id="rodp">
-            <h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>
-              <ul>
-                  <li >
-                    <img role="button" type="submit" src="C:\Users\amand\TCC-Close\IMG\Icones\unnamed.png" class="botao" height="30px" width="30px" >
-                  </li>
-                  <li >
-                      <input type="button" value="Sair" class="botao">
-                  </li>
-              </ul>
-        </nav>
-    </header>
-    <br><br>
+<body id="pg"> 
+<header><!--Cabeçalho-->
+  <nav class="navbar navbar-default" role="navigation" id="rodp">
+    <!--<h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>-->
+    <img src="IMG\Icones\CLOSE.png" class="nav navbar-nav" id="lgpr">
+    <ul>
+       <li >
+          <img role="button" type="submit" src="IMG\Icones\unnamed.png" class="botao" height="30px" width="30px" >
+       </li>
+       <li >
+          <input type="button" value="Sair" class="botao">
+       </li>
+    </ul>
+  </nav>
+</header>
+<br><br>
 <div class="row justify-content-around"><!-- Div de apresentação/dados do usuário-->
   <div class="col-4"> 
-    <img src="C:\Users\amand\TCC-Close\IMG\Icones\icone.jpg" id="uimg">
+    <img src="IMG\Icones\icone.jpg" id="uimg">
   </div>
   <div class="col-4" id="infus">
     <h1 name="socnm">Nome Social</h1>
@@ -45,35 +46,35 @@
         </ol>
         <div class="carousel-inner"><!--Organização de slides-->
           <div class="carousel-item active"><!--slide 1 e ativador de slide-->
-            <img src="C:\Users\amand\TCC-Close\IMG\Samples\png1.png" class="d-block w-100" id="sl1">
+            <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl1">
             <div class="carousel-caption d-none d-md-block" id="sl1">
               <h5>Guarda-Roupa</h5>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </div>
           </div>
           <div class="carousel-item"><!--slide 2-->
-            <img src="C:\Users\amand\TCC-Close\IMG\Samples\png1.png" class="d-block w-100" id="sl2">
+            <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl2">
             <div class="carousel-caption d-none d-md-block" id="sl2">
               <h5>Trending</h5>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
           </div>
           <div class="carousel-item" style="height: 60%;"><!--slide 3-->
-            <img src="C:\Users\amand\TCC-Close\IMG\Samples\png1.png" class="d-block w-100" id="sl3">
+            <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl3">
               <div class="carousel-caption d-none d-md-block" id="sl3">
               <h5>Inspirações</h5>
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
             </div>
           </div>
           <div class="carousel-item" style="height: 60%;"><!--slide 4-->
-            <img src="C:\Users\amand\TCC-Close\IMG\Samples\png1.png" class="d-block w-100" id="sl4">
+            <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl4">
             <div class="carousel-caption d-none d-md-block" id="sl4">
             <h5>Minha Coleção</h5>
             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
           </div>
         </div>
         <div class="carousel-item" style="height: 60%;"><!--slide 5-->
-          <img src="C:\Users\amand\TCC-Close\IMG\Samples\png1.png" class="d-block w-100" id="sl5">
+          <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl5">
           <div class="carousel-caption d-none d-md-block" id="sl5">
           <h5>Gerador</h5>
           <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
@@ -95,9 +96,15 @@
     <br><br>
     <center><h2>Querendo deixar seu estúdio um pouco mais do seu jeitinho?</h2></center><br>
     <div class="row justify-content-center" id="persz"><!--Div de personalização-->
-      <div class="col-4">     
-        <div class="custom-control custom-switch"><!--toggles-->
+      <div class="col-4">    
+         <div class="custom-control custom-switch"><!--toggles-->
           <input type="checkbox" class="custom-control-input" id="tg1">
+            <!--<script type="text/javascript">
+              // Função que muda a cor do fundo quando o toogle é ativado
+              function Md_Cor(){
+              document.getElementById("pg").style.backgroundColor = '#FFFFE6';
+              }
+            </script>-->
           <label class="custom-control-label" for="tg1"></label>
         </div><br><br>
         <div class="custom-control custom-switch">
