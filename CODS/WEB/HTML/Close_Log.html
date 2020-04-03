@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <title>Login CLOSE</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="CSS\Close_Log.css">
 	<link rel="icon" type="imagem/png" href=".png"/>
@@ -15,7 +15,7 @@
 	<div class="row justify-content-around">
         <div class="col-4" id="log">
 		<form method="post" name="AP">
-		<legend> Login </legend><br>
+		<center><legend> Login </legend><br>
 			<label for="l1">Usuário:</label><br>
 			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário"><br><br>
 			<label for="l2">Senha:</label><br>
@@ -29,7 +29,7 @@
 				alert ('Bem-vindo(a) ,'+nome);
 			}
 		</script>
-        <a href>Esqueci minha senha</a>
+        <a href>Esqueci minha senha</a></center>
         <br><br>
 	</div>
 	<!-- segunda div do corpo, formulário de cadastro-->
@@ -37,15 +37,15 @@
 		<form method="post" name="Cad">
             <legend> Novo por aqui? </legend><br>
             <h3>Faça seu cadastro agora, é rápido  fácil!</h3><br>
-            <label>Nome</label>  <label>Sobrenome</label><br>
+            <label id="leflab">Nome</label>  <label id="rigid">Sobrenome</label><br>
 			<input type="text"  name="nome" placeholder="Digite o seu nome">
             <input type="text" name="sbnome" placeholder="Digite seu sobrenome"><br><br>
-            <label>Nome de Usuário</label>  <label>Data de nascimento</label><br>
+            <label id="leflab">Nome de Usuário</label>  <label id="rigid">Data de nascimento</label><br>
 			<input type="text" name="nusuario" placeholder="Digite seu nome de usuário">
             <input type="date" name="data" placeholder="DD/MM/AAAA"><br><br>
-            <label>Email</label><br>
-            <input type="email" name="Email" placeholder="Digite seu email" class="em"><br><br>
-            <label>Senha</label>  <label>Confirmação de senha</label><br>
+            <label id="leflab">Email</label><br>
+            <input type="email" name="Email" placeholder="Digite seu email" class="em" style="width: 85%;"><br><br>
+            <label id="leflab">Senha</label>  <label id="rigid">Confirmação de senha</label><br>
             <input type="password" name="csenha" placeholder="Digite sua senha">
 			<input type="password" name="ccsenha" placeholder="Confirme sua senha"> <br><br>
            	<input type="submit" name="cadastro" value="Cadastrar" class="botao" onclick="Mensagem()">
@@ -57,9 +57,9 @@
 	</form>
     </div></div>
     <footer>
-        <nav id="rodp">
-        <h3 id="nm">CLOSE</h3>
-        <ul>
+        <nav class="navbar navbar-default" role="navigation" id="rodp">
+        <center>
+          <ul>
             <li>
                 <a href="">SOBRE</a>
             </li>
@@ -72,7 +72,9 @@
             <li>
                 <a href="">CONTATO</a>
             </li>
-        </ul></nav>
+        </ul>
+      </center>
+    </nav>
     </footer>
 </body>
 </html>
