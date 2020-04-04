@@ -2,13 +2,17 @@
 
 CREATE TABLE Usuario (
     Nome char(100),
+    Sobrenome char(100),
+    Nome_Usuário char(100),
+    Data_de_Nascimento char(100),
+    Genero char(30),
     E_mail char(100),
     Senha char(50),
-    IdUsuario int PRIMARY KEY
+    IdUsuario int PRIMARY KEY auto_increment
 );
 
 CREATE TABLE Roupa (
-    IdRoupa int PRIMARY KEY,
+    IdRoupa int PRIMARY KEY auto_increment,
     Descricao char(200),
     Categoria char(50),
     Estilo char(50),
@@ -22,13 +26,13 @@ CREATE TABLE Roupa (
 CREATE TABLE Look (
     Roupa_de_Cima char(50),
     Roupa_de_Baixo char(50),
-    IdLook int PRIMARY KEY,
+    IdLook int PRIMARY KEY auto_increment,
     Acessorio char(50)
 );
 
 CREATE TABLE Tag (
     Palavra_Chave char(50),
-    IdTag int PRIMARY KEY
+    IdTag int PRIMARY KEY auto_increment
 );
 
 CREATE TABLE Usuario_Roupa (
