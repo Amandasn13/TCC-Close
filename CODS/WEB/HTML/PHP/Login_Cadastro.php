@@ -24,7 +24,7 @@ Class Usuario
         global $pdo;
         global $msgErro;
         //verifica se o usuáio cadastrado já existe!
-        $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_Usuario = :NU");
+        $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_Usuário = :NU");
         $sql->bindValue(":NU", $nomeusuario); 
         $sql->execute();
         if($sql->rowCount() > 0)
@@ -34,7 +34,7 @@ Class Usuario
         else
         {
             //se realmente for um novo usuario, cadastrar!
-            $sql = $pdo->prepare("INSERT INTO Usuario (Nome, Sobrenome, Nome_Usuario, Data_Nascimento, E_mail, Senha)
+            $sql = $pdo->prepare("INSERT INTO Usuario (Nome, Sobrenome, Nome_Usuário, Data_De_Nascimento, E_mail, Senha)
              VALUES (:nom, :sbnome, :NU, :dat, :ema, :s)");
             $sql->bindValue(":nom", $nome); 
             $sql->bindValue(":sbnome", $sobrenome); 
@@ -53,7 +53,7 @@ Class Usuario
         global $msgErro;
         global $pdo;
         
-             $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_Usuario = :NU AND Senha = :s");
+             $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_Usuário = :NU AND Senha = :s");
         $sql->bindValue (":NU", $nomeusuario);
         $sql->bindValue (":s", md5($senha));
         $sql->Execute();
