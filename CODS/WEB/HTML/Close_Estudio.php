@@ -1,12 +1,21 @@
 <?php
+require_once 'PHP/Conexao.php';
+
+require_once 'PHP/Login_Cadastro.php';
 session_start();
 if(!isset($_SESSION['IdUsuario']))
 {
     header("location: ../Close_Log.php");
     exit;
 }
+ //logo aqui, criada uma forma de armazenar todos os dados do usuario em uma variavel.
+$id = $_SESSION['IdUsuario'];
+$sql = "SELECT * FROM Usuario WHERE IdUsuario = '$id'";
+$resultado = mysqli_query($connect, $sql);
+$dados = mysqli_fetch_array($resultado);
+?>
 
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -37,8 +46,8 @@ if(!isset($_SESSION['IdUsuario']))
     <img src="IMG\Icones\icone.jpg" id="uimg">
   </div>
   <div class="col-4" id="infus">
-    <h1 name="socnm">Nome Social</h1>
-    <h3 name="unm">@nome_usuario</h3>
+    <h1 name="socnm"><?php Echo $dados['Nome']; ?></h1>
+    <h3 name="unm">@<?php Echo $dados['Nome_Usuário']; ?></h3>
     <h3 name="infcad">Info de cadastro</h3>
     <p name="ubio">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus officia, quisquam sint officiis cumque illum odio impedit, distinctio adipisci ratione totam eligendi fugit facilis incidunt nihil nisi, laborum ipsam fugiat.</p>
   </div>
