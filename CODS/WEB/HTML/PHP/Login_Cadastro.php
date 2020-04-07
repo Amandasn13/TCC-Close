@@ -48,14 +48,15 @@ Class Usuario
 
     }
 
-    public function logar($nomeusuario, $senha)
+    public function logar($nomeusuario, $senha, $E_mail)
     {
         global $msgErro;
         global $pdo;
         
-             $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_Usuário = :NU AND Senha = :s");
+             $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_Usuário = :NU OR E_mail = :ema  AND Senha = :s");
         $sql->bindValue (":NU", $nomeusuario);
         $sql->bindValue (":s", md5($senha));
+        $sql->bindValue (":ema", $E_mail);
         $sql->Execute();
         //esse if ta fazendo a verificação se tá certo o user e a senha da pessoa.   
         if ($sql->rowCount() > 0) {
@@ -90,9 +91,5 @@ Class Usuario
        return true;
     }
 }
-
-
-
 }
-
 ?>
