@@ -134,16 +134,22 @@ footer #rodp ul li a {
   margin: 5px;
 }
 
-#tml {
+#publi {
+  width: 720px;
+  height: 850px;
+  margin: 0% 30% 0% 30%;
   background-color: white;
-  width: 70%;
-  height: 70%;
+  border-radius: 5%;
+  border-top-left-radius: 0%;
 }
 
-#publi {
-  width: 50%;
-  height: 50%;
-  margin: 0% 30% 0% 30%;
+#pbar {
+  float: left;
+  padding: 0% 0% 0% 22%;
+}
+
+#nm-usu {
+  position: relative;
 }
 
 #icon-usu {
@@ -153,9 +159,14 @@ footer #rodp ul li a {
   float: left;
 }
 
+#leg-publi {
+  width: 98%;
+  height: 120px;
+}
+
 #ft-publi {
   border: 3px solid #78787a;
-  width: 720px;
-  height: 720px;
+  width: 100%;
+  height: 627px;
 }
 /*# sourceMappingURL=Close_Trend.css.map */
