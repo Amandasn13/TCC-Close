@@ -34,11 +34,12 @@
 
             $nomeusuario = addslashes ($_POST['usuário']);
             $senha = addslashes ($_POST['senha']);
+            $email = addslashes ($_POST['usuário']);
             if(!empty($nomeusuario) && !empty($senha))
             {
                 $u->conexao("login", "localhost","root","");
                 if($u->msgErro == ""){
-                if($u->logar($nomeusuario, $senha))
+                if($u->logar($nomeusuario, $senha, $email))
                 {
                     
                     header("location: Close_Estudio.php");
@@ -129,7 +130,7 @@
                 }
                 
                 }
-            ?>   
+            ?>      
 			
 	</form>
     </div></div>
