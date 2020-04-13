@@ -35,7 +35,7 @@ $dados = mysqli_fetch_array($resultado);
           <img role="button" type="submit" src="IMG\Icones\unnamed.png" class="botao" height="30px" width="30px" >
        </li>
        <li >
-            <a href="PHP/Sair.php" class="botao">Sair</a>
+            <a href--="PHP/Sair.php" class="botao">Sair</a>
        </li>
     </ul>
   </nav>
