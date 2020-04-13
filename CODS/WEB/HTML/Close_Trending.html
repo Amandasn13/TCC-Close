@@ -2,39 +2,62 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Feed</title>
-    <link href="CSS\Close_.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="CSS\Close_Trend.css" rel="stylesheet">
 </head>
 <body> 
-    <header>
-        <nav class="">
-            <img src="" height="" width="">
-            <ul>
-                <li>
-                    <a href=""></a>
-                </li>
-                <li>
-                    <a href=""></a>
-                </li>
-                <li>
-                    <a href=""></a>
-                </li>
-                <li>
-                    <a href=""></a>
-                </li>
-            </ul>
+    <header><!--Cabeçalho-->
+        <nav class="navbar navbar-default" role="navigation" id="rodp">
+          <!--<h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>-->
+          <img src="IMG\Icones\CLOSE.png" class="nav navbar-nav" id="lgpr">
+          <ul>
+            <li>
+                <a  href="">Estúdio</a>
+            </li>
+            <li>
+                <a  href="">Coleções</a>
+            </li>
+            <li>
+                <a  href="">Trending</a>
+            </li>
+             <li >
+                <img role="button" type="submit" src="IMG\Icones\unnamed.png" class="botao" height="30px" width="30px" >
+             </li>
+             <li >
+                <input type="button" value="Sair" class="botao">
+             </li>
+          </ul>
         </nav>
-    </header>
-<div id="publicacao">
-    <img src="" id="icon-usu"><!--ICONE DO USUÁRIO -->
-    <h2>Legenda</h1>
-    <h3>Tempo</h3><!--Ex: ontem 21h30-->
-    <img src="" id="publi"><!--FOTO DA PUBLICAÇÃO-->
+      </header>
+<div id="col4"><!--area da publicação-->
+    <div id="pbar">
+        <img src="IMG\Icones\icone.jpg" id="icon-usu"><!--ICONE DO USUÁRIO --><br>
+        <h5 id="nm-usu">@nomeus</h5>
+    </div>
+  <center>
+        <div id="publi">
+            <div ><br></div>
+                <p id="leg-publi">Legenda  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam, aspernatur iure. Placeat, beatae. Blanditiis voluptate, magnam asperiores consequuntur veniam facilis temporibus tempora nesciunt illo, repellendus accusamus eum dicta. Nihil, alias.</p>
+                <p id="temp-publi">Tempo</p><!--Ex: ontem 21h30-->
+            
+            <img src="" id="ft-publi"><!--FOTO DA PUBLICAÇÃO-->
+            <h6>@fulano, @ciclano e outras n pessoas reagiram a isso</h6><!--n° de reações/likes-->
+
+        </div>
+        <div id="cm-us">
+            <img src="IMG\Icones\icone.jpg" id="icon-cm-usu">
+            <input type="text" placeholder="Deseja comentar isso? Digite aqui :)" id="cm_bar">
+            <input type="submit" value=">" id="cm_but">
+        </div>
+    </center>
 </div>
+
 <footer>
-    <nav class="">
-    <img src="" height="" width="">
-    <ul>
+    <nav class="navbar navbar-default" role="navigation" id="rodp">
+    <center>
+      <ul>
         <li>
             <a href="">SOBRE</a>
         </li>
@@ -47,7 +70,9 @@
         <li>
             <a href="">CONTATO</a>
         </li>
-    </ul></nav>
+      </ul>
+    </center>
+</nav>
 </footer>
 </body>
 </html>
