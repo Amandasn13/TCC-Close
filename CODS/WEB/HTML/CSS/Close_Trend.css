@@ -149,24 +149,74 @@ footer #rodp ul li a {
 }
 
 #nm-usu {
-  position: relative;
+  margin: 5px 48px 0px 5px;
+  position: inherit;
+  float: left;
 }
 
 #icon-usu {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  margin: 0px 5px 0px 25px;
   float: left;
 }
 
 #leg-publi {
   width: 98%;
-  height: 120px;
+  text-align: justify;
+  min-height: 20px;
+  max-height: 200px;
+  font-size: 15px;
+  padding: 0px 10px 0px 15px;
+}
+
+#temp-publi {
+  text-align-last: left;
+  position: relative;
+  padding: 0px 10px 0px 35px;
+  color: #bbbdb5;
 }
 
 #ft-publi {
   border: 3px solid #78787a;
   width: 100%;
   height: 627px;
+}
+
+#col4 {
+  display: inline-block;
+  vertical-align: top;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-top: 1%;
+}
+
+#cm-us {
+  width: 720px;
+  height: 50px;
+  margin: 0% 30% 0% 30%;
+  background-color: #8b02ca;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+#icon-cm-usu {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+#cm_bar {
+  width: 86%;
+  border-radius: 10px;
+}
+
+#cm_but {
+  border-radius: 10px;
+  background-color: #282828;
+  color: #f4e6ff;
+  border-color: #201f1f;
 }
 /*# sourceMappingURL=Close_Trend.css.map */
