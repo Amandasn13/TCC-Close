@@ -60,7 +60,7 @@ a{
     width: 300px;
 }
 #l2{
-    width: 300px;
+    width: 200px;
 }
 
 input{
@@ -156,6 +156,22 @@ footer{
     color:      #333333;
     background-color:      #BCCAD3;
     background-repeat: repeat;
+
+    #btnC{
+        border: solid 3px #282828;
+        border-radius: 5%;
+        background-color: $corbut;
+        color: $corpad01;
+    }
+    
+    #passC{
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+    
+    #all-in{
+        border-radius: 25px;
+    }
 }
 
 #nm{
@@ -168,3 +184,19 @@ footer{
 label{
     position: relative;
 }
+
+/*#btnC{
+    border: solid 3px #282828;
+    border-radius: 5%;
+    background-color: $corbut;
+    color: $corpad01;
+}
+
+#passC{
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+#all-in{
+    border-radius: 25px;
+}*/

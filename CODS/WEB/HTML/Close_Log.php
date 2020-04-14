@@ -26,7 +26,7 @@
 			<label for="l1">Usuário:</label><br>
 			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário"><br><br>
 			<label for="l2">Senha:</label><br>
-			<input type="password" id="l2" name="senha" placeholder="Digite sua senha"><span toggle="#l2" id="btnL" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br><!-- lembra da vizualização da senha-->
+			<input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha"><span toggle="#l2" id="btnL" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br><!-- lembra da vizualização da senha-->
 			<input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
 		</form><br>
         <?php
@@ -65,20 +65,21 @@
 	</div>
 	<!-- segunda div do corpo, formulário de cadastro-->
 	<div class="col-4" id="cad">
-		<form method="post" name="Cad">
+		<form method="post" name="Cad"><br>
             <legend> Novo por aqui? </legend><br>
-            <h3>Faça seu cadastro agora, é rápido  fácil!</h3><br>
-            <label id="leflab">Nome</label>  <label id="rigid">Sobrenome</label><br>
-			<input type="text"  name="nome" placeholder="Digite o seu nome" maxlength="50">
-            <input type="text" name="sbnome" placeholder="Digite seu sobrenome" maxlength="50"><br><br>
-            <label id="leflab">Nome de Usuário</label>  <label id="rigid">Data de nascimento</label><br>
-			<input type="text" name="nusuario" placeholder="Digite seu nome de usuário" maxlength="50">
-            <input type="date" name="data" placeholder="DD/MM/AAAA"><br><br>
-            <label id="leflab">Email</label><br>
-            <input type="email" name="Email" placeholder="Digite seu email" class="em" style="width: 85%;" maxlength="100"><br><br>
-            <label id="leflab">Senha</label>  <label id="rigid">Confirmação de senha</label><br>
-            <input type="password" name="csenha" id="passC" placeholder="Digite sua senha" maxlength="15"><span toggle="#passC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-			<input type="password" name="ccsenha" id="passCC" placeholder="Confirme sua senha" maxlength="15"><span toggle="#passCC" id="btnCC" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br>
+            <h3 style="width: 98%;">Faça seu cadastro agora, é rápido  fácil!</h3><br>
+            <!--<label id="leflab" class="col-4">Nome</label>  <label id="rigid" class="col-4">Sobrenome</label><br><br>-->
+			<center><input type="text" id="all-in" name="nome" placeholder="Digite o seu nome" maxlength="50">
+            <input type="text" name="sbnome"  id="all-in"placeholder="Digite seu sobrenome" maxlength="50"><br><br>
+            <!--<label id="leflab" class="col-4">Nome de Usuário</label>  <label id="rigid" class="col-4">Data de nascimento</label><br><br>-->
+			<input type="text" name="nusuario" id="all-in" placeholder="Digite seu nome de usuário" maxlength="50">
+            <input type="date" name="data" id="all-in" placeholder="DD/MM/AAAA"><br><br>
+            <!--<label id="leflab">Email</label><br><br>-->
+            <input type="email" name="Email" id="all-in" placeholder="Digite seu email" class="em" style="width: 365px;" maxlength="100"><br><br>
+            <!--<label id="leflab" class="col-4">Senha</label>  <label id="rigid" class="col-4">Confirmação de senha</label><br><br>-->
+            <input type="password" name="csenha" id="passC" style="width: 345px;" placeholder="Digite sua senha" maxlength="15"><span toggle="#passC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br>
+            <input type="password" name="ccsenha" id="passC" style="width: 345px;" placeholder="Confirme sua senha" maxlength="15"><span toggle="#passCC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span></center>
+            <br><br>
             <input type="submit" name="cadastro" value="Cadastrar" class="botao" onclick="Mensagem()">
             <!--Verifica se a pessoa clicou no botao-->
             <?php
