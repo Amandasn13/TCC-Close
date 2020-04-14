@@ -10,6 +10,7 @@
 	<meta charset="utf-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<link rel="stylesheet" href="CSS\Close_Log.css">
 	<link rel="icon" type="imagem/png" href=".png"/>
 </head>
@@ -25,7 +26,7 @@
 			<label for="l1">Usuário:</label><br>
 			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário"><br><br>
 			<label for="l2">Senha:</label><br>
-			<input type="password" id="l2" name="senha" placeholder="Digite sua senha"><br><br><!-- lembra da vizualização da senha-->
+			<input type="password" id="l2" name="senha" placeholder="Digite sua senha"><span toggle="#l2" id="btnL" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br><!-- lembra da vizualização da senha-->
 			<input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
 		</form><br>
         <?php
@@ -76,8 +77,8 @@
             <label id="leflab">Email</label><br>
             <input type="email" name="Email" placeholder="Digite seu email" class="em" style="width: 85%;" maxlength="100"><br><br>
             <label id="leflab">Senha</label>  <label id="rigid">Confirmação de senha</label><br>
-            <input type="password" name="csenha" placeholder="Digite sua senha" maxlength="15">
-			<input type="password" name="ccsenha" placeholder="Confirme sua senha" maxlength="15"> <br><br>
+            <input type="password" name="csenha" id="passC" placeholder="Digite sua senha" maxlength="15"><span toggle="#passC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+			<input type="password" name="ccsenha" id="passCC" placeholder="Confirme sua senha" maxlength="15"><span toggle="#passCC" id="btnCC" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br>
             <input type="submit" name="cadastro" value="Cadastrar" class="botao" onclick="Mensagem()">
             <!--Verifica se a pessoa clicou no botao-->
             <?php
@@ -133,6 +134,44 @@
             ?>      
 			
 	</form>
+		<script language="javascript">
+			//senha visivel:
+		const btnL = document.querySelector('#btnL');
+		const pass = document.querySelector('#l2');
+		btnL.addEventListener('click', function(){
+    	if(pass.type == 'text') {
+        pass.type = 'password';
+        btnL.setAttribute("class","fas fa-eye");
+    	} else {
+        pass.type = 'text';
+        btnL.setAttribute("class","fas fa-eye-slash");
+    	}
+		});
+		
+		const btnC = document.querySelector('#btnC');
+		const passC = document.querySelector('#passC');
+		btnC.addEventListener('click', function(){
+    	if(passC.type == 'text') {
+        passC.type = 'password';
+        btnC.setAttribute("class","fas fa-eye");
+    	} else {
+        passC.type = 'text';
+        btnC.setAttribute("class","fas fa-eye-slash");
+    	}
+		});	
+		
+		const btnCC = document.querySelector('#btnCC');
+		const passCC = document.querySelector('#passCC');
+		btnCC.addEventListener('click', function(){
+    	if(passCC.type == 'text') {
+        passCC.type = 'password';
+        btnCC.setAttribute("class","fas fa-eye");
+    	} else {
+        passCC.type = 'text';
+        btnCC.setAttribute("class","fas fa-eye-slash");
+    	}
+		});
+		</script>
     </div></div>
     <footer>
         <nav class="navbar navbar-default" role="navigation" id="rodp">

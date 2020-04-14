@@ -5,6 +5,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="CSS\Close_Log.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<link rel="icon" type="imagem/png" href=".png"/>
 </head>
 <body>
@@ -19,7 +20,7 @@
 			<label for="l1">Usuário:</label><br>
 			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário"><br><br>
 			<label for="l2">Senha:</label><br>
-			<input type="password" id="l2" name="senha" placeholder="Digite sua senha"><br><br><!-- lembra da vizualização da senha-->
+			<input type="password" id="l2" name="senha" placeholder="Digite sua senha"><span toggle="#l2" id="btn" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br><!-- lembra da vizualização da senha-->
 			<input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
 		</form><br>
 		<script language="javascript">
@@ -28,8 +29,21 @@
 				nome=document.AP.usuário.value;
 				alert ('Bem-vindo(a) ,'+nome);
 			}
+			//senha visivel:
+		const btn = document.querySelector('#btn');
+		const pass = document.querySelector('#l2');
+		btn.addEventListener('click', function(){
+    	if(pass.type == 'text') {
+        pass.type = 'password';
+        btn.setAttribute("class","fas fa-eye");
+    	} else {
+        pass.type = 'text';
+        btn.setAttribute("class","fas fa-eye-slash");
+    	}
+		});
+			
 		</script>
-        <a href>Esqueci minha senha</a></center>
+        <a href="#">Esqueci minha senha</a></center>
         <br><br>
 	</div>
 	<!-- segunda div do corpo, formulário de cadastro-->
