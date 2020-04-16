@@ -9,6 +9,8 @@ CREATE TABLE Usuario (
     E_mail char(100),
     Senha char(50),
     IdUsuario int PRIMARY KEY auto_increment
+    Biografia char(200)
+    Foto_Perfil char(250)
 );
 
 CREATE TABLE Roupa (
