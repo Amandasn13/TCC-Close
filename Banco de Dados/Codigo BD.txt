@@ -1,39 +1,38 @@
 /* Modelo_Físico: */
 
 CREATE TABLE Usuario (
-    Nome char(100),
-    Sobrenome char(100),
-    Nome_Usuário char(100),
-    Data_de_Nascimento char(100),
-    Genero char(30),
-    E_mail char(100),
-    Senha char(50),
-    IdUsuario int PRIMARY KEY auto_increment
-    Biografia char(200)
-    Foto_Perfil char(250)
+    Nome varchar(100) not null,
+    Sobrenome varchar(100) not null,
+    Nome_Usuário varchar(50) not null,
+    Data_de_Nascimento date not null, /*não formatada*/
+    E_mail varchar(100),
+    Senha varchar(50),
+    IdUsuario int PRIMARY KEY auto_increment,
+    Biografia tinytext,
+    Foto_Perfil blob
 );
 
 CREATE TABLE Roupa (
     IdRoupa int PRIMARY KEY auto_increment,
-    Descricao char(200),
-    Categoria char(50),
-    Estilo char(50),
-    Cor char(50),
-    Tamanho char(10),
-    Marca char(30),
-    Tipo char(100),
-    Material char(100)
+    Descricao text,
+    Categoria varchar(50),
+    Estilo varchar(50),
+    Cor varchar(50),
+    Tamanho varchar(10),
+    Marca varchar(30),
+    Tipo varchar(100),
+    Material varchar(100)
 );
 
 CREATE TABLE Look (
-    Roupa_de_Cima char(50),
-    Roupa_de_Baixo char(50),
+    Roupa_de_Cima varchar(50),
+    Roupa_de_Baixo varchar(50),
     IdLook int PRIMARY KEY auto_increment,
-    Acessorio char(50)
+    Acessorio varchar(50)
 );
 
 CREATE TABLE Tag (
-    Palavra_Chave char(50),
+    Palavra_Chave varchar(50),
     IdTag int PRIMARY KEY auto_increment
 );
 
