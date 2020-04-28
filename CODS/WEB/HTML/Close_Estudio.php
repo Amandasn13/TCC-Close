@@ -43,14 +43,22 @@ $dados = mysqli_fetch_array($resultado);
 <br><br>
 <div class="row justify-content-around"><!-- Div de apresentação/dados do usuário-->
   <div class="col-4"> 
-    <img src="IMG\Icones\icone.jpg" id="uimg">
+  <?php
+    if($dados['Foto_Perfil']==""){
+      echo '<img src="../IMG\Icones\8-512.png" id="uimg">';
+    }else{
+      echo'<img src="../Fotos_Perfis/'.$dados["Foto_Perfil"].'" id="uimg">';
+    }
+    
+    
+    
+    ?>
   </div>
   <div class="col-4" id="infus">
     <h1 name="socnm"><?php Echo $dados['Nome']; ?></h1>
     <h3 name="unm">@<?php Echo $dados['Nome_Usuário']; ?></h3>
-    <h3 name="infcad">Info de cadastro</h3>
-    <p name="ubio">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus officia, quisquam sint officiis cumque illum odio impedit, distinctio adipisci ratione totam eligendi fugit facilis incidunt nihil nisi, laborum ipsam fugiat.</p>
-  </div>
+    <h3 name="infcad">Biografia</h3>
+    <p name="ubio"><?php echo $dados['Biografia']; ?></p>  
 </div>
     <!--<br><br>-->
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel"><!-- div de criação do carousel com os links-->
