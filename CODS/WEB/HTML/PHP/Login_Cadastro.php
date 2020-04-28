@@ -34,7 +34,7 @@ Class Usuario
         else
         {
             //se realmente for um novo usuario, cadastrar!
-            $sql = $pdo->prepare("INSERT INTO Usuario (Nome, Sobrenome, Nome_Usuário, Data_De_Nascimento, E_mail, Senha)
+            $sql = $pdo->prepare("INSERT INTO Usuario (Nome, Sobrenome, Nome_Usuário, Data_Nascimento, E_mail, Senha)
              VALUES (:nom, :sbnome, :NU, :dat, :ema, :s)");
             $sql->bindValue(":nom", $nome); 
             $sql->bindValue(":sbnome", $sobrenome); 
@@ -91,5 +91,55 @@ Class Usuario
        return true;
     }
 }
+public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento, $biografia)
+    {
+        
+        global $pdo;
+        global $msgErro;             
+        $sql = $pdo->prepare("UPDATE Usuario SET Nome= :nom, Sobrenome= :sbnome, Nome_Usuário= :NU, Data_Nascimento = :dat, Biografia= :bio WHERE IdUsuario = :id");
+        $sql->bindvalue(":id", $id);
+        $sql->bindvalue(":nom", $nome);              
+        $sql->bindValue(":sbnome", $sobrenome); 
+        $sql->bindValue(":NU", $nomeusuario); 
+        $sql->bindValue(":dat", $nascimento);
+        $sql->bindValue(":bio", $biografia);   
+    
+        $sql->execute();
+        return true;
+       
+
+    }
+    public function editar2($senha, $id)
+    {
+        
+        global $pdo;
+        global $msgErro;             
+        $sql = $pdo->prepare("UPDATE Usuario SET Senha= :se  WHERE IdUsuario = :id");
+        $sql->bindvalue(":se", md5($senha));                
+        $sql->bindvalue(":id", $id);
+         
+            
+        
+        $sql->execute();
+        return true;
+       
+
+    }
+    public function editar3($email, $id)
+    {
+        
+        global $pdo;
+        global $msgErro;             
+        $sql = $pdo->prepare("UPDATE Usuario SET E_mail= :se  WHERE IdUsuario = :id");
+        $sql->bindvalue(":se", $email);                
+        $sql->bindvalue(":id", $id);
+    
+        
+        $sql->execute();
+        return true;
+       
+
+    }
+
 }
 ?>
