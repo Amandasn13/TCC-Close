@@ -24,9 +24,9 @@
 		<form method="post" name="AP">
 		<center><legend> Login </legend><br>
 			<label for="l1">Usuário:</label><br>
-			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário"><br><br>
+			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário ou e-mail" required><br><br>
 			<label for="l2">Senha:</label><br>
-			<input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha"><span toggle="#l2" id="btnL" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br><!-- lembra da vizualização da senha-->
+			<input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha" required><span toggle="#l2" id="btnL" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br><!-- lembra da vizualização da senha-->
 			<input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
 		</form><br>
         <?php
@@ -36,8 +36,8 @@
             $nomeusuario = addslashes ($_POST['usuário']);
             $senha = addslashes ($_POST['senha']);
             $email = addslashes ($_POST['usuário']);
-            if(!empty($nomeusuario) && !empty($senha))
-            {
+            //if(!empty($nomeusuario) && !empty($senha))
+            //{
                 $u->conexao("login", "localhost","root","");
                 if($u->msgErro == ""){
                 if($u->logar($nomeusuario, $senha, $email))
@@ -46,17 +46,19 @@
                     header("location: Close_Estudio.php");
                 }else
                 {
-                    echo "Email e/ou senha incorretos!";
+                    echo "<script language=javascript type= 'text/javascript'>
+                    window.alert('Email e/ou senha incorretos!')
+                    </script>";
                 }
                 }else
                 {
                     echo "Erro: ".$u->msgErro;
                 }
-            }
-            else
-            {
-                echo"Preencha todos os campos!";
-            }
+            //}
+            //else
+            //{
+              //  echo"Preencha todos os campos!";
+            //}
         }
         ?>
 
@@ -69,16 +71,16 @@
             <legend> Novo por aqui? </legend><br>
             <h3 style="width: 98%;">Faça seu cadastro agora, é rápido  fácil!</h3><br>
             <!--<label id="leflab" class="col-4">Nome</label>  <label id="rigid" class="col-4">Sobrenome</label><br><br>-->
-			<center><input type="text" id="all-in" name="nome" placeholder="Digite o seu nome" maxlength="50">
-            <input type="text" name="sbnome"  id="all-in"placeholder="Digite seu sobrenome" maxlength="50"><br><br>
+			<center><input type="text" id="all-in" name="nome" placeholder="Digite o seu nome" maxlength="50" required>
+            <input type="text" name="sbnome"  id="all-in"placeholder="Digite seu sobrenome" maxlength="50"required><br><br>
             <!--<label id="leflab" class="col-4">Nome de Usuário</label>  <label id="rigid" class="col-4">Data de nascimento</label><br><br>-->
-			<input type="text" name="nusuario" id="all-in" placeholder="Digite seu nome de usuário" maxlength="50">
-            <input type="date" name="data" id="all-in" placeholder="DD/MM/AAAA"><br><br>
+			<input type="text" name="nusuario" id="all-in" placeholder="Digite seu nome de usuário" maxlength="50" required>
+            <input type="date" name="data" id="all-in" placeholder="DD/MM/AAAA" required><br><br>
             <!--<label id="leflab">Email</label><br><br>-->
-            <input type="email" name="Email" id="all-in" placeholder="Digite seu email" class="em" style="width: 365px;" maxlength="100"><br><br>
+            <input type="email" name="Email" id="all-in" placeholder="Digite seu email" class="em" style="width: 365px;" maxlength="100" required><br><br>
             <!--<label id="leflab" class="col-4">Senha</label>  <label id="rigid" class="col-4">Confirmação de senha</label><br><br>-->
-            <input type="password" name="csenha" id="passC" style="width: 345px;" placeholder="Digite sua senha" maxlength="15"><span toggle="#passC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br>
-            <input type="password" name="ccsenha" id="passC" style="width: 345px;" placeholder="Confirme sua senha" maxlength="15"><span toggle="#passCC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span></center>
+            <input type="password" name="csenha" id="passC" style="width: 345px;" placeholder="Digite sua senha" maxlength="15" required><span toggle="#passC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br>
+            <input type="password" name="ccsenha" id="passC" style="width: 345px;" placeholder="Confirme sua senha" maxlength="15" required><span toggle="#passCC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span></center>
             <br><br>
             <input type="submit" name="cadastro" value="Cadastrar" class="botao" onclick="Mensagem()">
             <!--Verifica se a pessoa clicou no botao-->
@@ -94,10 +96,10 @@
                 $confirmarSenha = addslashes($_POST['ccsenha']);
 
                 //<!--VERIFICA SE NAO DEIXOU NADA VAZIO-->
-                if(!empty($nome) && !empty($sobrenome) && !empty($nomeusuario) 
-                && !empty($nascimento) && !empty($email) && !empty($senha) 
-                && !empty($confirmarSenha))
-                {
+                //if(!empty($nome) && !empty($sobrenome) && !empty($nomeusuario) 
+                //&& !empty($nascimento) && !empty($email) && !empty($senha) 
+                //&& !empty($confirmarSenha))
+                //{
                     $u->conexao("login", "localhost","root","");
                     if($u->msgErro == "")
                     {
@@ -107,29 +109,37 @@
                         if($u->cadastrar($nome, $sobrenome, $nomeusuario, $nascimento,
                         $email, $senha, $confirmarSenha))
                         {
-                            echo "Cadastrado!";
+                            echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('Cadastrado!')
+                            </script>";
                         }
                         else
                         {
-                            echo "Usuario já cadastrado!";
+                            echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('Usuario já cadastrado!')
+                            </script>";
                         }
                     }else{
-                        echo "Esse e-mail já está sendo usado por outro usuário";
+                        echo "<script language=javascript type= 'text/javascript'>
+                        window.alert('Esse e-mail já está sendo usado por outro usuário')
+                        </script>";
                     }
                         }      
                         else{
-                            echo "As senhas diferem!";
+                            echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('As senhas diferem!')
+                            </script>";
                         } 
                     }
                     else
                     {
                         echo "Erro: ".$u->msgErro;    
                     }
-                }
-                else
-                {
-                    echo "Preencha todos os campos";
-                }
+                //}
+                //else
+                //{
+                    //echo "Preencha todos os campos";
+                //}
                 
                 }
             ?>      
