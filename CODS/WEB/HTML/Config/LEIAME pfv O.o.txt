@@ -1,0 +1,4 @@
+Anjos como eu tiveproblemas em acessar e abri o Config.php no meu navegador eu salvei os fragmentos de html 
+dele para trabalhar, então pfv quando forem editar o php n se esqueçam de atualizar a html dele pfv,bjos
+
+-Mandinha
