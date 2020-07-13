@@ -31,32 +31,32 @@ CREATE TABLE Roupa (
 
 CREATE TABLE Look (
     IdLook INT AUTO_INCREMENT PRIMARY KEY,
-    fk_Foto_Foto_PK INT,
-)CHARACTER SET utf8 COLLATE utf8_general_ci;
+    fk_Foto_Foto_PK INT
+) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Tag (
     Palavra_Chave CHAR NOT NULL,
-    IdTag INT AUTO_INCREMENT PRIMARY KEY,
+    IdTag INT AUTO_INCREMENT PRIMARY KEY
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Foto (
     Foto_PK INT NOT NULL PRIMARY KEY,
-    Foto BLOB NOT NULL,
+    Foto BLOB NOT NULL
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Roupa_Look (
     fk_Roupa_IdRoupa INT,
-    fk_Look_IdLook INT,
+    fk_Look_IdLook INT
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Roupa_Tag (
     fk_Roupa_IdRoupa INT,
-    fk_Tag_IdTag INT,
+    fk_Tag_IdTag INT
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Tag_Look (
     fk_Tag_IdTag INT,
-    fk_Look_IdLook INT,
+    fk_Look_IdLook INT
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
  
 ALTER TABLE Roupa ADD CONSTRAINT FK_Roupa_2
