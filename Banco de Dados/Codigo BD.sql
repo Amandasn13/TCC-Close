@@ -5,28 +5,28 @@ USE Tiffanny;
 
 CREATE TABLE Usuario (
     IdUsuario INT AUTO_INCREMENT PRIMARY KEY,
-    Nome CHAR,
-    E_mail CHAR UNIQUE NOT NULL,
-    Sobrenome CHAR NOT NULL,
-    Senha CHAR NOT NULL,
+    Nome CHAR(100) NOT NULL,
+    E_mail CHAR(100) UNIQUE NOT NULL,
+    Sobrenome CHAR(100) NOT NULL,
+    Senha CHAR(100) NOT NULL,
     Data_de_Nascimento DATE NOT NULL,
-    Genero CHAR,
-    Biografia CHAR,
+    Genero CHAR(100),
+    Biografia TEXT(300),
     Foto_de_Perfil BLOB
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Roupa (
     IdRoupa INT AUTO_INCREMENT PRIMARY KEY,
     Categoria ENUM("Acessório","Calçado","Roupa") NOT NULL,
-    Tipo CHAR NOT NULL,
+    Tipo CHAR(100) NOT NULL,
     Foto BLOB NOT NULL,
-    Descricao CHAR,
-    Cor CHAR,
+    Descricao TEXT(300),
+    Cor CHAR(100),
     fk_Usuario_IdUsuario INT,
-    Tamanho CHAR,
-    Marca CHAR,
-    Material CHAR,
-    Titulo CHAR
+    Tamanho CHAR(100),
+    Marca CHAR(100),
+    Material CHAR(100),
+    Titulo CHAR(100)
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Look (
@@ -35,7 +35,7 @@ CREATE TABLE Look (
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Tag (
-    Palavra_Chave CHAR NOT NULL,
+    Palavra_Chave CHAR(100) NOT NULL,
     IdTag INT AUTO_INCREMENT PRIMARY KEY
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
 
