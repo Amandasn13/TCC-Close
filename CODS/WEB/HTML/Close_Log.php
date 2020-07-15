@@ -38,7 +38,7 @@
             $email = addslashes ($_POST['usuário']);
             //if(!empty($nomeusuario) && !empty($senha))
             //{
-                $u->conexao("login", "localhost","root","");
+                $u->conexao("Cloose", "localhost","root","");
                 if($u->msgErro == ""){
                 if($u->logar($nomeusuario, $senha, $email))
                 {
@@ -100,7 +100,7 @@
                 //&& !empty($nascimento) && !empty($email) && !empty($senha) 
                 //&& !empty($confirmarSenha))
                 //{
-                    $u->conexao("login", "localhost","root","");
+                    $u->conexao("Cloose", "localhost","root","");
                     if($u->msgErro == "")
                     {
                         if($senha == $confirmarSenha)
