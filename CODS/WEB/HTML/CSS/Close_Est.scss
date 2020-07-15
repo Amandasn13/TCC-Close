@@ -50,7 +50,7 @@ body{
  //height: $sldht;
 }
 #sl2{
- background-color: #f8f808;
+ background-color: #f3f33b;
  //position: absolute;
  //height: $sldht;
 }
@@ -164,4 +164,17 @@ footer{
 
 #persz{
     margin-top: 15px;
+}
+
+
+#psq{
+    color:#BCCAD3;
+    background-color: transparent;
+    font-family: $lt-font;
+    border: none;
+    font-style: italic;
+}
+
+.al-fm{
+    margin: 5%;
 }
