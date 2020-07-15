@@ -47,7 +47,7 @@ body #pg {
 }
 
 #sl2 {
-  background-color: #f8f808;
+  background-color: #f3f33b;
 }
 
 #sl3 {
@@ -159,5 +159,17 @@ footer #rodp ul li a {
 
 #persz {
   margin-top: 15px;
+}
+
+#psq {
+  color: #BCCAD3;
+  background-color: transparent;
+  font-family: "Segoe UI";
+  border: none;
+  font-style: italic;
+}
+
+.al-fm {
+  margin: 5%;
 }
 /*# sourceMappingURL=Close_Est.css.map */
