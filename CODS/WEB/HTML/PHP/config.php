@@ -16,90 +16,116 @@ $dados = mysqli_fetch_array($resultado);
 $u = new Usuario; 
 ?>
 
-<!--Como eu tinha copiado o codigo do arquivo Close_Estudio.php, os coisos do htm estão com Id's do css do ambos, perdão-->
 <!DOCTYPE html>
 <html lang = "pt-br">   
 <head>
     <meta charset = "utf-8">
     <title>Configuração</title>
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'/>
+    <link href="CSS\Close_Cox.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery.js"></script>
+
+    <style>
+      @import url('CSS/Close_Cox.css');
+    </style>
 </head>  
 <body>
 <header><!--Cabeçalho-->
   <nav class="navbar navbar-default" role="navigation" id="rodp">
     <!--<h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>-->
-    <img src="../IMG\Icones\CLOSE.png" class="nav navbar-nav" id="lgpr">
+    <img src="..\IMG\Icones\CLOSE.png" class="nav navbar-nav" id="lgpr">
     <ul>
        <li >
-          <img role="button" type="submit" src="../IMG\Icones\unnamed.png" class="botao" height="30px" width="30px" >
-       </li>
-       <li >
-
             <a href="Sair.php" class="botao">Sair</a>
+            <a href="../Close_Estudio.php" class="botao">Estúdio</a>
        </li>
     </ul>
   </nav>
 </header>
-<?php
-//aqui tá pegando a foto do perfil da pessoa pra ela já ter uma visualização
-    if($dados['Foto_Perfil']==""){
-      echo '<img src="../IMG\Icones\8-512.png" id="uimg">';
-    }else{
-      echo'<img src="../Fotos_Perfis/'.$dados["Foto_Perfil"].'" id="uimg">';
-    }
-    
-    
-    
-    ?>
-<h3>Quer alterar sua foto do perfil?</h3><br>
-<!--Aqui começa o formulário pra pessoa envia umma nova foto-->
-<form method="post" action="cadastrarfoto.php" enctype="multipart/form-data">
-	<!--Ali em baixo foram criados tres imputes, o primeiro é invisivel, nao tem necessidade de editar ele, o segundo é 
-    o tipo file que é aonde a pessoa escolhr o arquivo, o ultimo é aonde a pesoa envia, o classico submit-->
-    <input name="arquivo" type="file" placeholder="" id="arquivo" onchange="previewImagem()"><br><br>
-    <img style="width: 150px; height: 150px;" id="img" name="img"><br><br>
-    <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"> 
-	<input type="submit" value="Alterar foto"><br><br>
-    
-</form>
-<!--Esse script existe pra pessoa conseguir visualizar a foto q ela vai por no perfil antes de upar ela, sabe?-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		
- 
- <script>
-     function previewImagem() {
-         var imagem = document.querySelector ('input[name=arquivo]').files[0]; 
-         var preview = document.querySelector ('img[name=img]');
+<center><div class="nvct">
+<nav class="navbar navbar-dark bg-dark" style="width: 70%;">
+    <a class="navbar-brand" href="#">Quer alterar sua foto de perfil?</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarsExample01" style="margin-left: 30%; margin-right: 20%;">  
+    <ul class="navbar-nav mr-autocol">
+        <center><li class="nav-item active">
+          <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+          <form class="px-4 py-3 " method="post" action="cadastrarfoto.php" enctype="multipart/form-data">
+            <div class="form-group">
+                <input name="arquivo" type="file" placeholder="" id="arquivo" class="form-control" onchange="previewImagem()"><br><br>
+                <img id="edim" name="img"><br><br>
+                <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"class="form-control">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Alterar foto">
+            </form>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script>
+                function previewImagem() {
+                    var imagem = document.querySelector ('input[name=arquivo]').files[0]; 
+                    var preview = document.querySelector ('img[name=img]');
 
-         var reader = new FileReader ();
+                    var reader = new FileReader ();
 
-         reader.onloadend = function () {
-             preview.src = reader.result;
-         }
+                    reader.onloadend = function () {
+                        preview.src = reader.result;
+                    }
 
-         if (imagem){
-             reader.readAsDataURL(imagem);
-         }else{
-             preview.src = "";
-         }
-     }
- </script>
+                    if (imagem){
+                        reader.readAsDataURL(imagem);
+                    }else{
+                        preview.src = "";
+                    }
+                }
+            </script>
+        </li></center>
+    </ul>
+</div>
+  </nav></center>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <br><br>
+  <!--Esse script existe pra pessoa conseguir visualizar a foto q ela vai por no perfil antes de upar ela, sabe?-->
 
-<div class="col-4" id="cad">
-        <!--Aqui começa o formulário pra pessoa mudar alguma coisa do perfil dela, nessa primeira parte, os dados pessoais-->
-		<form method="post" name="edit1">
-            <h3>Dados Pessoais</h3><br>
+<center><nav class="navbar navbar-dark bg-dark container" style="width: 70%;">
+    <a class="navbar-brand" href="#">Quer alterar seus dados pessoais?</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse row" id="navbarsExample01" style="">
+      <ul class="navbar-nav mr-auto col">
+        <li class="nav-item active">
+          <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+          <form class="px-4 py-3" method="post" name="edit1">
+              <!--Aqui começa o formulário pra pessoa mudar alguma coisa do perfil dela, nessa primeira parte, os dados pessoais-->
             <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"> 
-            <label id="leflab">Nome</label>  <label id="rigid">Sobrenome</label><br>
-			<input type="text"  name="nome" maxlength="50" value="<?php Echo $dados['Nome']; ?>">
-            <input type="text" maxlength="50" value="<?php Echo $dados['Sobrenome']; ?>" name="sbnome"><br><br>
-            <label id="leflab">Nome de Usuário</label>  <label id="rigid">Data de nascimento</label><br>
-			<input type="text" name="nusuario" value="<?php Echo $dados['Nome_Usuário']; ?>" maxlength="50">
-            <input type="date" name="data" value="<?php Echo $dados['Data_Nascimento']; ?>"><br><br>
-            <label id="leflab">Biografia</label><br>
-            <input type="text" name="bio" value="<?php Echo $dados['Biografia']; ?>" maxlenght="150">
-            <br><br><br>
-            <input type="submit" name="Editar" value="Editar" class="botao" onclick="Mensagem()">
+            <div class="row"><br>
+                <div class="col-md-6 mb-3">
+                    <label id="leflab" style="color: aliceblue;">Nome</label><br>
+                    <input type="text"  name="nome" class="form-control" maxlength="50" value="<?php Echo $dados['Nome']; ?>" placeholder="Nome">
+                </div>  
+                <div class="col-md-6 mb-3">
+                    <label id="rigid" style="color: aliceblue;">Sobrenome</label><br>
+                    <input type="text" maxlength="50"class="form-control" value="<?php Echo $dados['Sobrenome']; ?>" name="sbnome" placeholder="Sobrenome">
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label id="leflab" style="color: aliceblue;">Nome de Usuário</label><br>
+                    <input type="text" name="nusuario" class="form-control" value="<?php Echo $dados['Nome_Usuário']; ?>" maxlength="50" placeholder="Nome de Usuário">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label id="rigid" style="color: aliceblue;">Data de nascimento</label><br>
+                    <input type="date" name="data" class="form-control" value="<?php Echo $dados['Data_de_Nascimento']; ?>" placeholder="DD/MM/AAAA">
+                </div>
+            </div>
+            <br><br>
+            <div class="col-md-6 mb-3">
+                <label id="leflab" style="color: aliceblue;">Biografia</label><br>
+                <input type="text" name="bio" class="form-control" value="<?php Echo $dados['Biografia']; ?>" maxlenght="150" placeholder="Biografia">
+            </div><br>
             <?php
                 if(isset($_POST['nome']))
                 {
@@ -111,7 +137,7 @@ $u = new Usuario;
                 $biografia = addslashes($_POST['bio']);
                
 
-                    $u->conexao("login", "localhost","root","");
+                    $u->conexao("Cloose", "localhost","root","");
                     if($u->msgErro == "")
                     {
                         if($u->editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento,
@@ -131,9 +157,16 @@ $u = new Usuario;
                         echo "Erro: ".$u->msgErro;
                     }
                     }
-            ?>      
-			
-	</form>
+            ?>   
+            <center><input type="submit" value="Alterar dados" name="Editar" class="btn btn-primary" onclick="Mensagem()"></center>
+              <br>
+            </form>
+        </li>
+       </ul> 
+    </div>
+  </nav></center>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <br><br>
     <!--Aqui começa um formulário pra pessoa que deseija mudar sua senha-->
     <!--<form method="post" name="edit2">
             <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
@@ -179,18 +212,25 @@ $u = new Usuario;
             ?>   
             
     </form> -->
-    <form method="post" name="edit3">
-        <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
-        <h3>Quer mudar seu E-mail?</h3><br> 
-        <label>E-mail</label><br>
-        <input type="email" name="Email" id="Email" value="<?php echo $dados['E_mail'] ?>" maxlength="100" required><br><br><br>          
-        <input type="submit" name="editar2" value="Alterar E-mai">
-        <?php 
+<center><nav class="navbar navbar-dark bg-dark container" style="width: 70%;">
+    <a class="navbar-brand" href="#">Quer alterar seu email cadastrado?</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse row" id="navbarsExample01" style="">
+      <ul class="navbar-nav mr-auto col">
+         <li class="nav-item active">
+            <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+            <form class="px-4 py-3" method="post" name="edit3">
+                <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
+                <label style="color: aliceblue;">E-mail</label><br>
+                <input type="email" name="Email" id="Email" value="<?php echo $dados['E_mail'] ?>" placeholder="Email" maxlength="100" required><br><br>
+                <?php 
         if(isset($_POST['Email']))
         {
             $id = addslashes($_POST['id_user']); 
             $email = addslashes($_POST['Email']);
-            $u->conexao("login", "localhost","root","");
+            $u->conexao("Cloose", "localhost","root","");
             if($u->msgErro == "")
             {
                 if($u->verifica($email)){
@@ -221,30 +261,34 @@ $u = new Usuario;
         
         
         ?>
-    </form>                    
-    
-            
-          
-</div>            
-            <footer>
+                <center><input type="submit" name="editar2" class="btn btn-primary" onclick="Mensagem()" value="Alterar e-mail"></center><br>
+            </form>
+         </li>
+        </ul> 
+    </div>
+</nav></center>         
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<br><br>
+</div></center>
+<footer>
     <nav class="navbar navbar-default" role="navigation" id="rodp">
-    <center>
-      <ul>
-        <li>
-            <a href="">SOBRE</a>
-        </li>
-        <li>
-            <a href="">AJUDA</a>
-        </li>
-        <li>
-            <a href="">NÓS</a>
-        </li>
-        <li>
-            <a href="">CONTATO</a>
-        </li>
-    </ul>
-  </center>
-</nav>
+        <center>
+        <ul>
+            <li>
+                <a href="">SOBRE</a>
+            </li>
+            <li>
+                <a href="">AJUDA</a>
+            </li>
+            <li>
+                <a href="">NÓS</a>
+            </li>
+            <li>
+                <a href="">CONTATO</a>
+            </li>
+        </ul>
+        </center>
+    </nav>
 </footer>
-        </body>
+</body>
 </html>
