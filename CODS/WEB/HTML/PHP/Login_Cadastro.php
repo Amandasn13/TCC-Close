@@ -34,7 +34,7 @@ Class Usuario
         else
         {
             //se realmente for um novo usuario, cadastrar!
-            $sql = $pdo->prepare("INSERT INTO Usuario (Nome, Sobrenome, Nome_Usuário, Data_Nascimento, E_mail, Senha)
+            $sql = $pdo->prepare("INSERT INTO Usuario (Nome, Sobrenome, Nome_Usuário, Data_de_Nascimento, E_mail, Senha)
              VALUES (:nom, :sbnome, :NU, :dat, :ema, :s)");
             $sql->bindValue(":nom", $nome); 
             $sql->bindValue(":sbnome", $sobrenome); 
@@ -96,7 +96,7 @@ public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento, $biog
         
         global $pdo;
         global $msgErro;             
-        $sql = $pdo->prepare("UPDATE Usuario SET Nome= :nom, Sobrenome= :sbnome, Nome_Usuário= :NU, Data_Nascimento = :dat, Biografia= :bio WHERE IdUsuario = :id");
+        $sql = $pdo->prepare("UPDATE Usuario SET Nome= :nom, Sobrenome= :sbnome, Nome_Usuário= :NU, Data_de_Nascimento = :dat, Biografia= :bio WHERE IdUsuario = :id");
         $sql->bindvalue(":id", $id);
         $sql->bindvalue(":nom", $nome);              
         $sql->bindValue(":sbnome", $sobrenome); 
@@ -141,5 +141,27 @@ public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento, $biog
 
     }
 
+
+public function cadastrarfotoroupa($title, $tipo, $tamanho, $cor, $marca, $descricao, $foto)
+{
+    
+    global $pdo;
+    global $msgErro;
+   
+        //se realmente for um novo usuario, cadastrar!
+        $sql = $pdo->prepare("INSERT INTO Roupa (Title, Tipo, Tamanho, Cor, Marca, Descricao, Foto)
+         VALUES (:tit, :descr, :co, :tam, :mar, :tip, :fot)");
+        $sql->bindValue(":tit", $title); 
+        $sql->bindValue(":descr", $descricao); 
+        $sql->bindValue(":co", $cor);
+        $sql->bindValue(":tam", $tamanho);
+        $sql->bindValue(":mar", $marca);
+        $sql->bindValue(":tip", $tipo); 
+        $sql->bindValue(":fot", $foto); 
+        $sql->execute();
+        return true;
+    
+
+}
 }
 ?>
