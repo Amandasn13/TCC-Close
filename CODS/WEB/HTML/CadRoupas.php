@@ -66,7 +66,7 @@ $u = new Usuario;
             <div class="row">    
                 <div class="col-md-6 mb-3">
                 <label id="leflab" class="lb-st"> Categoria</label><br>
-                <input type="text" class="inp" name="categoria" id="cat_roupa" placeholder="Caategoria da roupa."  maxlength="100" required>
+                <input type="text" class="inp" name="categoria" id="cat_roupa" placeholder="Categoria da roupa."  maxlength="100" required>
                 </div>
                 <div class="col-md-6 mb-3">
                 <label id="rigid" class="lb-st"> Tipo</label><br>
