@@ -56,7 +56,7 @@ $dados = mysqli_fetch_array($resultado);
   <div class="col-4"> 
   <?php
     if($dados['Foto_Perfil']==""){
-      echo '<img src="../IMG\Icones\8-512.png" id="uimg">';
+      echo '<img src="IMG\Icones\8-512.png" id="uimg">';
     }else{
       echo'<img src="Fotos_Perfis/'.$dados["Foto_Perfil"].'" id="uimg">';
     }
