@@ -82,7 +82,7 @@ $id = $_SESSION['IdUsuario'];
                   $resultado = mysqli_query($connect, $sql);
                   $dados = mysqli_fetch_array($resultado);
                   if($dados==""){
-                    echo '<img src="Fotos_Roupas/sem.png" id="uimg">';
+                    echo '<img src="Fotos_Roupas/sem.png" class="card-img-top" alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;">';
                   }else{
                     echo'<img src="Fotos_Roupas/'.$dados["Foto"].'" class="card-img-top" alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" >';
                     
