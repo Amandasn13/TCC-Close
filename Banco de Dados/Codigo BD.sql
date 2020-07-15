@@ -6,6 +6,7 @@ USE Tiffanny;
 CREATE TABLE Usuario (
     IdUsuario INT AUTO_INCREMENT PRIMARY KEY,
     Nome CHAR(100) NOT NULL,
+    Nome_Usuário CHAR(100) NOT NULL,
     E_mail CHAR(100) UNIQUE NOT NULL,
     Sobrenome CHAR(100) NOT NULL,
     Senha CHAR(100) NOT NULL,
