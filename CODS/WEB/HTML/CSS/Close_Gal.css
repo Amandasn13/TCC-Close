@@ -1,3 +1,7 @@
+html {
+  font-family: "Segoe UI";
+}
+
 body {
   background-color: #FFFFE6;
   font-family: "Segoe UI";
@@ -93,22 +97,6 @@ footer {
 }
 
 footer #rodp {
-  /*class="footer navbar-fixed-bottom"
-             display:-ms-flexbox;
-             display:flex;
-             -ms-flex-wrap:wrap;
-             flex-wrap:wrap;
-             -ms-flex-align:center;
-             align-items:center;
-             -ms-flex-pack:end;
-             justify-content:flex-end;
-             padding:.75rem;
-             border-top:1px solid #dee2e6;
-             border-bottom-right-radius:calc(.3rem - 1px);
-             border-bottom-left-radius:calc(.3rem - 1px);
-             background-color: rgb(17, 14, 14);
-             font-family: $lt-font;
-             width: 100%;*/
   display: inline;
   -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -136,5 +124,37 @@ footer #rodp ul li a {
 
 #CampRp {
   background-color: #BCCAD3;
+}
+
+#ap {
+  padding: 0% 10% 0% 10%;
+}
+
+#cdt {
+  width: 30%;
+}
+
+#ct {
+  background-color: #9652bd;
+  padding: 2%;
+}
+
+#btn-pg {
+  background-color: white;
+  font-family: "Segoe UI";
+  color: #78787a;
+}
+
+#btn-pg:hover {
+  background-color: #a669c9;
+  color: whitesmoke;
+}
+
+.psq {
+  color: #BCCAD3;
+  background-color: transparent;
+  font-family: "Segoe UI";
+  border: none;
+  font-style: italic;
 }
 /*# sourceMappingURL=Close_Gal.css.map */
