@@ -16,7 +16,7 @@
 			$_UP['tamanho'] = 1024*1024*100; //5mb
 			
 			//Array com a extensões permitidas
-			$_UP['extensoes'] = array('png', 'jpg', 'jpeg', 'gif');
+			$_UP['extensoes'] = array('png', 'jpg', 'jpeg');
 			
 			//Renomeiar
 			$_UP['renomeia'] = false;
@@ -37,22 +37,22 @@
 			//Faz a verificação da extensao do arquivo
 			$extensao =  strtolower(@end(explode('.', $_FILES['arquivo']['name'])));
 			if(array_search($extensao,  $_UP['extensoes'])=== false){		
-				echo "
-				
-					<script type=\"text/javascript\">
-						alert(\"A imagem não foi cadastrada extesão inválida. Porfavor, selecione uma foto!\");
-					</script>
-				";
+				echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('Extensão inválida, por favor selecione uma foto.')
+							</script>";
+					echo "<script language=java script type= 'text/javascript'>
+					window.location.href = 'config.php'
+				</script>";
 			}
 			
 			//Faz a verificação do tamanho do arquivo
 			else if ($_UP['tamanho'] < $_FILES['arquivo']['size']){
-				echo "
-					
-					<script type=\"text/javascript\">
-						alert(\"Arquivo muito grande.\");
-					</script>
-				";
+				echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('Foto com tamanho muito grande! Escolha uma com tamanho menor.')
+							</script>";
+					echo "<script language=java script type= 'text/javascript'>
+					window.location.href = 'config.php'
+				</script>";
 			}
 			
 			//O arquivo passou em todas as verificações, hora de tentar move-lo para a pasta foto
@@ -70,21 +70,21 @@
 					//Upload efetuado com sucesso, exibe a mensagem
 					$query = mysqli_query($connect, "UPDATE Usuario SET Foto_Perfil = '$nome_final' WHERE 
 					IdUsuario = '$id' ");
-					header("location: config.php");	
-					echo "
-												
-						<script type=\"text/javascript\">
-							alert(\"Imagem cadastrada com Sucesso.\");
-						</script>
-					";
+					echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('Foto do perfil alterada com sucesso!')
+							</script>";
+					echo "<script language=java script type= 'text/javascript'>
+					window.location.href = 'config.php'
+				</script>";
+							
 				}else{
 					//Upload não efetuado com sucesso, exibe a mensagem
-					echo "
-						
-						<script type=\"text/javascript\">
-							alert(\"Imagem não foi cadastrada com Sucesso.\");
-						</script>
-					";
+					echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('Não foi possível alterar a foto do perfil.')
+							</script>";
+					echo "<script language=java script type= 'text/javascript'>
+					window.location.href = 'config.php'
+				</script>";
 				}
 			}
 			
