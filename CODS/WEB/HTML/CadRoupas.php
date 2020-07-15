@@ -70,7 +70,86 @@ $u = new Usuario;
                 </div>
                 <div class="col-md-6 mb-3">
                 <label id="rigid" class="lb-st"> Tipo</label><br>
-                <input type="text" class="inp" name="tipo" id="tip_roupa" placeholder="Tipo de roupa (ex: calça)" maxlength="100" required>
+                <input type="text" class="inp" name="tipo"  list="tipo" id="tip_roupa" placeholder="Tipo de roupa (ex: calça)" maxlength="100" required>
+                <datalist id="tipo">
+            <!--Acessórios: -->
+            <option value="Anel"></option>
+            <option value="Alargador"></option>
+            <option value="Arco"></option>
+            <option value="Bandana"></option>
+            <option value="Bijuteria"></option>
+            <option value="Bodies"></option>
+            <option value="Bolsa"></option>
+            <option value="Boné"></option>
+            <option value="Bracelete"></option>
+            <option value="Brinco"></option>
+            <option value="Botton"></option>
+            <option value="Carteira"></option>
+            <option value="Cachecol"></option>
+            <option value="Cinto"></option>
+            <option value="Chapéu"></option>
+            <option value="Chupeta"></option>
+            <option value="Colar"></option>
+            <option value="Corrente"></option>
+            <option value="Coroa"></option>
+            <option value="Dedal"></option>
+            <option value="Elmo"></option>
+            <option value="Flanela"></option>
+            <option value="Gargantilha"></option>
+            <option value="Gravata"></option>
+            <option value="Leque"></option>
+            <option value="Luvas"></option>
+            <option value="Máscara"></option>
+            <option value="Mala"></option>
+            <option value="Meia-Calça"></option>
+            <option value="Mochila"></option>
+            <option value="Miçanga"></option>
+            <option value="Óculos"></option>
+            <option value="Ombreira"></option>
+            <option value="Piercing"></option>
+            <option value="Pulseira"></option>
+            <option value="Pochete"></option>
+            <option value="Presilha"></option>
+            <option value="Suspensório"></option>
+            <option value="Relógio"></option>
+            <option value="Tiara"></option>
+            <option value="Tornozeleira"></option>
+            <option value="Touca"></option>
+            <option value="Turbante"></option>
+            <!--Calçado: -->
+            <option value="Bota"></option>
+            <option value="Chinelo"></option>
+            <option value="Crocs"></option>
+            <option value="Mocassim"></option>
+            <option value="Rasteira"></option>
+            <option value="Sandália"></option>
+            <option value="Salto"></option>
+            <option value="Sapatenis"></option>
+            <option value="Sapato"></option>
+            <option value="Sapatilha"></option>
+            <option value="Sider"></option>
+            <option value="Tênis"></option>
+            <!--Roupa: -->
+            <option value="Bermuda"></option>
+            <option value="Biquini"></option>
+            <option value="Blazer"></option>
+            <option value="Blusa"></option>
+            <option value="Calcinha"></option>
+            <option value="Calça"></option>
+            <option value="Camisa"></option>
+            <option value="Camiseta"></option>
+            <option value="Camisola"></option>
+            <option value="Capa de Chuva"></option>
+            <option value="Colete"></option>
+            <option value="Conjunto"></option>
+            <option value="Cueca"></option>
+            <option value="Esportiva"></option>
+            <option value="Fantasia"></option>
+            <option value="Jaqueta"></option>
+            <option value="Legging"></option>
+            <option value="Macacão"></option>
+            <option value="Maio"></option>
+        </datalist>
                 </div><br><br>
                 <div class="col-md-6 mb-3">
                 <label id="leflab" class="lb-st"> Descrição</label><br>

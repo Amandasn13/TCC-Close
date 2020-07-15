@@ -24,10 +24,10 @@
 		<form method="post" name="AP">
 		<center><legend> Login </legend><br>
 			<label for="l1">Usuário:</label><br>
-			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário ou e-mail" required><br><br>
+			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário ou e-mail" required ><br><br>
 			<label for="l2">Senha:</label><br>
 			<input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha" required><br><br><!-- lembra da vizualização da senha-->
-			<input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
+            <input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
 		</form><br>
         <?php
         if(isset($_POST['usuário']))
