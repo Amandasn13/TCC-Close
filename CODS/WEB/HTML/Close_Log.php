@@ -26,7 +26,7 @@
 			<label for="l1">Usuário:</label><br>
 			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário ou e-mail" required><br><br>
 			<label for="l2">Senha:</label><br>
-			<input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha" required><span toggle="#l2" id="btnL" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br><!-- lembra da vizualização da senha-->
+			<input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha" required><br><br><!-- lembra da vizualização da senha-->
 			<input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
 		</form><br>
         <?php
@@ -38,7 +38,7 @@
             $email = addslashes ($_POST['usuário']);
             //if(!empty($nomeusuario) && !empty($senha))
             //{
-                $u->conexao("Cloose", "localhost","root","");
+                $u->conexao("Tiffanny", "localhost","root","");
                 if($u->msgErro == ""){
                 if($u->logar($nomeusuario, $senha, $email))
                 {
@@ -79,8 +79,8 @@
             <!--<label id="leflab">Email</label><br><br>-->
             <input type="email" name="Email" id="all-in" placeholder="Digite seu email" class="em" style="width: 365px;" maxlength="100" required><br><br>
             <!--<label id="leflab" class="col-4">Senha</label>  <label id="rigid" class="col-4">Confirmação de senha</label><br><br>-->
-            <input type="password" name="csenha" id="passC" style="width: 345px;" placeholder="Digite sua senha" maxlength="15" required><span toggle="#passC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span><br><br>
-            <input type="password" name="ccsenha" id="passC" style="width: 345px;" placeholder="Confirme sua senha" maxlength="15" required><span toggle="#passCC" id="btnC" class="fa fa-fw fa-eye field-icon toggle-password"></span></center>
+            <input type="password" name="csenha" id="passC" style="width: 345px;" placeholder="Digite sua senha" maxlength="100" required><br><br>
+            <input type="password" name="ccsenha" id="passC" style="width: 345px;" placeholder="Confirme sua senha" maxlength="100" required></center>
             <br><br>
             <input type="submit" name="cadastro" value="Cadastrar" class="botao" onclick="Mensagem()">
             <!--Verifica se a pessoa clicou no botao-->
@@ -100,7 +100,7 @@
                 //&& !empty($nascimento) && !empty($email) && !empty($senha) 
                 //&& !empty($confirmarSenha))
                 //{
-                    $u->conexao("Cloose", "localhost","root","");
+                    $u->conexao("Tiffanny", "localhost","root","");
                     if($u->msgErro == "")
                     {
                         if($senha == $confirmarSenha)
@@ -145,44 +145,7 @@
             ?>      
 			
 	</form>
-		<script language="javascript">
-			//senha visivel:
-		const btnL = document.querySelector('#btnL');
-		const pass = document.querySelector('#l2');
-		btnL.addEventListener('click', function(){
-    	if(pass.type == 'text') {
-        pass.type = 'password';
-        btnL.setAttribute("class","fas fa-eye");
-    	} else {
-        pass.type = 'text';
-        btnL.setAttribute("class","fas fa-eye-slash");
-    	}
-		});
 		
-		const btnC = document.querySelector('#btnC');
-		const passC = document.querySelector('#passC');
-		btnC.addEventListener('click', function(){
-    	if(passC.type == 'text') {
-        passC.type = 'password';
-        btnC.setAttribute("class","fas fa-eye");
-    	} else {
-        passC.type = 'text';
-        btnC.setAttribute("class","fas fa-eye-slash");
-    	}
-		});	
-		
-		const btnCC = document.querySelector('#btnCC');
-		const passCC = document.querySelector('#passCC');
-		btnCC.addEventListener('click', function(){
-    	if(passCC.type == 'text') {
-        passCC.type = 'password';
-        btnCC.setAttribute("class","fas fa-eye");
-    	} else {
-        passCC.type = 'text';
-        btnCC.setAttribute("class","fas fa-eye-slash");
-    	}
-		});
-		</script>
     </div></div>
     <footer>
         <nav class="navbar navbar-default" role="navigation" id="rodp">

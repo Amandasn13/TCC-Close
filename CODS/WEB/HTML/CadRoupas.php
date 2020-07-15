@@ -107,6 +107,7 @@ $u = new Usuario;
         </div>
       </div><br><br>
     <center><input type="submit" class="align-bottom" id="btg" value="Cadastrar roupa"></center>
+    
     </form>
     
 <!--</form!-->    
