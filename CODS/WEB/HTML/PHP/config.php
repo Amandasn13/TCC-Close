@@ -56,7 +56,7 @@ $u = new Usuario;
           <form class="px-4 py-3 " method="post" action="cadastrarfoto.php" enctype="multipart/form-data">
             <div class="form-group">
                 <input name="arquivo" type="file" placeholder="" id="arquivo" class="form-control" onchange="previewImagem()"><br><br>
-                <img id="edim" name="img"><br><br>
+                <img name="img" id="uimg"><br><br>
                 <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"class="form-control">
             </div>
             <input type="submit" class="btn btn-primary" value="Alterar foto">
@@ -137,7 +137,7 @@ $u = new Usuario;
                 $biografia = addslashes($_POST['bio']);
                
 
-                    $u->conexao("Cloose", "localhost","root","");
+                    $u->conexao("Tiffanny", "localhost","root","");
                     if($u->msgErro == "")
                     {
                         if($u->editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento,
@@ -230,7 +230,7 @@ $u = new Usuario;
         {
             $id = addslashes($_POST['id_user']); 
             $email = addslashes($_POST['Email']);
-            $u->conexao("Cloose", "localhost","root","");
+            $u->conexao("Tiffanny", "localhost","root","");
             if($u->msgErro == "")
             {
                 if($u->verifica($email)){
