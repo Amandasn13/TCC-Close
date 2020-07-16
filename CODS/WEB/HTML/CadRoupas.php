@@ -86,6 +86,7 @@ $u = new Usuario;
             <option value="Botton"></option>
             <option value="Carteira"></option>
             <option value="Cachecol"></option>
+            <option value="Calça"></option>
             <option value="Cinto"></option>
             <option value="Chapéu"></option>
             <option value="Chupeta"></option>
