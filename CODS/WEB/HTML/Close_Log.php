@@ -47,7 +47,7 @@
                 }else
                 {
                     echo "<script language=javascript type= 'text/javascript'>
-                    window.alert('Email e/ou senha incorretos!')
+                    window.alert('Email e/ou senha incorretos, ou usuário não cadastrado!')
                     </script>";
                 }
                 }else
