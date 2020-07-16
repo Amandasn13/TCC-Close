@@ -141,4 +141,15 @@ footer #rodp ul li a {
   border: none;
   font-style: italic;
 }
+
+
+
+#uimg {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border-color: #343a40;
+  border: 2px;
+  margin: 10% 5% 10% 60%;
+}
 /*# sourceMappingURL=Close_Cox.css.map */
