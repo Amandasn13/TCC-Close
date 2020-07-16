@@ -5,7 +5,7 @@ require_once 'PHP/Login_Cadastro.php';
 session_start();
 if(!isset($_SESSION['IdUsuario']))
 {
-    header("location: ../Close_Log.php");
+    header("location: Close_Log.php");
     exit;
 }
  //logo aqui, criada uma forma de armazenar todos os dados do usuario em uma variavel.
@@ -55,10 +55,10 @@ $dados = mysqli_fetch_array($resultado);
 <div class="row justify-content-around"><!-- Div de apresentação/dados do usuário-->
   <div class="col-4"> 
   <?php
-    if($dados['Foto_Perfil']==""){
+    if($dados['Foto_de_Perfil']==""){
       echo '<img src="IMG\Icones\8-512.png" id="uimg">';
     }else{
-      echo'<img src="Fotos_Perfis/'.$dados["Foto_Perfil"].'" id="uimg">';
+      echo'<img src="Fotos_Perfis/'.$dados["Foto_de_Perfil"].'" id="uimg">';
     }
     
     
