@@ -7,16 +7,14 @@
     <!--Abaixo: conexão com as folhas de estilo de bootstrap e de css pessoal/nosso-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="CSS\Close_Est.css" rel="stylesheet">
+    <link rel="icon" type="imagem/png" href="IMG\Vetores\Close_Logo.png">
 </head>
 <body id="pg"> 
 <header><!--Cabeçalho-->
   <nav class="navbar navbar-default" role="navigation" id="rodp">
     <!--<h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>-->
-    <img src="IMG\Icones\CLOSE.png" class="nav navbar-nav" id="lgpr">
+    <img src="IMG\Vetores\Close_EscLog.png" class="nav navbar-nav" id="lgpr" width="80px" height="30px">
     <ul>
-       <li >
-          <img role="button" type="submit" src="IMG\Icones\unnamed.png" class="botao" height="30px" width="30px" >
-       </li>
        <li >
           <input type="button" value="Sair" class="botao">
        </li>
@@ -35,49 +33,94 @@
     <p name="ubio">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus officia, quisquam sint officiis cumque illum odio impedit, distinctio adipisci ratione totam eligendi fugit facilis incidunt nihil nisi, laborum ipsam fugiat.</p>
   </div>
 </div>
-    <!--<br><br>-->
+<!--Aqui vão ficar as roupas acessadas a muito tempo-->
+<div class="container" style="background-color: #FFBD00;"><br><!--Div pra  exibição-->
+            <center><h2>Ei! Ja faz um tempo que você usou essas roupas, que tal dar uma olhada nelas?</h2></center>
+              <div class="row" id="ct"><br>
+                  <div class="col-md-4" id="cdt"><!-- img 01-->
+                      <div class="card mb-4 shadow-sm">
+                          <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" " data-holder-rendered="true">
+                          <div class="card-body">
+                          <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                          <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+                          <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Ver</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Editar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4"><!-- img02 -->
+                      <div class="card mb-4 shadow-sm">
+                          <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" " data-holder-rendered="true">
+                          <div class="card-body">
+                          <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                          <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+                          <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Ver</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Editar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4" id="cdt"><!-- img 03-->
+                      <div class="card mb-4 shadow-sm">
+                          <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" " data-holder-rendered="true">
+                          <div class="card-body">
+                          <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                          <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+                          <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Ver</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Editar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                 </div></div><br>
+    <!--Carousel começa aqui-->
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel"><!-- div de criação do carousel com os links-->
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
         </ol>
         <div class="carousel-inner"><!--Organização de slides-->
           <div class="carousel-item active"><!--slide 1 e ativador de slide-->
             <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl1">
             <div class="carousel-caption d-none d-md-block" id="sl1">
-              <h5>Guarda-Roupa</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h5>Roupas em desuso</h5>
+              <p>Ja faz um tempo que você usou essas roupas, que tal dar uma olhada?</p>
             </div>
           </div>
-          <div class="carousel-item"><!--slide 2-->
+          <div class="carousel-item" style="height: 60%;"><!--slide 2-->
             <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl2">
-            <div class="carousel-caption d-none d-md-block" id="sl2">
-              <h5>Trending</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <div class="carousel-caption d-none d-md-block" id="sl2">
+              <h5>Guarda-Roupa</h5>
+              <p>Que tal ver quais roupas você ja organizou com a gente?</p>
             </div>
           </div>
           <div class="carousel-item" style="height: 60%;"><!--slide 3-->
             <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl3">
-              <div class="carousel-caption d-none d-md-block" id="sl3">
-              <h5>Inspirações</h5>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </div>
-          </div>
-          <div class="carousel-item" style="height: 60%;"><!--slide 4-->
-            <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl4">
-            <div class="carousel-caption d-none d-md-block" id="sl4">
-            <h5>Minha Coleção</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            <div class="carousel-caption d-none d-md-block" id="sl3">
+            <h5>Gerador</h5>
+            <p>Suas roupas estão prontas pra criar um novo look incrivel!</p>
           </div>
         </div>
-        <div class="carousel-item" style="height: 60%;"><!--slide 5-->
-          <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl5">
-          <div class="carousel-caption d-none d-md-block" id="sl5">
-          <h5>Gerador</h5>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        <div class="carousel-item" style="height: 60%;"><!--slide 4-->
+          <img src="IMG\Samples\png1.png" class="d-block w-100" id="sl4">
+          <div class="carousel-caption d-none d-md-block" id="sl4">
+          <h5>Meus looks</h5>
+          <p>Pensando em que roupa usar agora? Te ajudamos nisso!</p>
         </div>
       </div>
       </div>

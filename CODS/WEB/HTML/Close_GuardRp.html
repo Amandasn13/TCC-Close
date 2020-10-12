@@ -2,43 +2,160 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
-    <link href="CSS\Close_.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Guarda Roupa</title>
+    <!--Abaixo: conexão com as folhas de estilo de bootstrap e de css pessoal/nosso-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="CSS\Close_Gal.css" rel="stylesheet">
+    <link rel="icon" type="imagem/png" href="IMG\Vetores\Close_Logo.png">
 </head>
-<body> 
-    <header>
-        <nav class="">
-            <img src="" height="" width="">
-            <ul>
-                <li>
-                    <a href="">Estudios</a>
-                </li>
-                <li>
-                    <a href="">Coleções</a>
-                </li>
-                <li>
-                    <a href="">Trending</a>
-                </li>
-                
-            </ul></nav>
-    </header>
-<div><!--Div pra titulo-->    
-    <h1>Guarda Roupa</h1>
-    <h3>Bom dia</h3>
-</div>
-<div><!--Div pra  exibição-->
-    <form>Exibição:<input type="radio"><input type="radio"><input type="radio">
-    </form>
-</div>
-<br><br><br><br><br>
-<div >
-    <input type="button" value="Ver mais">
-    <input type="button" value="Gerador">
-</div>    
-<footer>
-    <nav class="">
-    <img src="" height="" width="">
+    <body id="pg"> 
+           
+        <header><!--Cabeçalho-->
+            <nav class="navbar navbar-default" role="navigation" id="rodp">
+                            <!--<h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>-->
+    <img src="IMG\Vetores\Close_EscLog.png" class="nav navbar-nav" id="lgpr" width="80px" height="30px">
     <ul>
+        <li>
+            <a href="">Estúdio</a>
+            <a href="">Inspirações</a>
+            <a href="">Trending</a>
+        </li>
+       <li >
+          <input type="button" value="Sair" class="botao">
+       </li>
+    </ul>
+  </nav>
+</header>
+<body></body>
+<div class="row justify-content-between" id="ap">
+    <div class="col-4"><!-- Apresentação -->
+        <h1>Guarda Roupa</h1>
+        <h6>Seus looks são um arraso!</h6>
+    </div>
+    <div class="col-4">
+        <br>
+        <label>Filtro:</label>
+        <input type="text" placeholder="Ex: Calças, blusas etc">
+    </div>
+</div>
+<div class="container"><!--Div pra  exibição-->
+    <div class="row" id="ct"><br>
+        <div class="col-md-4" id="cdt"><!-- img 01-->
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" " data-holder-rendered="true">
+                <div class="card-body">
+                <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+                <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Ver</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Editar</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Apagar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"><!-- img02 -->
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" " data-holder-rendered="true">
+                <div class="card-body">
+                <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+                <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Ver</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Editar</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Apagar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"><!-- img03 -->
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" " data-holder-rendered="true">
+                <div class="card-body">
+                <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+                <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Ver</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Editar</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Apagar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"><!-- img 04-->
+            <div class="card mb-4 shadow-sm">
+               <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" " data-holder-rendered="true">
+                <div class="card-body">
+                <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+                <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Ver</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Editar</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Apagar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"><!--img 05-->
+            <div class="card mb-4 shadow-sm">
+             <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" " data-holder-rendered="true">  
+              <div class="card-body">
+                <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+                <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Ver</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Editar</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Apagar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"><!--img06-->
+            <div class="card mb-4 shadow-sm">
+              <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" " data-holder-rendered="true">
+              <div class="card-body">
+                <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+                <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Ver</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Editar</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg">Apagar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+        </div><br>   
+    <div> 
+        <center>
+        <input type="button" value="Ver Mais" class="btn btn-sm btn-outline-secondary" id="btn-pg">
+        <input type="button" value="Gerador" class="btn btn-sm btn-outline-secondary" id="btn-pg">
+        <input type="button" value="Cadastrar" class="btn btn-sm btn-outline-secondary" id="btn-pg">
+    </div>
+</div>
+<footer>
+    <nav class="navbar navbar-default" role="navigation" id="rodp">
+    <center>
+      <ul>
         <li>
             <a href="">SOBRE</a>
         </li>
@@ -51,7 +168,9 @@
         <li>
             <a href="">CONTATO</a>
         </li>
-    </ul></nav>
+    </ul>
+  </center>
+</nav>
 </footer>
 </body>
 </html>

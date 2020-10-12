@@ -97,7 +97,6 @@ input button {
 #log {
   color: #333333;
   font-family: Segoe UI Light;
-  margin-top: 2%;
   margin-left: 5%;
 }
 
@@ -146,7 +145,7 @@ footer #rodp ul li a {
 }
 
 #cad {
-  width: 490px;
+  width: 550px;
   height: 577px;
   font-family: Segoe UI Light;
   font-size: 13px;
@@ -184,6 +183,13 @@ footer #rodp ul li a {
 
 label {
   position: relative;
+}
+
+#lg {
+  /*width: 100px;
+    height: 200px;
+    //float: left;*/
+  padding-left: 5%;
 }
 
 /*#btnC{

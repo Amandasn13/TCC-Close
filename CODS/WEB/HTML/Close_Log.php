@@ -12,59 +12,59 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<link rel="stylesheet" href="CSS\Close_Log.css">
-	<link rel="icon" type="imagem/png" href=".png"/>
+	<link rel="icon" type="imagem/png" href="IMG\Vetores\Close_Logo.png">
 </head>
 <body>
-    <div>
-        <img>
-    </div>
-	<!--primeira div de corpo, div de acesso pessoal-->
-	<div class="row justify-content-around">
-        <div class="col-4" id="log">
-		<form method="post" name="AP">
-		<center><legend> Login </legend><br>
-			<label for="l1">Usuário:</label><br>
-			<input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário ou e-mail" required ><br><br>
-			<label for="l2">Senha:</label><br>
-			<input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha" required><br><br><!-- lembra da vizualização da senha-->
-            <input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
-		</form><br>
-        <?php
-        if(isset($_POST['usuário']))
-        {
+    <!--primeira div de corpo, div de acesso pessoal-->
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-4 row">
+                    <img src="IMG\Vetores\Close_DbLog01 (1).png" alt="Logo do projeto Close" width="280px" height="225px"  style="padding-top:2%; padding-left:85px;">
+                    <div class="col" id="log">
+                        <form method="post" name="AP">
+                        <center><legend> Login </legend><br>
+                            <label for="l1">Usuário:</label><br>
+                            <input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário ou e-mail" required ><br><br>
+                            <label for="l2">Senha:</label><br>
+                            <input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha" required><br><br><!-- lembra da vizualização da senha-->
+                            <input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
+                        </form><br>
+                        <?php
+                        if(isset($_POST['usuário']))
+                        {
 
-            $nomeusuario = addslashes ($_POST['usuário']);
-            $senha = addslashes ($_POST['senha']);
-            $email = addslashes ($_POST['usuário']);
-            //if(!empty($nomeusuario) && !empty($senha))
-            //{
-                $u->conexao("Tiffanny", "localhost","root","");
-                if($u->msgErro == ""){
-                if($u->logar($nomeusuario, $senha, $email))
-                {
-                    
-                    header("location: Close_Estudio.php");
-                }else
-                {
-                    echo "<script language=javascript type= 'text/javascript'>
-                    window.alert('Email e/ou senha incorretos, ou usuário não cadastrado!')
-                    </script>";
-                }
-                }else
-                {
-                    echo "Erro: ".$u->msgErro;
-                }
-            //}
-            //else
-            //{
-              //  echo"Preencha todos os campos!";
-            //}
-        }
-        ?>
-
-        <a href>Esqueci minha senha</a></center>
-        <br><br>
-	</div>
+                            $nomeusuario = addslashes ($_POST['usuário']);
+                            $senha = addslashes ($_POST['senha']);
+                            $email = addslashes ($_POST['usuário']);
+                            //if(!empty($nomeusuario) && !empty($senha))
+                            //{
+                                $u->conexao("Tiffanny", "localhost","root","");
+                                if($u->msgErro == ""){
+                                if($u->logar($nomeusuario, $senha, $email))
+                                {
+                                    
+                                    header("location: Close_Estudio.php");
+                                }else
+                                {
+                                    echo "<script language=javascript type= 'text/javascript'>
+                                    window.alert('Email e/ou senha incorretos, ou usuário não cadastrado!')
+                                    </script>";
+                                }
+                                }else
+                                {
+                                    echo "Erro: ".$u->msgErro;
+                                }
+                            //}
+                            //else
+                            //{
+                            //  echo"Preencha todos os campos!";
+                            //}
+                        }
+                        ?>
+                    <a href>Esqueci minha senha</a></center>
+                    <br><br>
+            </div>
+        </div>
 	<!-- segunda div do corpo, formulário de cadastro-->
 	<div class="col-4" id="cad">
 		<form method="post" name="Cad"><br>
@@ -146,7 +146,7 @@
 			
 	</form>
 		
-    </div></div>
+    </div></div></div>
     <footer>
         <nav class="navbar navbar-default" role="navigation" id="rodp">
         <center>

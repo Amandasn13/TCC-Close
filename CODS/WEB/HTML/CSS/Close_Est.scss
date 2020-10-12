@@ -45,22 +45,22 @@ body{
 }
 
 #sl1{
- background-color: #ff1a1a;
+ background-color: #FF5400  ;
  //position: absolute;
  //height: $sldht;
 }
 #sl2{
- background-color: #f3f33b;
+ background-color: #FF0054  ;
  //position: absolute;
  //height: $sldht;
 }
 #sl3{
-    background-color: #08ca08;
+    background-color: #9E0059  ;
     //position: absolute;
     //height: $sldht;
 }
 #sl4{
-    background-color: #1a8cff;
+    background-color: #390099;
    // position: absolute;
     //height: $sldht;
 }
@@ -114,6 +114,8 @@ header{
             color: $corpad01;*/
             margin-left: 45px;
             display: inline;
+            width: 20px;
+            height: 5px;
         }
 }
 
