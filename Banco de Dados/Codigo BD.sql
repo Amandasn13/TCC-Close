@@ -1,101 +1,112 @@
-/* Modelo_Físico: */
+/* NewLogicoClose: */
 DROP DATABASE IF EXISTS Tiffanny;
 CREATE DATABASE Tiffanny DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE Tiffanny;
-
 CREATE TABLE Usuario (
     IdUsuario INT AUTO_INCREMENT PRIMARY KEY,
-    Nome CHAR(100) NOT NULL,
-    Nome_Usuário CHAR(100) NOT NULL,
-    E_mail CHAR(100) UNIQUE NOT NULL,
-    Sobrenome CHAR(100) NOT NULL,
-    Senha CHAR(100) NOT NULL,
+    Nome CHAR NOT NULL,
+    E_mail CHAR UNIQUE NOT NULL,
+    Sobrenome CHAR NOT NULL,
+    Nome_de_Usuario CHAR NOT NULL,
+    Senha CHAR NOT NULL,
     Data_de_Nascimento DATE NOT NULL,
-    Genero CHAR(100),
-    Biografia TEXT(300),
     Foto_de_Perfil BLOB
-)CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-CREATE TABLE Roupa (
-    IdRoupa INT AUTO_INCREMENT PRIMARY KEY,
-    Categoria ENUM("Acessório","Calçado","Roupa") NOT NULL,
-    Tipo CHAR(100) NOT NULL,
-    Foto BLOB NOT NULL,
-    Descricao TEXT(300),
-    Cor CHAR(100),
-    fk_Usuario_IdUsuario INT,
-    Tamanho CHAR(100),
-    Marca CHAR(100),
-    Material CHAR(100),
-    Titulo CHAR(100)
-)CHARACTER SET utf8 COLLATE utf8_general_ci;
+);
 
 CREATE TABLE Look (
     IdLook INT AUTO_INCREMENT PRIMARY KEY,
-    fk_Foto_Foto_PK INT
-) CHARACTER SET utf8 COLLATE utf8_general_ci;
+    fk_Fotos_Look_Fotos_Look_PK INT,
+    fk_Datas_de_Utilizacao_Look_Datas_de_Utilizacao_Look_PK INT,
+    fk_Tags_Look_Tags_Look_PK INT,
+    Nome CHAR NOT NULL,
+    Vezes_Utilizada DATE NOT NULL,
+    Utima_Utilizacao DATE
+);
 
-CREATE TABLE Tag (
-    Palavra_Chave CHAR(100) NOT NULL,
-    IdTag INT AUTO_INCREMENT PRIMARY KEY
-)CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE TABLE Roupa (
+    IdRoupa INT AUTO_INCREMENT PRIMARY KEY,
+    fk_Tags_Roupa_Tags_Roupa_PK INT,
+    fk_Datas_de_Utilizacao_Roupa_Datas_de_Utilizacao_Roupa_PK INT,
+    Titulo CHAR,
+    Categoria ENUM("Acessório","Calçado","Roupa") NOT NULL,
+    Tipo CHAR NOT NULL,
+    Foto CHAR NOT NULL,
+    Cor CHAR,
+    Descricao TEXT,
+    Tamanho CHAR,
+    Marca CHAR,
+    Material CHAR,
+    Vezes_Utilizada INT NOT NULL,
+    Ultima_Utilizacao DATE
+);
 
-CREATE TABLE Foto (
-    Foto_PK INT NOT NULL PRIMARY KEY,
-    Foto BLOB NOT NULL
-)CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE TABLE Fotos_Look (
+    Fotos_Look_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Fotos_Look BLOB
+);
 
-CREATE TABLE Roupa_Look (
-    fk_Roupa_IdRoupa INT,
-    fk_Look_IdLook INT
-)CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE TABLE Datas_de_Utilizacao_Look (
+    Datas_de_Utilizacao_Look_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Datas_de_Utilizacao_Look DATE
+);
 
-CREATE TABLE Roupa_Tag (
-    fk_Roupa_IdRoupa INT,
-    fk_Tag_IdTag INT
-)CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE TABLE Tags_Look (
+    Tags_Look_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Tags_Look CHAR
+);
 
-CREATE TABLE Tag_Look (
-    fk_Tag_IdTag INT,
-    fk_Look_IdLook INT
-)CHARACTER SET utf8 COLLATE utf8_general_ci;
- 
-ALTER TABLE Roupa ADD CONSTRAINT FK_Roupa_2
-    FOREIGN KEY (fk_Usuario_IdUsuario)
-    REFERENCES Usuario (IdUsuario)
-    ON DELETE CASCADE;
+CREATE TABLE Tags_Roupa (
+    Tags_Roupa_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Tags_Roupa CHAR
+);
+
+CREATE TABLE Datas_de_Utilizacao_Roupa (
+    Datas_de_Utilizacao_Roupa_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Datas_de_Utilizacao_Roupa DATE
+);
+
+CREATE TABLE _Usuario_Look_Roupa (
+    fk_Usuario_IdUsuario INT,
+    fk_Look_IdLook INT,
+    fk_Roupa_IdRoupa INT
+);
  
 ALTER TABLE Look ADD CONSTRAINT FK_Look_2
-    FOREIGN KEY (fk_Foto_Foto_PK)
-    REFERENCES Foto (Foto_PK)
+    FOREIGN KEY (fk_Fotos_Look_Fotos_Look_PK)
+    REFERENCES Fotos_Look (Fotos_Look_PK)
     ON DELETE NO ACTION;
  
-ALTER TABLE Roupa_Look ADD CONSTRAINT FK_Roupa_Look_1
-    FOREIGN KEY (fk_Roupa_IdRoupa)
-    REFERENCES Roupa (IdRoupa)
+ALTER TABLE Look ADD CONSTRAINT FK_Look_3
+    FOREIGN KEY (fk_Datas_de_Utilizacao_Look_Datas_de_Utilizacao_Look_PK)
+    REFERENCES Datas_de_Utilizacao_Look (Datas_de_Utilizacao_Look_PK)
+    ON DELETE NO ACTION;
+ 
+ALTER TABLE Look ADD CONSTRAINT FK_Look_4
+    FOREIGN KEY (fk_Tags_Look_Tags_Look_PK)
+    REFERENCES Tags_Look (Tags_Look_PK)
+    ON DELETE NO ACTION;
+ 
+ALTER TABLE Roupa ADD CONSTRAINT FK_Roupa_2
+    FOREIGN KEY (fk_Tags_Roupa_Tags_Roupa_PK)
+    REFERENCES Tags_Roupa (Tags_Roupa_PK)
+    ON DELETE NO ACTION;
+ 
+ALTER TABLE Roupa ADD CONSTRAINT FK_Roupa_3
+    FOREIGN KEY (fk_Datas_de_Utilizacao_Roupa_Datas_de_Utilizacao_Roupa_PK)
+    REFERENCES Datas_de_Utilizacao_Roupa (Datas_de_Utilizacao_Roupa_PK)
+    ON DELETE NO ACTION;
+ 
+ALTER TABLE _Usuario_Look_Roupa ADD CONSTRAINT FK__Usuario_Look_Roupa_1
+    FOREIGN KEY (fk_Usuario_IdUsuario)
+    REFERENCES Usuario (IdUsuario)
     ON DELETE RESTRICT;
  
-ALTER TABLE Roupa_Look ADD CONSTRAINT FK_Roupa_Look_2
+ALTER TABLE _Usuario_Look_Roupa ADD CONSTRAINT FK__Usuario_Look_Roupa_2
     FOREIGN KEY (fk_Look_IdLook)
     REFERENCES Look (IdLook)
-    ON DELETE SET NULL;
+    ON DELETE NO ACTION;
  
-ALTER TABLE Roupa_Tag ADD CONSTRAINT FK_Roupa_Tag_1
+ALTER TABLE _Usuario_Look_Roupa ADD CONSTRAINT FK__Usuario_Look_Roupa_3
     FOREIGN KEY (fk_Roupa_IdRoupa)
     REFERENCES Roupa (IdRoupa)
-    ON DELETE SET NULL;
- 
-ALTER TABLE Roupa_Tag ADD CONSTRAINT FK_Roupa_Tag_2
-    FOREIGN KEY (fk_Tag_IdTag)
-    REFERENCES Tag (IdTag)
-    ON DELETE SET NULL;
- 
-ALTER TABLE Tag_Look ADD CONSTRAINT FK_Tag_Look_1
-    FOREIGN KEY (fk_Tag_IdTag)
-    REFERENCES Tag (IdTag)
-    ON DELETE SET NULL;
- 
-ALTER TABLE Tag_Look ADD CONSTRAINT FK_Tag_Look_2
-    FOREIGN KEY (fk_Look_IdLook)
-    REFERENCES Look (IdLook)
-    ON DELETE SET NULL;
+    ON DELETE NO ACTION;
