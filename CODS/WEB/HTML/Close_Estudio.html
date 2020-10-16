@@ -30,7 +30,100 @@
     <h1 name="socnm">Nome Social</h1>
     <h3 name="unm">@nome_usuario</h3>
     <h3 name="infcad">Info de cadastro</h3>
-    <p name="ubio">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus officia, quisquam sint officiis cumque illum odio impedit, distinctio adipisci ratione totam eligendi fugit facilis incidunt nihil nisi, laborum ipsam fugiat.</p>
+    <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalEditPf">Editar perfil</button>
+    <!--Modal de Edição do Perfil-->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalEditPf">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!--Links para cada aba da modal-->
+          <header style="color: azure;"><ul class="nav nav-tabs ulna">
+            <li class="nav-item"><a href="#AltFt" class="nav-link" data-toggle="tab">Alterar foto</a></li>
+            <li class="nav-item"><a href="#AltDP" class="nav-link" data-toggle="tab">Alterar dados pessoais</a></li>
+            <li class="nav-item"><a href="#AltEml" class="nav-link" data-toggle="tab">Alterar e-mail</a></li>
+         </ul></header>
+         <!-- Conteudo das abas-->
+         <div class="tab-content">
+            <!--ABA DE ALT IMG DO PERFIL-->
+            <div class="tab-pane active ab-a" id="AltFt"><header style="color: azure;">
+              <br><center><h2>Alterar a foto de perfil</h2><br>
+                <form class="px-4 py-3" method="post" action="cadastrarfoto.php" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <input name="arquivo" type="file" placeholder="" id="arquivo" class="form-control" onchange="previewImagem()"><br><br>
+                      <center><img id="edim" name="img"><br><br>
+                    <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Alterar foto</button>
+                </form>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                  function previewImagem() {
+                    var imagem = document.querySelector ('input[name=arquivo]').files[0]; 
+                    var preview = document.querySelector ('img[name=img]');
+              
+                    var reader = new FileReader ();
+              
+                      reader.onloadend = function () {
+                        preview.src = reader.result;
+                    }
+              
+                    if (imagem){
+                      reader.readAsDataURL(imagem);
+                    }else{
+                      preview.src = "";
+                      }
+                   }
+                </script>
+              <input type="submit" value="Confirmar"></center><br><br>
+            </header>
+            </div>
+            <!-- ABA ALT DADOS-->
+            <div class="tab-pane ab-b" id="AltDP">
+              <header style="color: azure;"><br><center><h2>Alterar os dados pessoais</h2><br>
+                <form class="px-4 py-3" method="post" name="edit1">
+                  <!--Aqui começa o formulário pra pessoa mudar alguma coisa do perfil dela, nessa primeira parte, os dados pessoais-->
+                <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"> 
+                <div class="row"><br>
+                    <div class="col-md-6 mb-3">
+                        <label id="leflab" style="color: aliceblue;">Nome</label><br>
+                        <input type="text"  name="nome" class="form-control" maxlength="50" value="<?php Echo $dados['Nome']; ?>" placeholder="Nome">
+                    </div>  
+                    <div class="col-md-6 mb-3">
+                        <label id="rigid" style="color: aliceblue;">Sobrenome</label><br>
+                        <input type="text" maxlength="50"class="form-control" value="<?php Echo $dados['Sobrenome']; ?>" name="sbnome" placeholder="Sobrenome">
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label id="leflab" style="color: aliceblue;">Nome de Usuário</label><br>
+                        <input type="text" name="nusuario" class="form-control" value="<?php Echo $dados['Nome_Usuário']; ?>" maxlength="50" placeholder="Nome de Usuário">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label id="rigid" style="color: aliceblue;">Data de nascimento</label><br>
+                        <input type="date" name="data" class="form-control" value="<?php Echo $dados['Data_Nascimento']; ?>" placeholder="DD/MM/AAAA">
+                    </div>
+                </div>
+                <br><br><br>
+                <center><button type="submit" name="Editar" class="btn btn-primary" onclick="Mensagem()">Alterar dados</button></center>
+                </form></center>
+            </header>
+          </div>
+            <!-- ABA ALT EMAL-->
+            <div class="tab-pane ab-c" id="AltEml">
+              <header style="color: azure;"><br><center><h2>Alterar o email cadastrado</h2><br>
+                <form class="px-4 py-3" method="post" name="edit3">
+                  <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
+                  <label style="color: aliceblue;">E-mail</label><br>
+                  <input type="email" name="Email" id="Email" value="<?php echo $dados['E_mail'] ?>" placeholder="Email" maxlength="100" required><br><br><br>
+                  <center><button type="submit" name="editar2" class="btn btn-primary" onclick="Mensagem()">Alterar email</button></center>
+              </form>
+            </header>
+          </div>
+         </div>
+        </div>
+      </div>
+    </div>
+    <!--/Modal de Edição do Perfil-->
   </div>
 </div>
 <!--Aqui vão ficar as roupas acessadas a muito tempo-->

@@ -150,11 +150,61 @@ footer #rodp ul li a {
   color: whitesmoke;
 }
 
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+ahover {
+  background-color: #ddd;
+  color: black;
+}
+
+a .previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+a .next {
+  background-color: #4CAF50;
+  color: white;
+}
+
+a .round {
+  border-radius: 50%;
+}
+
 .psq {
   color: #BCCAD3;
   background-color: transparent;
   font-family: "Segoe UI";
   border: none;
   font-style: italic;
+}
+
+ul .ulna {
+  background-color: #110e0e;
+  color: #FFFFE6;
+}
+
+.ab-a {
+  background-color: #FFBD00;
+}
+
+.ab-b {
+  background-color: #FF5400;
+}
+
+.ab-c {
+  background-color: #e9145b;
+}
+
+.ab-d {
+  background-color: #7c0e86;
+}
+
+.ab-e {
+  background-color: #203aaa;
 }
 /*# sourceMappingURL=Close_Gal.css.map */
