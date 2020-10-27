@@ -24,7 +24,7 @@ Class Usuario
         global $pdo;
         global $msgErro;
         //verifica se o usuáio cadastrado já existe!
-        $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_Usuário = :NU");
+        $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = :NU");
         $sql->bindValue(":NU", $nomeusuario); 
         $sql->execute();
         if($sql->rowCount() > 0)
@@ -34,7 +34,7 @@ Class Usuario
         else
         {
             //se realmente for um novo usuario, cadastrar!
-            $sql = $pdo->prepare("INSERT INTO Usuario (Nome, Sobrenome, Nome_Usuário, Data_de_Nascimento, E_mail, Senha)
+            $sql = $pdo->prepare("INSERT INTO Usuario (Nome, Sobrenome, Nome_de_Usuario, Data_de_Nascimento, E_mail, Senha)
              VALUES (:nom, :sbnome, :NU, :dat, :ema, :s)");
             $sql->bindValue(":nom", $nome); 
             $sql->bindValue(":sbnome", $sobrenome); 
@@ -53,7 +53,7 @@ Class Usuario
         global $msgErro;
         global $pdo;
         
-             $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_Usuário = :NU OR E_mail = :ema  AND Senha = :s");
+             $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = :NU OR E_mail = :ema  AND Senha = :s");
         $sql->bindValue (":NU", $nomeusuario);
         $sql->bindValue (":s", md5($senha));
         $sql->bindValue (":ema", $E_mail);
@@ -96,7 +96,7 @@ public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento, $biog
         
         global $pdo;
         global $msgErro;             
-        $sql = $pdo->prepare("UPDATE Usuario SET Nome= :nom, Sobrenome= :sbnome, Nome_Usuário= :NU, Data_de_Nascimento = :dat, Biografia= :bio WHERE IdUsuario = :id");
+        $sql = $pdo->prepare("UPDATE Usuario SET Nome= :nom, Sobrenome= :sbnome, Nome_de_Usuario= :NU, Data_de_Nascimento = :dat, Biografia= :bio WHERE IdUsuario = :id");
         $sql->bindvalue(":id", $id);
         $sql->bindvalue(":nom", $nome);              
         $sql->bindValue(":sbnome", $sobrenome); 
@@ -158,6 +158,65 @@ public function cadastrarfotoroupa($title, $tipo, $tamanho, $cor, $marca, $descr
         $sql->bindValue(":mar", $marca);
         $sql->bindValue(":tip", $tipo); 
         $sql->bindValue(":fot", $foto); 
+        $sql->execute();
+        return true;
+    
+
+}
+//ediçaõ do titulo/nome da roupa!
+public function editartitulo($titulo, $id)
+{
+    
+    global $pdo;
+    global $msgErro;
+   
+        
+        $sql = $pdo->prepare("UPDATE Roupa SET Titulo= :tit WHERE IdRoupa= :id");
+        $sql->bindValue(":tit", $titulo); 
+        $sql->bindValue(":id", $id); 
+        $sql->execute();
+        return true;
+    
+
+}
+//edição da descrição da foto
+public function editardescricao($descricao, $id)
+{
+    
+    global $pdo;
+    global $msgErro;
+   
+        
+        $sql = $pdo->prepare("UPDATE Roupa SET Descricao= :disc WHERE IdRoupa= :id");
+        $sql->bindValue(":disc", $descricao); 
+        $sql->bindValue(":id", $id); 
+        $sql->execute();
+        return true;
+    
+
+}
+public function editarfoto($foto, $id)
+{
+    
+    global $pdo;
+    global $msgErro;
+   
+        $sql = $pdo->prepare("UPDATE Roupa SET Foto= :fot WHERE IdRoupa= :id");
+        $sql->bindValue(":fot", $foto); 
+        $sql->bindValue(":id", $id); 
+        $sql->execute();
+        return true;
+    
+
+}
+public function apagarfoto($id)
+{
+    
+    global $pdo;
+    global $msgErro;
+   
+        $sql = $pdo->prepare("DELETE FROM Roupa WHERE IdRoupa= :id");
+        $sql->bindValue(":id", $id); 
         $sql->execute();
         return true;
     
