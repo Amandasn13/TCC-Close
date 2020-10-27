@@ -34,14 +34,13 @@ Class Usuario
         else
         {
             //se realmente for um novo usuario, cadastrar!
-            $sql = $pdo->prepare("INSERT INTO Usuario (Nome, Sobrenome, Nome_de_Usuario, Data_de_Nascimento, E_mail, Senha)
-             VALUES (:nom, :sbnome, :NU, :dat, :ema, :s)");
-            $sql->bindValue(":nom", $nome); 
-            $sql->bindValue(":sbnome", $sobrenome); 
-            $sql->bindValue(":NU", $nomeusuario); 
-            $sql->bindValue(":dat", $nascimento);
-            $sql->bindValue(":ema", $email);
-            $sql->bindValue(":s", md5($senha)); 
+            $sql = $pdo->prepare('CALL Inserir_Usuario(:n, :s, :nu, :d, :e, :k)');
+            $sql->bindValue(":n", $nome); 
+            $sql->bindValue(":s", $sobrenome); 
+            $sql->bindValue(":nu", $nomeusuario); 
+            $sql->bindValue(":d", $nascimento);
+            $sql->bindValue(":e", $email);
+            $sql->bindValue(":k", md5($senha)); 
             $sql->execute();
             return true;
         }
@@ -52,12 +51,11 @@ Class Usuario
     {
         global $msgErro;
         global $pdo;
-        
-             $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = :NU OR E_mail = :ema  AND Senha = :s");
-        $sql->bindValue (":NU", $nomeusuario);
+        $sql = $pdo->prepare("CALL Buscar_Usuario(:nu, :e, :s)");
+        $sql->bindValue (":nu", $nomeusuario);
         $sql->bindValue (":s", md5($senha));
-        $sql->bindValue (":ema", $E_mail);
-        $sql->Execute();
+        $sql->bindValue (":e", $E_mail);
+        $sql->execute();
         //esse if ta fazendo a verificação se tá certo o user e a senha da pessoa.   
         if ($sql->rowCount() > 0) {
  
