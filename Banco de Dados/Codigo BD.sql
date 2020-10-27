@@ -110,3 +110,20 @@ ALTER TABLE _Usuario_Look_Roupa ADD CONSTRAINT FK__Usuario_Look_Roupa_3
     FOREIGN KEY (fk_Roupa_IdRoupa)
     REFERENCES Roupa (IdRoupa)
     ON DELETE NO ACTION;
+    
+/*PROCEDIMENTOS*/    
+DELIMITER //
+/*Operações com Usuario*/
+CREATE PROCEDURE Inserir_Usuario(n CHAR(100), s CHAR(100), nu CHAR(100), dn DATE, e CHAR(100), k CHAR(100))
+	BEGIN
+		INSERT INTO Usuario (Nome, Sobrenome, Nome_Usuario, Data_de_Nascimento, E_mail, Senha) VALUES (n,s,nu,dn,e,k);
+	END//
+CREATE PROCEDURE Atualizar_Usuario(id INT,n CHAR(100), s CHAR(100), nu CHAR(100), dn DATE, e CHAR(100), k CHAR(100))
+	BEGIN
+		UPDATE Usuario SET Nome=n, Sobrenome=s, Nome_Usuario=nu, Data_de_Nascimento=dn, E_mail=e, Senha=k WHERE IdUsuario=id;
+	END//
+CREATE PROCEDURE Apagar_Usuario(id INT)
+	BEGIN
+		DELETE FROM Usuario WHERE IdUsuario=id;
+	END//
+DELIMITER ;
