@@ -20,7 +20,7 @@ CREATE TABLE Look (
     fk_Datas_de_Utilizacao_Look_Datas_de_Utilizacao_Look_PK INT,
     fk_Tags_Look_Tags_Look_PK INT,
     Nome CHAR(100) NOT NULL,
-    Vezes_Utilizada DATE DEFAULT 0,
+    Vezes_Utilizada INT DEFAULT 0,
     Utima_Utilizacao DATE
 );
 
@@ -164,9 +164,13 @@ CREATE PROCEDURE Nova_Roupa(dono INT,tit CHAR(100),cat ENUM("Acessório","Calça
         INSERT INTO _Usuario_Look_Roupa(fk_Usuario_IdUsuario,fk_Roupa_IdRoupa) VALUES (dono,@idroupa);
     END //
     
-CREATE PROCEDURE Buscar_Roupas(idU INT)
+CREATE PROCEDURE BuscarId_Roupas(idU INT)
     BEGIN
         SELECT fk_Roupa_IdRoupa INTO @idroupa FROM _Usuario_Look_Roupa WHERE idU=fk_Usuario_IdUsuario;
         SELECT * FROM Roupa WHERE IdRoupa=@idroupa;
+    END //
+CREATE PROCEDURE BuscarId_Roupas(idR INT)
+    BEGIN
+        SELECT * FROM Roupa WHERE IdRoupa=idR;
     END //
 DELIMITER ;
