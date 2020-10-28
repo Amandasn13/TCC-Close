@@ -24,8 +24,8 @@ Class Usuario
         global $pdo;
         global $msgErro;
         //verifica se o usuáio cadastrado já existe!
-        $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = :NU");
-        $sql->bindValue(":NU", $nomeusuario); 
+        $sql = $pdo->prepare("CALL BuscarId_UsuarioNu(:nu)");
+        $sql->bindValue(":nu", $nomeusuario); 
         $sql->execute();
         if($sql->rowCount() > 0)
         {
@@ -34,7 +34,7 @@ Class Usuario
         else
         {
             //se realmente for um novo usuario, cadastrar!
-            $sql = $pdo->prepare('CALL Inserir_Usuario(:n, :s, :nu, :d, :e, :k)');
+            $sql = $pdo->prepare("CALL Cadastrar_Usuario(:n, :s, :nu, :d, :e, :k)");
             $sql->bindValue(":n", $nome); 
             $sql->bindValue(":s", $sobrenome); 
             $sql->bindValue(":nu", $nomeusuario); 
@@ -51,7 +51,7 @@ Class Usuario
     {
         global $msgErro;
         global $pdo;
-        $sql = $pdo->prepare("CALL Buscar_Usuario(:nu, :e, :s)");
+        $sql = $pdo->prepare("CALL Logar_Usuario(:nu, :e, :s)");
         $sql->bindValue (":nu", $nomeusuario);
         $sql->bindValue (":s", md5($senha));
         $sql->bindValue (":e", $E_mail);
@@ -76,9 +76,9 @@ Class Usuario
         
         global $pdo;
         global $msgErro;
-        //verifica se o email q a pessoa usar já nao ta sendo usado po nenhum outro usuario!
-        $sql = $pdo->prepare("SELECT IdUsuario FROM Usuario WHERE E_mail = :ema");
-        $sql->bindValue(":ema", $email); 
+        //verifica se o email q a pessoa usar já nao ta sendo usado por nenhum outro usuario!
+        $sql = $pdo->prepare("CALL BuscarId_UsuarioE(:e)");
+        $sql->bindValue(":e", $email); 
         $sql->execute();
         if($sql->rowCount() > 0)
         {
@@ -94,14 +94,13 @@ public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento, $biog
         
         global $pdo;
         global $msgErro;             
-        $sql = $pdo->prepare("UPDATE Usuario SET Nome= :nom, Sobrenome= :sbnome, Nome_de_Usuario= :NU, Data_de_Nascimento = :dat, Biografia= :bio WHERE IdUsuario = :id");
+        $sql = $pdo->prepare("CALL Atualizar_Usuario(:id, :n, :s, :nu, :dn, :e)");
         $sql->bindvalue(":id", $id);
-        $sql->bindvalue(":nom", $nome);              
-        $sql->bindValue(":sbnome", $sobrenome); 
-        $sql->bindValue(":NU", $nomeusuario); 
-        $sql->bindValue(":dat", $nascimento);
-        $sql->bindValue(":bio", $biografia);   
-    
+        $sql->bindvalue(":n", $nome);              
+        $sql->bindValue(":s", $sobrenome); 
+        $sql->bindValue(":nu", $nomeusuario); 
+        $sql->bindValue(":dn", $nascimento);
+        $sql->bindValue(":e", $email);   
         $sql->execute();
         return true;
        
@@ -112,12 +111,9 @@ public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento, $biog
         
         global $pdo;
         global $msgErro;             
-        $sql = $pdo->prepare("UPDATE Usuario SET Senha= :se  WHERE IdUsuario = :id");
-        $sql->bindvalue(":se", md5($senha));                
+        $sql = $pdo->prepare("CALL Alterar_Senha(:id, :s)");
+        $sql->bindvalue(":s", md5($senha));                
         $sql->bindvalue(":id", $id);
-         
-            
-        
         $sql->execute();
         return true;
        
@@ -128,11 +124,9 @@ public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento, $biog
         
         global $pdo;
         global $msgErro;             
-        $sql = $pdo->prepare("UPDATE Usuario SET E_mail= :se  WHERE IdUsuario = :id");
-        $sql->bindvalue(":se", $email);                
-        $sql->bindvalue(":id", $id);
-    
-        
+        $sql = $pdo->prepare("CALL Alterar_Email(:id, :e)");
+        $sql->bindvalue(":e", $email);                
+        $sql->bindvalue(":id", $id); 
         $sql->execute();
         return true;
        

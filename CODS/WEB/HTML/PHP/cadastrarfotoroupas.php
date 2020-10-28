@@ -25,9 +25,6 @@
             $marca = $_POST['marca'];
             $material = $_POST['material'];
             $titulo = $_POST['titulo'];
-            
-            
-            
             $marca = $_POST['marca'];
             
 
@@ -106,7 +103,10 @@
 				//Verificar se é possivel mover o arquivo para a pasta escolhida
 				if(move_uploaded_file($_FILES['arquivo']['tmp_name'], $_UP['pasta']. $nome_final)){
 					//Upload efetuado com sucesso, exibe a mensagem
-					$query = mysqli_query($connect, "INSERT INTO Roupa (Foto, Titulo, Tipo, Marca, Tamanho, Cor, Descricao, fk_Usuario_IdUsuario, Categoria, Material) VALUES ('$nome_final', '$titulo', '$tipo', '$marca', '$tamanho', '$cor','$descricao', '$id','$categoria', '$material')");
+					$query = mysqli_query($connect, "CALL Nova_Roupa('$id','$titulo','$categoria','$tipo','$nome_final','$cor','$descricao','$tamanho','$marca','$material')");
+					/*
+					INSERT INTO Roupa (Foto, Titulo, Tipo, Marca, Tamanho, Cor, Descricao, fk_Usuario_IdUsuario, Categoria, Material) VALUES ('$nome_final', '$titulo', '$tipo', '$marca', '$tamanho', '$cor','$descricao', '$id','$categoria', '$material')");
+					*/
 					
 					echo "<script language=javascript type= 'text/javascript'>
 					window.alert('Roupa cadastrada com sucesso!')

@@ -78,7 +78,7 @@ $id = $_SESSION['IdUsuario'];
       //echo'<img src="Fotos_Roupas/'.$row_usuario["Foto"].'" class="card-img-top" alt="Img [100%x225]" style="height: 225px; width: 100%; display: block; data-holder-rendered="true"">';
 
     //} 
-    ? >!-->     <?php $sql = "SELECT * FROM Roupa WHERE fk_Usuario_IdUsuario = '$id' AND IdRoupa = 1";
+    ? >!-->     <?php $sql = "CALL Buscar_Roupas(1)";
                   $resultado = mysqli_query($connect, $sql);
                   $dados = mysqli_fetch_array($resultado);
                   if($dados==""){
