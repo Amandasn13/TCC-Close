@@ -169,8 +169,11 @@ CREATE PROCEDURE BuscarId_Roupas(idU INT)
         SELECT fk_Roupa_IdRoupa INTO @idroupa FROM _Usuario_Look_Roupa WHERE idU=fk_Usuario_IdUsuario;
         SELECT * FROM Roupa WHERE IdRoupa=@idroupa;
     END //
+    DELIMITER ;
 CREATE PROCEDURE BuscarId_Roupas(idR INT)
     BEGIN
         SELECT * FROM Roupa WHERE IdRoupa=idR;
     END //
 DELIMITER ;
+
+CALL BuscarId_Roupas(1);
