@@ -85,7 +85,7 @@ $u = new Usuario;
           header("location: Close_Log.php");
           exit;
       }else{
-        $sql = "SELECT * FROM Roupa WHERE fk_Usuario_IdUsuario = '$id'";
+        $sql = "CALL Buscar_Roupas(1)";
                   $resultado = mysqli_query($connect, $sql);
                   while($dados = mysqli_fetch_array($resultado)){
                     $album[] = $dados; 
