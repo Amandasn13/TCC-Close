@@ -3,73 +3,69 @@ DROP DATABASE IF EXISTS Tiffanny;
 CREATE DATABASE Tiffanny DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE Tiffanny;
 CREATE TABLE Usuario (
-    IdUsuario INT AUTO_INCREMENT PRIMARY KEY,
-    Nome CHAR(100) NOT NULL,
-    E_mail CHAR(100) UNIQUE NOT NULL,
-    Sobrenome CHAR(100) NOT NULL,
-    Nome_de_Usuario CHAR(100) NOT NULL,
-    Senha CHAR(100) NOT NULL,
-    Data_de_Nascimento DATE NOT NULL,
+    Senha CHAR(100),
+    E_mail CHAR(100),
+    Data_de_Nascimento DATE,
+    IdUsuario INT PRIMARY KEY,
+    Sobrenome CHAR(100),
     Foto_de_Perfil BLOB,
-    Biografia TEXT
+    Biografia TEXT,
+    Nome CHAR(100),
+    Nome_de_Usuario CHAR(100)
 );
 
 CREATE TABLE Look (
-    IdLook INT AUTO_INCREMENT PRIMARY KEY,
+    Utima_Utilizacao DATE,
+    Vezes_Utilizada DATE,
     fk_Fotos_Look_Fotos_Look_PK INT,
     fk_Datas_de_Utilizacao_Look_Datas_de_Utilizacao_Look_PK INT,
+    Nome CHAR(100),
     fk_Tags_Look_Tags_Look_PK INT,
-    Nome CHAR(100) NOT NULL,
-    Vezes_Utilizada INT DEFAULT 0,
-    Utima_Utilizacao DATE
+    IdLook INT PRIMARY KEY,
+    fk_Usuario_IdUsuario INT
 );
 
 CREATE TABLE Roupa (
-    IdRoupa INT AUTO_INCREMENT PRIMARY KEY,
-    fk_Tags_Roupa_Tags_Roupa_PK INT,
-    fk_Datas_de_Utilizacao_Roupa_Datas_de_Utilizacao_Roupa_PK INT,
-    Titulo CHAR(100),
-    Categoria ENUM("Acessório","Calçado","Roupa") NOT NULL,
-    Tipo CHAR(100) NOT NULL,
-    Foto BLOB,
-    Cor CHAR(100),
-    Descricao TEXT,
-    Tamanho CHAR(100),
     Marca CHAR(100),
+    Vezes_Utilizada INT,
+    fk_Tags_Roupa_Tags_Roupa_PK INT,
+    IdRoupa INT PRIMARY KEY,
+    Tamanho CHAR(100),
     Material CHAR(100),
-    Vezes_Utilizada INT DEFAULT 0,
-    Ultima_Utilizacao DATE
+    Ultima_Utilizacao DATE,
+    Tipo CHAR(100),
+    Foto CHAR(100),
+    Categoria ENUM("Acessório","Calçado","Roupa"),
+    fk_Datas_de_Utilizacao_Roupa_Datas_de_Utilizacao_Roupa_PK INT,
+    Descricao TEXT,
+    Titulo CHAR(100),
+    Cor CHAR(100),
+    fk_Usuario_IdUsuario INT
 );
 
 CREATE TABLE Fotos_Look (
-    Fotos_Look_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Fotos_Look_PK INT NOT NULL PRIMARY KEY,
     Fotos_Look BLOB
 );
 
 CREATE TABLE Datas_de_Utilizacao_Look (
-    Datas_de_Utilizacao_Look_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Datas_de_Utilizacao_Look_PK INT NOT NULL PRIMARY KEY,
     Datas_de_Utilizacao_Look DATE
 );
 
 CREATE TABLE Tags_Look (
-    Tags_Look_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Tags_Look_PK INT NOT NULL PRIMARY KEY,
     Tags_Look CHAR(100)
 );
 
 CREATE TABLE Tags_Roupa (
-    Tags_Roupa_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Tags_Roupa_PK INT NOT NULL PRIMARY KEY,
     Tags_Roupa CHAR(100)
 );
 
 CREATE TABLE Datas_de_Utilizacao_Roupa (
-    Datas_de_Utilizacao_Roupa_PK INT AUTO_INCREMENT PRIMARY KEY,
+    Datas_de_Utilizacao_Roupa_PK INT NOT NULL PRIMARY KEY,
     Datas_de_Utilizacao_Roupa DATE
-);
-
-CREATE TABLE _Usuario_Look_Roupa (
-    fk_Usuario_IdUsuario INT,
-    fk_Look_IdLook INT,
-    fk_Roupa_IdRoupa INT
 );
  
 ALTER TABLE Look ADD CONSTRAINT FK_Look_2
@@ -87,6 +83,11 @@ ALTER TABLE Look ADD CONSTRAINT FK_Look_4
     REFERENCES Tags_Look (Tags_Look_PK)
     ON DELETE NO ACTION;
  
+ALTER TABLE Look ADD CONSTRAINT FK_Look_5
+    FOREIGN KEY (fk_Usuario_IdUsuario)
+    REFERENCES Usuario (IdUsuario)
+    ON DELETE CASCADE;
+ 
 ALTER TABLE Roupa ADD CONSTRAINT FK_Roupa_2
     FOREIGN KEY (fk_Tags_Roupa_Tags_Roupa_PK)
     REFERENCES Tags_Roupa (Tags_Roupa_PK)
@@ -97,20 +98,10 @@ ALTER TABLE Roupa ADD CONSTRAINT FK_Roupa_3
     REFERENCES Datas_de_Utilizacao_Roupa (Datas_de_Utilizacao_Roupa_PK)
     ON DELETE NO ACTION;
  
-ALTER TABLE _Usuario_Look_Roupa ADD CONSTRAINT FK__Usuario_Look_Roupa_1
+ALTER TABLE Roupa ADD CONSTRAINT FK_Roupa_4
     FOREIGN KEY (fk_Usuario_IdUsuario)
     REFERENCES Usuario (IdUsuario)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE _Usuario_Look_Roupa ADD CONSTRAINT FK__Usuario_Look_Roupa_2
-    FOREIGN KEY (fk_Look_IdLook)
-    REFERENCES Look (IdLook)
-    ON DELETE NO ACTION;
- 
-ALTER TABLE _Usuario_Look_Roupa ADD CONSTRAINT FK__Usuario_Look_Roupa_3
-    FOREIGN KEY (fk_Roupa_IdRoupa)
-    REFERENCES Roupa (IdRoupa)
-    ON DELETE NO ACTION;
+    ON DELETE CASCADE;
     
 /*PROCEDIMENTOS*/    
 DELIMITER //
@@ -159,21 +150,12 @@ CREATE PROCEDURE Apagar_Usuario(id INT)
 
 CREATE PROCEDURE Nova_Roupa(dono INT,tit CHAR(100),cat ENUM("Acessório","Calçado","Roupa"),tip CHAR(100),ft BLOB,cor CHAR(100),d TEXT,tam CHAR(100),marca CHAR(100),mat CHAR(100))
     BEGIN
-        INSERT INTO Roupa(Titulo,Categoria,Tipo,Foto,Cor,Descricao,Tamanho,Marca,Material) VALUES (tit,cat,tip,ft,cor,d,tam,marca,mat);
-        SELECT MAX(IdRoupa) into @idroupa FROM Roupa;
-        INSERT INTO _Usuario_Look_Roupa(fk_Usuario_IdUsuario,fk_Roupa_IdRoupa) VALUES (dono,@idroupa);
+		INSERT INTO Roupa(Titulo,Categoria,Tipo,Foto,Cor,Descricao,Tamanho,Marca,Material,fk_Usuario_IdUsuario) VALUES (tit,cat,tip,ft,cor,d,tam,marca,mat,dono);
     END //
-    
-CREATE PROCEDURE BuscarId_Roupas(idU INT)
+
+CREATE PROCEDURE Buscar_Roupas(idU INT)
     BEGIN
-        SELECT fk_Roupa_IdRoupa INTO @idroupa FROM _Usuario_Look_Roupa WHERE idU=fk_Usuario_IdUsuario;
-        SELECT * FROM Roupa WHERE IdRoupa=@idroupa;
+    SELECT * FROM Roupa;
+    SELECT * FROM Roupa WHERE fk_Usuario_IdUsuario = 1;
     END //
     DELIMITER ;
-CREATE PROCEDURE BuscarId_Roupas(idR INT)
-    BEGIN
-        SELECT * FROM Roupa WHERE IdRoupa=idR;
-    END //
-DELIMITER ;
-
-CALL BuscarId_Roupas(1);
