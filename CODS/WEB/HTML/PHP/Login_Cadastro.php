@@ -207,8 +207,8 @@ public function apagarfoto($id)
     global $pdo;
     global $msgErro;
    
-        $sql = $pdo->prepare("DELETE FROM Roupa WHERE IdRoupa= :id");
-        $sql->bindValue(":id", $id); 
+        $sql = $pdo->prepare("CALL Apagar_Roupa(:id)");
+        $sql->bindValue(":id", $id);
         $sql->execute();
         return true;
     
