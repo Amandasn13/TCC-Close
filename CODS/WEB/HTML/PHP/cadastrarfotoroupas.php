@@ -1,3 +1,7 @@
+<?php 
+  ini_set('display_errors', 0 );
+  error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -15,7 +19,8 @@
             $id = $_SESSION['IdUsuario'];
             $resultado = mysqli_query($connect, $sql);
             $dados = mysqli_fetch_array($resultado);
-            
+			ini_set('display_errors', 0 );
+			error_reporting(0);
 
             $categoria = $_POST['categoria'];
             $tipo = $_POST['tipo'];
@@ -48,19 +53,19 @@
 			$_UP['erros'][0] = 'Não houve erro';
 			$_UP['erros'][1] = "<script language=javascript type= 'text/javascript'>
 			window.alert('O aqrquivo no upload é maior do que o limete do PHP.');
-			window.location.href = '../CadRoupas.php'
+			window.location.href = '../Close_GuardRp.php'
 			</script>";
 			$_UP['erros'][2] = "<script language=javascript type= 'text/javascript'>
 			window.alert('O arquivo ultrapassa o tamanho especificado no HTML.');
-			window.location.href = '../CadRoupas.php'
+			window.location.href = '../Close_GuardRp.php'
 			</script>";
 			$_UP['erros'][3] = "<script language=javascript type= 'text/javascript'>
 			window.alert('Ocorreu algum erro e o upload do arquivo foi feito parcialmente, tente novamente.');
-			window.location.href = '../CadRoupas.php'
+			window.location.href = '../Close_GuardRp.php'
 			</script>";
 			$_UP['erros'][4] = "<script language=javascript type= 'text/javascript'>
 			window.alert('Por favor, selecione alguma foto antes de clicar em cadastrar.');
-			window.location.href = '../CadRoupas.php'
+			window.location.href = '../Close_GuardRp.php'
 			</script>";
 			
 			//Verifica se houve algum erro com o upload. Sem sim, exibe a mensagem do erro
@@ -76,7 +81,7 @@
                             window.alert('Extensão inválida, por favor selecione uma foto.')
 							</script>";
 					echo "<script language=java script type= 'text/javascript'>
-					window.location.href = '../CadRoupas.php'
+					window.location.href = '../Close_GuardRp.php'
 				</script>";
 			}
 			
@@ -86,7 +91,7 @@
                             window.alert('Foto com tamanho muito grande! Escolha uma com tamanho menor.')
 							</script>";
 					echo "<script language=java script type= 'text/javascript'>
-					window.location.href = '../CadRoupas.php'
+					window.location.href = '../Close_GuardRp.php'
 				</script>";
 			}
 			
@@ -107,12 +112,13 @@
 					/*
 					INSERT INTO Roupa (Foto, Titulo, Tipo, Marca, Tamanho, Cor, Descricao, fk_Usuario_IdUsuario, Categoria, Material) VALUES ('$nome_final', '$titulo', '$tipo', '$marca', '$tamanho', '$cor','$descricao', '$id','$categoria', '$material')");
 					*/
-					
+					ini_set('display_errors', 0 );
+					error_reporting(0);
 					echo "<script language=javascript type= 'text/javascript'>
 					window.alert('Roupa cadastrada com sucesso!')
 					</script>";
 			echo "<script language=java script type= 'text/javascript'>
-			window.location.href = '../CadRoupas.php'
+			window.location.href = '../Close_GuardRp.php'
 		</script>";
 				}else{
 					//Upload não efetuado com sucesso, exibe a mensagem
@@ -120,7 +126,7 @@
 					window.alert('Não foi possível cadastrar essa roupa.')
 					</script>";
 			echo "<script language=java script type= 'text/javascript'>
-			window.location.href = '../CadRoupas.php'
+			window.location.href = '../Close_GuardRp.php'
 		</script>";
 				}
 			}
