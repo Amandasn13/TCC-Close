@@ -78,6 +78,7 @@ $u = new Usuario;
 <div class="container"><!--Div pra  exibição--> 
     <div class="row" id="ct"><table><br>  
         <div class="col-md-4" id="cdt"><!-- img 01-->
+
         <?php
 
       if(!isset($_SESSION['IdUsuario']))
@@ -85,12 +86,21 @@ $u = new Usuario;
           header("location: Close_Log.php");
           exit;
       }else{
-        $sql = "CALL Buscar_Roupas(1)";
+        $sql = "SELECT * FROM Roupa";
                   $resultado = mysqli_query($connect, $sql);
                   while($dados = mysqli_fetch_array($resultado)){
                     $album[] = $dados; 
                   };
       }
+    ?>
+    <?php
+    ini_set('display_errors', 0 );
+    error_reporting(0);
+  
+    
+      if($album != ""){
+    
+    
     ?>
         <tr>
             <?php
@@ -104,10 +114,10 @@ $u = new Usuario;
             <td id="cdt" class="col-md-4">
             <div class="card mb-4 shadow-sm">
         
-        <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" <?php echo"Fotos_Roupas/".$foto["Foto"].''; ?>" data-holder-rendered="true">
+        <img class="card-img-top"  alt="Img [100%x225]" height= "225px" width= "100%" style="  display: block;" src=" <?php echo"Fotos_Roupas/".$foto["Foto"].''; ?>" data-holder-rendered="true">
         <div class="card-body">
-        <p class="card-text"><?php Echo $foto['Titulo']?>.</p>
-        <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+        <p class="card-text"><?php Echo $foto['Titulo']?></p>
+        <small class="text-muted">Vezes utilizadas:</small> <small class="text-muted">0</small><br>
         <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
         <div class="d-flex justify-content-between align-items-center">
           <form action="#">
@@ -136,8 +146,15 @@ $u = new Usuario;
                           <h5 name="unm" class="col" style="color: azure;">@<?php echo $dados1['Nome_de_Usuario'];?></h5>
                           <h5 style="color: azure; font-style: bold;;">>></h5>
                           <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $dados3['Titulo'];?></h5>
-                          <a href="#" role="button" class="btn btn-outline-light popover-test col" title="Descrição da peça" data-content="<?php echo $dados3['Descricao'];?>" style="font-style: bold; width: 70px;">↡</a>
-                        </div>
+                          <a class="btn btn-outline-light popover-test col dropdown-toggle" data-toggle="dropdown" href="#" title="Descrição da peça" role="button" aria-haspopup="true" aria-expanded="false" style="font-style: bold; width: 70px;">↡</a>
+<div class="dropdown-menu" style="width: 500px;">
+<a class="dropdown-item" href="#"><h4>Descrição</h4></a>
+<div class="dropdown-divider"></div>
+<div class="blog-post" style="width: inherit;">
+<p class="mb-0" href="#" style="margin: 10px;">
+<?php   echo $dados3['Descricao'];?>
+</p>
+</div>                        </div>
                       </div>
                     </header>
                     
@@ -318,7 +335,7 @@ $u = new Usuario;
                         if($u->apagarfoto($id))
                         {
                           echo "<script language=javascript type= 'text/javascript'>
-                          window.alert('Roupa apagadA com sucesso!')
+                          window.alert('Roupa apagada com sucesso!')
                           </script>";
                           echo "<script language=java script type= 'text/javascript'>
 			window.location.href = 'Close_GuardRp.php'
@@ -364,10 +381,650 @@ $u = new Usuario;
             </div>
             </div>
     </table>
+<?php 
 
+            }else{
+              echo'<div class="card mb-4 shadow-sm">
+              <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src="IMG/Samples/IMG00.png" data-holder-rendered="true">
+              <div class="card-body">
+              <p class="card-text">Nenhuma roupa cadastrada, cadastre logo abaixo!</p>
+              <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+              <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalVer">Ver</button>
+                  <!--Modal Ver-->
+                    <div class="modal fade bd-example-modal-lg" id="ModalVer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <header>
+                            <div class="container">
+                              <div class="row">
+                                <h5 name="unm" class="col" style="color: azure;">@nome_usuario</h5>
+                                <h5 style="color: azure; font-style: bold;;">>></h5>
+                                <h5 name="rnm" class="col-6" style="color: azure;">@nome_roupa</h5>
+                                <a href="#" role="button" class="btn btn-outline-light popover-test col" title="Descrição da peça" data-content="O conteúdo do popover é definido aqui. (no caso a descrição da roupa)" style="font-style: bold; width: 70px;">↡</a>
+                              </div>
+                            </div>
+                          </header> 
+                          <img src="" alt="Imagem ilustrativa da peça de roupa" width="800px" height="600px" id="uimg">                           
+                         <!--<span>
+                            <ul class="pager btn-group">
+                              <li class="previous btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="previous round" href="bootstrap_list_groups.asp">&#8249;</a></li>
+                              <li class="next btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="next round" href="bootstrap_list_groups.asp">&#8250;</a></li>
+                            </ul>
+                          </span>-->
+                        </div>
+                      </div>
+                    </div>
+                  <!--/Modal Ver-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalEdit">Editar</button>
+                  <!--Modal Editar-->
+                  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalEdit">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <!--Links para cada aba da modal-->
+                        <ul class="nav nav-tabs ulna">
+                          <li class="nav-item"><a href="#NmPc" class="nav-link" data-toggle="tab">Nome da peça</a></li>
+                          <li class="nav-item"><a href="#Imgm" class="nav-link" data-toggle="tab">Imagem</a></li>
+                          <li class="nav-item"><a href="#Desc" class="nav-link" data-toggle="tab">Descrição</a></li>
+                          <li class="nav-item"><a href="#Tags" class="nav-link" data-toggle="tab">Tags</a></li>
+                       </ul>
+                       <!-- Conteudo das abas-->
+                       <div class="tab-content">
+                          <!--ABA DE ALT NOME PEÇAS-->
+                          <div class="tab-pane active ab-a" id="Nmpc">
+                            <br><center><h2>Deseja alterar o nome da peça?</h2><br>
+                            <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
+                            <input type="text" id="nmpc" name="nomepeca" placeholder="Digite aqui"><br><br>
+                            <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT IMG-->
+                          <div class="tab-pane ab-b" id="Imgm">
+                              <br><center><h2>Deseja alterar a imagem da peça?</h2><br>
+                              <label for="imgpc">É só selecionar o novo arquivo abaixo:</label><br><br>
+                              <input type="file" id="imgpc" name="imgpeca"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DESCRIÇÃO-->
+                          <div class="tab-pane ab-c" id="Desc">
+                              <br><center><h2>Deseja alterar a descrição da peça?</h2><br>
+                              <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
+                              <input type="textarea" maxlenght="250" id="descpc" name="descrpeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DAS TAGS-->
+                          <div class="tab-pane ab-d" id="Tags">
+                              <br><center><h2>Deseja alterar as tags da peça?</h2><br>
+                              <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
+                              <input type="textarea" id="tagpc" name="tagspeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                <!--/Modal Editar-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalApg">Apagar</button>
+                <!--Modal Apagar-->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalApg">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <header><h2 style="color: azure;"> Apagar peça</h2></header>
+                        <div class="ab-e">
+                          <br><center><h4>Deseja mesmo apagar a peça e todas suas informações? Essa ação não podera ser desfeita no futuro</h4></center><br>
+                          <div class="row justify-content-around">
+                              <input type="submit" value="Sim, desejo apagar" class="col-4">
+                              <input type="submit" value="Não, cancelar" class="col-4">
+                          </div>
+                      </div>
+                      <br><br>
+                    </div>
+                  </div>
+                </div>
+              <!--/Modal Apagar-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4"><!-- img02 -->
+          <div class="card mb-4 shadow-sm">
+              <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" IMG/Samples/IMG00.png" data-holder-rendered="true">
+              <div class="card-body">
+              <p class="card-text">Nenhuma roupa cadastrada, cadastre logo abaixo!</p>
+              <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+              <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalVer">Ver</button>
+                  <!--Modal Ver-->
+                    <div class="modal fade bd-example-modal-lg" id="ModalVer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <header>
+                            <div class="container">
+                              <div class="row">
+                                <h5 name="unm" class="col" style="color: azure;">@nome_usuario</h5>
+                                <h5 style="color: azure; font-style: bold;;">>></h5>
+                                <h5 name="rnm" class="col-6" style="color: azure;">@nome_roupa</h5>
+                                <a href="#" role="button" class="btn btn-outline-light popover-test col" title="Descrição da peça" data-content="O conteúdo do popover é definido aqui. (no caso a descrição da roupa)" style="font-style: bold; width: 70px;">↡</a>
+                              </div>
+                            </div>
+                          </header> 
+                          <img src="" alt="Imagem ilustrativa da peça de roupa" width="800px" height="600px" id="uimg">                           
+                         <!--<span>
+                            <ul class="pager btn-group">
+                              <li class="previous btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="previous round" href="bootstrap_list_groups.asp">&#8249;</a></li>
+                              <li class="next btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="next round" href="bootstrap_list_groups.asp">&#8250;</a></li>
+                            </ul>
+                          </span>-->
+                        </div>
+                      </div>
+                    </div>
+                  <!--/Modal Ver-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalEdit">Editar</button>
+                  <!--Modal Editar-->
+                  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalEdit">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <!--Links para cada aba da modal-->
+                        <ul class="nav nav-tabs ulna">
+                          <li class="nav-item"><a href="#NmPc" class="nav-link" data-toggle="tab">Nome da peça</a></li>
+                          <li class="nav-item"><a href="#Imgm" class="nav-link" data-toggle="tab">Imagem</a></li>
+                          <li class="nav-item"><a href="#Desc" class="nav-link" data-toggle="tab">Descrição</a></li>
+                          <li class="nav-item"><a href="#Tags" class="nav-link" data-toggle="tab">Tags</a></li>
+                       </ul>
+                       <!-- Conteudo das abas-->
+                       <div class="tab-content">
+                          <!--ABA DE ALT NOME PEÇAS-->
+                          <div class="tab-pane active ab-a" id="Nmpc">
+                            <br><center><h2>Deseja alterar o nome da peça?</h2><br>
+                            <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
+                            <input type="text" id="nmpc" name="nomepeca" placeholder="Digite aqui"><br><br>
+                            <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT IMG-->
+                          <div class="tab-pane ab-b" id="Imgm">
+                              <br><center><h2>Deseja alterar a imagem da peça?</h2><br>
+                              <label for="imgpc">É só selecionar o novo arquivo abaixo:</label><br><br>
+                              <input type="file" id="imgpc" name="imgpeca"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DESCRIÇÃO-->
+                          <div class="tab-pane ab-c" id="Desc">
+                              <br><center><h2>Deseja alterar a descrição da peça?</h2><br>
+                              <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
+                              <input type="textarea" maxlenght="250" id="descpc" name="descrpeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DAS TAGS-->
+                          <div class="tab-pane ab-d" id="Tags">
+                              <br><center><h2>Deseja alterar as tags da peça?</h2><br>
+                              <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
+                              <input type="textarea" id="tagpc" name="tagspeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                <!--/Modal Editar-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalApg">Apagar</button>
+                <!--Modal Apagar-->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalApg">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <header><h2 style="color: azure;"> Apagar peça</h2></header>
+                        <div class="ab-e">
+                          <br><center><h4>Deseja mesmo apagar a peça e todas suas informações? Essa ação não podera ser desfeita no futuro</h4></center><br>
+                          <div class="row justify-content-around">
+                              <input type="submit" value="Sim, desejo apagar" class="col-4">
+                              <input type="submit" value="Não, cancelar" class="col-4">
+                          </div>
+                      </div>
+                      <br><br>
+                    </div>
+                  </div>
+                </div>
+              <!--/Modal Apagar-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4"><!-- img03 -->
+          <div class="card mb-4 shadow-sm">
+              <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" IMG/Samples/IMG00.png" data-holder-rendered="true">
+              <div class="card-body">
+              <p class="card-text">Nenhuma roupa cadastrada, cadastre logo abaixo!</p>
+              <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+              <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalVer">Ver</button>
+                  <!--Modal Ver-->
+                    <div class="modal fade bd-example-modal-lg" id="ModalVer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <header>
+                            <div class="container">
+                              <div class="row">
+                                <h5 name="unm" class="col" style="color: azure;">@nome_usuario</h5>
+                                <h5 style="color: azure; font-style: bold;;">>></h5>
+                                <h5 name="rnm" class="col-6" style="color: azure;">@nome_roupa</h5>
+                                <a href="#" role="button" class="btn btn-outline-light popover-test col" title="Descrição da peça" data-content="O conteúdo do popover é definido aqui. (no caso a descrição da roupa)" style="font-style: bold; width: 70px;">↡</a>
+                              </div>
+                            </div>
+                          </header> 
+                          <img src="" alt="Imagem ilustrativa da peça de roupa" width="800px" height="600px" id="uimg">                           
+                         <!--<span>
+                            <ul class="pager btn-group">
+                              <li class="previous btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="previous round" href="bootstrap_list_groups.asp">&#8249;</a></li>
+                              <li class="next btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="next round" href="bootstrap_list_groups.asp">&#8250;</a></li>
+                            </ul>
+                          </span>-->
+                        </div>
+                      </div>
+                    </div>
+                  <!--/Modal Ver-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalEdit">Editar</button>
+                  <!--Modal Editar-->
+                  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalEdit">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <!--Links para cada aba da modal-->
+                        <ul class="nav nav-tabs ulna">
+                          <li class="nav-item"><a href="#NmPc" class="nav-link" data-toggle="tab">Nome da peça</a></li>
+                          <li class="nav-item"><a href="#Imgm" class="nav-link" data-toggle="tab">Imagem</a></li>
+                          <li class="nav-item"><a href="#Desc" class="nav-link" data-toggle="tab">Descrição</a></li>
+                          <li class="nav-item"><a href="#Tags" class="nav-link" data-toggle="tab">Tags</a></li>
+                       </ul>
+                       <!-- Conteudo das abas-->
+                       <div class="tab-content">
+                          <!--ABA DE ALT NOME PEÇAS-->
+                          <div class="tab-pane active ab-a" id="Nmpc">
+                            <br><center><h2>Deseja alterar o nome da peça?</h2><br>
+                            <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
+                            <input type="text" id="nmpc" name="nomepeca" placeholder="Digite aqui"><br><br>
+                            <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT IMG-->
+                          <div class="tab-pane ab-b" id="Imgm">
+                              <br><center><h2>Deseja alterar a imagem da peça?</h2><br>
+                              <label for="imgpc">É só selecionar o novo arquivo abaixo:</label><br><br>
+                              <input type="image" id="imgpc" name="imgpeca"><br><br>
+                              <input type="file" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DESCRIÇÃO-->
+                          <div class="tab-pane ab-c" id="Desc">
+                              <br><center><h2>Deseja alterar a descrição da peça?</h2><br>
+                              <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
+                              <input type="textarea" maxlenght="250" id="descpc" name="descrpeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DAS TAGS-->
+                          <div class="tab-pane ab-d" id="Tags">
+                              <br><center><h2>Deseja alterar as tags da peça?</h2><br>
+                              <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
+                              <input type="textarea" id="tagpc" name="tagspeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                <!--/Modal Editar-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalApg">Apagar</button>
+                <!--Modal Apagar-->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalApg">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <header><h2 style="color: azure;"> Apagar peça</h2></header>
+                        <div class="ab-e">
+                          <br><center><h4>Deseja mesmo apagar a peça e todas suas informações? Essa ação não podera ser desfeita no futuro</h4></center><br>
+                          <div class="row justify-content-around">
+                              <input type="submit" value="Sim, desejo apagar" class="col-4">
+                              <input type="submit" value="Não, cancelar" class="col-4">
+                          </div>
+                      </div>
+                      <br><br>
+                    </div>
+                  </div>
+                </div>
+              <!--/Modal Apagar-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4"><!-- img 04-->
+          <div class="card mb-4 shadow-sm">
+             <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" IMG/Samples/IMG00.png" data-holder-rendered="true">
+              <div class="card-body">
+              <p class="card-text">Nenhuma roupa cadastrada, cadastre logo abaixo!</p>
+              <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+              <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalVer">Ver</button>
+                  <!--Modal Ver-->
+                    <div class="modal fade bd-example-modal-lg" id="ModalVer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <header>
+                            <div class="container">
+                              <div class="row">
+                                <h5 name="unm" class="col" style="color: azure;">@nome_usuario</h5>
+                                <h5 style="color: azure; font-style: bold;;">>></h5>
+                                <h5 name="rnm" class="col-6" style="color: azure;">@nome_roupa</h5>
+                                <a href="#" role="button" class="btn btn-outline-light popover-test col" title="Descrição da peça" data-content="O conteúdo do popover é definido aqui. (no caso a descrição da roupa)" style="font-style: bold; width: 70px;">↡</a>
+                              </div>
+                            </div>
+                          </header> 
+                          <img src="" alt="Imagem ilustrativa da peça de roupa" width="800px" height="600px" id="uimg">                           
+                         <!--<span>
+                            <ul class="pager btn-group">
+                              <li class="previous btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="previous round" href="bootstrap_list_groups.asp">&#8249;</a></li>
+                              <li class="next btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="next round" href="bootstrap_list_groups.asp">&#8250;</a></li>
+                            </ul>
+                          </span>-->
+                        </div>
+                      </div>
+                    </div>
+                  <!--/Modal Ver-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalEdit">Editar</button>
+                  <!--Modal Editar-->
+                  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalEdit">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <!--Links para cada aba da modal-->
+                        <ul class="nav nav-tabs ulna">
+                          <li class="nav-item"><a href="#NmPc" class="nav-link" data-toggle="tab">Nome da peça</a></li>
+                          <li class="nav-item"><a href="#Imgm" class="nav-link" data-toggle="tab">Imagem</a></li>
+                          <li class="nav-item"><a href="#Desc" class="nav-link" data-toggle="tab">Descrição</a></li>
+                          <li class="nav-item"><a href="#Tags" class="nav-link" data-toggle="tab">Tags</a></li>
+                       </ul>
+                       <!-- Conteudo das abas-->
+                       <div class="tab-content">
+                          <!--ABA DE ALT NOME PEÇAS-->
+                          <div class="tab-pane active ab-a" id="Nmpc">
+                            <br><center><h2>Deseja alterar o nome da peça?</h2><br>
+                            <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
+                            <input type="text" id="nmpc" name="nomepeca" placeholder="Digite aqui"><br><br>
+                            <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT IMG-->
+                          <div class="tab-pane ab-b" id="Imgm">
+                              <br><center><h2>Deseja alterar a imagem da peça?</h2><br>
+                              <label for="imgpc">É só selecionar o novo arquivo abaixo:</label><br><br>
+                              <input type="file" id="imgpc" name="imgpeca"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DESCRIÇÃO-->
+                          <div class="tab-pane ab-c" id="Desc">
+                              <br><center><h2>Deseja alterar a descrição da peça?</h2><br>
+                              <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
+                              <input type="textarea" maxlenght="250" id="descpc" name="descrpeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DAS TAGS-->
+                          <div class="tab-pane ab-d" id="Tags">
+                              <br><center><h2>Deseja alterar as tags da peça?</h2><br>
+                              <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
+                              <input type="textarea" id="tagpc" name="tagspeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                <!--/Modal Editar-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalApg">Apagar</button>
+                <!--Modal Apagar-->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalApg">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <header><h2 style="color: azure;"> Apagar peça</h2></header>
+                        <div class="ab-e">
+                          <br><center><h4>Deseja mesmo apagar a peça e todas suas informações? Essa ação não podera ser desfeita no futuro</h4></center><br>
+                          <div class="row justify-content-around">
+                              <input type="submit" value="Sim, desejo apagar" class="col-4">
+                              <input type="submit" value="Não, cancelar" class="col-4">
+                          </div>
+                      </div>
+                      <br><br>
+                    </div>
+                  </div>
+                </div>
+              <!--/Modal Apagar-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4"><!--img 05-->
+          <div class="card mb-4 shadow-sm">
+           <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src="IMG/Samples/IMG00.png " data-holder-rendered="true">  
+            <div class="card-body">
+              <p class="card-text">Nenhuma roupa cadastrada, cadastre logo abaixo!</p>
+              <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+              <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalVer">Ver</button>
+                  <!--Modal Ver-->
+                    <div class="modal fade bd-example-modal-lg" id="ModalVer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <header>
+                            <div class="container">
+                              <div class="row">
+                                <h5 name="unm" class="col" style="color: azure;">@nome_usuario</h5>
+                                <h5 style="color: azure; font-style: bold;;">>></h5>
+                                <h5 name="rnm" class="col-6" style="color: azure;">@nome_roupa</h5>
+                                <a href="#" role="button" class="btn btn-outline-light popover-test col" title="Descrição da peça" data-content="O conteúdo do popover é definido aqui. (no caso a descrição da roupa)" style="font-style: bold; width: 70px;">↡</a>
+                              </div>
+                            </div>
+                          </header> 
+                          <img src="" alt="Imagem ilustrativa da peça de roupa" width="800px" height="600px" id="uimg">                           
+                         <!--<span>
+                            <ul class="pager btn-group">
+                              <li class="previous btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="previous round" href="bootstrap_list_groups.asp">&#8249;</a></li>
+                              <li class="next btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="next round" href="bootstrap_list_groups.asp">&#8250;</a></li>
+                            </ul>
+                          </span>-->
+                        </div>
+                      </div>
+                    </div>
+                  <!--/Modal Ver-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalEdit">Editar</button>
+                  <!--Modal Editar-->
+                  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalEdit">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <!--Links para cada aba da modal-->
+                        <ul class="nav nav-tabs ulna">
+                          <li class="nav-item"><a href="#NmPc" class="nav-link" data-toggle="tab">Nome da peça</a></li>
+                          <li class="nav-item"><a href="#Imgm" class="nav-link" data-toggle="tab">Imagem</a></li>
+                          <li class="nav-item"><a href="#Desc" class="nav-link" data-toggle="tab">Descrição</a></li>
+                          <li class="nav-item"><a href="#Tags" class="nav-link" data-toggle="tab">Tags</a></li>
+                       </ul>
+                       <!-- Conteudo das abas-->
+                       <div class="tab-content">
+                          <!--ABA DE ALT NOME PEÇAS-->
+                          <div class="tab-pane active ab-a" id="Nmpc">
+                            <br><center><h2>Deseja alterar o nome da peça?</h2><br>
+                            <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
+                            <input type="text" id="nmpc" name="nomepeca" placeholder="Digite aqui"><br><br>
+                            <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT IMG-->
+                          <div class="tab-pane ab-b" id="Imgm">
+                              <br><center><h2>Deseja alterar a imagem da peça?</h2><br>
+                              <label for="imgpc">É só selecionar o novo arquivo abaixo:</label><br><br>
+                              <input type="file" id="imgpc" name="imgpeca"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DESCRIÇÃO-->
+                          <div class="tab-pane ab-c" id="Desc">
+                              <br><center><h2>Deseja alterar a descrição da peça?</h2><br>
+                              <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
+                              <input type="textarea" maxlenght="250" id="descpc" name="descrpeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DAS TAGS-->
+                          <div class="tab-pane ab-d" id="Tags">
+                              <br><center><h2>Deseja alterar as tags da peça?</h2><br>
+                              <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
+                              <input type="textarea" id="tagpc" name="tagspeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                <!--/Modal Editar-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalApg">Apagar</button>
+                <!--Modal Apagar-->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalApg">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <header><h2 style="color: azure;"> Apagar peça</h2></header>
+                        <div class="ab-e">
+                          <br><center><h4>Deseja mesmo apagar a peça e todas suas informações? Essa ação não podera ser desfeita no futuro</h4></center><br>
+                          <div class="row justify-content-around">
+                              <input type="submit" value="Sim, desejo apagar" class="col-4">
+                              <input type="submit" value="Não, cancelar" class="col-4">
+                          </div>
+                      </div>
+                      <br><br>
+                    </div>
+                  </div>
+                </div>
+              <!--/Modal Apagar-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4"><!--img06-->
+          <div class="card mb-4 shadow-sm">
+            <img class="card-img-top"  alt="Img [100%x225]" style="height: 225px; width: 100%; display: block;" src=" IMG/Samples/IMG00.png" data-holder-rendered="true">
+            <div class="card-body">
+              <p class="card-text">Nenhuma roupa cadastrada, cadastre logo abaixo!</p>
+              <small class="text-muted">Último acesso:</small> <small class="text-muted">DD/MM/AAAA</small><br>
+              <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalVer">Ver</button>
+                  <!--Modal Ver-->
+                    <div class="modal fade bd-example-modal-lg" id="ModalVer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <header>
+                            <div class="container">
+                              <div class="row">
+                                <h5 name="unm" class="col" style="color: azure;">@nome_usuario</h5>
+                                <h5 style="color: azure; font-style: bold;;">>></h5>
+                                <h5 name="rnm" class="col-6" style="color: azure;">@nome_roupa</h5>
+                                <a href="#" role="button" class="btn btn-outline-light popover-test col" title="Descrição da peça" data-content="O conteúdo do popover é definido aqui. (no caso a descrição da roupa)" style="font-style: bold; width: 70px;">↡</a>
+                              </div>
+                            </div>
+                          </header> 
+                          <img src="" alt="Imagem ilustrativa da peça de roupa" width="800px" height="600px" id="uimg">                           
+                         <!--<span>
+                            <ul class="pager btn-group">
+                              <li class="previous btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="previous round" href="bootstrap_list_groups.asp">&#8249;</a></li>
+                              <li class="next btn btn-sm btn-outline-secondary" style="list-style-type: none;"><a href="#" class="next round" href="bootstrap_list_groups.asp">&#8250;</a></li>
+                            </ul>
+                          </span>-->
+                        </div>
+                      </div>
+                    </div>
+                  <!--/Modal Ver-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalEdit">Editar</button>
+                  <!--Modal Editar-->
+                  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalEdit">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <!--Links para cada aba da modal-->
+                        <ul class="nav nav-tabs ulna">
+                          <li class="nav-item"><a href="#NmPc" class="nav-link" data-toggle="tab">Nome da peça</a></li>
+                          <li class="nav-item"><a href="#Imgm" class="nav-link" data-toggle="tab">Imagem</a></li>
+                          <li class="nav-item"><a href="#Desc" class="nav-link" data-toggle="tab">Descrição</a></li>
+                          <li class="nav-item"><a href="#Tags" class="nav-link" data-toggle="tab">Tags</a></li>
+                       </ul>
+                       <!-- Conteudo das abas-->
+                       <div class="tab-content">
+                          <!--ABA DE ALT NOME PEÇAS-->
+                          <div class="tab-pane active ab-a" id="Nmpc">
+                            <br><center><h2>Deseja alterar o nome da peça?</h2><br>
+                            <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
+                            <input type="text" id="nmpc" name="nomepeca" placeholder="Digite aqui"><br><br>
+                            <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT IMG-->
+                          <div class="tab-pane ab-b" id="Imgm">
+                              <br><center><h2>Deseja alterar a imagem da peça?</h2><br>
+                              <label for="imgpc">É só selecionar o novo arquivo abaixo:</label><br><br>
+                              <input type="file" id="imgpc" name="imgpeca"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DESCRIÇÃO-->
+                          <div class="tab-pane ab-c" id="Desc">
+                              <br><center><h2>Deseja alterar a descrição da peça?</h2><br>
+                              <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
+                              <input type="textarea" maxlenght="250" id="descpc" name="descrpeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                          <!-- ABA ALT DAS TAGS-->
+                          <div class="tab-pane ab-d" id="Tags">
+                              <br><center><h2>Deseja alterar as tags da peça?</h2><br>
+                              <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
+                              <input type="textarea" id="tagpc" name="tagspeca" placeholder="Digite aqui"><br><br>
+                              <input type="submit" value="Confirmar"></center><br><br>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                <!--/Modal Editar-->
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalApg">Apagar</button>
+                <!--Modal Apagar-->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalApg">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <header><h2 style="color: azure;"> Apagar peça</h2></header>
+                        <div class="ab-e">
+                          <br><center><h4>Deseja mesmo apagar a peça e todas suas informações? Essa ação não podera ser desfeita no futuro</h4></center><br>
+                          <div class="row justify-content-around">
+                              <input type="submit" value="Sim, desejo apagar" class="col-4">
+                              <input type="submit" value="Não, cancelar" class="col-4">
+                          </div>
+                      </div>
+                      <br><br>
+                    </div>
+                  </div>
+                </div>
+              <!--/Modal Apagar-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
   
-      
-                   
+      </div>';
+      echo" </div>
+      </div>
+    </div>";
+            }
+
+?>
+
+  </div>
+          </div>
+          </div>          
         </div><br>   
     <div> 
         <center>
