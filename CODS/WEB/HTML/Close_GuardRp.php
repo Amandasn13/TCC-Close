@@ -86,7 +86,7 @@ $u = new Usuario;
           header("location: Close_Log.php");
           exit;
       }else{
-        $sql = "CALL Buscar_Roupas(1)";
+        $sql = "SELECT * FROM Roupa";
                   $resultado = mysqli_query($connect, $sql);
                   while($dados = mysqli_fetch_array($resultado)){
                     $album[] = $dados; 
@@ -120,7 +120,7 @@ $u = new Usuario;
         <small class="text-muted">Vezes utilizadas:</small> <small class="text-muted">0</small><br>
         <small class="text-muted">Última vez usada:</small> <small class="text-muted">DD/MM/AAAA</small><br><br>
         <div class="d-flex justify-content-between align-items-center">
-          <form action="#">
+          <form action="#" method="get">
           <div class="btn-group"><input type="hidden" value="<?php Echo $foto["Titulo"]; ?>" name="tit_roupa">
           <input type="hidden" value="<?php Echo $foto["IdRoupa"]; ?>" name="id_roupa">
             <button  class="btn btn-sm btn-outline-secondary" id="btn-pg" data-toggle="modal" data-target="#ModalVer" type="submit">Ver</button>
@@ -1014,10 +1014,7 @@ $u = new Usuario;
           </div>
         </div>
   
-      </div>';
-      echo" </div>
-      </div>
-    </div>";
+      </div></table>';
             }
 
 ?>
