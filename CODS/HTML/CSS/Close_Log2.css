@@ -1,0 +1,348 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Segoe UI Light";
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+form {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.botao {
+  background-color: #282828;
+  width: 300px;
+  padding: 5px 45px 5px 45px;
+  font-family: "Segoe UI Light";
+  font-weight: bold;
+  color: white;
+  border: 2px whitesmoke;
+}
+
+legend {
+  font-family: "Segoe UI Light";
+  font-size: 50px;
+}
+
+a:link {
+  color: black;
+  margin: 10px;
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
+}
+
+a:active {
+  color: #042699;
+  font-size: 70%;
+}
+
+a:hover {
+  color: white;
+}
+
+a:visited {
+  color: #2a0449;
+}
+
+#l1 {
+  width: 300px;
+}
+
+#l2 {
+  width: 200px;
+}
+
+input {
+  /*font-family: $lt-font;
+    padding: 2px 10px 2px 10px;*/
+  width: 180px;
+  height: 30px;
+  font-family: "Segoe UI Light";
+  font-size: 15px;
+  color: #434343;
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 2px;
+  padding-right: 5px;
+  padding-left: 10px;
+}
+
+input button {
+  width: 230px;
+  height: 93px;
+  font-family: Roboto-Regular;
+  font-size: 24px;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #282828;
+  border: 0px solid      #404040;
+  border-radius: 4px;
+}
+
+#log {
+  color: #333333;
+  font-family: Segoe UI Light;
+  margin-left: 5%;
+}
+
+footer {
+  /*position: fixed;*/
+  display: inline-block;
+  bottom: 0;
+  left: 0;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: .75rem;
+  margin-top: 25px;
+  border-top: 1px solid #dee2e6;
+  border-bottom-right-radius: calc(.3rem - 1px);
+  border-bottom-left-radius: calc(.3rem - 1px);
+  background-color: #110e0e;
+  font-family: "Segoe UI Light";
+  width: 100%;
+}
+
+footer #rodp {
+  display: inline;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+footer #rodp ul {
+  padding: 0% 40% 0% 20%;
+  margin: 0px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  float: right;
+}
+
+footer #rodp ul li {
+  display: inline;
+}
+
+footer #rodp ul li a {
+  padding: 2px 10px 0px 10px;
+  display: inline;
+  text-decoration: none;
+  color: #FFFFFF;
+  margin: 5px;
+}
+
+/*#cad{
+    width: 800px;
+    height: 577px;
+    font-family: Segoe UI Light;
+    font-size: 13px;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 2%;
+    margin-right: 5%;
+    //line-height: 18px;
+    //margin: 10% 5% 10% 20%;
+    color:      #333333;
+    background-color:      #BCCAD3;
+    background-repeat: repeat;*/
+#btnC {
+  border: solid 3px #282828;
+  border-radius: 5%;
+  background-color: #282828;
+  color: #f4e6ff;
+}
+
+#passC {
+  border-radius: 25px;
+}
+
+#all-in {
+  border-radius: 25px;
+}
+
+#nm {
+  display: inline;
+  font-family: Roboto;
+  color: whitesmoke;
+  margin: 0% 5% 0% 5%;
+}
+
+label {
+  position: relative;
+}
+
+#lg {
+  /*width: 100px;
+    height: 200px;
+    //float: left;*/
+  padding-left: 5%;
+}
+
+/*#btnC{
+    border: solid 3px #282828;
+    border-radius: 5%;
+    background-color: $corbut;
+    color: $corpad01;
+}
+
+#passC{
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+#all-in{
+    border-radius: 25px;
+}*/
+#bkl {
+  color: whitesmoke;
+  border: 3px whitesmoke;
+}
+
+header {
+  background-color: #0c0b0f;
+  position: relative;
+  color: whitesmoke;
+}
+
+header .waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+path .od1 {
+  -webkit-animation: ondulacao1 3s ease-in-out infinite alternate;
+          animation: ondulacao1 3s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao1 {
+  from {
+    -webkit-transform: translateX(-2000px);
+            transform: translateX(-2000px);
+  }
+}
+
+@keyframes ondulacao1 {
+  from {
+    -webkit-transform: translateX(-2000px);
+            transform: translateX(-2000px);
+  }
+}
+
+path .od2 {
+  -webkit-animation: ondulacao2 3s 1.2s ease-in-out infinite alternate;
+          animation: ondulacao2 3s 1.2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao2 {
+  from {
+    -webkit-transform: translateX(-1800px);
+            transform: translateX(-1800px);
+  }
+}
+
+@keyframes ondulacao2 {
+  from {
+    -webkit-transform: translateX(-1800px);
+            transform: translateX(-1800px);
+  }
+}
+
+path .od3 {
+  -webkit-animation: ondulacao3 3s 1.6s ease-in-out infinite alternate;
+          animation: ondulacao3 3s 1.6s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao3 {
+  from {
+    -webkit-transform: translateX(-1600px);
+            transform: translateX(-1600px);
+  }
+}
+
+@keyframes ondulacao3 {
+  from {
+    -webkit-transform: translateX(-1600px);
+            transform: translateX(-1600px);
+  }
+}
+
+path .od4 {
+  -webkit-animation: ondulacao4 3s 2s ease-in-out infinite alternate;
+          animation: ondulacao4 3s 2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao4 {
+  from {
+    -webkit-transform: translateX(-1400px);
+            transform: translateX(-1400px);
+  }
+}
+
+@keyframes ondulacao4 {
+  from {
+    -webkit-transform: translateX(-1400px);
+            transform: translateX(-1400px);
+  }
+}
+
+path .od5 {
+  -webkit-animation: ondulacao5 3s 2.4s ease-in-out infinite alternate;
+          animation: ondulacao5 3s 2.4s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao5 {
+  from {
+    -webkit-transform: translateX(-1200px);
+            transform: translateX(-1200px);
+  }
+}
+
+@keyframes ondulacao5 {
+  from {
+    -webkit-transform: translateX(-1200px);
+            transform: translateX(-1200px);
+  }
+}
+
+.nvc {
+  width: 60%;
+}
+
+#arip {
+  margin-right: 150px;
+}
+
+#fgs:link {
+  color: whitesmoke;
+  margin: 10px;
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
+}
+
+#fgs:active {
+  color: #aaf752;
+  font-size: 70%;
+}
+
+#fgs:hover {
+  color: #fff240;
+}
+
+#fgs:visited {
+  color: #3de4db;
+}
+/*# sourceMappingURL=Close_Log2.css.map */
