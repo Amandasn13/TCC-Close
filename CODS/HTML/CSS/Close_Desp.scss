@@ -4,84 +4,15 @@ $corpad01: rgb(244, 230, 255);
 $cor03: #78787a;
 //$sldht: 10%;
 
+html{
+    width: 100%;
+}
 body{
-    background-color: #dee2e6;
+    background-color: #f7f9fc;
     font-family: $lt-font;
     display: flex;
     flex-direction: column;
     width: auto;
-
-    #pg{
-        background-color: $corpad01;
-    }
-
-    .daybg{
-        background-color: #dee2e6;
-    }
-
-    .mdaybg{
-        background-color: #141414;
-        color: whitesmoke;
-    }
-
-    .ngtbg{
-        background-color: #000000;
-        color: #FFFFFF;
-    }
-}
-
-.botao{
-    background-color: rgb(6, 6, 7);
-    border: 2px solid rgb(6, 6, 7);
-    border-radius: 25%;
-	/*width: 300px;
-    padding: 0px 45px 0px 45px;
-    margin: 2px;
-    font-weight: bold;border-color:  $corbut;
-	font-family: $lt-font;*/
-	color: white;
-	
-}
-
-#uimg{
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    border-color: rgb(165, 161, 161);
-    border: 2px;
-    margin: 10% 5% 10% 60%;
-}
-
-#infus{
-    margin: 5%;
-    font-family: $lt-font;
-    color: $cor03;
-}
-
-#sl1{
- background-color: #FF5400  ;
- //position: absolute;
- //height: $sldht;
-}
-#sl2{
- background-color: #FF0054  ;
- //position: absolute;
- //height: $sldht;
-}
-#sl3{
-    background-color: #9E0059  ;
-    //position: absolute;
-    //height: $sldht;
-}
-#sl4{
-    background-color: #390099;
-   // position: absolute;
-    //height: $sldht;
-}
-#sl5{
-    background-color: #c6538c;
-    //position: absolute;
-    //height: $sldht;
 }
 
 header{
@@ -92,12 +23,17 @@ header{
         justify-content:flex-end;
         padding:.75rem;
         margin-bottom: 5px;
-        border-bottom:1px solid #dee2e6;
+        //border-bottom:1px solid #dee2e6;
         border-bottom-right-radius:calc(.3rem - 1px);
         border-bottom-left-radius:calc(.3rem - 1px);
-        background-color: rgb(17, 14, 14);
+        //background-color: rgb(17, 14, 14);
         font-family: $lt-font;
         width: 100%;
+        
+        /*&:hover{
+            background-color: rgb(165, 167, 235);
+            opacity: 25%;
+        }*/
 
         #rodp{
             display: inline;
@@ -176,21 +112,16 @@ footer{
     }
 }
 
+  .tog{
+    ul{
+        //position: absolute;
+        padding:0% 40% 0% 20%;
+        margin:0px;
+        justify-content: space-around;
+        float: right;
+       
 
-
-#persz{
-    margin-top: 15px;
-}
-
-
-#psq{
-    color:#BCCAD3;
-    background-color: transparent;
-    font-family: $lt-font;
-    border: none;
-    font-style: italic;
-}
-
-.al-fm{
-    margin: 5%;
+        li{
+            display: inline;}
+  }
 }

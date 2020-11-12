@@ -1,5 +1,9 @@
+html {
+  width: 100%;
+}
+
 body {
-  background-color: #dee2e6;
+  background-color: #f7f9fc;
   font-family: "Segoe UI";
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9,71 +13,6 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   width: auto;
-}
-
-body #pg {
-  background-color: #f4e6ff;
-}
-
-body .daybg {
-  background-color: #dee2e6;
-}
-
-body .mdaybg {
-  background-color: #141414;
-  color: whitesmoke;
-}
-
-body .ngtbg {
-  background-color: #000000;
-  color: #FFFFFF;
-}
-
-.botao {
-  background-color: #060607;
-  border: 2px solid #060607;
-  border-radius: 25%;
-  /*width: 300px;
-    padding: 0px 45px 0px 45px;
-    margin: 2px;
-    font-weight: bold;border-color:  $corbut;
-	font-family: $lt-font;*/
-  color: white;
-}
-
-#uimg {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  border-color: #a5a1a1;
-  border: 2px;
-  margin: 10% 5% 10% 60%;
-}
-
-#infus {
-  margin: 5%;
-  font-family: "Segoe UI";
-  color: #78787a;
-}
-
-#sl1 {
-  background-color: #FF5400;
-}
-
-#sl2 {
-  background-color: #FF0054;
-}
-
-#sl3 {
-  background-color: #9E0059;
-}
-
-#sl4 {
-  background-color: #390099;
-}
-
-#sl5 {
-  background-color: #c6538c;
 }
 
 header {
@@ -86,12 +25,14 @@ header {
           justify-content: flex-end;
   padding: .75rem;
   margin-bottom: 5px;
-  border-bottom: 1px solid #dee2e6;
   border-bottom-right-radius: calc(.3rem - 1px);
   border-bottom-left-radius: calc(.3rem - 1px);
-  background-color: #110e0e;
   font-family: "Segoe UI";
   width: 100%;
+  /*&:hover{
+            background-color: rgb(165, 167, 235);
+            opacity: 25%;
+        }*/
 }
 
 header #rodp {
@@ -173,19 +114,15 @@ footer #rodp ul li a {
   margin: 5px;
 }
 
-#persz {
-  margin-top: 15px;
+.tog ul {
+  padding: 0% 40% 0% 20%;
+  margin: 0px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  float: right;
 }
 
-#psq {
-  color: #BCCAD3;
-  background-color: transparent;
-  font-family: "Segoe UI";
-  border: none;
-  font-style: italic;
+.tog ul li {
+  display: inline;
 }
-
-.al-fm {
-  margin: 5%;
-}
-/*# sourceMappingURL=Close_Est.css.map */
+/*# sourceMappingURL=Close_Desp.css.map */
