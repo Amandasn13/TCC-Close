@@ -67,7 +67,7 @@ $dados = mysqli_fetch_array($resultado);
   </div>
   <div class="col-4" id="infus">
     <h1 name="socnm"><?php Echo $dados['Nome']; ?></h1>
-    <h3 name="unm">@<?php Echo $dados['Nome_de_Usuario']; ?></h3>
+    <h3 name="unm">@<?php Echo $dados['Nome_Usuário']; ?></h3>
     <h3 name="unm"><?php Echo $dados['Data_de_Nascimento']; ?></h3>
     <p name="ubio"><?php echo $dados['Biografia']; ?></p>  
 </div>

@@ -4,7 +4,6 @@ html {
 }
 
 body {
-  background-color: #f4e6ff;
   font-family: "Segoe UI Light";
   display: -webkit-box;
   display: -ms-flexbox;
@@ -144,33 +143,32 @@ footer #rodp ul li a {
   margin: 5px;
 }
 
-#cad {
-  width: 550px;
-  height: 577px;
-  font-family: Segoe UI Light;
-  font-size: 13px;
-  font-weight: 300;
-  text-align: center;
-  margin-top: 2%;
-  margin-right: 5%;
-  color: #333333;
-  background-color: #BCCAD3;
-  background-repeat: repeat;
-}
-
-#cad #btnC {
+/*#cad{
+    width: 800px;
+    height: 577px;
+    font-family: Segoe UI Light;
+    font-size: 13px;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 2%;
+    margin-right: 5%;
+    //line-height: 18px;
+    //margin: 10% 5% 10% 20%;
+    color:      #333333;
+    background-color:      #BCCAD3;
+    background-repeat: repeat;*/
+#btnC {
   border: solid 3px #282828;
   border-radius: 5%;
   background-color: #282828;
   color: #f4e6ff;
 }
 
-#cad #passC {
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
+#passC {
+  border-radius: 25px;
 }
 
-#cad #all-in {
+#all-in {
   border-radius: 25px;
 }
 
@@ -207,4 +205,124 @@ label {
 #all-in{
     border-radius: 25px;
 }*/
+#bkl {
+  color: whitesmoke;
+  border: 3px whitesmoke;
+}
+
+header {
+  background-color: #282828;
+  position: relative;
+  color: whitesmoke;
+}
+
+header .waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+path .od1 {
+  -webkit-animation: ondulacao1 3s ease-in-out infinite alternate;
+          animation: ondulacao1 3s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao1 {
+  from {
+    -webkit-transform: translateX(-2000px);
+            transform: translateX(-2000px);
+  }
+}
+
+@keyframes ondulacao1 {
+  from {
+    -webkit-transform: translateX(-2000px);
+            transform: translateX(-2000px);
+  }
+}
+
+path .od2 {
+  -webkit-animation: ondulacao2 3s 1.2s ease-in-out infinite alternate;
+          animation: ondulacao2 3s 1.2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao2 {
+  from {
+    -webkit-transform: translateX(-1800px);
+            transform: translateX(-1800px);
+  }
+}
+
+@keyframes ondulacao2 {
+  from {
+    -webkit-transform: translateX(-1800px);
+            transform: translateX(-1800px);
+  }
+}
+
+path .od3 {
+  -webkit-animation: ondulacao3 3s 1.6s ease-in-out infinite alternate;
+          animation: ondulacao3 3s 1.6s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao3 {
+  from {
+    -webkit-transform: translateX(-1600px);
+            transform: translateX(-1600px);
+  }
+}
+
+@keyframes ondulacao3 {
+  from {
+    -webkit-transform: translateX(-1600px);
+            transform: translateX(-1600px);
+  }
+}
+
+path .od4 {
+  -webkit-animation: ondulacao4 3s 2s ease-in-out infinite alternate;
+          animation: ondulacao4 3s 2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao4 {
+  from {
+    -webkit-transform: translateX(-1400px);
+            transform: translateX(-1400px);
+  }
+}
+
+@keyframes ondulacao4 {
+  from {
+    -webkit-transform: translateX(-1400px);
+            transform: translateX(-1400px);
+  }
+}
+
+path .od5 {
+  -webkit-animation: ondulacao5 3s 2.4s ease-in-out infinite alternate;
+          animation: ondulacao5 3s 2.4s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes ondulacao5 {
+  from {
+    -webkit-transform: translateX(-1200px);
+            transform: translateX(-1200px);
+  }
+}
+
+@keyframes ondulacao5 {
+  from {
+    -webkit-transform: translateX(-1200px);
+            transform: translateX(-1200px);
+  }
+}
+
+.nvc {
+  width: 60%;
+}
+
+#arip {
+  margin-right: 150px;
+}
 /*# sourceMappingURL=Close_Log.css.map */

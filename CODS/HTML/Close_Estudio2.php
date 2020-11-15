@@ -36,7 +36,7 @@ $dados = mysqli_fetch_array($resultado);
     <img src="IMG\Vetores\Close_EscLog.png" class="nav navbar-nav" id="lgpr" width="80px" height="30px">
     <ul>
       <li>
-        <button type="button" value="Editar Perfil" class="btn btn-outline-danger" data-toggle="modal" data-target="#ModalEditPf">Editar Perfil</button>
+        <button type="button" value="Editar Perfil" class="btn btn-outline-warning" data-toggle="modal" data-target="#ModalEditPf">Editar Perfil</button>
         <!--Modal de Edição-->
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalEditPf">
           <div class="modal-dialog modal-lg">

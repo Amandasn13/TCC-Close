@@ -223,98 +223,102 @@ header .waves {
   right: 0;
 }
 
-path .od1 {
-  -webkit-animation: ondulacao1 3s ease-in-out infinite alternate;
-          animation: ondulacao1 3s ease-in-out infinite alternate;
+.waves {
+  position: absolute;
 }
 
-@-webkit-keyframes ondulacao1 {
+.waves .wave-1 {
+  -webkit-animation: moveWave1 3s ease-in-out infinite alternate;
+          animation: moveWave1 3s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes moveWave1 {
   from {
-    -webkit-transform: translateX(-2000px);
-            transform: translateX(-2000px);
+    -webkit-transform: translateX(130px);
+            transform: translateX(130px);
   }
 }
 
-@keyframes ondulacao1 {
+@keyframes moveWave1 {
   from {
-    -webkit-transform: translateX(-2000px);
-            transform: translateX(-2000px);
+    -webkit-transform: translateX(130px);
+            transform: translateX(130px);
   }
 }
 
-path .od2 {
-  -webkit-animation: ondulacao2 3s 1.2s ease-in-out infinite alternate;
-          animation: ondulacao2 3s 1.2s ease-in-out infinite alternate;
+.waves .wave-2 {
+  -webkit-animation: moveWave2 3s 1.2s ease-in-out infinite alternate;
+          animation: moveWave2 3s 1.2s ease-in-out infinite alternate;
 }
 
-@-webkit-keyframes ondulacao2 {
+@-webkit-keyframes moveWave2 {
   from {
-    -webkit-transform: translateX(-1800px);
-            transform: translateX(-1800px);
+    -webkit-transform: translateY(800px);
+            transform: translateY(800px);
   }
 }
 
-@keyframes ondulacao2 {
+@keyframes moveWave2 {
   from {
-    -webkit-transform: translateX(-1800px);
-            transform: translateX(-1800px);
+    -webkit-transform: translateY(800px);
+            transform: translateY(800px);
   }
 }
 
-path .od3 {
-  -webkit-animation: ondulacao3 3s 1.6s ease-in-out infinite alternate;
-          animation: ondulacao3 3s 1.6s ease-in-out infinite alternate;
+.waves .wave-3 {
+  -webkit-animation: moveWave3 3s 0.7s ease-in-out infinite alternate;
+          animation: moveWave3 3s 0.7s ease-in-out infinite alternate;
 }
 
-@-webkit-keyframes ondulacao3 {
+@-webkit-keyframes moveWave3 {
   from {
-    -webkit-transform: translateX(-1600px);
-            transform: translateX(-1600px);
+    -webkit-transform: translateX(650px);
+            transform: translateX(650px);
   }
 }
 
-@keyframes ondulacao3 {
+@keyframes moveWave3 {
   from {
-    -webkit-transform: translateX(-1600px);
-            transform: translateX(-1600px);
+    -webkit-transform: translateX(650px);
+            transform: translateX(650px);
   }
 }
 
-path .od4 {
-  -webkit-animation: ondulacao4 3s 2s ease-in-out infinite alternate;
-          animation: ondulacao4 3s 2s ease-in-out infinite alternate;
+.waves .wave-4 {
+  -webkit-animation: moveWave4 3s 1.2s ease-in-out infinite alternate;
+          animation: moveWave4 3s 1.2s ease-in-out infinite alternate;
 }
 
-@-webkit-keyframes ondulacao4 {
+@-webkit-keyframes moveWave4 {
   from {
-    -webkit-transform: translateX(-1400px);
-            transform: translateX(-1400px);
+    -webkit-transform: translateX(400px);
+            transform: translateX(400px);
   }
 }
 
-@keyframes ondulacao4 {
+@keyframes moveWave4 {
   from {
-    -webkit-transform: translateX(-1400px);
-            transform: translateX(-1400px);
+    -webkit-transform: translateX(400px);
+            transform: translateX(400px);
   }
 }
 
-path .od5 {
-  -webkit-animation: ondulacao5 3s 2.4s ease-in-out infinite alternate;
-          animation: ondulacao5 3s 2.4s ease-in-out infinite alternate;
+.waves .wave-5 {
+  -webkit-animation: moveWave5 3s 0.7s ease-in-out infinite alternate;
+          animation: moveWave5 3s 0.7s ease-in-out infinite alternate;
 }
 
-@-webkit-keyframes ondulacao5 {
+@-webkit-keyframes moveWave5 {
   from {
-    -webkit-transform: translateX(-1200px);
-            transform: translateX(-1200px);
+    -webkit-transform: translateX(-30px);
+            transform: translateX(-30px);
   }
 }
 
-@keyframes ondulacao5 {
+@keyframes moveWave5 {
   from {
-    -webkit-transform: translateX(-1200px);
-            transform: translateX(-1200px);
+    -webkit-transform: translateX(-30px);
+            transform: translateX(-30px);
   }
 }
 

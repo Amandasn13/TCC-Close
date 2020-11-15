@@ -224,58 +224,59 @@ header{
     }
 }
 
-path{
-
-    .od1{
-        animation: ondulacao1 3s ease-in-out infinite alternate;
-
-        @keyframes ondulacao1 {
-            from{
-                transform: translateX(-2000px);
-            }
+    .waves {
+        position: absolute;
+        .wave-1 {
+        animation: moveWave1 3s ease-in-out infinite alternate;
+      }
+    
+      @keyframes moveWave1 {
+        from {
+          transform: translateX(130px);
         }
-    }
-
-    .od2{
-        animation: ondulacao2 3s 1.2s ease-in-out infinite alternate;
-
-        @keyframes ondulacao2 {
-            from{
-                transform: translateX(-1800px);
-            }
+      }
+      .wave-2 {
+        animation: moveWave2 3s 1.2s ease-in-out infinite alternate;
+      }
+    
+      @keyframes moveWave2 {
+        from {
+          transform: translateY(800px);
         }
-    }
-
-    .od3{
-        animation: ondulacao3 3s 1.6s ease-in-out infinite alternate;
-
-        @keyframes ondulacao3 {
-            from{
-                transform: translateX(-1600px);
-            }
+      }
+    
+      .wave-3 {
+        animation: moveWave3 3s 0.7s ease-in-out infinite alternate;
+      }
+    
+      @keyframes moveWave3 {
+        from {
+          transform: translateX(650px);
         }
-    }
-
-    .od4{
-        animation: ondulacao4 3s 2s ease-in-out infinite alternate;
-
-        @keyframes ondulacao4 {
-            from{
-                transform: translateX(-1400px);
-            }
+      }
+      .wave-4 {
+        animation: moveWave4 3s 1.2s ease-in-out infinite alternate;
+      }
+    
+      @keyframes moveWave4 {
+        from {
+          transform: translateX(400px);
         }
-    }
-
-    .od5{
-        animation: ondulacao5 3s 2.4s ease-in-out infinite alternate;
-
-        @keyframes ondulacao5 {
-            from{
-                transform: translateX(-1200px);
-            }
+      }
+    
+      .wave-5 {
+        animation: moveWave5 3s 0.7s ease-in-out infinite alternate;
+      }
+    
+      @keyframes moveWave5 {
+        from {
+          transform: translateX(-30px);
         }
-    }
-}
+      }    
+ }
+    
+      
+
 
 .nvc{
     width: 60%;
