@@ -57,7 +57,7 @@
                                 if($u->logar($nomeusuario, $senha, $email))
                                 {
                                     
-                                    header("location: Close_Estudio.php");
+                                    header("location: Close_Estudio2.php");
                                 }else
                                 {
                                     echo "<script language=javascript type= 'text/javascript'>
