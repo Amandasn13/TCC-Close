@@ -41,7 +41,7 @@
                             window.alert('Extensão inválida, por favor selecione uma foto.')
 							</script>";
 					echo "<script language=java script type= 'text/javascript'>
-					window.location.href = 'config.php'
+					window.location.href = '../Close_Estudio2.php'
 				</script>";
 			}
 			
@@ -51,7 +51,7 @@
                             window.alert('Foto com tamanho muito grande! Escolha uma com tamanho menor.')
 							</script>";
 					echo "<script language=java script type= 'text/javascript'>
-					window.location.href = 'config.php'
+					window.location.href = '../Close_Estudio2.php'
 				</script>";
 			}
 			
@@ -74,7 +74,7 @@
                             window.alert('Foto do perfil alterada com sucesso!')
 							</script>";
 					echo "<script language=java script type= 'text/javascript'>
-					window.location.href = 'config.php'
+					window.location.href = '../Close_Estudio2.php'
 				</script>";
 							
 				}else{
@@ -83,7 +83,7 @@
                             window.alert('Não foi possível alterar a foto do perfil.')
 							</script>";
 					echo "<script language=java script type= 'text/javascript'>
-					window.location.href = 'config.php'
+					window.location.href = '../Close_Estudio2.php'
 				</script>";
 				}
 			}
