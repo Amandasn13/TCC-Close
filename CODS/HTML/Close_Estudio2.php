@@ -108,7 +108,7 @@ $dados = mysqli_fetch_array($resultado);
                         <div class="row">
                           <div class="col-md-6 mb-3">
                             <label id="leflab" style="color: aliceblue;">Nome de Usuário</label><br>
-                            <input type="text" name="nusuario" class="form-control" value="<?php Echo $dados['Nome_Usuário']; ?>" maxlength="50" placeholder="Nome de Usuário">
+                            <input type="text" name="nusuario" class="form-control" value="<?php Echo $dados['Nome_de_Usuario']; ?>" maxlength="50" placeholder="Nome de Usuário">
                           </div>
                           <div class="col-md-6 mb-3">
                             <label id="rigid" style="color: aliceblue;">Data de nascimento</label><br>
@@ -138,15 +138,19 @@ $dados = mysqli_fetch_array($resultado);
           </div>
         </div>     
       </li>
+      <a href="Close_GuardRp.php">
       <li>
         <input type="button" value="Guarda-Roupa" class="btn btn-outline-primary">
       </li>
+      </a>
       <li>
         <input type="button" value="Desapegos" class="btn btn-outline-success">
       </li>
+      <a href="PHP/Sair.php">
        <li >
-          <input type="button" href="PHP/Sair.php" value="Sair" class="btn btn-outline-dark">
+<input type="button" href="PHP/Sair.php" value="Sair" class="btn btn-outline-dark">         
        </li>
+       </a> 
     </ul>
   </nav>
 </header>
@@ -264,7 +268,7 @@ $dados = mysqli_fetch_array($resultado);
     <div class="ov3">
       <div class="col-4" id="infus">
         <h1 name="socnm"><?php Echo $dados['Nome']; ?></h1>
-        <h3 name="unm">@<?php Echo $dados['Nome_Usuário']; ?></h3>
+        <h3 name="unm">@<?php Echo $dados['Nome_de_Usuario']; ?></h3>
         <h3 name="unm"><?php Echo $dados['Data_de_Nascimento']; ?></h3>
       </div>
     </div>
