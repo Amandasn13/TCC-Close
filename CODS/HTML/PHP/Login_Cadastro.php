@@ -89,18 +89,17 @@ Class Usuario
        return true;
     }
 }
-public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento, $biografia)
+public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento)
     {
         
         global $pdo;
         global $msgErro;             
-        $sql = $pdo->prepare("CALL Atualizar_Usuario(:id, :n, :s, :nu, :dn, :e)");
+        $sql = $pdo->prepare("CALL Atualizar_Usuario(:id, :n, :s, :nu, :dn)");
         $sql->bindvalue(":id", $id);
         $sql->bindvalue(":n", $nome);              
         $sql->bindValue(":s", $sobrenome); 
         $sql->bindValue(":nu", $nomeusuario); 
         $sql->bindValue(":dn", $nascimento);
-        $sql->bindValue(":e", $email);   
         $sql->execute();
         return true;
        
