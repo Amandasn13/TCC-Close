@@ -1,6 +1,5 @@
 <?php
 require_once 'PHP/Conexao.php';
-
 require_once 'PHP/Login_Cadastro.php';
 session_start();
 if(!isset($_SESSION['IdUsuario']))
@@ -338,7 +337,7 @@ $u = new Usuario;
       <div class="col-4" id="infus">
         <h1 name="socnm"><?php Echo $dados['Nome']; ?></h1>
         <h3 name="unm">@<?php Echo $dados['Nome_de_Usuario']; ?></h3>
-        <h3 name="unm"><?php Echo $dados['Data_de_Nascimento']; ?></h3>
+        <h3 name="unm"><?php Echo date("d/m/Y",strtotime($dados['Data_de_Nascimento'])); ?></h3>
       </div>
     </div>
   </div>
