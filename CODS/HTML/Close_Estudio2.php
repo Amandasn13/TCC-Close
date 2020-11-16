@@ -95,9 +95,9 @@ $u = new Usuario;
                       <center><h2 style="color: ivory;">Alterar os dados pessoais</h2><br>
                       <form class="px-4 py-3" method="post" name="edit1">
                         <!--Aqui começa o formulário pra pessoa mudar alguma coisa do perfil dela, nessa primeira parte, os dados pessoais-->
-                        <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"> 
                         <div class="row"><br>
                           <div class="col-md-6 mb-3">
+                          <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"> 
                             <label id="leflab" style="color: aliceblue;">Nome</label><br>
                             <input type="text"  name="nome" class="form-control" maxlength="50" value="<?php Echo $dados['Nome']; ?>" placeholder="Nome">
                           </div>  
