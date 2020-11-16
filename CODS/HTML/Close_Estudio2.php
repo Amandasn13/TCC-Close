@@ -13,6 +13,8 @@ $id = $_SESSION['IdUsuario'];
 $sql = "SELECT * FROM Usuario WHERE IdUsuario = '$id'";
 $resultado = mysqli_query($connect, $sql);
 $dados = mysqli_fetch_array($resultado);
+$u = new Usuario; 
+
 ?>
 
 <!DOCTYPE html>
@@ -59,10 +61,10 @@ $dados = mysqli_fetch_array($resultado);
                   <div id="EdFt" role="tabpanel" class="tab-pane fade in active">
                     <div>
                       <center><h2 style="color: ivory;">Alterar a foto de perfil</h2><br>
-                      <form class="px-4 py-3" method="post" action="cadastrarfoto.php" enctype="multipart/form-data">
+                      <form class="px-4 py-3" method="post" action="PHP/cadastrarfoto.php" enctype="multipart/form-data">
                         <div class="form-group">
                           <input name="arquivo" type="file" placeholder="" id="arquivo" class="form-control" onchange="previewImagem()"><br><br>
-                          <center><img id="edim" name="img"><br><br>
+                          <center><img id="uimg" name="img" class="ov1"></center><br><br>
                           <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">Alterar foto</button>
@@ -112,11 +114,42 @@ $dados = mysqli_fetch_array($resultado);
                           </div>
                           <div class="col-md-6 mb-3">
                             <label id="rigid" style="color: aliceblue;">Data de nascimento</label><br>
-                            <input type="date" name="data" class="form-control" value="<?php Echo $dados['Data_Nascimento']; ?>" placeholder="DD/MM/AAAA">
+                            <input type="date" name="data" class="form-control" value="<?php Echo $dados['Data_de_Nascimento']; ?>" placeholder="DD/MM/AAAA">
                           </div>
                         </div>
                         <br><br><br>
-                        <center><button type="submit" name="Editar" class="btn btn-primary" onclick="Mensagem()">Alterar dados</button></center>
+                        <center><button type="submit" name="Editar" class="btn btn-primary">Alterar dados</button></center>
+                        <?php
+                if(isset($_POST['nome']))
+                {
+                $id = addslashes($_POST['id_user']);
+                $nome = addslashes($_POST['nome']);
+                $sobrenome = addslashes($_POST['sbnome']); 
+                $nomeusuario = addslashes($_POST['nusuario']);
+                $nascimento = addslashes($_POST['data']); 
+               
+
+                    $u->conexao("Tiffanny", "localhost","root","");
+                    if($u->msgErro == "")
+                    {
+                        if($u->editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento
+                        ))
+                        {
+                            echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('Alterações concluidas com sucesso!')
+                            </script>";
+                            echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
+
+                        }else{
+                            echo "Não foi possivel editar!";
+
+                        }
+                    }else
+                    {
+                        echo "Erro: ".$u->msgErro;
+                    }
+                    }
+            ?>   
                       </form></center>
                     </div>
                   </div>
@@ -128,7 +161,43 @@ $dados = mysqli_fetch_array($resultado);
                         <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
                         <label style="color: aliceblue;">E-mail</label><br>
                         <input type="email" name="Email" id="Email" value="<?php echo $dados['E_mail'] ?>" placeholder="Email" maxlength="100" required><br><br><br>
-                        <button type="submit" name="editar2" class="btn btn-primary" onclick="Mensagem()">Alterar email</button>
+                        <button type="submit" name="editar2" class="btn btn-primary">Alterar email</button>
+                        <?php 
+        if(isset($_POST['Email']))
+        {
+            $id = addslashes($_POST['id_user']); 
+            $email = addslashes($_POST['Email']);
+            $u->conexao("Tiffanny", "localhost","root","");
+            if($u->msgErro == "")
+            {
+                if($u->verifica($email)){
+                    if($u->editar3($email, $id)){
+                        echo "<script language=javascript type= 'text/javascript'>
+                        window.alert('E-mail alterado com sucesso!')
+                        </script>";
+                        echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
+                }  else{
+                    echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('Falha em alterar e-mail!')
+                            </script>";
+                            echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";       
+            }
+
+                }else{
+                    echo "<script language=javascript type= 'text/javascript'>
+                    window.alert('E-mail já está sendo utilizado por outro usuário!')
+                    </script>";
+                }
+
+            }else{
+                echo "Erro: ".$u->msgErro;
+            }
+
+        }
+        
+        
+        
+        ?>
                       </form></center>
                     </div>
                   </div>
