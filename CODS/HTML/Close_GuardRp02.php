@@ -185,7 +185,7 @@ $('#psps').click(function(e){
           header("location: Close_Log.php");
           exit;
       }else{
-        $sql = "SELECT * FROM Roupa";
+        $sql = "SELECT * From Roupa";
                   $resultado = mysqli_query($connect, $sql);
                   while($dados = mysqli_fetch_array($resultado)){
                     $album[] = $dados; 
@@ -232,21 +232,21 @@ $('#psps').click(function(e){
           <div class="card mb-4 shadow-sm" id="pcrp">
               <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
               fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-              100%; display: block;" src="" data-target="RpMod" data-holder-rendered="true">
+              100%; display: block;" src="IMG/Samples/IMG00.png" data-target="RpMod" data-holder-rendered="true">
           </div><!--Fecha card-->
       </div><!--Fecha componente da grid (alinhamento)-->
       <div class="col-md-4">
           <div class="card mb-4 shadow-sm" id="pcrp">
               <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
               fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-              100%; display: block;" src="" data-target="RpMod" data-holder-rendered="true">
+              100%; display: block;" src="IMG/Samples/IMG1.png" data-target="RpMod" data-holder-rendered="true">
           </div><!--Fecha card-->
       </div><!--Fecha componente da grid (alinhamento)-->
       <div class="col-md-4">
           <div class="card mb-4 shadow-sm" id="pcrp">
               <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
               fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-              100%; display: block;" src="" data-target="RpMod" data-holder-rendered="true">
+              100%; display: block;" src="IMG/Samples/IMG2.png" data-target="RpMod" data-holder-rendered="true">
           </div><!--Fecha card-->
       </div>';
       }
