@@ -206,7 +206,7 @@ $u = new Usuario;
           </div>
         </div>     
       </li>
-      <a href="Close_GuardRp.php">
+      <a href="Close_GuardRp02.php">
       <li>
         <input type="button" value="Guarda-Roupa" class="btn btn-outline-primary">
       </li>
