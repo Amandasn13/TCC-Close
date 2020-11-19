@@ -53,19 +53,19 @@
 			$_UP['erros'][0] = 'Não houve erro';
 			$_UP['erros'][1] = "<script language=javascript type= 'text/javascript'>
 			window.alert('O aqrquivo no upload é maior do que o limete do PHP.');
-			window.location.href = '../Close_GuardRp.php'
+			window.location.href = '../Close_GuardRp02.php'
 			</script>";
 			$_UP['erros'][2] = "<script language=javascript type= 'text/javascript'>
 			window.alert('O arquivo ultrapassa o tamanho especificado no HTML.');
-			window.location.href = '../Close_GuardRp.php'
+			window.location.href = '../Close_GuardRp02.php'
 			</script>";
 			$_UP['erros'][3] = "<script language=javascript type= 'text/javascript'>
 			window.alert('Ocorreu algum erro e o upload do arquivo foi feito parcialmente, tente novamente.');
-			window.location.href = '../Close_GuardRp.php'
+			window.location.href = '../Close_GuardRp02.php'
 			</script>";
 			$_UP['erros'][4] = "<script language=javascript type= 'text/javascript'>
 			window.alert('Por favor, selecione alguma foto antes de clicar em cadastrar.');
-			window.location.href = '../Close_GuardRp.php'
+			window.location.href = '../Close_GuardRp02.php'
 			</script>";
 			
 			//Verifica se houve algum erro com o upload. Sem sim, exibe a mensagem do erro
@@ -81,7 +81,7 @@
                             window.alert('Extensão inválida, por favor selecione uma foto.')
 							</script>";
 					echo "<script language=java script type= 'text/javascript'>
-					window.location.href = '../Close_GuardRp.php'
+					window.location.href = '../Close_GuardRp02.php'
 				</script>";
 			}
 			
@@ -91,7 +91,7 @@
                             window.alert('Foto com tamanho muito grande! Escolha uma com tamanho menor.')
 							</script>";
 					echo "<script language=java script type= 'text/javascript'>
-					window.location.href = '../Close_GuardRp.php'
+					window.location.href = '../Close_GuardRp02.php'
 				</script>";
 			}
 			
@@ -118,7 +118,7 @@
 					window.alert('Roupa cadastrada com sucesso!')
 					</script>";
 			echo "<script language=java script type= 'text/javascript'>
-			window.location.href = '../Close_GuardRp.php'
+			window.location.href = '../Close_GuardRp02.php'
 		</script>";
 				}else{
 					//Upload não efetuado com sucesso, exibe a mensagem
@@ -126,7 +126,7 @@
 					window.alert('Não foi possível cadastrar essa roupa.')
 					</script>";
 			echo "<script language=java script type= 'text/javascript'>
-			window.location.href = '../Close_GuardRp.php'
+			window.location.href = '../Close_GuardRp02.php'
 		</script>";
 				}
 			}
