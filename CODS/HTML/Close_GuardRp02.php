@@ -49,9 +49,11 @@ $dados1 = mysqli_fetch_array($resultado);
           <li>
             <input type="button" value="Estúdio" class="btn btn-outline-danger">
           </li>
-           <li >
+        <a href="PHP/Sair.php">
+            <li >
               <input type="button" value="Sair" class="btn btn-outline-dark">
-           </li>
+            </li>
+        </a>
     </ul>
   </nav>
 </header>
@@ -185,7 +187,8 @@ $('#psps').click(function(e){
           header("location: Close_Log.php");
           exit;
       }else{
-        $sql = "SELECT * From Roupa";
+          $idusuario = $dados1['IdUsuario'];
+        $sql = "CALL Buscar_Roupas('$idusuario')";
                   $resultado = mysqli_query($connect, $sql);
                   while($dados = mysqli_fetch_array($resultado)){
                     $album[] = $dados; 
@@ -213,104 +216,21 @@ $('#psps').click(function(e){
                                 <div class="card mb-4 shadow-sm" id="pcrp">
                                     <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
                                     fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-                                    100%; display: block;" src="<?php echo"Fotos_Roupas/".$foto["Foto"].''; ?>" data-target="RpMod" data-holder-rendered="true">
-                                </div><!--Fecha card-->
-                            </div>
-              </td>    
-                            <?php
-            if($cont == 3){
-                echo"</tr>";
-                echo"<tr>";
-                $cont = 0;
-            } 
-              }
-           ?><!--Fecha componente da grid (alinhamento)-->
-                            </tr>
-             <?php 
-      }else{
-          echo'                            <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" id="pcrp">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
-              fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-              100%; display: block;" src="IMG/Samples/IMG00.png" data-target="RpMod" data-holder-rendered="true">
-          </div><!--Fecha card-->
-      </div><!--Fecha componente da grid (alinhamento)-->
-      <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" id="pcrp">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
-              fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-              100%; display: block;" src="IMG/Samples/IMG1.png" data-target="RpMod" data-holder-rendered="true">
-          </div><!--Fecha card-->
-      </div><!--Fecha componente da grid (alinhamento)-->
-      <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" id="pcrp">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
-              fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-              100%; display: block;" src="IMG/Samples/IMG2.png" data-target="RpMod" data-holder-rendered="true">
-          </div><!--Fecha card-->
-      </div>';
-      }
-             ?>               
-                          </div>
-                        </div>
-                    </div>
-                    <!--Grid do Guarda-Roupa termina aqui-->
-                </section>
-            </div>
-            <div id="Look" role="tabpanel" class="tab-pane fade in active">
-                <div style="color: whitesmoke;">
-                    <section style="max-height: 849px; overflow: hidden;">
-                        <!--Grid da Seção de Looks começa aqui-->
-                        <div class="album py-5 ">
-                            <div class="container">
-                              <div class="row">
-                                <div class="col">
-                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
-                                        data-target="#LkMod"> @nomelook </button>
-                                </div><!--Fecha componente da grid (alinhamento)-->
-                                <div class="col">
-                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
-                                        data-target="#LkMod"> @nomelook </button>
-                                </div><!--Fecha componente da grid (alinhamento)-->
-                                <div class="col">
-                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
-                                        data-target="#LkMod"> @nomelook </button>
-                                </div><!--Fecha componente da grid (alinhamento)-->
-                              </div>
-                            </div>
-                        </div>
-                        <!--Grid do Guarda-Roupa termina aqui-->
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>    
-
-    </center>
-    <!--Começo do rodapé da página-->
-    <footer>
-        <nav class="navbar navbar-default" role="navigation" id="rodp">
-        <center>
-            <ul>
-                <li>
-                    <a href="">SOBRE</a>
-                </li>
-                <li>
-                    <a href="">AJUDA</a>
-                </li>
-                <li>
-                    <a href="">NÓS</a>
-                </li>
-                <li>
-                    <a href="">CONTATO</a>
-                </li>
-            </ul>
-        </center>
-        </nav>
-    </footer>
-</section>
-
-<!-- V. SEÇÃO DE MODAIS-->
+                                    100%; display: block;" src="<?php echo"Fotos_Roupas/".$foto["Foto"].''; ?>" data-target="RpMod<?php echo $foto['IdRoupa'];?>" data-holder-rendered="true">
+                                </div><!--Fecha card--><?php
+                                $fotoid = $foto["IdRoupa"];
+                                $fototitulo = $foto['Titulo'];
+                                $fotocategoria = $foto['Categoria'];
+                                $fototipo = $foto['Tipo'];
+                                $fotocor = $foto['Cor'];
+                                $fotodescricao = $foto['Descricao'];
+                                $fototamanho = $foto['Tamanho'];
+                                $fotomarca = $foto['Marca'];
+                                $fotomaterial = $foto['Material'];
+                                ?>
+                            </div><!--Fecha componente da grid (alinhamento)-->
+              </td>
+              <!-- V. SEÇÃO DE MODAIS-->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="RpMod">
     <div class="modal-dialog modal-lg">
       <div class="modal-content" style="background-color: rgb(17, 14, 14);">
@@ -335,7 +255,7 @@ $('#psps').click(function(e){
                                 <div class="row">
                                     <h5 name="unm" class="col" style="color: azure;">@<?php echo $dados1['Nome_de_Usuario'];?></h5>
                                     <h5 style="color: azure; font-style: bold;;">>></h5>
-                                    <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $dados3['Titulo'];?></h5>
+                                    <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $foto['Titulo'];  ?></h5>
                                     <a class="btn btn-outline-light popover-test col dropdown-toggle" data-toggle="dropdown" href="#" title="Descrição da peça" role="button" aria-haspopup="true" aria-expanded="false" style="font-style: bold; width: 70px;">↡</a>
                                     <div class="dropdown-menu" style="width: 500px;">
                                         <a class="dropdown-item" href="#"><h4>Descrição</h4></a>
@@ -624,7 +544,101 @@ $('#psps').click(function(e){
             </div>
         </div>
     </div>
-</div>
+</div>    
+                            <?php
+            if($cont == 3){
+                echo"</tr>";
+                echo"<tr>";
+                $cont = 0;
+            } 
+              }
+           ?>
+                            </tr>
+             <?php 
+      }else{
+          echo'                            <div class="col-md-4">
+          <div class="card mb-4 shadow-sm" id="pcrp">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
+              fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
+              100%; display: block;" src="IMG/Samples/IMG00.png" data-target="RpMod" data-holder-rendered="true">
+          </div><!--Fecha card-->
+      </div><!--Fecha componente da grid (alinhamento)-->
+      <div class="col-md-4">
+          <div class="card mb-4 shadow-sm" id="pcrp">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
+              fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
+              100%; display: block;" src="IMG/Samples/IMG1.png" data-target="RpMod" data-holder-rendered="true">
+          </div><!--Fecha card-->
+      </div><!--Fecha componente da grid (alinhamento)-->
+      <div class="col-md-4">
+          <div class="card mb-4 shadow-sm" id="pcrp">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
+              fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
+              100%; display: block;" src="IMG/Samples/IMG2.png" data-target="RpMod" data-holder-rendered="true">
+          </div><!--Fecha card-->
+      </div>';
+      }
+             ?>               
+                          </div>
+                        </div>
+                    </div>
+                    <!--Grid do Guarda-Roupa termina aqui-->
+                </section>
+            </div>
+            <div id="Look" role="tabpanel" class="tab-pane fade in active">
+                <div style="color: whitesmoke;">
+                    <section style="max-height: 849px; overflow: hidden;">
+                        <!--Grid da Seção de Looks começa aqui-->
+                        <div class="album py-5 ">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col">
+                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
+                                        data-target="#LkMod"> @nomelook </button>
+                                </div><!--Fecha componente da grid (alinhamento)-->
+                                <div class="col">
+                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
+                                        data-target="#LkMod"> @nomelook </button>
+                                </div><!--Fecha componente da grid (alinhamento)-->
+                                <div class="col">
+                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
+                                        data-target="#LkMod"> @nomelook </button>
+                                </div><!--Fecha componente da grid (alinhamento)-->
+                              </div>
+                            </div>
+                        </div>
+                        <!--Grid do Guarda-Roupa termina aqui-->
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    </center>
+    <!--Começo do rodapé da página-->
+    <footer>
+        <nav class="navbar navbar-default" role="navigation" id="rodp">
+        <center>
+            <ul>
+                <li>
+                    <a href="">SOBRE</a>
+                </li>
+                <li>
+                    <a href="">AJUDA</a>
+                </li>
+                <li>
+                    <a href="">NÓS</a>
+                </li>
+                <li>
+                    <a href="">CONTATO</a>
+                </li>
+            </ul>
+        </center>
+        </nav>
+    </footer>
+</section>
+
+
   
 <!--Modal Cad de Roupas-->
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModCadRp">
