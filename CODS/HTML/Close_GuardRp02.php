@@ -577,7 +577,14 @@ $('#psps').click(function(e){
                                     <div class="col-4">
                                         <div class="row justify-content-center">
                                             <label for="cat_roupa" class="col-4">Categoria:</label>
-                                            <input type="text" class="col-4 col-sm-10" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required>
+                                            <input type="text" list="cat" class="col-4 col-sm-10" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required>
+                                            <datalist id="cat">
+                                                <option value="Acessórios"></option>
+                                                <option value="Calçados"></option>
+                                                <option value="Moda Intima"></option>
+                                                <option value="Vestimenta Superior"></option>
+                                                <option value="Vestimenta Inferior"></option>
+                                            </datalist>
                                         </div><br>
                                     </div>
                                 </div>

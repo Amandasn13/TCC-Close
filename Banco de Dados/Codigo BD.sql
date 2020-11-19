@@ -21,6 +21,7 @@ CREATE TABLE Look (
     fk_Datas_de_Utilizacao_Look_Datas_de_Utilizacao_Look_PK INT,
     fk_Tags_Look_Tags_Look_PK INT,
     Nome CHAR(100) NOT NULL,
+    Descricao TEXT,
     Vezes_Utilizada DATE NOT NULL,
     Utima_Utilizacao DATE
 );
