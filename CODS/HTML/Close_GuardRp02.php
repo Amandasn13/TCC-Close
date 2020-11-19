@@ -132,12 +132,7 @@ function ChangePathGr() {
     $("#ses2").attr('style', "background-color:"+_currentFill);
 }
 
-//Código para ativar modal com click nas imagens
-$(document).ready(function () {
-  $("div").on('click','#pcrp',function () {
-    $('#RpMod').modal('show'); 
-  });
-});
+
 
 //Códigos do/para modal passo a passo
 $('#psps').click(function(e){
@@ -216,7 +211,8 @@ $('#psps').click(function(e){
                                 <div class="card mb-4 shadow-sm" id="pcrp">
                                     <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
                                     fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-                                    100%; display: block;" src="<?php echo"Fotos_Roupas/".$foto["Foto"].''; ?>" data-target="RpMod<?php echo $foto['IdRoupa'];?>" data-holder-rendered="true">
+                                    100%; display: block;" src="<?php echo"Fotos_Roupas/".$foto["Foto"].''; ?>" data-target="#RpMod<?php echo $foto['IdRoupa'];?>" data-holder-rendered="true" data-toggle="modal" role="dialog">
+                                  
                                 </div><!--Fecha card--><?php
                                 $fotoid = $foto["IdRoupa"];
                                 $fototitulo = $foto['Titulo'];
@@ -231,15 +227,15 @@ $('#psps').click(function(e){
                             </div><!--Fecha componente da grid (alinhamento)-->
               </td>
               <!-- V. SEÇÃO DE MODAIS-->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="RpMod">
+<div class="modal fade bd-example-modal-lg" tabindex="-1"  aria-labelledby="myLargeModalLabel" aria-hidden="true" id="RpMod<?php echo $foto['IdRoupa'];?>" style="max-height: 1200px;">
     <div class="modal-dialog modal-lg">
       <div class="modal-content" style="background-color: rgb(17, 14, 14);">
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active" style="padding-right: 30px; padding-left: 210px; margin-top: 7px; margin-bottom: 7px;">
-                    <a href="#VrFt" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Ver Peça</a>
+                    <a href="#VrFt<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Ver Peça</a>
                 </li>
                 <li role="presentation" style="padding-right: 30px; margin-top: 7px; margin-bottom: 7px;">
-                    <a href="#EdIn" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
+                    <a href="#EdIn<?php echo $foto['IdRoupa'];?>" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
                 </li>
                 <li role="presentation" style="padding-right: 5px;  margin-top: 7px; margin-bottom: 7px;">
                     <a href="#ApDds" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Peça</a>
@@ -249,7 +245,7 @@ $('#psps').click(function(e){
             <div class="container-fluid">
                 <div class="tab-content">
                     <!--Ver foto-->
-                    <div id="VrFt" role="tabpanel" class="tab-pane fade in active">
+                    <div id="VrFt<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active">
                         <header>
                             <div class="container">
                                 <div class="row">
@@ -262,7 +258,7 @@ $('#psps').click(function(e){
                                         <div class="dropdown-divider"></div>
                                         <div class="blog-post" style="width: inherit;">
                                             <p class="mb-0" href="#" style="margin: 10px;">
-                                                <?php   echo $dados3['Descricao'];?>
+                                                <?php   echo $foto['Descricao'];?>
                                             </p>
                                         </div>
                                         <a class="dropdown-item" href="#"><h4>Tags</h4></a>
@@ -276,7 +272,7 @@ $('#psps').click(function(e){
                                 </div>
                             </div>
                         </header>
-                        <img src="" alt="" width="inherit" height="1000px" id="uimg">
+                        <img src="<?php echo"Fotos_Roupas/".$foto["Foto"].'';?>" alt="" width="inherit" height="1000px" id="uimg" style="max-height: 600px;">
                     </div>
                     <!--Apagar Roupa-->
                     <div id="ApDds" role="tabpanel" class="tab-pane fade in active">
@@ -315,7 +311,7 @@ $('#psps').click(function(e){
                                 ?>-->
                     </div>
                     <!--Editar Roupa-->
-                    <div id="EdIn" role="tabpanel" class="tab-pane fade in active"><!--Conteúdo prinipal da aba principal-->
+                    <div id="EdIn<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active"><!--Conteúdo prinipal da aba principal-->
                         <center><br>
                             <h6 style="color:wheat;"> *você pode alterar só uma caracterísca da peça ou até mais,
                                  apenas preencha os campos que desejar e selecione "confirmar".
@@ -326,7 +322,7 @@ $('#psps').click(function(e){
                                         <form method="post" name="editartitulo">
                                             <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
                                             <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
-                                            <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui">  
+                                            <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui" value="<?php echo $foto['Titulo'];?>">  
                                             <!--<?php
                                                 if(isset($_POST['nomepeca']))
                                                 {
