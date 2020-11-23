@@ -5,7 +5,7 @@ require_once 'PHP/Login_Cadastro.php';
 session_start();
 if(!isset($_SESSION['IdUsuario']))
 {
-    header("location: Close_Log.php");
+    header("location: Close_Log02.php");
     exit;
 }
  //logo aqui, criada uma forma de armazenar todos os dados do usuario em uma variavel.
@@ -13,7 +13,7 @@ $id = $_SESSION['IdUsuario'];
 $sql = "SELECT * FROM Usuario WHERE IdUsuario = '$id'";
 $resultado = mysqli_query($connect, $sql);
 $dados1 = mysqli_fetch_array($resultado);
-
+$u = new Usuario; 
 
 
 //$result_usuarios = "SELECT * FROM Roupa WHERE fk_Usuario_IdUsuario = '$id'";
@@ -46,9 +46,11 @@ $dados1 = mysqli_fetch_array($resultado);
         <li>
             <input type="button" value="Desapegos" class="btn btn-outline-success">
           </li>
+          <a href="Close_Estudio2.php">
           <li>
             <input type="button" value="Estúdio" class="btn btn-outline-danger">
           </li>
+        </a> 
         <a href="PHP/Sair.php">
             <li >
               <input type="button" value="Sair" class="btn btn-outline-dark">
@@ -238,7 +240,7 @@ $('#psps').click(function(e){
                     <a href="#EdIn<?php echo $foto['IdRoupa'];?>" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
                 </li>
                 <li role="presentation" style="padding-right: 5px;  margin-top: 7px; margin-bottom: 7px;">
-                    <a href="#ApDds" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Peça</a>
+                    <a href="#ApDds<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Peça</a>
                 </li>
             </ul>
             <!--Divs de Conteúdo de cada Aba de navegação-->
@@ -275,16 +277,15 @@ $('#psps').click(function(e){
                         <img src="<?php echo"Fotos_Roupas/".$foto["Foto"].'';?>" alt="" width="inherit" height="1000px" id="uimg" style="max-height: 600px;">
                     </div>
                     <!--Apagar Roupa-->
-                    <div id="ApDds" role="tabpanel" class="tab-pane fade in active">
-                        <br><center><h5 style="color:wheat;">Deseja mesmo apagar a peça e todas suas informações? 
+                    <div id="ApDds<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active">
+                        <br><center><form method="post" name="apagarfoto"><h5 style="color:wheat;">Deseja mesmo apagar a peça e todas suas informações? 
                             Essa ação não podera ser desfeita no futuro</h5><br>
-                                <!--<input type="hidden" value="<?php Echo $dados5["Titulo"]; ?>" name="tit_roupa">
-                                <input type="hidden" value="<?php Echo $dados5["IdRoupa"]; ?>" name="id_roupa">-->
+                                <input type="hidden" name="idroupaa"value="<?php echo $foto['IdRoupa'];?>">
                                 <input type="submit" value="Sim, desejo apagar" class="btn btn-primary"></center><br>
-                                <!--<?php
-                                    if(isset($_POST['tit_roupa']))
+                                <?php
+                                    if(isset($_POST['idroupaa']))
                                     {
-                                        $id = addslashes($_POST['id_roupa']);
+                                        $id = addslashes($_POST['idroupaa']);
                                                     
                                                 
 
@@ -297,7 +298,7 @@ $('#psps').click(function(e){
                                                 window.alert('Roupa apagada com sucesso!')
                                                 </script>";
                                                 echo "<script language=java script type= 'text/javascript'>
-                                                window.location.href = 'Close_GuardRp.php'
+                                                window.location.href = 'Close_GuardRp02.php'
                                                 </script>";
                                             }else{
                                                 echo "Não foi possivel apagar!";
@@ -308,95 +309,29 @@ $('#psps').click(function(e){
                                             echo "Erro: ".$u->msgErro;
                                         }
                                     }
-                                ?>-->
+                                ?>
+                                </form>
                     </div>
                     <!--Editar Roupa-->
                     <div id="EdIn<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active"><!--Conteúdo prinipal da aba principal-->
                         <center><br>
+                        <form method="post" name="editarroupa">
+
                             <h6 style="color:wheat;"> *você pode alterar só uma caracterísca da peça ou até mais,
                                  apenas preencha os campos que desejar e selecione "confirmar".
                             </h6><br>
                             <div class="container">
                                 <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
-                                    <div class="col-4"><!--Campo Nome-->
-                                        <form method="post" name="editartitulo">
-                                            <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
+                                    <div class="col-4"> <!--Campo Nome-->
+                                            <input type="hidden" name="idroupa" value="<?php echo $foto['IdRoupa'];?>"> 
                                             <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
-                                            <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui" value="<?php echo $foto['Titulo'];?>">  
-                                            <!--<?php
-                                                if(isset($_POST['nomepeca']))
-                                                {
-                                                $id = addslashes($_POST['id_roupa']);
-                                                $titulo = addslashes($_POST['nomepeca']);
-                                            
-
-                                                    $u->conexao("Tiffanny", "localhost","root","");
-                                                    if($u->msgErro == "")
-                                                    {
-                                                        if($u->editartitulo($titulo, $id))
-                                                        {
-                                                        echo "<script language=javascript type= 'text/javascript'>
-                                                        window.alert('Titulo alterado com sucesso!')
-                                                        </script>";
-                                                        echo "<script language=java script type= 'text/javascript'>
-                                                            window.location.href = 'Close_GuardRp.php'
-                                                            </script>";
-                                                        }else{
-                                                            echo "Não foi possivel editar!";
-
-                                                        }
-                                                    }else
-                                                    {
-                                                        echo "Erro: ".$u->msgErro;
-                                                    }
-                                                }
-                                            ?>-->
-                                        </form>
-                                    </div>
-                                    <div class="col-4"><!-- Campo Arquivo/Imagem-->
-                                        <form method="post" name="editarfoto" enctype="multipart/form-data" action="PHP/atualizarfotoroupa.php"> 
-                                            <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
-                                            <label for="imgpc">É só selecionar o novo arquivo abaixo:<br>
-                                            <input type="file" id="imgpc" name="imgpeca"/>
-                                            <p style="color:yellow;">Clique aqui para selecionar um arquivo</p></label><br>
-                                        </form> 
+                                            <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui" value="<?php echo $foto['Titulo'];?>"> 
                                     </div>
                                 </div><br>
                                 <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
                                     <div class="col-4"><!--Campo descrição-->
-                                        <form method="post" name="editardescricao">
-                                            <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
                                             <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
-                                            <input type="textarea" maxlenght="250" id="descpc" style="width: 230px;" name="descrpeca" placeholder="Digite aqui">
-                                            <!--<?php
-                                                        if(isset($_POST['descrpeca']))
-                                                        {
-                                                        $id = addslashes($_POST['id_roupa']);
-                                                        $titulo = addslashes($_POST['descrpeca']);
-                                                    
-
-                                                            $u->conexao("Tiffanny", "localhost","root","");
-                                                            if($u->msgErro == "")
-                                                            {
-                                                                if($u->editardescricao($titulo, $id))
-                                                                {
-                                                                echo "<script language=javascript type= 'text/javascript'>
-                                                                window.alert('Descrição alterada com sucesso!')
-                                                                </script>";
-                                                                echo "<script language=java script type= 'text/javascript'>
-                                                    window.location.href = 'Close_GuardRp.php'
-                                                </script>";
-                                                                }else{
-                                                                    echo "Não foi possivel editar!";
-
-                                                                }
-                                                            }else
-                                                            {
-                                                                echo "Erro: ".$u->msgErro;
-                                                            }
-                                                            }
-                                            ?>-->
-                                        </form>
+                                            <input type="textarea" maxlenght="250" id="descpc" style="width: 230px;" name="descrpeca" placeholder="Digite aqui" value="<?php echo $foto['Descricao'];?>">
                                     </div>
                                     <div class="col-4"><!-- Campo tags-->
                                         <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
@@ -407,7 +342,7 @@ $('#psps').click(function(e){
                                     <div class="col-4">
                                         <div class="row justify-content-center">
                                             <label for="cat_roupa" class="col-4">Tipo:</label>
-                                            <input type="text" list="tipo" class="col-4 col-sm-10" id="tip_roupa" name="tipo"   placeholder="Tipo de roupa (ex: calça)" maxlength="100" required>
+                                            <input type="text" list="tipo" class="col-4 col-sm-10" id="tip_roupa" name="tipo"   placeholder="Tipo de roupa (ex: calça)" maxlength="100" required value="<?php echo $foto['Tipo'];?>">
                                             <datalist id="tipo">
                                                 <!--Acessórios: -->
                                                 <option value="Anel"></option>
@@ -493,7 +428,7 @@ $('#psps').click(function(e){
                                     <div class="col-4">
                                         <div class="row justify-content-center">
                                             <label for="cat_roupa" class="col-4">Categoria:</label>
-                                            <input type="text" list="cat" class="col-4 col-sm-10" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required>
+                                            <input type="text" list="cat" class="col-4 col-sm-10" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required value="<?php echo $foto['Categoria'];?>">
                                             <datalist id="cat">
                                                 <option value="Acessórios"></option>
                                                 <option value="Calçados"></option>
@@ -508,13 +443,13 @@ $('#psps').click(function(e){
                                     <div class="col-4">
                                         <div class="row justify-content-center">
                                             <label for="tamanho_roupa" class="col-4">Tamanho:</label>
-                                            <input type="text" class="col-4 col-sm-10" id="tamanho_roupa" name="tamanho" placeholder="Tamanho da roupa">
+                                            <input type="text" class="col-4 col-sm-10" id="tamanho_roupa" name="tamanho" placeholder="Tamanho da roupa" value="<?php echo $foto['Tamanho'];?>">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="row justify-content-center">
                                             <label for="cor_roupa" class="col-4">Cor:</label>
-                                            <input type="text" class="col-4 col-sm-10" id="cor_roupa" name="cor" placeholder="Digite a cor da roupa" required>
+                                            <input type="text" class="col-4 col-sm-10" id="cor_roupa" name="cor" placeholder="Digite a cor da roupa" required value="<?php echo $foto['Cor'];?>">
                                         </div><br>
                                     </div>
                                 </div>
@@ -522,21 +457,62 @@ $('#psps').click(function(e){
                                     <div class="col-4">
                                         <div class="row justify-content-center">
                                             <label for="marc_roupa" class="col-4">Marca:</label>
-                                            <input type="text" class="col-4 col-sm-10" id="marc_roupa" name="marca" placeholder="Marca">
+                                            <input type="text" class="col-4 col-sm-10" id="marc_roupa" name="marca" placeholder="Marca" value="<?php echo $foto['Marca'];?>">
                                         </div><br>  
                                     </div>
                                     <div class="col-4">
                                         <div class="row justify-content-center">
                                             <label for="mat_roupa" class="col-4">Material:</label>
-                                            <input type="text" class="col-4 col-sm-10" id="mat_roupa" name="material" placeholder="Material da roupa">
+                                            <input type="text" class="col-4 col-sm-10" id="mat_roupa" name="material" placeholder="Material da roupa" value="<?php echo $foto['Material'];?>">
                                         </div><br>
                                     </div>
                                 </div>
                             </div><br><br>
                             <input type="submit" value="Confirmar" class="btn btn-primary">
+                            <?php
+                                                if(isset($_POST['idroupa']))
+                                                {
+                                                $id = addslashes($_POST['idroupa']);
+                                                $titulo = addslashes($_POST['nomepeca']);
+                                                $categoria = addslashes($_POST['categoria']);
+                                                $tipo = addslashes($_POST['tipo']);
+                                                $cor = addslashes($_POST['cor']);
+                                                $descricao = addslashes($_POST['descrpeca']);
+                                                $tamanho = addslashes($_POST['tamanho']);
+                                                $marca = addslashes($_POST['marca']);
+                                                $material = addslashes($_POST['material']);
+                                                
+
+
+                                                
+                                            
+
+                                                    $u->conexao("Tiffanny", "localhost","root","");
+                                                    if($u->msgErro == "")
+                                                    {
+                                                        if($u->editartitulo($titulo, $id, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material))
+                                                        {
+                                                        echo "<script language=javascript type= 'text/javascript'>
+                                                        window.alert('Informações alteradas com sucesso!')
+                                                        </script>";
+                                                        echo "<script language=java script type= 'text/javascript'>
+                                                            window.location.href = 'Close_GuardRp02.php'
+                                                            </script>";
+                                                        }else{
+                                                            echo "Não foi possivel editar!";
+
+                                                        }
+                                                    }else
+                                                    {
+                                                        echo "Erro: ".$u->msgErro;
+                                                    }
+                                                }
+                                            ?>
+                            
                         </center><br><br>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
