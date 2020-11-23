@@ -155,16 +155,24 @@ public function cadastrarfotoroupa($title, $tipo, $tamanho, $cor, $marca, $descr
 
 }
 //ediçaõ do titulo/nome da roupa!
-public function editartitulo($titulo, $id)
+public function editartitulo($titulo, $id, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material)
 {
     
     global $pdo;
     global $msgErro;
    
         
-        $sql = $pdo->prepare("UPDATE Roupa SET Titulo= :tit WHERE IdRoupa= :id");
+        $sql = $pdo->prepare("UPDATE Roupa SET Titulo= :tit, Categoria = :cat, Tipo = :tip, Cor = :co, Descricao = :descr, Tamanho = :tam, Marca = :mar, Material =
+        :mat WHERE IdRoupa= :id");
         $sql->bindValue(":tit", $titulo); 
-        $sql->bindValue(":id", $id); 
+        $sql->bindValue(":id", $id);
+        $sql->bindValue(":cat", $categoria); 
+        $sql->bindValue(":tip", $tipo); 
+        $sql->bindValue(":co", $cor); 
+        $sql->bindValue(":descr", $descricao);  
+        $sql->bindValue(":tam", $tamanho); 
+        $sql->bindValue(":mar", $marca);
+        $sql->bindValue(":mat", $material);  
         $sql->execute();
         return true;
     
