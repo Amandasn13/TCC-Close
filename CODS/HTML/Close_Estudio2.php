@@ -4,7 +4,7 @@ require_once 'PHP/Login_Cadastro.php';
 session_start();
 if(!isset($_SESSION['IdUsuario']))
 {
-    header("location: Close_Log.php");
+    header("location: Close_Log02.php");
     exit;
 }
  //logo aqui, criada uma forma de armazenar todos os dados do usuario em uma variavel.
