@@ -221,5 +221,24 @@ public function apagarfoto($id)
     
 
 }
+public function verifica_dados($email){
+    
+    global $pdo;
+    global $msgErro;
+
+        $sql = $pdo->prepare("SELECT * FROM Usuario WHERE E_mail = :e");
+        $sql->bindValue(":e", $email);
+        $sql->execute();
+        if($sql->rowCount() > 0)
+        {
+            return true;
+
+        }
+        else{
+       
+            return false;
+    }
+
+}
 }
 ?>
