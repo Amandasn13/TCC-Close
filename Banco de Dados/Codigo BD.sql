@@ -178,4 +178,23 @@ CREATE PROCEDURE Apagar_Roupa(id INT)
 		DELETE FROM _Usuario_Look_Roupa WHERE fk_Roupa_IdRoupa=id;
 		DELETE FROM Roupa WHERE IdRoupa= id;
 	END //
+/*Operações com looks*/
+CREATE PROCEDURE Novo_Look(DONO CHAR(100),n CHAR(100), d CHAR(100))
+	BEGIN
+		INSERT INTO Look(Nome,Descricao) VALUES (n,d);
+		SELECT MAX(IdLook) into @idlook FROM Look;
+		INSERT INTO _Usuario_Look_Roupa(fk_Usuario_IdUsuario,fk_Roupa_IdLook) VALUES (dono,@idlook);
+    END //
+CREATE PROCEDURE Buscar_Looks(idU INT)
+    BEGIN
+		SET @iduser=idU;
+		DROP VIEW IF EXISTS Guarda_Looks;
+		CREATE VIEW Guarda_Looks AS SELECT fk_Roupa_IdLook FROM _Usuario_Look_Roupa AS idlook WHERE get_idu()=fk_Usuario_IdUsuario;
+        SELECT * FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Looks);
+    END //
+CREATE PROCEDURE Apagar_Look(id INT)
+	BEGIN
+		DELETE FROM _Usuario_Look_Roupa WHERE fk_Roupa_IdLook=id;
+		DELETE FROM Look WHERE IdLook=id;
+	END //
 DELIMITER ;
