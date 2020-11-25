@@ -104,7 +104,7 @@ $u = new Usuario;
     <center><h3 id="subs"> O que deseja fazer agora?</h3><br></center>
 
 <center>
-        <ul class="nav" role="tablist" style="width: 80%;margin-left: 400px;" id="separador">
+        <ul class="nav" role="tablist" style="margin-left: 410px; margin-right: 0px;" id="separador">
             <li role="presentation" class="active" style="padding-left: 5px; padding-right: 5px;">
                 <a href="#GdRp" role="tab" data-toggle="tab" class="btn btn-outline-secondary" id="pth1">
                     Ver Roupas<a href="#GdRp"></a></a>
@@ -200,460 +200,458 @@ $('#psps').click(function(e){
         <div class="tab-content">
           <!--Editar foto-->
             <div id="GdRp" role="tabpanel" class="tab-pane fade in active">
-                <section style="max-height: 849px; overflow: hidden;">
+                <div style="max-height: 765px; overflow: auto;">
                     <!--Grid do Guarda-Roupa começa aqui-->
                     <div class="album py-5 ">
                         <div class="container">
                           <div class="row">
-                                  <?php
-
-      if(!isset($_SESSION['IdUsuario']))
-      {
-          header("location: Close_Log.php");
-          exit;
-      }else{
-          $idusuario = $dados1['IdUsuario'];
-        $sql = "CALL Buscar_Roupas('$idusuario')";
-                  $resultado = mysqli_query($connect, $sql);
-                  while($dados = mysqli_fetch_array($resultado)){
-                    $album[] = $dados; 
-                  };
-      }
-    ?><?php
-    ini_set('display_errors', 0 );
-    error_reporting(0);
-  
-    
-      if($album != ""){
-    
-    
-    ?>
-                            <tr>
-                            <?php
-              $cont = 0; 
-              foreach($album as $foto){
-                
-              $cont++;
-            
-            ?>
-                        <td>
-                            <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm" id="pcrp">
-                                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
-                                    fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-                                    100%; display: block;" src="<?php echo"Fotos_Roupas/".$foto["Foto"].''; ?>" data-target="#RpMod<?php echo $foto['IdRoupa'];?>" data-holder-rendered="true" data-toggle="modal" role="dialog">
-                                  
-                                </div><!--Fecha card--><?php
-                                $fotoid = $foto["IdRoupa"];
-                                $fototitulo = $foto['Titulo'];
-                                $fotocategoria = $foto['Categoria'];
-                                $fototipo = $foto['Tipo'];
-                                $fotocor = $foto['Cor'];
-                                $fotodescricao = $foto['Descricao'];
-                                $fototamanho = $foto['Tamanho'];
-                                $fotomarca = $foto['Marca'];
-                                $fotomaterial = $foto['Material'];
-                                ?>
-                            </div><!--Fecha componente da grid (alinhamento)-->
-              </td>
-              <!-- V. SEÇÃO DE MODAIS - Modal Roupas-->
-<div class="modal fade bd-example-modal-lg" tabindex="-1"  aria-labelledby="myLargeModalLabel" aria-hidden="true" id="RpMod<?php echo $foto['IdRoupa'];?>" style="max-height: 1200px;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" style="background-color: rgb(17, 14, 14);">
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active" style="padding-right: 30px; padding-left: 210px; margin-top: 7px; margin-bottom: 7px;">
-                    <a href="#VrFt<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Ver Peça</a>
-                </li>
-                <li role="presentation" style="padding-right: 30px; margin-top: 7px; margin-bottom: 7px;">
-                    <a href="#EdIn<?php echo $foto['IdRoupa'];?>" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
-                </li>
-                <li role="presentation" style="padding-right: 5px;  margin-top: 7px; margin-bottom: 7px;">
-                    <a href="#ApDds<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Peça</a>
-                </li>
-            </ul>
-            <!--Divs de Conteúdo de cada Aba de navegação-->
-            <div class="container">
-                <div class="tab-content">
-                    <!--Ver foto-->
-                    <div id="VrFt<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active" height="920px">
-                        <header>
-                            <div class="container">
-                                <div class="row">
-                                    <h5 name="unm" class="col" style="color: azure;">@<?php echo $dados1['Nome_de_Usuario'];?></h5>
-                                    <h5 style="color: azure; font-style: bold;">>></h5>
-                                    <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $foto['Titulo'];  ?></h5>
-                                    <a class="btn btn-outline-light popover-test col dropdown-toggle" data-toggle="dropdown" href="#" title="Descrição da peça" role="button" aria-haspopup="true" aria-expanded="false" style="font-style: bold; width: 70px;">↡</a>
-                                    <div class="dropdown-menu" style="width: 900px; margin-right: 100px; padding-left: 5px; padding-right: 5px;">
-                                        <center><h3>Outras informações</h3></center>
-                                        <div style="border: 1px solid #ffbd00; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right, #ffbd00, #ffa20a, #ff871e, #ff6a2f, #ff4b3e, #ff365c, #ff297b, 
-                                                #f72b99, #dc51c6, #b270e8, #7887fb, #0099ff); color: honeydew; color: azure;">
-                                            <a class="dropdown-item" href="#" style="color: white;"><h4>Descrição</h4></a>
-                                            <div class="dropdown-divider"></div>
-                                            <div class="blog-post" style="width: inherit;">
-                                                <p class="mb-0" href="#" style="margin: 10px;">
-                                                    <?php   echo $foto['Descricao'];?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="container">
-                                            <div class="row justify-content-around">
-                                                <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
-                                                    #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
-                                                    <a class="dropdown-item" href="#" style="color: white;"><h4>Categoria</h4></a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <div class="blog-post" style="width: inherit;">
-                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                            <?php   echo $foto['Categoria'];?>
-                                                        </p></center>
-                                                    </div>
-                                                </div>
-                                                <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
-                                                    #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
-                                                    <a class="dropdown-item" href="#" style="color: white;"><h4>Tipo</h4></a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <div class="blog-post" style="width: inherit;">
-                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                            <?php   echo $foto['Tipo'];?>
-                                                        </p><center>
-                                                    </div>
-                                                </div>
-                                            </div><br>
-                                            <div class="row justify-content-around">
-                                                <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
-                                                    #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
-                                                    <a class="dropdown-item" href="#"  style="color: white;"><h4>Marca</h4></a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <div class="blog-post" style="width: inherit;">
-                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                            <?php   echo $foto['Marca'];?>
-                                                        </p></center>
-                                                    </div>
-                                                </div>
-                                                <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
-                                                        #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
-                                                    <a class="dropdown-item" href="#" style="color: white;"><h4>Tamanho</h4></a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <div class="blog-post" style="width: inherit;">
-                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                            <?php   echo $foto['Tamanho'];?>
-                                                        </p></center>
-                                                    </div>
-                                                </div>
-                                            </div><br>
-                                            <div class="row justify-content-around">
-                                                <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
-                                                    #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
-                                                    <a class="dropdown-item" href="#"  style="color: white;"><h4>Cor</h4></a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <div class="blog-post" style="width: inherit;">
-                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                            <?php   echo $foto['Cor'];?>
-                                                        </p></center>
-                                                    </div>
-                                                </div>
-                                                <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
-                                                        #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
-                                                    <a class="dropdown-item" href="#" style="color: white;"><h4>Material</h4></a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <div class="blog-post" style="width: inherit;">
-                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                            <?php   echo $foto['Material'];?>
-                                                        </p></center>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                        
-                                </div>
-                            </div>
-                        </header>
-                        <img src="<?php echo"Fotos_Roupas/".$foto["Foto"].'';?>" alt="" width="680px" height="680px" id="uimg"><br><br>
-                    </div>
-                    <!--Apagar Roupa-->
-                    <div id="ApDds<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in">
-                        <br><center><form method="post" name="apagarfoto"><h5 style="color:wheat;">Deseja mesmo apagar a peça e todas suas informações? 
-                            Essa ação não podera ser desfeita no futuro</h5><br>
-                                <input type="hidden" name="idroupaa"value="<?php echo $foto['IdRoupa'];?>">
-                                <input type="submit" value="Sim, desejo apagar" class="btn btn-primary"></center><br>
                                 <?php
-                                    if(isset($_POST['idroupaa']))
+
+                                    if(!isset($_SESSION['IdUsuario']))
                                     {
-                                        $id = addslashes($_POST['idroupaa']);
-                                                    
-                                                
-
-                                        $u->conexao("Tiffanny", "localhost","root","");
-                                        if($u->msgErro == "")
-                                        {
-                                            if($u->apagarfoto($id))
-                                            {
-                                                echo "<script language=javascript type= 'text/javascript'>
-                                                window.alert('Roupa apagada com sucesso!')
-                                                </script>";
-                                                echo "<script language=java script type= 'text/javascript'>
-                                                window.location.href = 'Close_GuardRp02.php'
-                                                </script>";
-                                            }else{
-                                                echo "Não foi possivel apagar!";
-
-                                            }
-                                        }else
-                                        {
-                                            echo "Erro: ".$u->msgErro;
-                                        }
+                                        header("location: Close_Log.php");
+                                        exit;
+                                    }else{
+                                        $idusuario = $dados1['IdUsuario'];
+                                        $sql = "CALL Buscar_Roupas('$idusuario')";
+                                                $resultado = mysqli_query($connect, $sql);
+                                                while($dados = mysqli_fetch_array($resultado)){
+                                                    $album[] = $dados; 
+                                                };
                                     }
+                                ?><?php
+                                    ini_set('display_errors', 0 );
+                                    error_reporting(0);
+                                
+                                    
+                                    if($album != ""){
+                                    
+                                    
                                 ?>
-                                </form>
-                    </div>
-                    <!--Editar Roupa-->
-                    <div id="EdIn<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
-                        <center><br>
-                        <form method="post" name="editarroupa">
-
-                            <h6 style="color:wheat;"> *você pode alterar só uma caracterísca da peça ou até mais,
-                                 apenas preencha os campos que desejar e selecione "confirmar".
-                            </h6><br>
-                            <div class="container">
-                                <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
-                                    <div class="col-4"> <!--Campo Nome-->
-                                            <input type="hidden" name="idroupa" value="<?php echo $foto['IdRoupa'];?>"> 
-                                            <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
-                                            <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui" value="<?php echo $foto['Titulo'];?>"> 
-                                    </div>
-                                </div><br>
-                                <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
-                                    <div class="col-4"><!--Campo descrição-->
-                                            <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
-                                            <input type="textarea" maxlenght="250" id="descpc" style="width: 230px;" name="descrpeca" placeholder="Digite aqui" value="<?php echo $foto['Descricao'];?>">
-                                    </div>
-                                    <div class="col-4"><!-- Campo tags-->
-                                        <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
-                                        <input type="textarea" id="tagpc" name="tagspeca" style="width: 230px;" placeholder="Digite aqui">
-                                    </div>
-                                </div><br>
-                                <div class="row justify-content-around" style="color: azure;">
-                                    <div class="col-4">
-                                        <div class="row justify-content-center">
-                                            <label for="cat_roupa" class="col-4">Tipo:</label>
-                                            <input type="text" list="tipo" class="col-4 col-sm-10" id="tip_roupa" name="tipo"   placeholder="Tipo de roupa (ex: calça)" maxlength="100" required value="<?php echo $foto['Tipo'];?>">
-                                            <datalist id="tipo">
-                                                <!--Acessórios: -->
-                                                <option value="Anel"></option>
-                                                <option value="Alargador"></option>
-                                                <option value="Arco"></option>
-                                                <option value="Bandana"></option>
-                                                <option value="Bijuteria"></option>
-                                                <option value="Bodies"></option>
-                                                <option value="Bolsa"></option>
-                                                <option value="Boné"></option>
-                                                <option value="Bracelete"></option>
-                                                <option value="Brinco"></option>
-                                                <option value="Botton"></option>
-                                                <option value="Carteira"></option>
-                                                <option value="Cachecol"></option>
-                                                <option value="Calça"></option>
-                                                <option value="Cinto"></option>
-                                                <option value="Chapéu"></option>
-                                                <option value="Chupeta"></option>
-                                                <option value="Colar"></option>
-                                                <option value="Corrente"></option>
-                                                <option value="Coroa"></option>
-                                                <option value="Dedal"></option>
-                                                <option value="Elmo"></option>
-                                                <option value="Flanela"></option>
-                                                <option value="Gargantilha"></option>
-                                                <option value="Gravata"></option>
-                                                <option value="Leque"></option>
-                                                <option value="Luvas"></option>
-                                                <option value="Máscara"></option>
-                                                <option value="Mala"></option>
-                                                <option value="Meia-Calça"></option>
-                                                <option value="Mochila"></option>
-                                                <option value="Miçanga"></option>
-                                                <option value="Óculos"></option>
-                                                <option value="Ombreira"></option>
-                                                <option value="Piercing"></option>
-                                                <option value="Pulseira"></option>
-                                                <option value="Pochete"></option>
-                                                <option value="Presilha"></option>
-                                                <option value="Suspensório"></option>
-                                                <option value="Relógio"></option>
-                                                <option value="Tiara"></option>
-                                                <option value="Tornozeleira"></option>
-                                                <option value="Touca"></option>
-                                                <option value="Turbante"></option>
-                                                <!--Calçado: -->
-                                                <option value="Bota"></option>
-                                                <option value="Chinelo"></option>
-                                                <option value="Crocs"></option>
-                                                <option value="Mocassim"></option>
-                                                <option value="Rasteira"></option>
-                                                <option value="Sandália"></option>
-                                                <option value="Salto"></option>
-                                                <option value="Sapatenis"></option>
-                                                <option value="Sapato"></option>
-                                                <option value="Sapatilha"></option>
-                                                <option value="Sider"></option>
-                                                <option value="Tênis"></option>
-                                                <!--Roupa: -->
-                                                <option value="Bermuda"></option>
-                                                <option value="Biquini"></option>
-                                                <option value="Blazer"></option>
-                                                <option value="Blusa"></option>
-                                                <option value="Calcinha"></option>
-                                                <option value="Calça"></option>
-                                                <option value="Camisa"></option>
-                                                <option value="Camiseta"></option>
-                                                <option value="Camisola"></option>
-                                                <option value="Capa de Chuva"></option>
-                                                <option value="Colete"></option>
-                                                <option value="Conjunto"></option>
-                                                <option value="Cueca"></option>
-                                                <option value="Esportiva"></option>
-                                                <option value="Fantasia"></option>
-                                                <option value="Jaqueta"></option>
-                                                <option value="Legging"></option>
-                                                <option value="Macacão"></option>
-                                                <option value="Maio"></option>
-                                            </datalist>
-                                          </div><br>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row justify-content-center">
-                                            <label for="cat_roupa" class="col-4">Categoria:</label>
-                                            <input type="text" list="cat" class="col-4 col-sm-10" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required value="<?php echo $foto['Categoria'];?>">
-                                            <datalist id="cat">
-                                                <option value="Acessórios"></option>
-                                                <option value="Calçados"></option>
-                                                <option value="Moda Intima"></option>
-                                                <option value="Vestimenta Superior"></option>
-                                                <option value="Vestimenta Inferior"></option>
-                                            </datalist>
-                                        </div><br>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-around" style="color: azure;">
-                                    <div class="col-4">
-                                        <div class="row justify-content-center">
-                                            <label for="tamanho_roupa" class="col-4">Tamanho:</label>
-                                            <input type="text" class="col-4 col-sm-10" id="tamanho_roupa" name="tamanho" placeholder="Tamanho da roupa" value="<?php echo $foto['Tamanho'];?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row justify-content-center">
-                                            <label for="cor_roupa" class="col-4">Cor:</label>
-                                            <input type="text" class="col-4 col-sm-10" id="cor_roupa" name="cor" placeholder="Digite a cor da roupa" required value="<?php echo $foto['Cor'];?>">
-                                        </div><br>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-around" style="color: azure;">
-                                    <div class="col-4">
-                                        <div class="row justify-content-center">
-                                            <label for="marc_roupa" class="col-4">Marca:</label>
-                                            <input type="text" class="col-4 col-sm-10" id="marc_roupa" name="marca" placeholder="Marca" value="<?php echo $foto['Marca'];?>">
-                                        </div><br>  
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row justify-content-center">
-                                            <label for="mat_roupa" class="col-4">Material:</label>
-                                            <input type="text" class="col-4 col-sm-10" id="mat_roupa" name="material" placeholder="Material da roupa" value="<?php echo $foto['Material'];?>">
-                                        </div><br>
-                                    </div>
-                                </div>
-                            </div><br><br>
-                            <input type="submit" value="Confirmar" class="btn btn-primary">
-                            <?php
-                                                if(isset($_POST['idroupa']))
-                                                {
-                                                $id = addslashes($_POST['idroupa']);
-                                                $titulo = addslashes($_POST['nomepeca']);
-                                                $categoria = addslashes($_POST['categoria']);
-                                                $tipo = addslashes($_POST['tipo']);
-                                                $cor = addslashes($_POST['cor']);
-                                                $descricao = addslashes($_POST['descrpeca']);
-                                                $tamanho = addslashes($_POST['tamanho']);
-                                                $marca = addslashes($_POST['marca']);
-                                                $material = addslashes($_POST['material']);
-                                                
-
-
-                                                
+                                <tr>
+                                    <?php
+                                        $cont = 0; 
+                                        foreach($album as $foto){
                                             
-
-                                                    $u->conexao("Tiffanny", "localhost","root","");
-                                                    if($u->msgErro == "")
-                                                    {
-                                                        if($u->editartitulo($titulo, $id, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material))
-                                                        {
-                                                        echo "<script language=javascript type= 'text/javascript'>
-                                                        window.alert('Informações alteradas com sucesso!')
-                                                        </script>";
-                                                        echo "<script language=java script type= 'text/javascript'>
-                                                            window.location.href = 'Close_GuardRp02.php'
-                                                            </script>";
-                                                        }else{
-                                                            echo "Não foi possivel editar!";
-
-                                                        }
-                                                    }else
-                                                    {
-                                                        echo "Erro: ".$u->msgErro;
-                                                    }
-                                                }
+                                        $cont++;
+                                        
+                                    ?>
+                                    <td>
+                                        <div class="col-md-4">
+                                            <div class="card mb-4 shadow-sm" id="pcrp">
+                                                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
+                                                fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
+                                                100%; display: block;" src="<?php echo"Fotos_Roupas/".$foto["Foto"].''; ?>" data-target="#RpMod<?php echo $foto['IdRoupa'];?>" data-holder-rendered="true" data-toggle="modal" role="dialog">
+                                            
+                                            </div><!--Fecha card--><?php
+                                            $fotoid = $foto["IdRoupa"];
+                                            $fototitulo = $foto['Titulo'];
+                                            $fotocategoria = $foto['Categoria'];
+                                            $fototipo = $foto['Tipo'];
+                                            $fotocor = $foto['Cor'];
+                                            $fotodescricao = $foto['Descricao'];
+                                            $fototamanho = $foto['Tamanho'];
+                                            $fotomarca = $foto['Marca'];
+                                            $fotomaterial = $foto['Material'];
                                             ?>
-                            
-                        </center><br><br>
-                    </div>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>    
-                            <?php
-            if($cont == 3){
-                echo"</tr>";
-                echo"<tr>";
-                $cont = 0;
-            } 
-              }
-           ?>
-                            </tr>
-             <?php 
-      }else{
-          echo'                            <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" id="pcrp">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
-              fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-              100%; display: block;" src="IMG/Samples/IMG00.png" data-target="RpMod" data-holder-rendered="true">
-          </div><!--Fecha card-->
-      </div><!--Fecha componente da grid (alinhamento)-->
-      <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" id="pcrp">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
-              fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-              100%; display: block;" src="IMG/Samples/IMG1.png" data-target="RpMod" data-holder-rendered="true">
-          </div><!--Fecha card-->
-      </div><!--Fecha componente da grid (alinhamento)-->
-      <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" id="pcrp">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
-              fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-              100%; display: block;" src="IMG/Samples/IMG2.png" data-target="RpMod" data-holder-rendered="true">
-          </div><!--Fecha card-->
-      </div>';
-      }
-             ?>               
-                          </div>
+                                        </div><!--Fecha componente da grid (alinhamento)-->
+                                    </td>
+                                    <!-- V. SEÇÃO DE MODAIS - Modal Roupas-->
+                                    <div class="modal fade bd-example-modal-lg" tabindex="-1"  aria-labelledby="myLargeModalLabel" aria-hidden="true" id="RpMod<?php echo $foto['IdRoupa'];?>" style="max-height: 1200px;">
+                                        <div class="modal-dialog modal-lg">
+                                        <div class="modal-content" style="background-color: rgb(17, 14, 14);">
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    <li role="presentation" class="active" style="padding-right: 30px; padding-left: 210px; margin-top: 7px; margin-bottom: 7px;">
+                                                        <a href="#VrFt<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Ver Peça</a>
+                                                    </li>
+                                                    <li role="presentation" style="padding-right: 30px; margin-top: 7px; margin-bottom: 7px;">
+                                                        <a href="#EdIn<?php echo $foto['IdRoupa'];?>" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
+                                                    </li>
+                                                    <li role="presentation" style="padding-right: 5px;  margin-top: 7px; margin-bottom: 7px;">
+                                                        <a href="#ApDds<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Peça</a>
+                                                    </li>
+                                                </ul>
+                                                <!--Divs de Conteúdo de cada Aba de navegação-->
+                                                <div class="container">
+                                                    <div class="tab-content">
+                                                        <!--Ver foto-->
+                                                        <div id="VrFt<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active" height="920px">
+                                                            <header>
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <h5 name="unm" class="col" style="color: azure;">@<?php echo $dados1['Nome_de_Usuario'];?></h5>
+                                                                        <h5 style="color: azure; font-style: bold;">>></h5>
+                                                                        <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $foto['Titulo'];  ?></h5>
+                                                                        <a class="btn btn-outline-light popover-test col dropdown-toggle" data-toggle="dropdown" href="#" title="Descrição da peça" role="button" aria-haspopup="true" aria-expanded="false" style="font-style: bold; width: 70px;">↡</a>
+                                                                        <div class="dropdown-menu" style="width: 900px; margin-right: 100px; padding-left: 5px; padding-right: 5px;">
+                                                                            <center><h3>Outras informações</h3></center>
+                                                                            <div style="border: 1px solid #ffbd00; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right, #ffbd00, #ffa20a, #ff871e, #ff6a2f, #ff4b3e, #ff365c, #ff297b, 
+                                                                                    #f72b99, #dc51c6, #b270e8, #7887fb, #0099ff); color: honeydew; color: azure;">
+                                                                                <a class="dropdown-item" href="#" style="color: white;"><h4>Descrição</h4></a>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <div class="blog-post">
+                                                                                    <p class="mb-0" href="#" style="margin: 10px; color: #151515; width: fill-parent;">
+                                                                                        <?php   echo $foto['Descricao'];?>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <br>
+                                                                            <div class="container">
+                                                                                <div class="row justify-content-around">
+                                                                                    <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
+                                                                                        #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
+                                                                                        <a class="dropdown-item" href="#" style="color: white;"><h4>Categoria</h4></a>
+                                                                                        <div class="dropdown-divider"></div>
+                                                                                        <div class="blog-post" style="width: inherit;">
+                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                                                                <?php   echo $foto['Categoria'];?>
+                                                                                            </p></center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
+                                                                                        #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
+                                                                                        <a class="dropdown-item" href="#" style="color: white;"><h4>Tipo</h4></a>
+                                                                                        <div class="dropdown-divider"></div>
+                                                                                        <div class="blog-post" style="width: inherit;">
+                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                                                                <?php   echo $foto['Tipo'];?>
+                                                                                            </p><center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><br>
+                                                                                <div class="row justify-content-around">
+                                                                                    <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
+                                                                                        #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
+                                                                                        <a class="dropdown-item" href="#"  style="color: white;"><h4>Marca</h4></a>
+                                                                                        <div class="dropdown-divider"></div>
+                                                                                        <div class="blog-post" style="width: inherit;">
+                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                                                                <?php   echo $foto['Marca'];?>
+                                                                                            </p></center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
+                                                                                            #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
+                                                                                        <a class="dropdown-item" href="#" style="color: white;"><h4>Tamanho</h4></a>
+                                                                                        <div class="dropdown-divider"></div>
+                                                                                        <div class="blog-post" style="width: inherit;">
+                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                                                                <?php   echo $foto['Tamanho'];?>
+                                                                                            </p></center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><br>
+                                                                                <div class="row justify-content-around">
+                                                                                    <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
+                                                                                        #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
+                                                                                        <a class="dropdown-item" href="#"  style="color: white;"><h4>Cor</h4></a>
+                                                                                        <div class="dropdown-divider"></div>
+                                                                                        <div class="blog-post" style="width: inherit;">
+                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                                                                <?php   echo $foto['Cor'];?>
+                                                                                            </p></center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
+                                                                                            #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
+                                                                                        <a class="dropdown-item" href="#" style="color: white;"><h4>Material</h4></a>
+                                                                                        <div class="dropdown-divider"></div>
+                                                                                        <div class="blog-post" style="width: inherit;">
+                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                                                                <?php   echo $foto['Material'];?>
+                                                                                            </p></center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>                        
+                                                                    </div>
+                                                                </div>
+                                                            </header>
+                                                            <img src="<?php echo"Fotos_Roupas/".$foto["Foto"].'';?>" alt="" width="680px" height="680px" id="uimg"><br><br>
+                                                        </div>
+                                                        <!--Apagar Roupa-->
+                                                        <div id="ApDds<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in">
+                                                            <br><center><form method="post" name="apagarfoto">
+                                                                <h5 style="color:wheat;">Deseja mesmo apagar a peça e todas suas informações? 
+                                                                Essa ação não podera ser desfeita no futuro</h5><br>
+                                                                <input type="hidden" name="idroupaa"value="<?php echo $foto['IdRoupa'];?>">
+                                                                <input type="submit" value="Sim, desejo apagar" class="btn btn-primary"></center><br>
+                                                                <?php
+                                                                    if(isset($_POST['idroupaa']))
+                                                                    {
+                                                                        $id = addslashes($_POST['idroupaa']);
+                                                                                        
+                                                                                    
+
+                                                                        $u->conexao("Tiffanny", "localhost","root","");
+                                                                        if($u->msgErro == "")
+                                                                        {
+                                                                            if($u->apagarfoto($id))
+                                                                            {
+                                                                                echo "<script language=javascript type= 'text/javascript'>
+                                                                                    window.alert('Roupa apagada com sucesso!')
+                                                                                    </script>";
+                                                                                echo "<script language=java script type= 'text/javascript'>
+                                                                                    window.location.href = 'Close_GuardRp02.php'
+                                                                                    </script>";
+                                                                            }else{
+                                                                                echo "Não foi possivel apagar!";
+
+                                                                            }
+                                                                        }else{
+                                                                            echo "Erro: ".$u->msgErro;
+                                                                        }
+                                                                    }
+                                                                ?>
+                                                            </form>
+                                                        </div>
+                                                        <!--Editar Roupa-->
+                                                        <div id="EdIn<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
+                                                            <center><br>
+                                                            <form method="post" name="editarroupa">
+                                                                <h6 style="color:wheat;"> *você pode alterar só uma caracterísca da peça ou até mais,
+                                                                    apenas preencha os campos que desejar e selecione "confirmar".
+                                                                </h6><br>
+                                                                <div class="container">
+                                                                    <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
+                                                                        <div class="col-4"> <!--Campo Nome-->
+                                                                                <input type="hidden" name="idroupa" value="<?php echo $foto['IdRoupa'];?>"> 
+                                                                                <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
+                                                                                <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui" value="<?php echo $foto['Titulo'];?>"> 
+                                                                        </div>
+                                                                    </div><br>
+                                                                    <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
+                                                                        <div class="col-4"><!--Campo descrição-->
+                                                                                <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
+                                                                                <input type="textarea" maxlenght="250" id="descpc" style="width: 230px;" name="descrpeca" placeholder="Digite aqui" value="<?php echo $foto['Descricao'];?>">
+                                                                        </div>
+                                                                        <div class="col-4"><!-- Campo tags-->
+                                                                            <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
+                                                                            <input type="textarea" id="tagpc" name="tagspeca" style="width: 230px;" placeholder="Digite aqui">
+                                                                        </div>
+                                                                    </div><br>
+                                                                    <div class="row justify-content-around" style="color: azure;">
+                                                                        <div class="col-4">
+                                                                            <div class="row justify-content-center">
+                                                                                <label for="cat_roupa" class="col-4">Tipo:</label>
+                                                                                <input type="text" list="tipo" class="col-4 col-sm-10" id="tip_roupa" name="tipo"   placeholder="Tipo de roupa (ex: calça)" maxlength="100" required value="<?php echo $foto['Tipo'];?>">
+                                                                                <datalist id="tipo">
+                                                                                    <!--Acessórios: -->
+                                                                                    <option value="Anel"></option>
+                                                                                    <option value="Alargador"></option>
+                                                                                    <option value="Arco"></option>
+                                                                                    <option value="Bandana"></option>
+                                                                                    <option value="Bijuteria"></option>
+                                                                                    <option value="Bodies"></option>
+                                                                                    <option value="Bolsa"></option>
+                                                                                    <option value="Boné"></option>
+                                                                                    <option value="Bracelete"></option>
+                                                                                    <option value="Brinco"></option>
+                                                                                    <option value="Botton"></option>
+                                                                                    <option value="Carteira"></option>
+                                                                                    <option value="Cachecol"></option>
+                                                                                    <option value="Calça"></option>
+                                                                                    <option value="Cinto"></option>
+                                                                                    <option value="Chapéu"></option>
+                                                                                    <option value="Chupeta"></option>
+                                                                                    <option value="Colar"></option>
+                                                                                    <option value="Corrente"></option>
+                                                                                    <option value="Coroa"></option>
+                                                                                    <option value="Dedal"></option>
+                                                                                    <option value="Elmo"></option>
+                                                                                    <option value="Flanela"></option>
+                                                                                    <option value="Gargantilha"></option>
+                                                                                    <option value="Gravata"></option>
+                                                                                    <option value="Leque"></option>
+                                                                                    <option value="Luvas"></option>
+                                                                                    <option value="Máscara"></option>
+                                                                                    <option value="Mala"></option>
+                                                                                    <option value="Meia-Calça"></option>
+                                                                                    <option value="Mochila"></option>
+                                                                                    <option value="Miçanga"></option>
+                                                                                    <option value="Óculos"></option>
+                                                                                    <option value="Ombreira"></option>
+                                                                                    <option value="Piercing"></option>
+                                                                                    <option value="Pulseira"></option>
+                                                                                    <option value="Pochete"></option>
+                                                                                    <option value="Presilha"></option>
+                                                                                    <option value="Suspensório"></option>
+                                                                                    <option value="Relógio"></option>
+                                                                                    <option value="Tiara"></option>
+                                                                                    <option value="Tornozeleira"></option>
+                                                                                    <option value="Touca"></option>
+                                                                                    <option value="Turbante"></option>
+                                                                                    <!--Calçado: -->
+                                                                                    <option value="Bota"></option>
+                                                                                    <option value="Chinelo"></option>
+                                                                                    <option value="Crocs"></option>
+                                                                                    <option value="Mocassim"></option>
+                                                                                    <option value="Rasteira"></option>
+                                                                                    <option value="Sandália"></option>
+                                                                                    <option value="Salto"></option>
+                                                                                    <option value="Sapatenis"></option>
+                                                                                    <option value="Sapato"></option>
+                                                                                    <option value="Sapatilha"></option>
+                                                                                    <option value="Sider"></option>
+                                                                                    <option value="Tênis"></option>
+                                                                                    <!--Roupa: -->
+                                                                                    <option value="Bermuda"></option>
+                                                                                    <option value="Biquini"></option>
+                                                                                    <option value="Blazer"></option>
+                                                                                    <option value="Blusa"></option>
+                                                                                    <option value="Calcinha"></option>
+                                                                                    <option value="Calça"></option>
+                                                                                    <option value="Camisa"></option>
+                                                                                    <option value="Camiseta"></option>
+                                                                                    <option value="Camisola"></option>
+                                                                                    <option value="Capa de Chuva"></option>
+                                                                                    <option value="Colete"></option>
+                                                                                    <option value="Conjunto"></option>
+                                                                                    <option value="Cueca"></option>
+                                                                                    <option value="Esportiva"></option>
+                                                                                    <option value="Fantasia"></option>
+                                                                                    <option value="Jaqueta"></option>
+                                                                                    <option value="Legging"></option>
+                                                                                    <option value="Macacão"></option>
+                                                                                    <option value="Maio"></option>
+                                                                                </datalist>
+                                                                            </div><br>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <div class="row justify-content-center">
+                                                                                <label for="cat_roupa" class="col-4">Categoria:</label>
+                                                                                <input type="text" list="cat" class="col-4 col-sm-10" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required value="<?php echo $foto['Categoria'];?>">
+                                                                                <datalist id="cat">
+                                                                                    <option value="Acessórios"></option>
+                                                                                    <option value="Calçados"></option>
+                                                                                    <option value="Moda Intima"></option>
+                                                                                    <option value="Vestimenta Superior"></option>
+                                                                                    <option value="Vestimenta Inferior"></option>
+                                                                                </datalist>
+                                                                            </div><br>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row justify-content-around" style="color: azure;">
+                                                                        <div class="col-4">
+                                                                            <div class="row justify-content-center">
+                                                                                <label for="tamanho_roupa" class="col-4">Tamanho:</label>
+                                                                                <input type="text" class="col-4 col-sm-10" id="tamanho_roupa" name="tamanho" placeholder="Tamanho da roupa" value="<?php echo $foto['Tamanho'];?>">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <div class="row justify-content-center">
+                                                                                <label for="cor_roupa" class="col-4">Cor:</label>
+                                                                                <input type="text" class="col-4 col-sm-10" id="cor_roupa" name="cor" placeholder="Digite a cor da roupa" required value="<?php echo $foto['Cor'];?>">
+                                                                            </div><br>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row justify-content-around" style="color: azure;">
+                                                                        <div class="col-4">
+                                                                            <div class="row justify-content-center">
+                                                                                <label for="marc_roupa" class="col-4">Marca:</label>
+                                                                                <input type="text" class="col-4 col-sm-10" id="marc_roupa" name="marca" placeholder="Marca" value="<?php echo $foto['Marca'];?>">
+                                                                            </div><br>  
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <div class="row justify-content-center">
+                                                                                <label for="mat_roupa" class="col-4">Material:</label>
+                                                                                <input type="text" class="col-4 col-sm-10" id="mat_roupa" name="material" placeholder="Material da roupa" value="<?php echo $foto['Material'];?>">
+                                                                            </div><br>
+                                                                        </div>
+                                                                    </div>
+                                                                </div><br><br>
+                                                                <input type="submit" value="Confirmar" class="btn btn-primary">
+                                                                <?php
+                                                                    if(isset($_POST['idroupa']))
+                                                                    {
+                                                                    $id = addslashes($_POST['idroupa']);
+                                                                    $titulo = addslashes($_POST['nomepeca']);
+                                                                    $categoria = addslashes($_POST['categoria']);
+                                                                    $tipo = addslashes($_POST['tipo']);
+                                                                    $cor = addslashes($_POST['cor']);
+                                                                    $descricao = addslashes($_POST['descrpeca']);
+                                                                    $tamanho = addslashes($_POST['tamanho']);
+                                                                    $marca = addslashes($_POST['marca']);
+                                                                    $material = addslashes($_POST['material']);
+                                                                    
+
+
+                                                                    
+                                                                
+
+                                                                        $u->conexao("Tiffanny", "localhost","root","");
+                                                                        if($u->msgErro == "")
+                                                                        {
+                                                                            if($u->editartitulo($titulo, $id, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material))
+                                                                            {
+                                                                            echo "<script language=javascript type= 'text/javascript'>
+                                                                            window.alert('Informações alteradas com sucesso!')
+                                                                            </script>";
+                                                                            echo "<script language=java script type= 'text/javascript'>
+                                                                                window.location.href = 'Close_GuardRp02.php'
+                                                                                </script>";
+                                                                            }else{
+                                                                                echo "Não foi possivel editar!";
+
+                                                                            }
+                                                                        }else
+                                                                        {
+                                                                            echo "Erro: ".$u->msgErro;
+                                                                        }
+                                                                    }
+                                                                ?>
+                                                            </form>    
+                                                            </center><br><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                    <?php
+                                        if($cont == 3){
+                                            echo"</tr>";
+                                            echo"<tr>";
+                                            $cont = 0;
+                                        } 
+                                        }
+                                    ?>
+                                </tr>
+                                <?php 
+                                    }else{
+                                        echo'                            <div class="col-md-4">
+                                        <div class="card mb-4 shadow-sm" id="pcrp">
+                                            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
+                                            fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
+                                            100%; display: block;" src="IMG/Samples/IMG00.png" data-target="RpMod" data-holder-rendered="true">
+                                        </div><!--Fecha card-->
+                                    </div><!--Fecha componente da grid (alinhamento)-->
+                                    <div class="col-md-4">
+                                        <div class="card mb-4 shadow-sm" id="pcrp">
+                                            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
+                                            fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
+                                            100%; display: block;" src="IMG/Samples/IMG1.png" data-target="RpMod" data-holder-rendered="true">
+                                        </div><!--Fecha card-->
+                                    </div><!--Fecha componente da grid (alinhamento)-->
+                                    <div class="col-md-4">
+                                        <div class="card mb-4 shadow-sm" id="pcrp">
+                                            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
+                                            fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
+                                            100%; display: block;" src="IMG/Samples/IMG2.png" data-target="RpMod" data-holder-rendered="true">
+                                        </div><!--Fecha card-->
+                                    </div>';
+                                    }
+                                ?>               
+                            </div>
                         </div>
                     </div>
                     <!--Grid do Guarda-Roupa termina aqui-->
-                </section>
+                </div>
             </div>
             <div id="Look" role="tabpanel" class="tab-pane fade in active">
                 <div style="color: whitesmoke;">
-                    <section style="max-height: 849px; overflow: hidden;">
+                    <div style="max-height: 765px; overflow: auto;">
                         <!--Grid da Seção de Looks começa aqui-->
                         <div class="album py-5 ">
                             <div class="container">
@@ -674,7 +672,7 @@ $('#psps').click(function(e){
                             </div>
                         </div>
                         <!--Grid do Guarda-Roupa termina aqui-->
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
@@ -696,7 +694,6 @@ $('#psps').click(function(e){
 </section>
 
 
-  
 <!--Modal Cad de Roupas-->
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModCadRp">
     <div class="modal-dialog modal-xl">
