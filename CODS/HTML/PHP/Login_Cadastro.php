@@ -1,7 +1,10 @@
 <?php
-
+USE PHPMailer\PHPMailer\PHPMailer;
+USE PHPMailer\PHPMailer\SMTP;
+USE PHPMailer\PHPMailer\Exception;
 Class Usuario
 {
+    
     private $pdo;
     public $msgErro = "";
     public function conexao($nome, $host, $usuario, $senha)
@@ -221,7 +224,7 @@ public function apagarfoto($id)
     
 
 }
-public function verifica_dados($email){
+public function esquecisenha($email){
     
     global $pdo;
     global $msgErro;
@@ -231,14 +234,91 @@ public function verifica_dados($email){
         $sql->execute();
         if($sql->rowCount() > 0)
         {
-            return true;
+            $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+            $chave = md5(md5($resultado['IdUsuario'].$resultado['Senha']));
+            $email = $resultado['E_mail'];
+            $this->add_dados_recover($email, $chave);
+            echo "<script language=javascript type= 'text/javascript'>
+            window.alert('Email enviado!')
+            </script>";
 
+        }else{
+            echo "<script language=javascript type= 'text/javascript'>
+            window.alert('E-mail não pertence a nenhum usuário!')
+            </script>";
         }
-        else{
        
-            return false;
-    }
 
 }
+    public function add_dados_recover($email, $chave){
+        
+        global $pdo;
+        global $msgErro;
+        
+        $sql = $pdo->prepare("INSERT INTO recover_solicitation (email, rash) VALUES (:e, :r)");
+        $sql->bindValue(":e", $email);
+        $sql->bindValue(":r", $chave);
+        $sql->execute();
+        if($sql->rowCount() > 0){
+			$this->enviar_email($email, $chave);
+		}else{
+            return false;
+        }
+    
+    }
+    public function enviar_email($email, $chave){
+        
+        global $pdo;
+        global $msgErro;
+
+        require_once('src/PHPMailer.php');
+        require_once('src/SMTP.php');
+        require_once('src/Exception.php');
+
+
+
+$mail = new PHPMailer(true);
+
+try {
+	$mail->isSMTP();
+	$mail->Host = 'smtp.gmail.com';
+	$mail->SMTPAuth = true;
+	$mail->Username = 'close.projct@gmail.com';
+	$mail->Password = 'CapTCC07';
+	$mail->Port = 587;
+
+	$mail->setFrom('close.projct@gmail.com');
+	$mail->addAddress($email);
+    $corpo = '<!doctype html><head>
+        <html>
+        <meta charset="UTF-8">
+    </head><body><p>Foi solicitada a alteração da sua senha do Close, clique<a href="http://localhost/TCC%20Def/TCC-Close/CODS/HTML/Alterar_Senha.php?chave='.$chave.'"> aqui</a> para alterá-la. Caso não tenha sido você apenas ignore essa 
+    mensagem e mantenha-se alerta!</p></body></html>';
+    $mail->isHTML(true);
+	$mail->Subject = 'Alterar senha';
+	$mail->Body = $corpo;
+	$mail->AltBody = $corpo;
+
+	if($mail->send()) {
+		echo 'Email enviado com sucesso';
+	} else {
+		echo 'Email nao enviado';
+	}
+} catch (Exception $e) {
+	echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
+}
+
+    }
+    public function deletarash($rash){
+        global $pdo;
+        global $msgErro;
+
+        $sql = $pdo->prepare("DELETE FROM recover_solicitation WHERE rash = :r");
+        $sql->bindValue(":r", $rash);
+        $sql->execute();
+        return true;
+
+    }
+
 }
 ?>

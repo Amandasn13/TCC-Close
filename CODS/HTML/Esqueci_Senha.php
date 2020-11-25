@@ -25,18 +25,9 @@
                                         $u->conexao("Tiffanny", "localhost","root","");
                                         if($u->msgErro == "")
                                         {
-                                            if($u->verifica_dados($email))
-                                            {
-                                                echo "<script language=javascript type= 'text/javascript'>
-                                                window.alert('E-mail existe.')
-                                                </script>";
-                                                
-                                            }else{
-                                                echo "<script language=javascript type= 'text/javascript'>
-                                                window.alert('Email não existe.')
-                                                </script>";
-
-                                            }
+                                            
+                                            $u->esquecisenha($email);
+                                    
                                         }else
                                         {
                                             echo "Erro: ".$u->msgErro;

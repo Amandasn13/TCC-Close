@@ -40,7 +40,7 @@
                     <label for="l2">Senha:</label><br>
                     <input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha" required><br><br><!-- lembra da vizualização da senha-->
                     <input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
-                    <br><br><a href id="fgs">Esqueci minha senha</a><br><br>
+                    <br><br><a href="Esqueci_Senha.php" id="fgs">Esqueci minha senha</a><br><br>
                     <a href="#hpnv" id="fgs">Desejo me cadastrar</a><br><br></center>
             </form></center><br>
             <?php

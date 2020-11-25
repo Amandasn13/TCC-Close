@@ -73,7 +73,19 @@ CREATE TABLE _Usuario_Look_Roupa (
     fk_Look_IdLook INT,
     fk_Roupa_IdRoupa INT
 );
- 
+CREATE TABLE `recover_solicitation` (
+  `id` int(20) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `rash` varchar(200) NOT NULL,
+  `status` int(20) NOT NULL DEFAULT '0'
+);
+
+
+ALTER TABLE `recover_solicitation`
+  ADD PRIMARY KEY (`id`);
+  ALTER TABLE `recover_solicitation`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE Look ADD CONSTRAINT FK_Look_2
     FOREIGN KEY (fk_Fotos_Look_Fotos_Look_PK)
     REFERENCES Fotos_Look (Fotos_Look_PK)
@@ -116,7 +128,7 @@ ALTER TABLE _Usuario_Look_Roupa ADD CONSTRAINT FK__Usuario_Look_Roupa_3
     
     /*Operações com o Usuario*/
 DELIMITER //
-CREATE PROCEDURE Cadastrar_Usuario(n CHAR(100), s CHAR(100), nu CHAR(100), dn DATE, e CHAR(100), k CHAR(100))
+CREATE PROCEDURE Cadastrar_Usuario(n CHAR(200), s CHAR(200), nu CHAR(200), dn DATE, e CHAR(200), k CHAR(200))
 	BEGIN
 		INSERT INTO Usuario (Nome, Sobrenome, Nome_de_Usuario, Data_de_Nascimento, E_mail, Senha) VALUES (n,s,nu,dn,e,k);
 	END//
@@ -126,9 +138,9 @@ CREATE PROCEDURE Logar_Usuario(nu CHAR(100), e CHAR(100), k CHAR(100))
 		SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = nu OR E_mail = e  AND Senha = k;
 	END//
 
-CREATE PROCEDURE Atualizar_Usuario(id INT,n CHAR(100), s CHAR(100), nu CHAR(100), dn DATE, e CHAR(100))
+CREATE PROCEDURE Atualizar_Usuario(id INT,n CHAR(100), s CHAR(100), nu CHAR(100), dn DATE)
 	BEGIN
-		UPDATE Usuario SET Nome=n, Sobrenome=s,Nome_de_Usuario=nu, Data_de_Nascimento=dn, E_mail=e WHERE IdUsuario=id;
+		UPDATE Usuario SET Nome=n, Sobrenome=s,Nome_de_Usuario=nu, Data_de_Nascimento=dn WHERE IdUsuario=id;
 	END//
 
 CREATE PROCEDURE Alterar_Senha(id INT, s CHAR(100))
