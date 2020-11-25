@@ -138,7 +138,7 @@ CREATE PROCEDURE Alterar_Senha(id INT, s CHAR(100))
 
 CREATE PROCEDURE Alterar_Email(id INT, e CHAR(100))
     BEGIN
-        UPDATE Usuario SET E_mail = e;
+        UPDATE Usuario SET E_mail = e WHERE IdUsuario=id;
     END //
     
 CREATE PROCEDURE BuscarId_UsuarioNu(nu CHAR(100))
@@ -178,7 +178,13 @@ CREATE PROCEDURE Apagar_Roupa(id INT)
 		DELETE FROM _Usuario_Look_Roupa WHERE fk_Roupa_IdRoupa=id;
 		DELETE FROM Roupa WHERE IdRoupa= id;
 	END //
+CREATE PROCEDURE Incrementar_Roupa(id INT, dt DATE)
+	BEGIN
+		 UPDATE Roupa SET Vezes_Utilizada=s WHERE IdRoupa=id;
+         
+    END //
 /*Operações com looks*/
+CREATE FUNCTION get_idr() RETURNS INTEGER RETURN @idroup;
 CREATE PROCEDURE Novo_Look(DONO CHAR(100),n CHAR(100), d CHAR(100))
 	BEGIN
 		INSERT INTO Look(Nome,Descricao) VALUES (n,d);
