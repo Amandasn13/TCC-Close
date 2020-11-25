@@ -240,7 +240,7 @@
         <center>
           <ul>
             <li>
-                <a href="">SOBRE NÓS E CONTATO</a>
+                <a href="Close_SbrNs.html">SOBRE NÓS E CONTATO</a>
             </li>
         </ul>
       </center>

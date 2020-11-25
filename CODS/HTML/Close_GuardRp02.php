@@ -23,6 +23,7 @@ $u = new Usuario;
 
 		//}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,24 +37,54 @@ $u = new Usuario;
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="icon" type="imagem/png" href="IMG\Vetores\Close_Logo.png">
+    <script>
+    hey = function(){
+        switch (localStorage.getItem("tg")){
+            case "#fcfcff":
+            var h = "#fcfcff";
+            break ;
+
+            case "#131324":
+            var h = "#131324";
+            break ;
+
+            case "#000000":
+            var h = "black";
+            break ;
+        }
+        document.getElementById("pg").style.background= h;
+        if(h == 'black','#131324'){
+            document.getElementById("tt").style.color= "azure";
+            document.getElementById("grpr").style.color= "azure";
+            document.getElementById("subs").style.color= "azure";
+        }
+        if(h == '#fcfcff'){
+            document.getElementById("tt").style.color= "#070B19";
+            document.getElementById("grpr").style.color= "#151515";
+            document.getElementById("subs").style.color= "#070B19";
+        }
+    }
+</script>
 </head>
-<body id="pg"> 
+<body id="pg" onload='hey()'> 
 <header><!--Cabeçalho-->
   <nav class="navbar navbar-default" role="navigation" id="rodp">
     <!--<h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>-->
     <img src="IMG\Vetores\Close_EscLog.png" class="nav navbar-nav" id="lgpr" width="80px" height="30px">
     <ul>
-        <li>
-            <input type="button" value="Desapegos" class="btn btn-outline-success">
-          </li>
-          <a href="Close_Estudio2.php">
-          <li>
-            <input type="button" value="Estúdio" class="btn btn-outline-danger">
-          </li>
+        <a href="Close_Desp.php">
+            <li>
+                <input type="button" value="Desapegos" class="btn btn-outline-success">
+            </li>
+        </a>
+        <a href="Close_Estudio2.php">
+            <li>
+                <input type="button" value="Estúdio" class="btn btn-outline-danger">
+            </li>
         </a> 
         <a href="PHP/Sair.php">
             <li >
-              <input type="button" value="Sair" class="btn btn-outline-dark">
+                <input type="button" value="Sair" class="btn btn-outline-dark">
             </li>
         </a>
     </ul>
@@ -61,7 +92,7 @@ $u = new Usuario;
 </header>
 <br><br>
 <section>
-    <center><h1 style="font-size: 90px;">Guarda-Roupa</h1><br><p></p>
+    <center><h1 style="font-size: 90px;" id="tt">Guarda-Roupa</h1>
     <br>
     <p id="grpr"> Bem-vinde/a/o ao Guarda-Roupa, aqui você pode checar todas suas roupas cadastradas até agora</p>
     <br>
@@ -70,10 +101,10 @@ $u = new Usuario;
         <br>
     <hr style="height: 2px; background-color: rgb(201, 198, 198); width: 60%; opacity: 30%;"></center>
     <br>
-    <center><p> O que deseja fazer agora?</p><br></center>
+    <center><h3 id="subs"> O que deseja fazer agora?</h3><br></center>
 
 <center>
-        <ul class="nav" role="tablist" style="width: 80%;margin-left: 310px;" id="separador">
+        <ul class="nav" role="tablist" style="width: 80%;margin-left: 400px;" id="separador">
             <li role="presentation" class="active" style="padding-left: 5px; padding-right: 5px;">
                 <a href="#GdRp" role="tab" data-toggle="tab" class="btn btn-outline-secondary" id="pth1">
                     Ver Roupas<a href="#GdRp"></a></a>
@@ -87,9 +118,6 @@ $u = new Usuario;
                 <a href="#EdEm" role="tab" data-toggle="tab">
                     <button data-toggle="modal" data-target="#ModCadLk" href="#ModCadLk" class="btn btn-outline-secondary">
                     Cadastrar Looks</button></a>
-            </li>
-            <li role="presentation" style="padding-left: 5px; padding-right: 5px;">
-                <a href="#EdEm" role="tab" data-toggle="tab" class="btn btn-outline-secondary">Criar Looks (Seleção)</a>
             </li>
             <li role="presentation" style="padding-left: 5px; padding-right: 5px;">
                 <a href="#Look" role="tab" data-toggle="tab" class="btn btn-outline-secondary" id="pth">Ver Looks</a>
@@ -228,7 +256,7 @@ $('#psps').click(function(e){
                                 ?>
                             </div><!--Fecha componente da grid (alinhamento)-->
               </td>
-              <!-- V. SEÇÃO DE MODAIS-->
+              <!-- V. SEÇÃO DE MODAIS - Modal Roupas-->
 <div class="modal fade bd-example-modal-lg" tabindex="-1"  aria-labelledby="myLargeModalLabel" aria-hidden="true" id="RpMod<?php echo $foto['IdRoupa'];?>" style="max-height: 1200px;">
     <div class="modal-dialog modal-lg">
       <div class="modal-content" style="background-color: rgb(17, 14, 14);">
@@ -659,7 +687,7 @@ $('#psps').click(function(e){
         <center>
             <ul>
                 <li>
-                    <a href="">SOBRE NÓS E CONTATO</a>
+                    <a href="Close_SbrNs.php">SOBRE NÓS E CONTATO</a>
                 </li>
             </ul>
         </center>

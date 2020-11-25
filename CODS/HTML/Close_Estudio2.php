@@ -19,19 +19,37 @@ $u = new Usuario;
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Estúdio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Estúdio</title>
     <!--Abaixo: conexão com as folhas de estilo de bootstrap e de css pessoal/nosso-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="CSS\Close_Est2.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="icon" type="imagem/png" href="IMG\Vetores\Close_Logo.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="CSS\Close_Est2.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="icon" type="imagem/png" href="IMG\Vetores\Close_Logo.png">
+  <script>
+    hey = function(){
+                  switch (localStorage.getItem("tg")){
+                    case "#fcfcff":
+                    var h = "#fcfcff";
+                    break ;
+
+                    case "#131324":
+                    var h = "#131324";
+                    break ;
+
+                    case "#000000":
+                    var h = "black";
+                    break ;
+                  }
+                    document.getElementById("pg").style.background= h;
+                }
+  </script>
 </head>
-<body id="pg"> 
+<body id="pg" onload='hey()'> 
 <header><!--Cabeçalho com links-->
   <nav role="navigation" id="rodp">
     <img src="IMG\Vetores\Close_EscLog.png" class="nav navbar-nav" id="lgpr" width="80px" height="30px">
@@ -208,18 +226,20 @@ $u = new Usuario;
         </div>     
       </li>
       <a href="Close_GuardRp02.php">
-      <li>
-        <input type="button" value="Guarda-Roupa" class="btn btn-outline-primary">
-      </li>
+        <li>
+          <input type="button" value="Guarda-Roupa" class="btn btn-outline-primary">
+        </li>
       </a>
-      <li>
-        <input type="button" value="Desapegos" class="btn btn-outline-success">
-      </li>
+      <a href="Close_Desp.php">
+        <li>
+          <input type="button" value="Desapegos" class="btn btn-outline-success">
+        </li>
+      </a>
       <a href="PHP/Sair.php">
-       <li >
-<input type="button" href="PHP/Sair.php" value="Sair" class="btn btn-outline-dark">         
-       </li>
-       </a> 
+        <li >
+            <input type="button" href="PHP/Sair.php" value="Sair" class="btn btn-outline-dark">         
+        </li>
+      </a> 
     </ul>
   </nav>
 </header>
@@ -243,28 +263,28 @@ $u = new Usuario;
             <ul class="row align-items-center" style="list-style-type: none; padding-left: -5px;"> 
               <li class="col" >
               <div class="custom-control custom-switch">
-                <input type="checkbox" role="button" class="custom-control-input" style="height: 10px;" id="tg1">
+                <input type="checkbox" role="button" class="custom-control-input" style="height: 10px;" id="tg1"
+                onclick='localStorage.setItem("tg", "#fcfcff"); tog1()'>
                 <label class="custom-control-label" for="tg1"></label>
               </div>
               </li>
               <li class="col">
               <div class="custom-control custom-switch ">
-                <input type="checkbox" role="button" class="custom-control-input" style="height: 10px;" id="tg2">
+                <input type="checkbox" role="button" class="custom-control-input" style="height: 10px;" id="tg2"
+                onclick='localStorage.setItem("tg", "#131324"); tog2()'>
                 <label class="custom-control-label" for="tg2"></label>
               </div>
               </li>
               <li class="col">
               <div class="custom-control custom-switch">
-                <input type="checkbox" role="button" class="custom-control-input" style="height: 10px;" id="tg3">
+                <input type="checkbox" role="button" class="custom-control-input" style="height: 10px;" id="tg3"
+                onclick='localStorage.setItem("tg", "#000000"); tog3()'>
                 <label class="custom-control-label" for="tg3"></label>
               </div>
               </li> 
               <script>
-                document.getElementById("tg1").onclick = function() {
-                myFunction()
-                };
-
-                function myFunction() {
+                //funções de mudança da cor de fundo pelos toggles
+                 tog1 = function() {
                   let color = document.body.style.background;
                   if (color === 'black','#131324') {
                     document.body.style.background = "#fcfcff";
@@ -273,11 +293,7 @@ $u = new Usuario;
                   }
                 }
 
-                document.getElementById("tg2").onclick = function() {
-                myFunction2()
-                };
-
-                function myFunction2() {
+                tog2 = function () {
                   let color = document.body.style.background;
                   if (color === 'black','#fcfcff') {
                     document.body.style.background = "#131324";
@@ -287,11 +303,7 @@ $u = new Usuario;
                   }
                 }
 
-                document.getElementById("tg3").onclick = function() {
-                myFunction3()
-                };
-
-                function myFunction3() {
+                tog3 = function() {
                   let color = document.body.style.background;
                   if (color === '#fcfcff','#131324') {
                     document.body.style.background = "black";
@@ -301,6 +313,7 @@ $u = new Usuario;
                   }
                 }
 
+                //Código para ativação e desativação dos toggles
                 document.querySelectorAll('input[type=checkbox]').forEach(element => element.addEventListener('click', disableOther))
 
                 function disableOther(event) {
@@ -363,7 +376,8 @@ $u = new Usuario;
             <h3 class="mb-0">
               <a class="text-light" href="Close_GuardRp.php">Nossa!!! Já viu como tá o tempo hoje?</a>
             </h3>
-            <p class="card-text mb-auto">Confira agora as roupas e looks que você tem salvos para esse climinha</p>
+            <p class="card-text mb-auto" style="margin-bottom: 3px;">Confira agora as roupas e looks que você tem salvos para esse climinha</p>
+            <br>
           </div>
         </div>
       </div>
@@ -389,7 +403,7 @@ $u = new Usuario;
     <center>
       <ul>
         <li>
-            <a href="">SOBRE NÓS E CONTATO</a>
+          <a href="Close_SbrNs.php">SOBRE NÓS E CONTATO</a>
         </li>
     </ul>
   </center>

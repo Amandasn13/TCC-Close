@@ -1,3 +1,20 @@
+<?php
+require_once 'PHP/Conexao.php';
+require_once 'PHP/Login_Cadastro.php';
+session_start();
+if(!isset($_SESSION['IdUsuario']))
+{
+    header("location: Close_Log02.php");
+    exit;
+}
+ //logo aqui, criada uma forma de armazenar todos os dados do usuario em uma variavel.
+$id = $_SESSION['IdUsuario'];
+$sql = "SELECT * FROM Usuario WHERE IdUsuario = '$id'";
+$resultado = mysqli_query($connect, $sql);
+$dados = mysqli_fetch_array($resultado);
+$u = new Usuario; 
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,47 +28,66 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="icon" type="imagem/png" href="IMG\Vetores\Close_Logo.png">
-</head>
-<body id="pg"> 
     <script>
-        document.getElementById("b2").onclick = function() {
-                GoFront()
-                };
-        function GoFront (){
-            var _blue = "#FF5400";
-            $("#BgCnt").attr('style', "background-color:"+_blue);
-        }    
+    hey = function(){
+        switch (localStorage.getItem("tg")){
+            case "#fcfcff":
+            var h = "#fcfcff";
+            break ;
 
-        document.getElementById("b3").onclick = function() {
-                GoBack()
-                };
-        function GoBack(){
-            var elements = document.getElementsByClassName('jumbotron'); // get all elements
-            for(var i = 0; i < elements.length; i++){
-                elements[i].style.backgroundColor = "#e91449";
-	}
+            case "#131324":
+            var h = "#131324";
+            break ;
+
+            case "#000000":
+            var h = "black";
+            break ;
         }
-
-        document.getElementById("Db").onclick = function() {
-                GoDb()
-                };
-        
-        document.getElementById("Doc").onclick = function() {
-                GoDoc()
-                };
-
-        document.getElementById("first").onclick = function() {
-                GoFirst()
-                };
-    </script>
+        document.getElementById("pg").style.background= h;
+        if(h == 'black','#131324'){
+            document.getElementById("tt").style.color= "azure";
+            document.getElementById("jb").style.background= "#424242";
+            document.getElementById("subs").style.color= "azure";
+        }
+        if(h == '#fcfcff'){
+            document.getElementById("tt").style.color= "#070B19";
+            document.getElementById("jb").style.background= "#e91449";
+            document.getElementById("subs").style.color= "azure";
+        }
+    }
+</script>
+</head>
+<body id="pg" onload='hey()'>
 <header><!--Cabeçalho-->
   <nav class="navbar navbar-default" role="navigation" id="rodp">
     <!--<h3 id="lgpr" class="nav navbar-nav">CLOSE</h3>-->
     <img src="IMG\Vetores\Close_EscLog.png" class="nav navbar-nav" id="lgpr" width="80px" height="30px">
-  </nav>
+    <ul>
+        <a href="Close_Estudio2.php">
+            <li>
+                <input type="button" value="Estúdio" class="btn btn-outline-danger">
+            </li>
+        </a> 
+        <a href="Close_GuardRp02.php">
+            <li>
+            <input type="button" value="Guarda-Roupa" class="btn btn-outline-primary">
+            </li>
+        </a>
+        <a href="Close_Desp.php">
+            <li>
+                <input type="button" value="Desapegos" class="btn btn-outline-success">
+            </li>
+        </a>
+        <a href="PHP/Sair.php">
+            <li >
+                <input type="button" value="Sair" class="btn btn-outline-dark">
+            </li>
+        </a>
+    </ul>
+</nav>
 </header>
 <br><br>
-<center><h1 style="font-size: 90px;">Sobre Nós</h1>
+<center><h1 style="font-size: 90px;" id="tt">Sobre Nós</h1>
     <h3 class="pb-3 mb-4 font-italic text-muted">Close: projeto e equipe</h3>
 <br><br>
 <hr style="height: 2px; background-color: rgb(201, 198, 198); width: 90%; opacity: 30%;">
@@ -206,7 +242,7 @@
             <center><img src="IMG\Vetores\Close_DbLog (1).png" width="350px" height="400px" 
             style="margin-left: 145px; margin-right: 140px;" id="crx1"></center>
             <br><br>
-            <p>Criado como um simples trabalho de conclusão de curso, o planejamento do projeto foi iniciado 
+            <p id="subs">Criado como um simples trabalho de conclusão de curso, o planejamento do projeto foi iniciado 
                 ainda no fim de 2018, o software foi desenvolvido por 7 amigos e programado durante o período
                  pandemico de 2020. Atualmente, projeto Close é também o resultado de meses de trabalho e 
                  superação coletiva, a fim de presentear um público com uma ferramenta útil e prática para seu 
@@ -225,9 +261,6 @@
 </center>
 <footer>
     <nav class="navbar navbar-default" role="navigation" id="rodp">
-    <center>
-            <a href="Close_Log02.php" style="color: azure;">INICIO</a>
-  </center>
 </nav>
 </footer>
 </body>
