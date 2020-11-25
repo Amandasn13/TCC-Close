@@ -244,40 +244,106 @@ $('#psps').click(function(e){
                 </li>
             </ul>
             <!--Divs de Conteúdo de cada Aba de navegação-->
-            <div class="container-fluid">
+            <div class="container">
                 <div class="tab-content">
                     <!--Ver foto-->
-                    <div id="VrFt<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active">
+                    <div id="VrFt<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active" height="920px">
                         <header>
                             <div class="container">
                                 <div class="row">
                                     <h5 name="unm" class="col" style="color: azure;">@<?php echo $dados1['Nome_de_Usuario'];?></h5>
-                                    <h5 style="color: azure; font-style: bold;;">>></h5>
+                                    <h5 style="color: azure; font-style: bold;">>></h5>
                                     <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $foto['Titulo'];  ?></h5>
                                     <a class="btn btn-outline-light popover-test col dropdown-toggle" data-toggle="dropdown" href="#" title="Descrição da peça" role="button" aria-haspopup="true" aria-expanded="false" style="font-style: bold; width: 70px;">↡</a>
-                                    <div class="dropdown-menu" style="width: 500px;">
-                                        <a class="dropdown-item" href="#"><h4>Descrição</h4></a>
-                                        <div class="dropdown-divider"></div>
-                                        <div class="blog-post" style="width: inherit;">
-                                            <p class="mb-0" href="#" style="margin: 10px;">
-                                                <?php   echo $foto['Descricao'];?>
-                                            </p>
+                                    <div class="dropdown-menu" style="width: 900px; margin-right: 100px; padding-left: 5px; padding-right: 5px;">
+                                        <center><h3>Outras informações</h3></center>
+                                        <div style="border: 1px solid #ffbd00; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right, #ffbd00, #ffa20a, #ff871e, #ff6a2f, #ff4b3e, #ff365c, #ff297b, 
+                                                #f72b99, #dc51c6, #b270e8, #7887fb, #0099ff); color: honeydew; color: azure;">
+                                            <a class="dropdown-item" href="#" style="color: white;"><h4>Descrição</h4></a>
+                                            <div class="dropdown-divider"></div>
+                                            <div class="blog-post" style="width: inherit;">
+                                                <p class="mb-0" href="#" style="margin: 10px;">
+                                                    <?php   echo $foto['Descricao'];?>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <a class="dropdown-item" href="#"><h4>Tags</h4></a>
-                                        <div class="dropdown-divider"></div>
-                                        <div class="blog-post" style="width: inherit;">
-                                            <p class="mb-0" href="#" style="margin: 10px;">
-                                                
-                                            </p>
+                                        <br>
+                                        <div class="container">
+                                            <div class="row justify-content-around">
+                                                <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
+                                                    #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
+                                                    <a class="dropdown-item" href="#" style="color: white;"><h4>Categoria</h4></a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <div class="blog-post" style="width: inherit;">
+                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                            <?php   echo $foto['Categoria'];?>
+                                                        </p></center>
+                                                    </div>
+                                                </div>
+                                                <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
+                                                    #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
+                                                    <a class="dropdown-item" href="#" style="color: white;"><h4>Tipo</h4></a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <div class="blog-post" style="width: inherit;">
+                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                            <?php   echo $foto['Tipo'];?>
+                                                        </p><center>
+                                                    </div>
+                                                </div>
+                                            </div><br>
+                                            <div class="row justify-content-around">
+                                                <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
+                                                    #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
+                                                    <a class="dropdown-item" href="#"  style="color: white;"><h4>Marca</h4></a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <div class="blog-post" style="width: inherit;">
+                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                            <?php   echo $foto['Marca'];?>
+                                                        </p></center>
+                                                    </div>
+                                                </div>
+                                                <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
+                                                        #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
+                                                    <a class="dropdown-item" href="#" style="color: white;"><h4>Tamanho</h4></a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <div class="blog-post" style="width: inherit;">
+                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                            <?php   echo $foto['Tamanho'];?>
+                                                        </p></center>
+                                                    </div>
+                                                </div>
+                                            </div><br>
+                                            <div class="row justify-content-around">
+                                                <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
+                                                    #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
+                                                    <a class="dropdown-item" href="#"  style="color: white;"><h4>Cor</h4></a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <div class="blog-post" style="width: inherit;">
+                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                            <?php   echo $foto['Cor'];?>
+                                                        </p></center>
+                                                    </div>
+                                                </div>
+                                                <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
+                                                        #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
+                                                    <a class="dropdown-item" href="#" style="color: white;"><h4>Material</h4></a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <div class="blog-post" style="width: inherit;">
+                                                        <center><p class="mb-0" href="#" style="margin: 10px;">
+                                                            <?php   echo $foto['Material'];?>
+                                                        </p></center>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>                        
                                 </div>
                             </div>
                         </header>
-                        <img src="<?php echo"Fotos_Roupas/".$foto["Foto"].'';?>" alt="" width="inherit" height="1000px" id="uimg" style="max-height: 600px;">
+                        <img src="<?php echo"Fotos_Roupas/".$foto["Foto"].'';?>" alt="" width="680px" height="680px" id="uimg"><br><br>
                     </div>
                     <!--Apagar Roupa-->
-                    <div id="ApDds<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active">
+                    <div id="ApDds<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in">
                         <br><center><form method="post" name="apagarfoto"><h5 style="color:wheat;">Deseja mesmo apagar a peça e todas suas informações? 
                             Essa ação não podera ser desfeita no futuro</h5><br>
                                 <input type="hidden" name="idroupaa"value="<?php echo $foto['IdRoupa'];?>">
@@ -313,7 +379,7 @@ $('#psps').click(function(e){
                                 </form>
                     </div>
                     <!--Editar Roupa-->
-                    <div id="EdIn<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in active"><!--Conteúdo prinipal da aba principal-->
+                    <div id="EdIn<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
                         <center><br>
                         <form method="post" name="editarroupa">
 
@@ -593,16 +659,7 @@ $('#psps').click(function(e){
         <center>
             <ul>
                 <li>
-                    <a href="">SOBRE</a>
-                </li>
-                <li>
-                    <a href="">AJUDA</a>
-                </li>
-                <li>
-                    <a href="">NÓS</a>
-                </li>
-                <li>
-                    <a href="">CONTATO</a>
+                    <a href="">SOBRE NÓS E CONTATO</a>
                 </li>
             </ul>
         </center>

@@ -146,10 +146,10 @@
 <section style="background-color: #0099ff; color: whitesmoke; bottom:0%;">
 <center>
 <div class="mx-auto">
-    <form method="post" name="Cad" class="nvc"><br>
-        <legend id="hpnv"> Novo por aqui? </legend><br>
-        <h3 style="width: 98%;">Faça seu cadastro agora, é rápido  fácil!</h3><br>
-        <div class="container" id="arip">
+    <form method="post" name="Cad" class="nvc" style="margin-right: 145px;"><br>
+        <legend id="hpnv" style="margin-left: 50px;"> Novo por aqui? </legend><br>
+        <h3 style="width: 98%; margin-left: 65px;">Faça seu cadastro agora, é rápido  fácil!</h3><br>
+        <div class="container">
             <div class="row justify-content-around">
                 <div class="col-4">
                     <input type="text" style="width: 365px;" id="all-in" name="nome" placeholder="Digite o seu nome" maxlength="50" required><br><br>
@@ -240,16 +240,7 @@
         <center>
           <ul>
             <li>
-                <a href="">SOBRE</a>
-            </li>
-            <li>
-                <a href="">AJUDA</a>
-            </li>
-            <li>
-                <a href="">NÓS</a>
-            </li>
-            <li>
-                <a href="">CONTATO</a>
+                <a href="">SOBRE NÓS E CONTATO</a>
             </li>
         </ul>
       </center>

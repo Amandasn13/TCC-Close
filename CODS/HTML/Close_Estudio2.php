@@ -59,15 +59,16 @@ $u = new Usuario;
                 <!--Editar foto-->
                   <div id="EdFt" role="tabpanel" class="tab-pane fade in active">
                     <div>
-                      <center><h2 style="color: ivory;">Alterar a foto de perfil</h2><br>
-                      <form class="px-4 py-3" method="post" action="PHP/cadastrarfoto.php" enctype="multipart/form-data">
+                      <center><h2 style="color: ivory;">Alterar a foto de perfil</h2><br></center>
+                      <form method="post" action="PHP/cadastrarfoto.php" enctype="multipart/form-data">
                         <div class="form-group">
-                          <input name="arquivo" type="file" placeholder="" id="arquivo" class="form-control" onchange="previewImagem()"><br><br>
-                          <center><img id="uimg" name="img" class="ov1"></center><br><br>
+                          <input name="arquivo" type="file" placeholder="" id="arquivo" class="form-control" onchange="previewImagem()"><br>
+                         <center> <img name="img" id="uimg" class="ov1" width="500px" height="500px"></center><br>
                           <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>"class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary">Alterar foto</button>
-                      </form>
+                        <br> 
+                        <center><button type="submit" class="btn btn-primary">Alterar foto</button></center>
+                      </form><br>
                       <script>
                         function previewImagem() {
                           var imagem = document.querySelector ('input[name=arquivo]').files[0]; 
@@ -89,7 +90,7 @@ $u = new Usuario;
                     </div>
                   </div>
                   <!--Editar dados-->
-                  <div id="EdDd" role="tabpanel" class="tab-pane fade">
+                  <div id="EdDd" role="tabpanel" class="tab-pane fade in">
                     <div>
                       <center><h2 style="color: ivory;">Alterar os dados pessoais</h2><br>
                       <form class="px-4 py-3" method="post" name="edit1">
@@ -153,7 +154,7 @@ $u = new Usuario;
                     </div>
                   </div>
                   <!--Editar email-->
-                  <div id="EdEm" role="tabpanel" class="tab-pane fade">
+                  <div id="EdEm" role="tabpanel" class="tab-pane fade in">
                     <div>
                       <center><h2 style="color: ivory;">Alterar o email cadastrado</h2><br>
                       <form class="px-4 py-3" method="post" name="edit3">
@@ -229,9 +230,9 @@ $u = new Usuario;
       <!--Foto do usuário-->
     <center><?php
         if($dados['Foto_de_Perfil']==""){
-        echo '<img src="IMG\Icones\8-512.png" id="uimg" class="ov1">';
+        echo '<img src="IMG\Icones\8-512.png" id="uimg" class="ov1 uimg">';
         }else{
-        echo'<img src="Fotos_Perfis/'.$dados["Foto_de_Perfil"].'" id="uimg" class="ov1">';
+        echo'<img src="Fotos_Perfis/'.$dados["Foto_de_Perfil"].'" id="uimg" class="ov1 uimg">';
         }
     ?></center>
       <!--toggles-->
@@ -360,7 +361,7 @@ $u = new Usuario;
           <div class="lkcd">
             <strong class="d-inline-block mb-2 text-danger">Moda</strong>
             <h3 class="mb-0">
-              <a class="text-light" href="Close_GuardRp.php">//Colocar aqui uma frase associada ao tempo</a>
+              <a class="text-light" href="Close_GuardRp.php">Nossa!!! Já viu como tá o tempo hoje?</a>
             </h3>
             <p class="card-text mb-auto">Confira agora as roupas e looks que você tem salvos para esse climinha</p>
           </div>
@@ -388,16 +389,7 @@ $u = new Usuario;
     <center>
       <ul>
         <li>
-            <a href="">SOBRE</a>
-        </li>
-        <li>
-            <a href="">AJUDA</a>
-        </li>
-        <li>
-            <a href="">NÓS</a>
-        </li>
-        <li>
-            <a href="">CONTATO</a>
+            <a href="">SOBRE NÓS E CONTATO</a>
         </li>
     </ul>
   </center>

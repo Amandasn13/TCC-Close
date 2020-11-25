@@ -2,6 +2,11 @@ $lt-font: 'Segoe UI';
 $corbut: #282828;
 $corpad01: rgb(244, 230, 255);
 $cor03: #78787a;
+$cola: #FFBD00;
+$colb: #f85d10;
+$colc: #e91449;
+$cold: #860e86;
+$cole: #0099ff;
 //$sldht: 10%;
 
 html{
@@ -12,25 +17,7 @@ body{
     font-family: $lt-font;
     display: flex;
     flex-direction: column;
-    width: 100%;
-}
-
-.uimg{
-    width: 500px;
-    height: 500px;
-    //border-radius: 50%;
-    border-color: rgb(165, 161, 161);
-    border: 2px;
-    //margin: 10% 5% 10% 60%;
-}
-
-#infus{
-    margin: 5%;
-    font-family: $lt-font;
-    color: $cor03;
-    height: inherit;
-    width: inherit;
-    align-items: inherit;
+    width: auto;
 }
 
 header{
@@ -41,11 +28,18 @@ header{
         justify-content:flex-end;
         padding:.75rem;
         margin-bottom: 5px;
+        //border-bottom:1px solid #dee2e6;
         border-bottom-right-radius:calc(.3rem - 1px);
         border-bottom-left-radius:calc(.3rem - 1px);
+        //background-color: rgb(17, 14, 14);
         font-family: $lt-font;
         width: 100%;
         
+        /*&:hover{
+            background-color: rgb(165, 167, 235);
+            opacity: 25%;
+        }*/
+
         #rodp{
             display: inline;
             justify-content: space-around;
@@ -122,63 +116,3 @@ footer{
         }
     }
 }
-
-.wdr{
-    margin: 15px;
-}
-
-#grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    height: 120vh;
-  }
-  .ov1 {
-    background: rgb(231, 222, 219);
-    z-index: 2;
-    position: relative;
-    grid-row: 2/3;
-    grid-column: 2/3;
-    grid-area: center;
-  }
-  .ov2 {
-    background: rgb(221, 226, 226);
-    position: relative;
-    //left: 7px;
-    //top: 575px;
-    z-index: 1;
-    height: 150px;
-    width: 400px;
-    grid-row: 3/3;
-    grid-column: 3/3;
-    top: -60px;
-    left: 150px;
- }
-  .ov3 {
-    background: rgb(199, 201, 201);
-    opacity: 80%;
-    position: relative;
-    //left: -1px;
-    //top: 280px;
-    z-index: 3;
-    width: 400px;
-    height: 300px;
-    grid-row: 2/3;
-    grid-column: 1/3;
-    top: 360px;
-    right: 360px;
-  }
-
-  #el3{
-      margin: 15px;
-  }
-
-  #nvl{
-      color: ivory;
-      padding-bottom: 2px;
-
-      &:target{
-          background-color: ivory;
-          color: rgb(51, 48, 54);
-      }
-  }
