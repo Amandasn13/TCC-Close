@@ -412,13 +412,13 @@ $('#psps').click(function(e){
                                                                     <div><!-- Campo Arquivo/Imagem-->
                                                                             <form method="post" name="editarfoto" enctype="multipart/form-data" action="PHP/atualizarfotoroupa.php" class="px-4 py-3" id="est-f"> 
                                                                                     <input type="hidden" name="id_roupa" value="<?php echo $foto['IdRoupa'];?>">
-                                                                                    <label for="imgpc1">É só selecionar o novo arquivo abaixo:<br>
-                                                                                    <input type="file" id="imgpc1" name="arquivo<?php echo $foto['IdRoupa'];?>" onchange="previewImagem<?php echo $foto['IdRoupa'];?>()">
+                                                                                    <label for="imgpc1<?php echo $foto['IdRoupa'];?>">É só selecionar o novo arquivo abaixo:<br>
+                                                                                    <input type="file" id="imgpc1<?php echo $foto['IdRoupa'];?>" name="arquivo<?php echo $foto['IdRoupa'];?>" onchange="previewImagem<?php echo $foto['IdRoupa'];?>()">
                                                                                      <center> <img name="img<?php echo $foto['IdRoupa'];?>" id="uimg" class="ov1" width="500px" height="500px"></center><br>
                                                                                     </label><br>
                                                                                     <input type="submit" value="Confirmar" class="btn btn-primary">
                                                                                     
-                                                                                                        <script>
+                                                                                                        <script language='javascript' type='text/javascript'>
                                                                                                             function previewImagem<?php echo $foto['IdRoupa'];?>() {
                                                                                                             var imagem = document.querySelector ('input[name=arquivo<?php echo $foto['IdRoupa'];?>]').files[0]; 
                                                                                                             var preview = document.querySelector ('img[name=img<?php echo $foto['IdRoupa'];?>]');

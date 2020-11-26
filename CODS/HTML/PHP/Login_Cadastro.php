@@ -238,8 +238,9 @@ public function esquecisenha($email){
             $email = $resultado['E_mail'];
             $this->add_dados_recover($email, $chave);
             echo "<script language=javascript type= 'text/javascript'>
-            window.alert('Email enviado!')
-            </script>";
+			window.alert('E-mail enviado!');
+			window.location.href = 'Close_Log02.php'
+			</script>";
 
         }else{
             echo "<script language=javascript type= 'text/javascript'>
@@ -348,5 +349,24 @@ try {
     }
 
 }
+    public function verificarash($email){
+        
+        global $pdo;
+        global $msgErro;
+
+        $sql = $pdo->prepare("SELECT * FROM recover_solicitation WHERE email = :e");
+        $sql->bindValue(":e", $email); 
+        $sql->execute();
+        if($sql->rowCount() > 0)
+        {
+            return false; 
+        }
+        else{
+       
+       return true;
+    }
+
+    }
+
 }
 ?>

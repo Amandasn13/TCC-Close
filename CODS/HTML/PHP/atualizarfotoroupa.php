@@ -13,19 +13,20 @@
                 header("location: Close_Log02.php");
                 exit;
             }
-        
+			
             
 
             $id = $_POST['id_roupa'];
           
             
             
-            
+        
+											
             
 
 			include_once("Conexao.php");
             
-			$arquivo 	= $_FILES['arquivo']['name'];
+			$arquivo 	= $_FILES["arquivo$id"]['name'];
 			
 			//Pasta onde o arquivo vai ser salvo
 			$_UP['pasta'] = '../Fotos_Roupas/';
@@ -59,24 +60,22 @@
 			</script>";
 			
 			//Verifica se houve algum erro com o upload. Sem sim, exibe a mensagem do erro
-			if($_FILES['arquivo']['error'] != 0){
-				die("Não foi possivel fazer o upload, erro: <br />". $_UP['erros'][$_FILES['arquivo']['error']]);
+			if($_FILES["arquivo$id"]['error'] != 0){
+				die("Não foi possivel fazer o upload, erro: <br />". $_UP['erros'][$_FILES["arquivo$id"]['error']]);
 				exit; //Para a execução do script
 			}
 			
 			//Faz a verificação da extensao do arquivo
-			$extensao =  strtolower(@end(explode('.', $_FILES['arquivo']['name'])));
+			$extensao =  strtolower(@end(explode('.', $_FILES["arquivo$id"]['name'])));
 			if(array_search($extensao,  $_UP['extensoes'])=== false){		
 				echo "<script language=javascript type= 'text/javascript'>
                             window.alert('Extensão inválida, por favor selecione uma foto.')
 							</script>";
-					echo "<script language=java script type= 'text/javascript'>
-					window.location.href = '../Close_GuardRp02.php'
-				</script>";
+					
 			}
 			
 			//Faz a verificação do tamanho do arquivo
-			else if ($_UP['tamanho'] < $_FILES['arquivo']['size']){
+			else if ($_UP['tamanho'] < $_FILES["arquivo$id"]['size']){
 				echo "<script language=javascript type= 'text/javascript'>
                             window.alert('Foto com tamanho muito grande! Escolha uma com tamanho menor.')
 							</script>";
@@ -93,10 +92,10 @@
 					$nome_final = time().'.jpg';
 				}else{
 					//mantem o nome original do arquivo
-					$nome_final = $_FILES['arquivo']['name'];
+					$nome_final = $_FILES["arquivo$id"]['name'];
 				}
 				//Verificar se é possivel mover o arquivo para a pasta escolhida
-				if(move_uploaded_file($_FILES['arquivo']['tmp_name'], $_UP['pasta']. $nome_final)){
+				if(move_uploaded_file($_FILES["arquivo$id"]['tmp_name'], $_UP['pasta']. $nome_final)){
 					//Upload efetuado com sucesso, exibe a mensagem
 					$query = mysqli_query($connect, "UPDATE  Roupa SET Foto='$nome_final' WHERE IdRoupa = '$id'");
 					
