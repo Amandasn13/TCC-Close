@@ -92,16 +92,15 @@ Class Usuario
        return true;
     }
 }
-public function editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento)
+public function editar1($id, $nome, $sobrenome, $nascimento)
     {
         
         global $pdo;
         global $msgErro;             
-        $sql = $pdo->prepare("CALL Atualizar_Usuario(:id, :n, :s, :nu, :dn)");
+        $sql = $pdo->prepare("CALL Atualizar_Usuario(:id, :n, :s, :dn)");
         $sql->bindvalue(":id", $id);
         $sql->bindvalue(":n", $nome);              
         $sql->bindValue(":s", $sobrenome); 
-        $sql->bindValue(":nu", $nomeusuario); 
         $sql->bindValue(":dn", $nascimento);
         $sql->execute();
         return true;
@@ -319,6 +318,35 @@ try {
         return true;
 
     }
+    public function editaruser($id, $nomeusuario){
+        global $pdo;
+        global $msgErro;
 
+        $sql = $pdo->prepare("CALL Alterar_Nome(:id, :n)");
+        $sql->bindValue(":id", $id);
+        $sql->bindValue(":n", $nomeusuario);
+        $sql->execute();
+        return true;
+
+    }
+    public function verifica2($nomeusuario)
+    {
+        
+        global $pdo;
+        global $msgErro;
+        //verifica se o email q a pessoa usar já nao ta sendo usado por nenhum outro usuario!
+        $sql = $pdo->prepare("CALL BuscarId_UsuarioNu(:nu)");
+        $sql->bindValue(":nu", $nomeusuario); 
+        $sql->execute();
+        if($sql->rowCount() > 0)
+        {
+            return false; 
+        }
+        else{
+       
+       return true;
+    }
+
+}
 }
 ?>

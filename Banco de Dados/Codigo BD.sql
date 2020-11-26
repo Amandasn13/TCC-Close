@@ -138,9 +138,9 @@ CREATE PROCEDURE Logar_Usuario(nu CHAR(100), e CHAR(100), k CHAR(100))
 		SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = nu OR E_mail = e  AND Senha = k;
 	END//
 
-CREATE PROCEDURE Atualizar_Usuario(id INT,n CHAR(100), s CHAR(100), nu CHAR(100), dn DATE)
+CREATE PROCEDURE Atualizar_Usuario(id INT,n CHAR(200), s CHAR(200), dn DATE)
 	BEGIN
-		UPDATE Usuario SET Nome=n, Sobrenome=s,Nome_de_Usuario=nu, Data_de_Nascimento=dn WHERE IdUsuario=id;
+		UPDATE Usuario SET Nome=n, Sobrenome=s, Data_de_Nascimento=dn WHERE IdUsuario=id;
 	END//
 
 CREATE PROCEDURE Alterar_Senha(id INT, s CHAR(100))
@@ -152,7 +152,10 @@ CREATE PROCEDURE Alterar_Email(id INT, e CHAR(100))
     BEGIN
         UPDATE Usuario SET E_mail = e WHERE IdUsuario=id;
     END //
-    
+ CREATE PROCEDURE Alterar_Nome(id INT, n CHAR(100))
+	BEGIN
+		UPDATE Usuario SET Nome_de_Usuario = n WHERE IdUsuario =id;
+	END //
 CREATE PROCEDURE BuscarId_UsuarioNu(nu CHAR(100))
     BEGIN
            SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = nu;

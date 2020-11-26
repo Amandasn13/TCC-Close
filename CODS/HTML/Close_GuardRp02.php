@@ -403,17 +403,49 @@ $('#psps').click(function(e){
                                                         <!--Editar Roupa-->
                                                         <div id="EdIn<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
                                                             <center><br>
-                                                            <form method="post" name="editarroupa">
+                                                           
                                                                 <h6 style="color:wheat;"> *você pode alterar só uma caracterísca da peça ou até mais,
                                                                     apenas preencha os campos que desejar e selecione "confirmar".
                                                                 </h6><br>
                                                                 <div class="container">
+
+                                                                    <div><!-- Campo Arquivo/Imagem-->
+                                                                            <form method="post" name="editarfoto" enctype="multipart/form-data" action="PHP/atualizarfotoroupa.php" class="px-4 py-3" id="est-f"> 
+                                                                                    <input type="hidden" name="id_roupa" value="<?php echo $foto['IdRoupa'];?>">
+                                                                                    <label for="imgpc1">É só selecionar o novo arquivo abaixo:<br>
+                                                                                    <input type="file" id="imgpc1" name="arquivo<?php echo $foto['IdRoupa'];?>" onchange="previewImagem<?php echo $foto['IdRoupa'];?>()">
+                                                                                     <center> <img name="img<?php echo $foto['IdRoupa'];?>" id="uimg" class="ov1" width="500px" height="500px"></center><br>
+                                                                                    </label><br>
+                                                                                    <input type="submit" value="Confirmar" class="btn btn-primary">
+                                                                                    
+                                                                                                        <script>
+                                                                                                            function previewImagem<?php echo $foto['IdRoupa'];?>() {
+                                                                                                            var imagem = document.querySelector ('input[name=arquivo<?php echo $foto['IdRoupa'];?>]').files[0]; 
+                                                                                                            var preview = document.querySelector ('img[name=img<?php echo $foto['IdRoupa'];?>]');
+                                                                                                                        
+                                                                                                            var reader = new FileReader ();
+                                                                                                                        
+                                                                                                            reader.onloadend = function () {
+                                                                                                            preview.src = reader.result;
+                                                                                                            }
+                                                                                                                        
+                                                                                                            if (imagem){
+                                                                                                            reader.readAsDataURL(imagem);
+                                                                                                            }else{
+                                                                                                            preview.src = "";
+                                                                                                            }
+                                                                                                            }
+                                                                                                        </script>
+                                                                </div>     
+                                                                           </form> 
+                                                                    <form method="post" name="editarroupa">
                                                                     <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
                                                                         <div class="col-4"> <!--Campo Nome-->
                                                                                 <input type="hidden" name="idroupa" value="<?php echo $foto['IdRoupa'];?>"> 
                                                                                 <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
                                                                                 <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui" value="<?php echo $foto['Titulo'];?>"> 
                                                                         </div>
+                                                                        
                                                                     </div><br>
                                                                     <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
                                                                         <div class="col-4"><!--Campo descrição-->
@@ -988,7 +1020,7 @@ $('#psps').click(function(e){
                         </div>
                     </div>
                     <!--Apagar Roupa-->
-                    <div id="ApLk" role="tabpanel" class="tab-pane fade in active">
+                    <div id="ApLk" role="tabpanel" class="tab-pane fade in">
                         <br><center><h5 style="color:wheat;">Deseja mesmo apagar o look e todas suas informações? 
                             Essa ação não podera ser desfeita no futuro</h5><br>
                                 <!--<input type="hidden" value="<?php Echo $dados5["Titulo"]; ?>" name="tit_roupa">
@@ -1026,7 +1058,7 @@ $('#psps').click(function(e){
                                 ?>-->
                     </div>
                     <!--Editar Look-->
-                    <div id="EdLk" role="tabpanel" class="tab-pane fade in active"><!--Conteúdo prinipal da aba principal-->
+                    <div id="EdLk" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
                         <center><br>
                             <h6 style="color:wheat;"> *você pode alterar só uma caracterísca do look ou até mais,
                                  apenas preencha os campos que desejar e selecione "confirmar".

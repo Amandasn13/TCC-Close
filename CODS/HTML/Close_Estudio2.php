@@ -68,7 +68,7 @@ $u = new Usuario;
                     <a href="#EdDd" data-toggle="tab" role="button" id="navo" >Alterar Dados</a>
                   </li>
                   <li role="presentation" class="col-6 col-md-4">
-                    <a href="#EdEm" role="tab" data-toggle="tab" id="navo">Alterar Email</a>
+                    <a href="#EdEm" role="tab" data-toggle="tab" id="navo">Alterar Login</a>
                   </li>
                 </ul><br><br>
               <!--Divs de Conteúdo de cada Aba de navegação-->
@@ -126,10 +126,7 @@ $u = new Usuario;
                         </div>
                         <br><br>
                         <div class="row">
-                          <div class="col-md-6 mb-3">
-                            <label id="leflab" style="color: aliceblue;">Nome de Usuário</label><br>
-                            <input type="text" name="nusuario" class="form-control" value="<?php Echo $dados['Nome_de_Usuario']; ?>" maxlength="50" placeholder="Nome de Usuário">
-                          </div>
+                          
                           <div class="col-md-6 mb-3">
                             <label id="rigid" style="color: aliceblue;">Data de nascimento</label><br>
                             <input type="date" name="data" class="form-control" value="<?php Echo $dados['Data_de_Nascimento']; ?>" placeholder="DD/MM/AAAA">
@@ -143,14 +140,13 @@ $u = new Usuario;
                 $id = addslashes($_POST['id_user']);
                 $nome = addslashes($_POST['nome']);
                 $sobrenome = addslashes($_POST['sbnome']); 
-                $nomeusuario = addslashes($_POST['nusuario']);
                 $nascimento = addslashes($_POST['data']); 
                
 
                     $u->conexao("Tiffanny", "localhost","root","");
                     if($u->msgErro == "")
                     {
-                        if($u->editar1($id, $nome, $sobrenome, $nomeusuario, $nascimento
+                        if($u->editar1($id, $nome, $sobrenome, $nascimento
                         ))
                         {
                             echo "<script language=javascript type= 'text/javascript'>
@@ -204,6 +200,51 @@ $u = new Usuario;
                 }else{
                     echo "<script language=javascript type= 'text/javascript'>
                     window.alert('E-mail já está sendo utilizado por outro usuário!')
+                    </script>";
+                }
+
+            }else{
+                echo "Erro: ".$u->msgErro;
+            }
+
+        }
+        
+        
+        
+        ?>
+                      </form></center>
+                    </div>
+                    <div><!-- Editar nome de usuário-->
+                      <center><h2 style="color: ivory;">Alterar nome de Usuário</h2><br>
+                      <form class="px-4 py-3" method="post" name="edit4">
+                        <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
+                        <label style="color: aliceblue;">Nome de usuário</label><br>
+                        <input type="text" name="nomeusuario" id="nomeusuario" value="<?php echo $dados['Nome_de_Usuario'] ?>" placeholder="Nome de usuário" maxlength="100" required><br><br><br>
+                        <button type="submit" name="editar3" class="btn btn-primary">Alterar nome de suário</button>
+                        <?php 
+        if(isset($_POST['nomeusuario']))
+        {
+            $id = addslashes($_POST['id_user']); 
+            $nomeusuario = addslashes($_POST['nomeusuario']);
+            $u->conexao("Tiffanny", "localhost","root","");
+            if($u->msgErro == "")
+            {
+                if($u->verifica2($nomeusuario)){
+                    if($u->editaruser($id, $nomeusuario)){
+                        echo "<script language=javascript type= 'text/javascript'>
+                        window.alert('Nome de usuário alterado com sucesso!')
+                        </script>";
+                        echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
+                }  else{
+                    echo "<script language=javascript type= 'text/javascript'>
+                            window.alert('Falha em alterar nome de usuário!')
+                            </script>";
+                            echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";       
+            }
+
+                }else{
+                    echo "<script language=javascript type= 'text/javascript'>
+                    window.alert('Nome de usuário já está sendo utilizado por outra pessoa!')
                     </script>";
                 }
 
