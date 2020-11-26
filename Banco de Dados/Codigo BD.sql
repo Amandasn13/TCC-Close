@@ -10,16 +10,14 @@ CREATE TABLE Usuario (
     Sobrenome CHAR(100) NOT NULL,
     Nome_de_Usuario CHAR(100) NOT NULL,
     Senha CHAR(100) NOT NULL,
-    Data_de_Nascimento DATE NOT NULL,
-    Foto_de_Perfil BLOB,
+    Nascimento DATE NOT NULL,
+    Foto BLOB,
     Biografia TEXT
 );
 
 CREATE TABLE Look (
     IdLook INT AUTO_INCREMENT PRIMARY KEY,
     fk_Fotos_Look INT,
-    fk_Datas_de_Utilizacao_Look INT,
-    fk_Tags_Look INT,
     Nome CHAR(100) NOT NULL,
     Descricao TEXT,
     Vezes_Utilizada DATE NOT NULL,
@@ -28,8 +26,6 @@ CREATE TABLE Look (
 
 CREATE TABLE Roupa (
     IdRoupa INT AUTO_INCREMENT PRIMARY KEY,
-    fk_Tags_Roupa INT,
-    fk_Datas_de_Utilizacao_Roupa INT,
     Titulo CHAR(100),
     Categoria ENUM("Acessório","Calçado","Roupa") NOT NULL,
     Tipo CHAR(100) NOT NULL,
@@ -47,30 +43,6 @@ CREATE TABLE Fotos_Look (
     IdFotosLook INT AUTO_INCREMENT PRIMARY KEY,
     CodFotosLook INT,
     Fotos_Look BLOB
-);
-
-CREATE TABLE Datas_de_Utilizacao_Look (
-    IdDatasLook INT AUTO_INCREMENT PRIMARY KEY,
-    CodDatasLook INT,
-    Datas_de_Utilizacao_Look DATE
-);
-
-CREATE TABLE Tags_Look (
-    IdTagsLook INT AUTO_INCREMENT PRIMARY KEY,
-    CodTagsLook INT,
-    Tags_Look CHAR(100)
-);
-
-CREATE TABLE Tags_Roupa (
-    IdTagsRoupa INT AUTO_INCREMENT PRIMARY KEY,
-    CodTagsRoupa INT,
-    Tags_Roupa CHAR(100)
-);
-
-CREATE TABLE Datas_de_Utilizacao_Roupa (
-    IdDatasRoupa INT AUTO_INCREMENT PRIMARY KEY,
-    CodDatasRoupa INT,
-    Datas_de_Utilizacao_Roupa DATE
 );
 
 CREATE TABLE Usuario_Look_Roupa (
@@ -96,26 +68,6 @@ ALTER TABLE Look ADD CONSTRAINT FK_Look_2
     REFERENCES Fotos_Look (IdFotosLook)
     ON DELETE NO ACTION;
  
-ALTER TABLE Look ADD CONSTRAINT FK_Look_3
-    FOREIGN KEY (fk_Datas_de_Utilizacao_Look)
-    REFERENCES Datas_de_Utilizacao_Look (IdDatasLook)
-    ON DELETE NO ACTION;
- 
-ALTER TABLE Look ADD CONSTRAINT FK_Look_4
-    FOREIGN KEY (fk_Tags_Look)
-    REFERENCES Tags_Look (IdTagsLook)
-    ON DELETE NO ACTION;
- 
-ALTER TABLE Roupa ADD CONSTRAINT FK_Roupa_2
-    FOREIGN KEY (fk_Tags_Roupa)
-    REFERENCES Tags_Roupa (IdTagsRoupa)
-    ON DELETE NO ACTION;
- 
-ALTER TABLE Roupa ADD CONSTRAINT FK_Roupa_3
-    FOREIGN KEY (fk_Datas_de_Utilizacao_Roupa)
-    REFERENCES Datas_de_Utilizacao_Roupa (IdDatasRoupa)
-    ON DELETE NO ACTION;
- 
 ALTER TABLE Usuario_Look_Roupa ADD CONSTRAINT FK_Usuario_Look_Roupa_1
     FOREIGN KEY (fk_Usuario)
     REFERENCES Usuario (IdUsuario)
@@ -133,11 +85,33 @@ ALTER TABLE Usuario_Look_Roupa ADD CONSTRAINT FK_Usuario_Look_Roupa_3
 /*Funções*/
 CREATE FUNCTION get_idu() RETURNS INTEGER RETURN @iduser;
 CREATE FUNCTION get_idr() RETURNS INTEGER RETURN @idroup;
-/*Operações com o Usuario*/
 DELIMITER //
+/*Operações com Recuperar Senha*/
+CREATE PROCEDURE Nova_Recuperacao(e VARCHAR(200), r VARCHAR(200))
+	BEGIN
+		INSERT INTO Recuperacao_de_Senha(email,rash) VALUES(e,r);
+    END //
+    
+CREATE PROCEDURE BuscarE_RecuperacaoR(r VARCHAR(200))
+	BEGIN
+    SELECT email FROM Recuperacao_de_Senha WHERE rash = r;
+    END //
+
+CREATE PROCEDURE Buscar_RecuperacaoE(e VARCHAR(200))
+	BEGIN
+		SELECT * FROM Recuperacao_de_Senha WHERE email = e;
+    END //
+    
+CREATE PROCEDURE Apagar_Recuperacao(r VARCHAR(200))
+	BEGIN
+		DELETE FROM Recuperacao_de_Senha WHERE Rash = r;
+		DELETE FROM Usuario WHERE IdUsuario=id;
+	END //
+    
+/*Operações com o Usuario*/
 CREATE PROCEDURE Cadastrar_Usuario(n CHAR(200), s CHAR(200), nu CHAR(200), dn DATE, e CHAR(200), k CHAR(200))
 	BEGIN
-		INSERT INTO Usuario (Nome, Sobrenome, Nome_de_Usuario, Data_de_Nascimento, Email, Senha) VALUES (n,s,nu,dn,e,k);
+		INSERT INTO Usuario (Nome, Sobrenome, Nome_de_Usuario, Nascimento, Email, Senha) VALUES (n,s,nu,dn,e,k);
 	END//
 
 CREATE PROCEDURE Logar_Usuario(nu CHAR(100), e CHAR(100), k CHAR(100))
@@ -145,11 +119,11 @@ CREATE PROCEDURE Logar_Usuario(nu CHAR(100), e CHAR(100), k CHAR(100))
 		SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = nu OR Email = e  AND Senha = k;
 	END//
 
-CREATE PROCEDURE Atualizar_Usuario(id INT,n CHAR(200), s CHAR(200), dn DATE)
+CREATE PROCEDURE Alterar_Usuario(id INT,n CHAR(200), s CHAR(200), dn DATE)
 	BEGIN
-		UPDATE Usuario SET Nome=n, Sobrenome=s, Data_de_Nascimento=dn WHERE IdUsuario=id;
+		UPDATE Usuario SET Nome=n, Sobrenome=s, Nascimento=dn WHERE IdUsuario=id;
 	END//
-DELIMITER //
+
 CREATE PROCEDURE Alterar_Senha(id INT, s CHAR(100))
     BEGIN
         UPDATE Usuario SET Senha=s WHERE IdUsuario=id;
@@ -159,18 +133,27 @@ CREATE PROCEDURE Alterar_Email(id INT, e CHAR(100))
     BEGIN
         UPDATE Usuario SET Email = e WHERE IdUsuario=id;
     END //
- CREATE PROCEDURE Alterar_Nome(id INT, n CHAR(100))
-	BEGIN
-		UPDATE Usuario SET Nome_de_Usuario = n WHERE IdUsuario = id;
-	END //
 CREATE PROCEDURE BuscarId_UsuarioNu(nu CHAR(100))
     BEGIN
            SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = nu;
     END //
-    
+CREATE PROCEDURE AlterarFt_Usuario(id INT, ft BLOB)
+	BEGIN
+		UPDATE Usuario SET Foto=ft WHERE IdUsuario = id;
+    END//
 CREATE PROCEDURE BuscarId_UsuarioE(e CHAR(100))
     BEGIN
           SELECT IdUsuario FROM Usuario WHERE Email = e;
+    END //
+    
+CREATE PROCEDURE Buscar_UsuarioE(e CHAR(100))
+	BEGIN
+		SELECT * FROM Usuario WHERE Email = e;
+    END //
+    
+CREATE PROCEDURE Buscar_Usuario(id INT)
+    BEGIN
+          SELECT * FROM Usuario WHERE IdUsuario = id;
     END //
     
 CREATE PROCEDURE Apagar_Usuario(id INT)
@@ -186,6 +169,16 @@ CREATE PROCEDURE Nova_Roupa(dono INT,tit CHAR(100),cat ENUM("Acessório","Calça
         INSERT INTO Usuario_Look_Roupa(fk_Usuario,fk_Roupa) VALUES (dono,@idroupa);
     END //
     
+CREATE PROCEDURE AlterarFt_Roupa(id INT,foto BLOB)
+	BEGIN
+		UPDATE Roupa SET Foto = foto WHERE IdRoupa = id;
+    END //
+    
+CREATE PROCEDURE Alterar_Roupa(id INT ,tit CHAR(100), cat ENUM("Acessório","Calçado","Roupa"), tip CHAR(100), c CHAR(100), descr TEXT, tam CHAR(100), mar CHAR(100), mat CHAR(100))
+	BEGIN
+		UPDATE Roupa SET Titulo=tit, Categoria=cat, Tipo=tip, Cor=c, Descricao=descr, Tamanho=tam, Marca=mar, Material=mat WHERE IdRoupa = id;
+	END //
+    
 CREATE PROCEDURE Buscar_Roupas(idU INT)
     BEGIN
 		SET @iduser=idU;
@@ -194,15 +187,16 @@ CREATE PROCEDURE Buscar_Roupas(idU INT)
         SELECT * FROM Roupa WHERE IdRoupa IN (SELECT * FROM Guarda_Roupa);
     END //
 
+CREATE PROCEDURE Incrementar_Roupa(id INT, dt DATE)
+	BEGIN
+		 UPDATE Roupa SET Vezes_Utilizada=s WHERE IdRoupa=id;
+    END //
+
 CREATE PROCEDURE Apagar_Roupa(id INT)
 	BEGIN
 		DELETE FROM Usuario_Look_Roupa WHERE fk_Roupa=id;
 		DELETE FROM Roupa WHERE IdRoupa = id;
 	END //
-CREATE PROCEDURE Incrementar_Roupa(id INT, dt DATE)
-	BEGIN
-		 UPDATE Roupa SET Vezes_Utilizada=s WHERE IdRoupa=id;
-    END //
 /*Operações com looks*/
 CREATE PROCEDURE Novo_Look(DONO CHAR(100),n CHAR(100), d CHAR(100),ft BLOB)
 	BEGIN
