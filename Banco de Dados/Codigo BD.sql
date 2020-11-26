@@ -133,6 +133,12 @@ CREATE PROCEDURE Alterar_Email(id INT, e CHAR(100))
     BEGIN
         UPDATE Usuario SET Email = e WHERE IdUsuario=id;
     END //
+    
+CREATE PROCEDURE Alterar_Nome(id INT, n CHAR(100))
+	BEGIN
+		UPDATE Usuario SET Nome = n WHERE IdUsuario=id;
+	END //
+    
 CREATE PROCEDURE BuscarId_UsuarioNu(nu CHAR(100))
     BEGIN
            SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = nu;
@@ -155,11 +161,6 @@ CREATE PROCEDURE Buscar_Usuario(id INT)
     BEGIN
           SELECT * FROM Usuario WHERE IdUsuario = id;
     END //
-    
-CREATE PROCEDURE Apagar_Usuario(id INT)
-	BEGIN
-		DELETE FROM Usuario WHERE IdUsuario=id;
-	END//
 
 /*Operações com a Roupa*/
 CREATE PROCEDURE Nova_Roupa(dono INT,tit CHAR(100),cat ENUM("Acessório","Calçado","Roupa"),tip CHAR(100),ft BLOB,cor CHAR(100),d TEXT,tam CHAR(100),marca CHAR(100),mat CHAR(100))
