@@ -39,15 +39,10 @@
                 style="height: 38px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">Enviar</button>
                 <?php
                     require_once 'PHP/Login_Cadastro.php';
-
                     $u = new Usuario; 
-
                     if(isset($_POST['Email']))
                     {
                         $email = addslashes($_POST['Email']);
-                                                                
-                                                            
-
                         $u->conexao("Tiffanny", "localhost","root","");
                         if($u->msgErro == "")
                         {
@@ -57,7 +52,6 @@
                                 echo "<script language=javascript type= 'text/javascript'>
                                 window.alert('Você já solicitou a redefinição de senha, cheque a caixa de entrada no seu e-mail! (Verifique nos spams).')
                                 </script>";
-
                             }
                         }else
                         {
@@ -70,8 +64,6 @@
         </div>
 </div>
 </center>
-
-
 </section>     
 </body>
 </html>
