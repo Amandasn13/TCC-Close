@@ -10,7 +10,9 @@ $rash = $_GET['chave'];
 $u = new Usuario;
 $sql = "SELECT email FROM recover_solicitation WHERE rash = '$rash'";
 $resultado = mysqli_query($connect, $sql);
+if($resultado = mysqli_affected_rows() > 0){
 $dados1 = mysqli_fetch_array($resultado);
+
 ?>
 
 <!DOCTYPE html>
@@ -109,3 +111,9 @@ $dados1 = mysqli_fetch_array($resultado);
     </div></center>        
 </body>
 </html>
+<?php 
+}else{
+    header("location: Close_Log02.php");
+    exit;
+}
+?>

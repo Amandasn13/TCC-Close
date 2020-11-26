@@ -209,23 +209,17 @@ $('#psps').click(function(e){
 
                                     if(!isset($_SESSION['IdUsuario']))
                                     {
-                                        header("location: Close_Log.php");
+                                        header("location: Close_Log02.php");
                                         exit;
-                                    }else{
+                                    }
                                         $idusuario = $dados1['IdUsuario'];
                                         $sql = "CALL Buscar_Roupas('$idusuario')";
                                                 $resultado = mysqli_query($connect, $sql);
+                                                $total = mysqli_affected_rows($connect);
+                                                if($total > 0){
                                                 while($dados = mysqli_fetch_array($resultado)){
                                                     $album[] = $dados; 
                                                 };
-                                    }
-                                ?><?php
-                                    ini_set('display_errors', 0 );
-                                    error_reporting(0);
-                                
-                                    
-                                    if($album != ""){
-                                    
                                     
                                 ?>
                                 <tr>
@@ -619,7 +613,7 @@ $('#psps').click(function(e){
                                     ?>
                                 </tr>
                                 <?php 
-                                    }else{
+                                        }else{
                                         echo'                            <div class="col-md-4">
                                         <div class="card mb-4 shadow-sm" id="pcrp">
                                             <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;

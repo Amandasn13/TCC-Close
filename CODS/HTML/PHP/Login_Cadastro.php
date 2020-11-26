@@ -300,7 +300,7 @@ try {
 	$mail->AltBody = $corpo;
 
 	if($mail->send()) {
-		echo 'Email enviado com sucesso';
+		
 	} else {
 		echo 'Email nao enviado';
 	}
