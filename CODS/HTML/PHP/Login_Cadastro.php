@@ -135,27 +135,6 @@ public function editar1($id, $nome, $sobrenome, $nascimento)
     }
 
 
-public function cadastrarfotoroupa($title, $tipo, $tamanho, $cor, $marca, $descricao, $foto)
-{
-    
-    global $pdo;
-    global $msgErro;
-   
-        //se realmente for um novo usuario, cadastrar!
-        $sql = $pdo->prepare("INSERT INTO Roupa (Title, Tipo, Tamanho, Cor, Marca, Descricao, Foto)
-         VALUES (:tit, :descr, :co, :tam, :mar, :tip, :fot)");
-        $sql->bindValue(":tit", $title); 
-        $sql->bindValue(":descr", $descricao); 
-        $sql->bindValue(":co", $cor);
-        $sql->bindValue(":tam", $tamanho);
-        $sql->bindValue(":mar", $marca);
-        $sql->bindValue(":tip", $tipo); 
-        $sql->bindValue(":fot", $foto); 
-        $sql->execute();
-        return true;
-    
-
-}
 //ediçaõ do titulo/nome da roupa!
 public function editartitulo($titulo, $id, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material)
 {
@@ -164,10 +143,10 @@ public function editartitulo($titulo, $id, $categoria, $tipo, $cor, $descricao, 
     global $msgErro;
    
         
-        $sql = $pdo->prepare("UPDATE Roupa SET Titulo= :tit, Categoria = :cat, Tipo = :tip, Cor = :co, Descricao = :descr, Tamanho = :tam, Marca = :mar, Material =
-        :mat WHERE IdRoupa= :id");
-        $sql->bindValue(":tit", $titulo); 
+        $sql = $pdo->prepare("CALL Alterar_Roupa(:id, :tit, :cat, :tip, :co, :descr, :tam, :mar, 
+        :mat");
         $sql->bindValue(":id", $id);
+        $sql->bindValue(":tit", $titulo); 
         $sql->bindValue(":cat", $categoria); 
         $sql->bindValue(":tip", $tipo); 
         $sql->bindValue(":co", $cor); 
@@ -180,36 +159,7 @@ public function editartitulo($titulo, $id, $categoria, $tipo, $cor, $descricao, 
     
 
 }
-//edição da descrição da foto
-public function editardescricao($descricao, $id)
-{
-    
-    global $pdo;
-    global $msgErro;
-   
-        
-        $sql = $pdo->prepare("UPDATE Roupa SET Descricao= :disc WHERE IdRoupa= :id");
-        $sql->bindValue(":disc", $descricao); 
-        $sql->bindValue(":id", $id); 
-        $sql->execute();
-        return true;
-    
 
-}
-public function editarfoto($foto, $id)
-{
-    
-    global $pdo;
-    global $msgErro;
-   
-        $sql = $pdo->prepare("UPDATE Roupa SET Foto= :fot WHERE IdRoupa= :id");
-        $sql->bindValue(":fot", $foto); 
-        $sql->bindValue(":id", $id); 
-        $sql->execute();
-        return true;
-    
-
-}
 public function apagarfoto($id)
 {
     
@@ -228,14 +178,14 @@ public function esquecisenha($email){
     global $pdo;
     global $msgErro;
 
-        $sql = $pdo->prepare("SELECT * FROM Usuario WHERE E_mail = :e");
+        $sql = $pdo->prepare("CALL Buscar_UsuarioE(:e)");
         $sql->bindValue(":e", $email);
         $sql->execute();
         if($sql->rowCount() > 0)
         {
             $resultado = $sql->fetch(PDO::FETCH_ASSOC);
             $chave = md5(md5($resultado['IdUsuario'].$resultado['Senha']));
-            $email = $resultado['E_mail'];
+            $email = $resultado['Email'];
             $this->add_dados_recover($email, $chave);
             echo "<script language=javascript type= 'text/javascript'>
 			window.alert('E-mail enviado!');
@@ -255,7 +205,7 @@ public function esquecisenha($email){
         global $pdo;
         global $msgErro;
         
-        $sql = $pdo->prepare("INSERT INTO recover_solicitation (email, rash) VALUES (:e, :r)");
+        $sql = $pdo->prepare("CALL Nova_Recuperacao(:e, :r)");
         $sql->bindValue(":e", $email);
         $sql->bindValue(":r", $chave);
         $sql->execute();
@@ -313,7 +263,7 @@ try {
         global $pdo;
         global $msgErro;
 
-        $sql = $pdo->prepare("DELETE FROM recover_solicitation WHERE rash = :r");
+        $sql = $pdo->prepare("CALL Apagar_Recuperacao(:r)");
         $sql->bindValue(":r", $rash);
         $sql->execute();
         return true;
@@ -354,7 +304,7 @@ try {
         global $pdo;
         global $msgErro;
 
-        $sql = $pdo->prepare("SELECT * FROM recover_solicitation WHERE email = :e");
+        $sql = $pdo->prepare("CALL Buscar_RecuperacaoE(:e)");
         $sql->bindValue(":e", $email); 
         $sql->execute();
         if($sql->rowCount() > 0)

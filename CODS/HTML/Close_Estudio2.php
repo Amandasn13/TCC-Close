@@ -9,7 +9,7 @@ if(!isset($_SESSION['IdUsuario']))
 }
  //logo aqui, criada uma forma de armazenar todos os dados do usuario em uma variavel.
 $id = $_SESSION['IdUsuario'];
-$sql = "SELECT * FROM Usuario WHERE IdUsuario = '$id'";
+$sql = "CALL Buscar_Usuario('$id')";
 $resultado = mysqli_query($connect, $sql);
 $dados = mysqli_fetch_array($resultado);
 $u = new Usuario; 
@@ -174,7 +174,7 @@ $u = new Usuario;
                       <form class="px-4 py-3" method="post" name="edit3">
                         <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
                         <label style="color: aliceblue;">E-mail</label><br>
-                        <input type="email" name="Email" id="Email" value="<?php echo $dados['E_mail'] ?>" placeholder="Email" maxlength="100" required><br><br><br>
+                        <input type="email" name="Email" id="Email" value="<?php echo $dados['Email'] ?>" placeholder="Email" maxlength="100" required><br><br><br>
                         <button type="submit" name="editar2" class="btn btn-primary">Alterar email</button>
                         <?php 
         if(isset($_POST['Email']))

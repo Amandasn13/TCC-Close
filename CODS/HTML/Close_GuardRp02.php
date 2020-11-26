@@ -10,18 +10,10 @@ if(!isset($_SESSION['IdUsuario']))
 }
  //logo aqui, criada uma forma de armazenar todos os dados do usuario em uma variavel.
 $id = $_SESSION['IdUsuario'];
-$sql = "SELECT * FROM Usuario WHERE IdUsuario = '$id'";
+$sql = "CALL Buscar_Usuario('$id')";
 $resultado = mysqli_query($connect, $sql);
 $dados1 = mysqli_fetch_array($resultado);
 $u = new Usuario; 
-
-
-//$result_usuarios = "SELECT * FROM Roupa WHERE fk_Usuario_IdUsuario = '$id'";
-		//$resultado_usuarios = mysqli_query($connect, $result_usuarios);
-		//while($row_usuario = mysqli_fetch_array($resultado_usuarios)){
-      //echo'<img src="Fotos_Roupas/'.$row_usuario["Foto"].'" class="card-img-top" alt="Img [100%x225]" style="height: 225px; width: 100%; display: block; data-holder-rendered="true"">';
-
-		//}
 ?>
 
 <!DOCTYPE html>

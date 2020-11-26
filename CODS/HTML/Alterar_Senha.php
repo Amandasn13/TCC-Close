@@ -8,7 +8,7 @@ if(!isset($_GET['chave']))
 }
 $rash = $_GET['chave'];
 $u = new Usuario;
-$sql = "SELECT email FROM recover_solicitation WHERE rash = '$rash'";
+$sql = "CALL BuscarE_RecuperacaoR('$rash')";
 $resultado = mysqli_query($connect, $sql);
 $total = mysqli_affected_rows($connect);
 if($total > 0){
@@ -45,7 +45,7 @@ $dados1 = mysqli_fetch_array($resultado);
 <br><br><br><br><br><br>
     <?php
         $email = $dados1['email'];
-        $sql = "SELECT IdUsuario FROM Usuario WHERE E_mail = '$email'";
+        $sql = "CALL BuscarId_UsuarioE('$email')";
         $resultado1 = mysqli_query($connect, $sql);
         $dados2 = mysqli_fetch_array($resultado1); 
     ?>
