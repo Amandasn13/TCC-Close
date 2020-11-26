@@ -109,9 +109,6 @@
 				if(move_uploaded_file($_FILES['arquivo']['tmp_name'], $_UP['pasta']. $nome_final)){
 					//Upload efetuado com sucesso, exibe a mensagem
 					$query = mysqli_query($connect, "CALL Nova_Roupa('$id','$titulo','$categoria','$tipo','$nome_final','$cor','$descricao','$tamanho','$marca','$material')");
-					/*
-					INSERT INTO Roupa (Foto, Titulo, Tipo, Marca, Tamanho, Cor, Descricao, fk_Usuario_IdUsuario, Categoria, Material) VALUES ('$nome_final', '$titulo', '$tipo', '$marca', '$tamanho', '$cor','$descricao', '$id','$categoria', '$material')");
-					*/
 					ini_set('display_errors', 0 );
 					error_reporting(0);
 					echo "<script language=javascript type= 'text/javascript'>
