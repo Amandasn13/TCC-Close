@@ -129,7 +129,7 @@ $u = new Usuario;
                           
                           <div class="col-md-6 mb-3">
                             <label id="rigid" style="color: aliceblue;">Data de nascimento</label><br>
-                            <input type="date" name="data" class="form-control" value="<?php Echo $dados['Data_de_Nascimento']; ?>" placeholder="DD/MM/AAAA">
+                            <input type="date" name="data" class="form-control" value="<?php Echo $dados['Nascimento']; ?>" placeholder="DD/MM/AAAA">
                           </div>
                         </div>
                         <br><br><br>
@@ -290,10 +290,10 @@ $u = new Usuario;
     <div id="grid" class="col-4 align-self-center">
       <!--Foto do usuário-->
     <center><?php
-        if($dados['Foto_de_Perfil']==""){
+        if($dados['Foto']==""){
         echo '<img src="IMG\Icones\8-512.png" id="uimg" class="ov1 uimg">';
         }else{
-        echo'<img src="Fotos_Perfis/'.$dados["Foto_de_Perfil"].'" id="uimg" class="ov1 uimg">';
+        echo'<img src="Fotos_Perfis/'.$dados["Foto"].'" id="uimg" class="ov1 uimg">';
         }
     ?></center>
       <!--toggles-->
@@ -392,7 +392,7 @@ $u = new Usuario;
       <div class="col-4" id="infus">
         <h1 name="socnm"><?php Echo $dados['Nome']; ?></h1>
         <h3 name="unm">@<?php Echo $dados['Nome_de_Usuario']; ?></h3>
-        <h3 name="unm"><?php Echo date("d/m/Y",strtotime($dados['Data_de_Nascimento'])); ?></h3>
+        <h3 name="unm"><?php Echo date("d/m/Y",strtotime($dados['Nascimento'])); ?></h3>
       </div>
     </div>
   </div>

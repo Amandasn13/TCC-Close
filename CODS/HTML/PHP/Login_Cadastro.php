@@ -97,7 +97,7 @@ public function editar1($id, $nome, $sobrenome, $nascimento)
         
         global $pdo;
         global $msgErro;             
-        $sql = $pdo->prepare("CALL Atualizar_Usuario(:id, :n, :s, :dn)");
+        $sql = $pdo->prepare("CALL Alterar_Usuario(:id, :n, :s, :dn)");
         $sql->bindvalue(":id", $id);
         $sql->bindvalue(":n", $nome);              
         $sql->bindValue(":s", $sobrenome); 

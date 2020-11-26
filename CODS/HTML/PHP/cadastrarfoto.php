@@ -68,7 +68,7 @@
 				//Verificar se é possivel mover o arquivo para a pasta escolhida
 				if(move_uploaded_file($_FILES['arquivo']['tmp_name'], $_UP['pasta']. $nome_final)){
 					//Upload efetuado com sucesso, exibe a mensagem
-					$query = mysqli_query($connect, "CALL AlterarFt_Usuario('$nome_final', '$id')";
+					$query = mysqli_query($connect, "CALL AlterarFt_Usuario('$id', '$nome_final')");
 					echo "<script language=javascript type= 'text/javascript'>
                             window.alert('Foto do perfil alterada com sucesso!')
 							</script>";
