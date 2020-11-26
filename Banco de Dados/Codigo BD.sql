@@ -136,7 +136,7 @@ CREATE PROCEDURE Alterar_Email(id INT, e CHAR(100))
     
 CREATE PROCEDURE Alterar_Nome(id INT, n CHAR(100))
 	BEGIN
-		UPDATE Usuario SET Nome = n WHERE IdUsuario=id;
+		UPDATE Usuario SET Nome_de_Usuario = n WHERE IdUsuario=id;
 	END //
     
 CREATE PROCEDURE BuscarId_UsuarioNu(nu CHAR(100))
