@@ -59,6 +59,8 @@ CREATE TABLE Recuperacao_de_Senha (
 /*FUNÇÕES*/
 CREATE FUNCTION get_idu() RETURNS INTEGER RETURN @iduser; /*retorna o valor da variavel @iduser*/
 CREATE FUNCTION get_idr() RETURNS INTEGER RETURN @idroup; /*retorna o valor da variavel @idroup*/
+CREATE FUNCTION get_idsr() RETURNS INTEGER RETURN @idroups /*retorna o valor da varivel @idroups*/
+CREATE FUNCTION get_idsl() RETURNS INTEGER RETURN @idlooks /*retorna o valor da varivel @idroups*/
 DELIMITER //
 /*PROCEDIMENTOS ARMAZENADOS*/
 /*--Procedures de recuperação de senha--*/
@@ -142,7 +144,16 @@ CREATE PROCEDURE AlterarFt_Usuario(id INT, ft BLOB)
 /*Remove a conta de um usuário e todos os seus dados*/
 CREATE PROCEDURE Apagar_Usuario(id INT)
 	BEGIN
-    DELETE FROM Usuario_Look_Roupa WHERE fk_Usuario=id;
+		SET @iduser=idU;
+		DROP VIEW IF EXISTS Guarda_Roupa;
+		CREATE VIEW Guarda_Roupa AS SELECT fk_Roupa FROM Usuario_Look_Roupa AS idroupa WHERE get_idu()=fk_Usuario;
+        DELETE FROM Usuario_Look_Roupa WHERE fk_Roupa IN (SELECT * FROM Guarda_Roupa);
+		DELETE FROM Roupa WHERE IdRoupa IN (SELECT * FROM Guarda_Roupa);
+        DROP VIEW IF EXISTS Guarda_Looks;
+		CREATE VIEW Guarda_Looks AS SELECT fk_Look FROM Usuario_Look_Roupa AS idlook WHERE get_idu()=fk_Usuario;
+        DELETE FROM Usuario_Look_Roupa WHERE fk_Look IN (SELECT * FROM Guarda_Looks);
+        DELETE FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Looks);
+		DELETE FROM Usuario_Look_Roupa WHERE fk_Usuario=id;
 		DELETE FROM Usuario WHERE IdUsuario=id;
 	END//
 /*--Procedures com a tabela Roupa--*/
@@ -204,8 +215,7 @@ CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
     BEGIN
 		SET @iduser=idU;
 		DROP VIEW IF EXISTS Guarda_Looks;
-		CREATE VIEW Guarda_Looks AS SELECT fk_Roupa FROM Usuario_Look_Roupa AS idlook WHERE get_idu()=fk_Usuario;
-        SELECT * FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Looks);
+		CREATE VIEW Guarda_Looks AS SELECT fk_Look FROM Usuario_Look_Roupa AS idlook WHERE get_idu()=fk_Usuario;
 		CASE e /*Modos de Ordenação no Guarda-Roupa*/
 			WHEN 1 THEN /*A a Z*/
 				SELECT * FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Look) ORDER BY Titulo ASC;
@@ -220,7 +230,7 @@ CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
 /*Remove um Look*/
 CREATE PROCEDURE Apagar_Look(id INT)
 	BEGIN
-		DELETE FROM Usuario_Look_Roupa WHERE fk_Roupa_IdLook=id;
+		DELETE FROM Usuario_Look_Roupa WHERE fk_Look=id;
 		DELETE FROM Look WHERE IdLook=id;
 	END//
 DELIMITER ;
