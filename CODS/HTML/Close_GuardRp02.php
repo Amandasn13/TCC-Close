@@ -180,8 +180,6 @@ $('#psps').click(function(e){
           <option value="1">Cadastros recentes</option>
           <option value="2">Ordem alfabética A-Z</option>
           <option value="3">Ordem alfabética Z-A</option>
-          <option value="4">Mais acessadas</option>
-          <option value="5">Menos acessadas</option>
         </select>
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">Filtrar</button>
@@ -252,6 +250,9 @@ $('#psps').click(function(e){
                                                     </li>
                                                     <li role="presentation" style="padding-right: 30px; margin-top: 7px; margin-bottom: 7px;">
                                                         <a href="#EdIn<?php echo $foto['IdRoupa'];?>" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
+                                                    </li>
+                                                    <li role="presentation" style="padding-right: 30px; padding-left: 210px; margin-top: 7px; margin-bottom: 7px;">
+                                                        <a href="#TkFt<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Trocar Foto</a>
                                                     </li>
                                                     <li role="presentation" style="padding-right: 5px;  margin-top: 7px; margin-bottom: 7px;">
                                                         <a href="#ApDds<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Peça</a>
@@ -392,6 +393,39 @@ $('#psps').click(function(e){
                                                                 ?>
                                                             </form>
                                                         </div>
+                                                        <!--Trocar Peça-->
+                                                        <div id="TkFt<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in">
+                                                            <br><center>
+                                                            <div><!-- Campo Arquivo/Imagem-->
+                                                                <form method="post" name="editarfoto" enctype="multipart/form-data" action="PHP/atualizarfotoroupa.php" class="px-4 py-3" id="est-f"> 
+                                                                    <input type="hidden" name="id_roupa" value="<?php echo $foto['IdRoupa'];?>">
+                                                                    <label for="imgpc1<?php echo $foto['IdRoupa'];?>" style="color: azure; margin-bottom:2px;">É só selecionar o novo arquivo abaixo:<br>
+                                                                    <input type="file" id="imgpc1<?php echo $foto['IdRoupa'];?>" name="arquivo<?php echo $foto['IdRoupa'];?>" 
+                                                                        onchange="previewImagem<?php echo $foto['IdRoupa'];?>()">
+                                                                    <center> <img name="img<?php echo $foto['IdRoupa'];?>" id="uimg" class="ov1" width="500px" height="500px"></center><br>
+                                                                    </label><br>
+                                                                    <input type="submit" value="Confirmar" class="btn btn-primary">
+                                                                    <script language='javascript' type='text/javascript'>
+                                                                        function previewImagem<?php echo $foto['IdRoupa'];?>() {
+                                                                            var imagem = document.querySelector ('input[name=arquivo<?php echo $foto['IdRoupa'];?>]').files[0]; 
+                                                                            var preview = document.querySelector ('img[name=img<?php echo $foto['IdRoupa'];?>]');
+                                                                                                                            
+                                                                            var reader = new FileReader ();
+                                                                                                                            
+                                                                            reader.onloadend = function () {
+                                                                                preview.src = reader.result;
+                                                                            }
+                                                                                                                            
+                                                                            if (imagem){
+                                                                                reader.readAsDataURL(imagem);
+                                                                            }else{
+                                                                                preview.src = "";
+                                                                            }
+                                                                        }
+                                                                    </script>
+                                                                </form> 
+                                                            </div></center>
+                                                        </div>
                                                         <!--Editar Roupa-->
                                                         <div id="EdIn<?php echo $foto['IdRoupa'];?>" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
                                                             <center><br>
@@ -401,35 +435,8 @@ $('#psps').click(function(e){
                                                                 </h6><br>
                                                                 <div class="container">
 
-                                                                    <div><!-- Campo Arquivo/Imagem-->
-                                                                            <form method="post" name="editarfoto" enctype="multipart/form-data" action="PHP/atualizarfotoroupa.php" class="px-4 py-3" id="est-f"> 
-                                                                                    <input type="hidden" name="id_roupa" value="<?php echo $foto['IdRoupa'];?>">
-                                                                                    <label for="imgpc1<?php echo $foto['IdRoupa'];?>">É só selecionar o novo arquivo abaixo:<br>
-                                                                                    <input type="file" id="imgpc1<?php echo $foto['IdRoupa'];?>" name="arquivo<?php echo $foto['IdRoupa'];?>" onchange="previewImagem<?php echo $foto['IdRoupa'];?>()">
-                                                                                     <center> <img name="img<?php echo $foto['IdRoupa'];?>" id="uimg" class="ov1" width="500px" height="500px"></center><br>
-                                                                                    </label><br>
-                                                                                    <input type="submit" value="Confirmar" class="btn btn-primary">
-                                                                                    
-                                                                                                        <script language='javascript' type='text/javascript'>
-                                                                                                            function previewImagem<?php echo $foto['IdRoupa'];?>() {
-                                                                                                            var imagem = document.querySelector ('input[name=arquivo<?php echo $foto['IdRoupa'];?>]').files[0]; 
-                                                                                                            var preview = document.querySelector ('img[name=img<?php echo $foto['IdRoupa'];?>]');
-                                                                                                                        
-                                                                                                            var reader = new FileReader ();
-                                                                                                                        
-                                                                                                            reader.onloadend = function () {
-                                                                                                            preview.src = reader.result;
-                                                                                                            }
-                                                                                                                        
-                                                                                                            if (imagem){
-                                                                                                            reader.readAsDataURL(imagem);
-                                                                                                            }else{
-                                                                                                            preview.src = "";
-                                                                                                            }
-                                                                                                            }
-                                                                                                        </script>
-                                                                </div>     
-                                                                           </form> 
+                                                                             
+                                                                           
                                                                     <form method="post" name="editarroupa">
                                                                     <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
                                                                         <div class="col-4"> <!--Campo Nome-->
@@ -649,14 +656,14 @@ $('#psps').click(function(e){
                                         <div class="card mb-4 shadow-sm" id="pcrp">
                                             <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
                                             fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-                                            100%; display: block;" src="IMG/Samples/IMG1.png" data-target="RpMod" data-holder-rendered="true">
+                                            100%; display: block;" src="IMG/Samples/IMG5.png" data-target="RpMod" data-holder-rendered="true">
                                         </div><!--Fecha card-->
                                     </div><!--Fecha componente da grid (alinhamento)-->
                                     <div class="col-md-4">
                                         <div class="card mb-4 shadow-sm" id="pcrp">
                                             <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;
                                             fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
-                                            100%; display: block;" src="IMG/Samples/IMG2.png" data-target="RpMod" data-holder-rendered="true">
+                                            100%; display: block;" src="IMG/Samples/IMG6.png" data-target="RpMod" data-holder-rendered="true">
                                         </div><!--Fecha card-->
                                     </div>';
                                     }
@@ -914,10 +921,10 @@ $('#psps').click(function(e){
                     <center><h4 style="padding-left: 100px;">Olá! Esse é seu Guarda-Roupa, para aprender um pouco mais sobre como ele funciona e como
                         usá-lo é só seguir as dicas abaixo</center></h4><br>
                         <button style="padding-left: 100px; margin-right: 10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true" style="background-color: #E61818; color: white;">&times;</span>
                         </button>
                 </div>
-                <img src="IMG\psps.png" width= "1200px" height="600px"
+                <img src="IMG\psps1.png" width= "1200px" height="600px"
                  style="position: absolute; left:50%; top:50%; margin-top: -10px; margin-left:-600px;">
             </div>
            </div> 

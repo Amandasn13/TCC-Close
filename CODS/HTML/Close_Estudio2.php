@@ -60,16 +60,22 @@ $u = new Usuario;
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModalEditPf">
           <div class="modal-dialog modal-lg">
             <div class="modal-content" style="background-color: rgb(17, 14, 14);"><br>
-                <ul class="nav nav-tabs row" role="tablist" id="navo">
-                  <li role="presentation" class="col-6 col-md-4 active">
-                    <a href="#EdFt" role="tab" data-toggle="tab" id="nvl">Alterar Foto</a>
-                  </li>
-                  <li role="presentation" class="col-6 col-md-4">
-                    <a href="#EdDd" data-toggle="tab" role="button" id="navo" >Alterar Dados</a>
-                  </li>
-                  <li role="presentation" class="col-6 col-md-4">
-                    <a href="#EdEm" role="tab" data-toggle="tab" id="navo">Alterar Login</a>
-                  </li>
+                <ul class="nav nav-tabs row justify-content-start" role="tablist" id="navo">
+                  <li role="presentation" class="col-6 col-lg-4 active">
+                    <a href="#EdFt" role="tab" data-toggle="tab" class="btn btn-outline-dark">Alterar Foto</a>
+                  </li><br>
+                  <li role="presentation" class="col-6 col-lg-4">
+                    <a href="#EdDd" data-toggle="tab" role="button" id="navo" class="btn btn-outline-dark">Editar Dados</a>
+                  </li><br>
+                  <li role="presentation" class="col-6 col-lg-4">
+                    <a href="#EdEm" role="tab" data-toggle="tab" id="navo" class="btn btn-outline-dark">Alterar Email</a>
+                  </li><br><br>
+                  <li role="presentation" class="col-6 col-lg-4" style="margin-left: 100px;">
+                    <a href="#EdLg" role="tab" data-toggle="tab" id="navo" class="btn btn-outline-dark">Editar Login</a>
+                  </li><br>
+                  <li role="presentation" class="col-6 col-lg-4">
+                    <a href="#EcUs" role="tab" data-toggle="tab" id="navo" class="btn btn-outline-dark">Deletar Conta</a>
+                  </li><br><br>
                 </ul><br><br>
               <!--Divs de Conteúdo de cada Aba de navegação-->
               <div class="container-fluid">
@@ -125,45 +131,42 @@ $u = new Usuario;
                           </div>
                         </div>
                         <br><br>
-                        <div class="row">
-                          
-                          <div class="col-md-6 mb-3">
+                        <<center><div class="form-group">
                             <label id="rigid" style="color: aliceblue;">Data de nascimento</label><br>
                             <input type="date" name="data" class="form-control" value="<?php Echo $dados['Nascimento']; ?>" placeholder="DD/MM/AAAA">
-                          </div>
-                        </div>
+                        </div></center>
                         <br><br><br>
                         <center><button type="submit" name="Editar" class="btn btn-primary">Alterar dados</button></center>
                         <?php
-                if(isset($_POST['nome']))
-                {
-                $id = addslashes($_POST['id_user']);
-                $nome = addslashes($_POST['nome']);
-                $sobrenome = addslashes($_POST['sbnome']); 
-                $nascimento = addslashes($_POST['data']); 
-               
+                          if(isset($_POST['nome']))
+                          {
+                          $id = addslashes($_POST['id_user']);
+                          $nome = addslashes($_POST['nome']);
+                          $sobrenome = addslashes($_POST['sbnome']); 
+                          $nascimento = addslashes($_POST['data']); 
+                        
 
-                    $u->conexao("Tiffanny", "localhost","root","");
-                    if($u->msgErro == "")
-                    {
-                        if($u->editar1($id, $nome, $sobrenome, $nascimento
-                        ))
-                        {
-                            echo "<script language=javascript type= 'text/javascript'>
-                            window.alert('Alterações concluidas com sucesso!')
-                            </script>";
-                            echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
+                              $u->conexao("Tiffanny", "localhost","root","");
+                              if($u->msgErro == "")
+                              {
+                                  if($u->editar1($id, $nome, $sobrenome, $nascimento
+                                  ))
+                                  {
+                                      echo "<script language=javascript type= 'text/javascript'>
+                                      window.alert('Alterações concluidas com sucesso!')
+                                      </script>";
+                                      echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
 
-                        }else{
-                            echo "Não foi possivel editar!";
+                                  }else{
+                                      echo "Não foi possivel editar!";
 
-                        }
-                    }else
-                    {
-                        echo "Erro: ".$u->msgErro;
-                    }
-                    }
-            ?>   
+                                  }
+                              }else
+                              {
+                                  echo "Erro: ".$u->msgErro;
+                              }
+                              }
+                        ?>   
                       </form></center>
                     </div>
                   </div>
@@ -174,94 +177,123 @@ $u = new Usuario;
                       <form class="px-4 py-3" method="post" name="edit3">
                         <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
                         <label style="color: aliceblue;">E-mail</label><br>
-                        <input type="email" name="Email" id="Email" value="<?php echo $dados['Email'] ?>" placeholder="Email" maxlength="100" required><br><br><br>
+                        <input type="email" name="Email" class="form-control" id="Email" value="<?php echo $dados['Email'] ?>" placeholder="Email" maxlength="100" required><br><br><br>
                         <button type="submit" name="editar2" class="btn btn-primary">Alterar email</button>
                         <?php 
-        if(isset($_POST['Email']))
-        {
-            $id = addslashes($_POST['id_user']); 
-            $email = addslashes($_POST['Email']);
-            $u->conexao("Tiffanny", "localhost","root","");
-            if($u->msgErro == "")
-            {
-                if($u->verifica($email)){
-                    if($u->editar3($email, $id)){
-                        echo "<script language=javascript type= 'text/javascript'>
-                        window.alert('E-mail alterado com sucesso!')
-                        </script>";
-                        echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
-                }  else{
-                    echo "<script language=javascript type= 'text/javascript'>
-                            window.alert('Falha em alterar e-mail!')
-                            </script>";
-                            echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";       
-            }
+                          if(isset($_POST['Email']))
+                          {
+                              $id = addslashes($_POST['id_user']); 
+                              $email = addslashes($_POST['Email']);
+                              $u->conexao("Tiffanny", "localhost","root","");
+                              if($u->msgErro == "")
+                              {
+                                  if($u->verifica($email)){
+                                      if($u->editar3($email, $id)){
+                                          echo "<script language=javascript type= 'text/javascript'>
+                                          window.alert('E-mail alterado com sucesso!')
+                                          </script>";
+                                          echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
+                                  }  else{
+                                      echo "<script language=javascript type= 'text/javascript'>
+                                              window.alert('Falha em alterar e-mail!')
+                                              </script>";
+                                              echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";       
+                              }
 
-                }else{
-                    echo "<script language=javascript type= 'text/javascript'>
-                    window.alert('E-mail já está sendo utilizado por outro usuário!')
-                    </script>";
-                }
+                                  }else{
+                                      echo "<script language=javascript type= 'text/javascript'>
+                                      window.alert('E-mail já está sendo utilizado por outro usuário!')
+                                      </script>";
+                                  }
 
-            }else{
-                echo "Erro: ".$u->msgErro;
-            }
+                              }else{
+                                  echo "Erro: ".$u->msgErro;
+                              }
 
-        }
-        
-        
-        
-        ?>
-                      </form></center>
-                    </div>
-                    <div><!-- Editar nome de usuário-->
-                      <center><h2 style="color: ivory;">Alterar nome de Usuário</h2><br>
-                      <form class="px-4 py-3" method="post" name="edit4">
-                        <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
-                        <label style="color: aliceblue;">Nome de usuário</label><br>
-                        <input type="text" name="nomeusuario" id="nomeusuario" value="<?php echo $dados['Nome_de_Usuario'] ?>" placeholder="Nome de usuário" maxlength="100" required><br><br><br>
-                        <button type="submit" name="editar3" class="btn btn-primary">Alterar nome de suário</button>
-                        <?php 
-        if(isset($_POST['nomeusuario']))
-        {
-            $id = addslashes($_POST['id_user']); 
-            $nomeusuario = addslashes($_POST['nomeusuario']);
-            $u->conexao("Tiffanny", "localhost","root","");
-            if($u->msgErro == "")
-            {
-                if($u->verifica2($nomeusuario)){
-                    if($u->editaruser($id, $nomeusuario)){
-                        echo "<script language=javascript type= 'text/javascript'>
-                        window.alert('Nome de usuário alterado com sucesso!')
-                        </script>";
-                        echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
-                }  else{
-                    echo "<script language=javascript type= 'text/javascript'>
-                            window.alert('Falha em alterar nome de usuário!')
-                            </script>";
-                            echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";       
-            }
-
-                }else{
-                    echo "<script language=javascript type= 'text/javascript'>
-                    window.alert('Nome de usuário já está sendo utilizado por outra pessoa!')
-                    </script>";
-                }
-
-            }else{
-                echo "Erro: ".$u->msgErro;
-            }
-
-        }
-        
-        
-        
-        ?>
+                          }
+                          
+                        ?>
                       </form></center>
                     </div>
                   </div>
+                  <!--Editar dados-->
+                  <div id="EdLg" role="tabpanel" class="tab-pane fade in">
+                    <div class="container"><!-- Editar nome de usuário-->
+                      <div class="row justify-content-around">
+                        <div class="col-4" style="border: 3px solid white;">
+                          <center><br><h3 style="color: ivory;">Alterar nome de Usuário</h3><br>
+                          <form class="px-4 py-3" method="post" name="edit4">
+                            <input type="hidden" name="id_user" value="<?php Echo $dados['IdUsuario']; ?>">
+                            <label style="color: aliceblue;">Nome de usuário</label><br>
+                            <input type="text" name="nomeusuario" class="form-control" id="nomeusuario" value="<?php echo $dados['Nome_de_Usuario'] ?>" placeholder="Nome de usuário" maxlength="100" required><br><br>
+                            <button type="submit" name="editar3" class="btn btn-primary">Alterar nome de suário</button>
+                              <?php 
+                                if(isset($_POST['nomeusuario']))
+                                {
+                                    $id = addslashes($_POST['id_user']); 
+                                    $nomeusuario = addslashes($_POST['nomeusuario']);
+                                    $u->conexao("Tiffanny", "localhost","root","");
+                                    if($u->msgErro == "")
+                                    {
+                                        if($u->verifica2($nomeusuario)){
+                                            if($u->editaruser($id, $nomeusuario)){
+                                                echo "<script language=javascript type= 'text/javascript'>
+                                                window.alert('Nome de usuário alterado com sucesso!')
+                                                </script>";
+                                                echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
+                                        }  else{
+                                            echo "<script language=javascript type= 'text/javascript'>
+                                                    window.alert('Falha em alterar nome de usuário!')
+                                                    </script>";
+                                                    echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";       
+                                    }
+
+                                        }else{
+                                            echo "<script language=javascript type= 'text/javascript'>
+                                            window.alert('Nome de usuário já está sendo utilizado por outra pessoa!')
+                                            </script>";
+                                        }
+
+                                    }else{
+                                        echo "Erro: ".$u->msgErro;
+                                    }
+
+                                }
+                                
+                                
+                                
+                              ?>
+                          </form></center>
+                        </div>
+                        <div class="col-4" style="border: 3px solid white;">
+                        <center><br><h3 style="color: ivory;">Alterar Senha</h3><br>
+                          <form class="px-4 py-3" method="post" name="">
+                            <input type="hidden" name="" value="<?php Echo $dados['']; ?>">
+                            <label style="color: aliceblue;">Senha nova:</label><br>
+                            <input type="text" name="" class="form-control" id="" value="<?php echo $dados[''] ?>" placeholder="Nova senha" maxlength="100" required><br><br>
+                            <label style="color: aliceblue;">Senha antiga para confirmação:</label><br>
+                            <input type="text" name="" class="form-control" id="" value="<?php echo $dados[''] ?>" placeholder="Senha antiga" maxlength="100" required><br><br>
+                            <button type="submit" name="" class="btn btn-primary">Alterar Senha</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div><br>
+                  </div>
+                  <!--Apagar Conta-->
+                  <div id="EcUs" role="tabpanel" class="tab-pane fade in">
+                    <center><h1 style="color: azure;">Deseja mesmo apagar sua conta? :( </h1><br>
+                    <p style="color: azure;"><b>Poxa deseja mesmo apagar sua conta e todos os dados contidos nela?<br>
+                    Essa ação não poderá ser desfeita no futuro.</b></p>
+                    <form class="px-4 py-3" method="post" name="">
+                      <input type="hidden" name="" value="<?php Echo $dados['']; ?>">
+                      <label style="color: yellow;">Confirme sua senha para confirmação:</label><br>
+                      <input type="text" name="" class="form-control" id="" value="<?php echo $dados[''] ?>" placeholder="Nova senha" maxlength="100" required><br>
+                      <br><button type="submit" name="" class="btn btn-danger">Apagar Conta</button>
+                    </form></center>
+                  </div>
+                  <!--/Abas do modal-->
                 </div>
-              </div>
+              </div><!--Conteúdos das abas-->
             </div>
           </div>
         </div>     
