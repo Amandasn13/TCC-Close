@@ -12,8 +12,7 @@ CREATE TABLE Usuario (
     Nome_de_Usuario CHAR(100) NOT NULL,
     Senha CHAR(100) NOT NULL,
     Nascimento DATE NOT NULL,
-    Foto BLOB,
-    Biografia TEXT
+    Foto BLOB
 );
 /*Criação da Tabela Roupa*/
 CREATE TABLE Roupa (
@@ -175,18 +174,18 @@ CREATE PROCEDURE Buscar_Roupas(idU INT, e INT)
 CREATE PROCEDURE Alterar_Roupa(id INT ,tit CHAR(100), cat ENUM("Acessório","Calçado","Roupa"), tip CHAR(100), c CHAR(100), descr TEXT, tam CHAR(100), mar CHAR(100), mat CHAR(100))
 	BEGIN
 		UPDATE Roupa SET Titulo=tit, Categoria=cat, Tipo=tip, Cor=c, Descricao=descr, Tamanho=tam, Marca=mar, Material=mat WHERE IdRoupa = id;
-	END //
+	END//
 /*Alterar a foto da roupa*/
 CREATE PROCEDURE AlterarFt_Roupa(id INT,foto BLOB)
 	BEGIN
 		UPDATE Roupa SET Foto = foto WHERE IdRoupa = id;
-    END //
+    END//
 /*Remove uma roupa*/
 CREATE PROCEDURE Apagar_Roupa(id INT)
 	BEGIN
 		DELETE FROM Usuario_Look_Roupa WHERE fk_Roupa=id;
 		DELETE FROM Roupa WHERE IdRoupa = id;
-	END //
+	END//
 /*--Procedures de Looks e suas Fotos--*/
 /*Cria um novo look*/
 CREATE PROCEDURE Novo_Look(DONO CHAR(100),n CHAR(100), d CHAR(100),ft BLOB)
@@ -194,12 +193,12 @@ CREATE PROCEDURE Novo_Look(DONO CHAR(100),n CHAR(100), d CHAR(100),ft BLOB)
 		INSERT INTO Look(Nome,Descricao) VALUES (n,d);
 		SELECT MAX(IdLook) into @idlook FROM Look;
 		INSERT INTO Usuario_Look_Roupa(fk_Usuario) VALUES (dono,@idlook);
-    END //
+    END//
 /*Adiciona uma foto a um look*/
 CREATE PROCEDURE Nova_Foto(id INT, ft BLOB)
 	BEGIN
-		INSERT INTO fotos_look(Fotos_Look) VALUES (ft);
-    END //
+		INSERT INTO fotos_look(fk_Look,Fotos_Look) VALUES (ft,id);
+    END//
 /*Retorna os Looks para a página de Guarda-Roupa*/
 CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
     BEGIN
@@ -217,11 +216,11 @@ CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
             WHEN 4 THEN /*Mais Antigos*/
 				SELECT * FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Look) ORDER BY IdLook DESC;
         END CASE;
-    END //
+    END//
 /*Remove um Look*/
 CREATE PROCEDURE Apagar_Look(id INT)
 	BEGIN
 		DELETE FROM Usuario_Look_Roupa WHERE fk_Roupa_IdLook=id;
 		DELETE FROM Look WHERE IdLook=id;
-	END //
+	END//
 DELIMITER ;
