@@ -267,7 +267,7 @@ $u = new Usuario;
                         </div>
                         <div class="col-4" style="border: 3px solid white;">
                         <center><br><h3 style="color: ivory;">Alterar Senha</h3><br>
-                          <form class="px-4 py-3" method="post" name="">
+                          <form class="px-4 py-3" method="post" name="senhanova">
                             <input type="hidden" name="senhavelha" value="<?php Echo $dados['Senha']; ?>">  
                             <input type="hidden" name="iduser" value="<?php Echo $dados['IdUsuario']; ?>">
                             <label style="color: aliceblue;">Senha nova:</label><br>
@@ -279,7 +279,7 @@ $u = new Usuario;
                             <button type="submit" name="" class="btn btn-primary">Alterar Senha</button>
                             <?php
 
-                                                                if(isset($_POST['senha']))
+                                                                if(isset($_POST['senhaantiga']))
                                                                 {
                                                                     $id = addslashes($_POST['iduser']);
                                                                     $senha = addslashes ($_POST['senha']);
@@ -332,34 +332,35 @@ $u = new Usuario;
                     <center><h1 style="color: azure;">Deseja mesmo apagar sua conta? :( </h1><br>
                     <p style="color: azure;"><b>Poxa deseja mesmo apagar sua conta e todos os dados contidos nela?<br>
                     Essa ação não poderá ser desfeita no futuro.</b></p>
-                    <form class="px-4 py-3" method="post" name="">
-                      <input type="hidden" name="" value="<?php Echo $dados['']; ?>">
+                    <form class="px-4 py-3" method="post" name="apagar">
+                      <input type="hidden" name="senha" value="<?php Echo $dados['Senha']; ?>">                                          
+                      <input type="hidden" name="iduser" value="<?php Echo $dados['IdUsuario']; ?>">
                       <label style="color: yellow;">Confirme sua senha para confirmação:</label><br>
-                      <input type="text" name="" class="form-control" id="" value="<?php echo $dados[''] ?>" placeholder="Nova senha" maxlength="100" required><br>
+                      <input type="password" name="senhaa" class="form-control" id=""  placeholder="" maxlength="100" required><br>
                       <br><button type="submit" name="" class="btn btn-danger">Apagar Conta</button>
                                   <?php
 
-                                    if(isset($_POST['novasenha']))
+                                    if(isset($_POST['senhaa']))
                                     {
-                                        $rash =  addslashes($_POST['rash']);
+              
                                         $id = addslashes($_POST['iduser']);
-                                        $senha = addslashes ($_POST['novasenha']);
-                                        $confirmasenha = addslashes($_POST['confirmanovasenha']);
+                                        $senhaescondida = addslashes($_POST['senha']);
+                                        $senha = md5(addslashes($_POST['senhaa']));
                                                 
-                                        if($senha == $confirmasenha){
+                                        if($senha == $senhaescondida){
                                         $u->conexao("Tiffanny", "localhost","root","");
                                         if($u->msgErro == "")
                                         {
                                             
-                                            if($u->editar2($senha, $id) && $u->deletarash($rash)){
+                                            if($u->apagarusuario($id)){
                                                 echo "<script language=javascript type= 'text/javascript'>
-                                                window.alert('Senha alterada!');
+                                                window.alert('Usuario apagado!');
                                                 window.location.href = 'Close_Log02.php'
                                                 </script>";
                                                 
                                             }else{
                                                 echo "<script language=javascript type= 'text/javascript'>
-                                    window.alert('Não foi possível alterar a senha!')
+                                    window.alert('Não foi possível apagar usuario')
                                     </script>";
                                             }
                                     
@@ -370,7 +371,7 @@ $u = new Usuario;
                                     }
                                 else{
                                     echo "<script language=javascript type= 'text/javascript'>
-                                    window.alert('As senhas diferem!')
+                                    window.alert('Senha incorreeta!')
                                     </script>";
                                 }
                             }

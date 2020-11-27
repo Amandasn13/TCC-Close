@@ -136,26 +136,32 @@ public function editar1($id, $nome, $sobrenome, $nascimento)
 
 
 //ediçaõ do titulo/nome da roupa!
-public function editartitulo($titulo, $id, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material)
+public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material)
 {
     
     global $pdo;
     global $msgErro;
    
         
-        $sql = $pdo->prepare("CALL Alterar_Roupa(:id, :tit, :cat, :tip, :co, :descr, :tam, :mar, 
+        $sql = $pdo->prepare("CALL Alterar_Roupa(:id, :tit, :cat, :tip, :c, :descr, :tam, :mar, 
         :mat");
         $sql->bindValue(":id", $id);
         $sql->bindValue(":tit", $titulo); 
         $sql->bindValue(":cat", $categoria); 
         $sql->bindValue(":tip", $tipo); 
-        $sql->bindValue(":co", $cor); 
+        $sql->bindValue(":c", $cor); 
         $sql->bindValue(":descr", $descricao);  
         $sql->bindValue(":tam", $tamanho); 
         $sql->bindValue(":mar", $marca);
-        $sql->bindValue(":mat", $material);  
+        $sql->bindValue(":mat", $material); 
         $sql->execute();
-        return true;
+        if($sql->rowCount() > 0)
+        {
+            return true;
+        }else{
+            return false;
+        }
+        
     
 
 }
@@ -317,6 +323,24 @@ try {
        
        return true;
     }
+
+    }
+    public function apagarusuario($id){
+        
+        global $pdo;
+        global $msgErro;
+
+        $sql = $pdo->prepare("CALL Apagar_Usuario(:id)");
+        $sql->bindValue(":id", $id); 
+        $sql->execute();
+        if($sql->rowCount() > 0)
+        {
+            return true;
+        }else{
+            return false;
+        }
+
+
 
     }
 

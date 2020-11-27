@@ -13,6 +13,7 @@ $id = $_SESSION['IdUsuario'];
 $sql = "CALL Buscar_Usuario('$id')";
 $resultado = mysqli_query($connect, $sql);
 $dados1 = mysqli_fetch_array($resultado);
+mysqli_next_result($connect);
 $u = new Usuario; 
 ?>
 
@@ -206,6 +207,7 @@ $('#psps').click(function(e){
                                         $sql = "CALL Buscar_Roupas('$idusuario',1)";
                                                 $resultado = mysqli_query($connect, $sql);
                                                 $total = mysqli_affected_rows($connect);
+                                                mysqli_next_result($connect);
                                                 if($total > 0){
                                                     $resultado = mysqli_query($connect, $sql);
                                                 while($dados = mysqli_fetch_array($resultado)){
@@ -609,7 +611,7 @@ $('#psps').click(function(e){
                                                                         $u->conexao("Tiffanny", "localhost","root","");
                                                                         if($u->msgErro == "")
                                                                         {
-                                                                            if($u->editartitulo($titulo, $id, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material))
+                                                                            if($u->editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material))
                                                                             {
                                                                             echo "<script language=javascript type= 'text/javascript'>
                                                                             window.alert('Informações alteradas com sucesso!')
