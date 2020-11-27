@@ -1,4 +1,3 @@
-/* LogicoClose: */
 /*CRIAÇÃO DO BANCO DE DADOS*/
 DROP DATABASE IF EXISTS Tiffanny;
 CREATE DATABASE Tiffanny DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -202,7 +201,7 @@ CREATE PROCEDURE Nova_Foto(id INT, ft BLOB)
 		INSERT INTO fotos_look(Fotos_Look) VALUES (ft);
     END //
 /*Retorna os Looks para a página de Guarda-Roupa*/
-CREATE PROCEDURE Buscar_Looks(idU INT)
+CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
     BEGIN
 		SET @iduser=idU;
 		DROP VIEW IF EXISTS Guarda_Looks;
