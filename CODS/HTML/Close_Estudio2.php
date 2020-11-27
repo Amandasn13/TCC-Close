@@ -268,12 +268,60 @@ $u = new Usuario;
                         <div class="col-4" style="border: 3px solid white;">
                         <center><br><h3 style="color: ivory;">Alterar Senha</h3><br>
                           <form class="px-4 py-3" method="post" name="">
-                            <input type="hidden" name="" value="<?php Echo $dados['']; ?>">
+                            <input type="hidden" name="senhavelha" value="<?php Echo $dados['Senha']; ?>">  
+                            <input type="hidden" name="iduser" value="<?php Echo $dados['IdUsuario']; ?>">
                             <label style="color: aliceblue;">Senha nova:</label><br>
-                            <input type="text" name="" class="form-control" id="" value="<?php echo $dados[''] ?>" placeholder="Nova senha" maxlength="100" required><br><br>
+                            <input type="password" name="senha" class="form-control" id="" placeholder="Nova senha" maxlength="100" required><br><br>
+                            <label style="color: aliceblue;">Confirme a senha:</label><br>
+                            <input type="password" name="confirmasenha" class="form-control" id="" placeholder="Nova senha" maxlength="100" required><br><br>
                             <label style="color: aliceblue;">Senha antiga para confirmação:</label><br>
-                            <input type="text" name="" class="form-control" id="" value="<?php echo $dados[''] ?>" placeholder="Senha antiga" maxlength="100" required><br><br>
+                            <input type="password" name="senhaantiga" class="form-control" id="" placeholder="Senha antiga" maxlength="100" required><br><br>
                             <button type="submit" name="" class="btn btn-primary">Alterar Senha</button>
+                            <?php
+
+                                                                if(isset($_POST['senha']))
+                                                                {
+                                                                    $id = addslashes($_POST['iduser']);
+                                                                    $senha = addslashes ($_POST['senha']);
+                                                                    $confirmasenha = addslashes($_POST['confirmasenha']);
+                                                                    $confirmasenhaatual = md5(addslashes($_POST['senhaantiga']));
+                                                                    $senhatual = addslashes($_POST['senhavelha']);
+
+                                                                    if($senha == $confirmasenha){
+                                                                    $u->conexao("Tiffanny", "localhost","root","");
+                                                                      if($confirmasenhaatual == $senhatual){
+                                                                            if($u->msgErro == "")
+                                                                            {
+                                                                                
+                                                                                if($u->editar2($senha, $id)){
+                                                                                    echo "<script language=javascript type= 'text/javascript'>
+                                                                                    window.alert('Senha alterada!');
+                                                                                    window.location.href = 'Close_Estudio2.php'
+                                                                                    </script>";
+                                                                                    
+                                                                                }else{
+                                                                                    echo "<script language=javascript type= 'text/javascript'>
+                                                                        window.alert('Não foi possível alterar a senha!')
+                                                                        </script>";
+                                                                                    }
+
+                                                                            }else
+                                                                            {
+                                                                                echo "Erro: ".$u->msgErro;
+                                                                            }
+                                                                        }
+                                                                        else{
+                                                                        echo "<script language=javascript type= 'text/javascript'>
+                                                                        window.alert('Senha atual incorreta!')
+                                                                        </script>";
+                                                                        }
+                                                                      }else{
+                                                                        echo "<script language=javascript type= 'text/javascript'>
+                                                                        window.alert('A senha nova e a conmfirmação dela diferem!')
+                                                                        </script>";
+                                                                      }
+                                                              }
+                              ?>
                           </form>
                         </div>
                       </div>
@@ -289,6 +337,44 @@ $u = new Usuario;
                       <label style="color: yellow;">Confirme sua senha para confirmação:</label><br>
                       <input type="text" name="" class="form-control" id="" value="<?php echo $dados[''] ?>" placeholder="Nova senha" maxlength="100" required><br>
                       <br><button type="submit" name="" class="btn btn-danger">Apagar Conta</button>
+                                  <?php
+
+                                    if(isset($_POST['novasenha']))
+                                    {
+                                        $rash =  addslashes($_POST['rash']);
+                                        $id = addslashes($_POST['iduser']);
+                                        $senha = addslashes ($_POST['novasenha']);
+                                        $confirmasenha = addslashes($_POST['confirmanovasenha']);
+                                                
+                                        if($senha == $confirmasenha){
+                                        $u->conexao("Tiffanny", "localhost","root","");
+                                        if($u->msgErro == "")
+                                        {
+                                            
+                                            if($u->editar2($senha, $id) && $u->deletarash($rash)){
+                                                echo "<script language=javascript type= 'text/javascript'>
+                                                window.alert('Senha alterada!');
+                                                window.location.href = 'Close_Log02.php'
+                                                </script>";
+                                                
+                                            }else{
+                                                echo "<script language=javascript type= 'text/javascript'>
+                                    window.alert('Não foi possível alterar a senha!')
+                                    </script>";
+                                            }
+                                    
+                                        }else
+                                        {
+                                            echo "Erro: ".$u->msgErro;
+                                        }
+                                    }
+                                else{
+                                    echo "<script language=javascript type= 'text/javascript'>
+                                    window.alert('As senhas diferem!')
+                                    </script>";
+                                }
+                            }
+            ?>
                     </form></center>
                   </div>
                   <!--/Abas do modal-->
