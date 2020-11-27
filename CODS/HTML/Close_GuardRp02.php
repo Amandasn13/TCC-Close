@@ -203,10 +203,11 @@ $('#psps').click(function(e){
                                         exit;
                                     }
                                         $idusuario = $dados1['IdUsuario'];
-                                        $sql = "CALL Buscar_Roupas('$idusuario')";
-                                                $resultado = mysqli_query($connect, $sql);
+                                        $sql = "CALL Buscar_Roupas('$idusuario',1)";
+                                                $resultado = mysqli_query($connect, $sql) OR die(mysqli_error($connect));
                                                 $total = mysqli_affected_rows($connect);
                                                 if($total > 0){
+                                                    $resultado = mysqli_query($connect, $sql);
                                                 while($dados = mysqli_fetch_array($resultado)){
                                                     $album[] = $dados; 
                                                 };

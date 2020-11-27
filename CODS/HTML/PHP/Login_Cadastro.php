@@ -184,8 +184,10 @@ public function esquecisenha($email){
         if($sql->rowCount() > 0)
         {
             $resultado = $sql->fetch(PDO::FETCH_ASSOC);
-            $chave = md5(md5($resultado['IdUsuario'].$resultado['Senha']));
+            $id = $resultado['IdUsuario'];
+            $senha = $resultado['Senha'];
             $email = $resultado['Email'];
+            $chave = md5(md5($id.$senha));
             $this->add_dados_recover($email, $chave);
             echo "<script language=javascript type= 'text/javascript'>
 			window.alert('E-mail enviado!');

@@ -32,7 +32,7 @@
     <p class="lead" style="color: azure;">Basta Informar seu E-mail abaixo, para que possa alterar sua senha!</p>
     <form method="post" name="esquecisenha">
         <div class="input-group mb-3">
-            <input type="text" name ="Email" class="form-control" placeholder="Digite seu email aqui" 
+            <input type="email" name ="Email" class="form-control" placeholder="Digite seu email aqui" 
             aria-label="Recipient's username" aria-describedby="button-addon2">
             <div class="input-group-append">
                 <button class="btn btn-success" name="Enviar" type="submit" id="button-addon2"
