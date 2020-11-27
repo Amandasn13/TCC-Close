@@ -204,7 +204,7 @@ $('#psps').click(function(e){
                                     }
                                         $idusuario = $dados1['IdUsuario'];
                                         $sql = "CALL Buscar_Roupas('$idusuario',1)";
-                                                $resultado = mysqli_query($connect, $sql) OR die(mysqli_error($connect));
+                                                $resultado = mysqli_query($connect, $sql);
                                                 $total = mysqli_affected_rows($connect);
                                                 if($total > 0){
                                                     $resultado = mysqli_query($connect, $sql);
