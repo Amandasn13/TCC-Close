@@ -15,13 +15,13 @@ body{
     width: 100%;
 }
 
-.uimg{
+.mm{
     width: 500px;
     height: 500px;
     //border-radius: 50%;
     border-color: rgb(165, 161, 161);
     border: 2px;
-    //margin: 10% 5% 10% 60%;
+    margin: 10% 5% 10% 60%;
 }
 
 #infus{
@@ -151,8 +151,8 @@ footer{
     width: 400px;
     grid-row: 3/3;
     grid-column: 3/3;
-    top: -60px;
-    left: 150px;
+    top: -70px;
+    left: 135px;
  }
   .ov3 {
     background: rgb(199, 201, 201);
@@ -182,3 +182,12 @@ footer{
           color: rgb(51, 48, 54);
       }
   }
+
+  #uft{
+    width: 550px;
+    height: 550px;
+    border-color: rgb(165, 161, 161);
+    border: 2px;
+    margin: 10% 5% 10% 60%;
+
+}

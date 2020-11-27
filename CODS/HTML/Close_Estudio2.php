@@ -323,9 +323,9 @@ $u = new Usuario;
       <!--Foto do usuário-->
     <center><?php
         if($dados['Foto']==""){
-        echo '<img src="IMG\Icones\8-512.png" id="uimg" class="ov1 uimg">';
+        echo '<img src="IMG\Icones\8-512.png" id="uft" class="ov1">';
         }else{
-        echo'<img src="Fotos_Perfis/'.$dados["Foto"].'" id="uimg" class="ov1 uimg">';
+        echo'<img src="Fotos_Perfis/'.$dados["Foto"].'" id="uft" class="ov1">';
         }
     ?></center>
       <!--toggles-->

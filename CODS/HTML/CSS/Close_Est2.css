@@ -15,11 +15,12 @@ body {
   width: 100%;
 }
 
-.uimg {
+.mm {
   width: 500px;
   height: 500px;
   border-color: #a5a1a1;
   border: 2px;
+  margin: 10% 5% 10% 60%;
 }
 
 #infus {
@@ -165,8 +166,8 @@ footer #rodp ul li a {
   grid-row: 3/3;
   -ms-grid-column: 3;
   grid-column: 3/3;
-  top: -60px;
-  left: 150px;
+  top: -70px;
+  left: 135px;
 }
 
 .ov3 {
@@ -198,5 +199,13 @@ footer #rodp ul li a {
 #nvl:target {
   background-color: ivory;
   color: #333036;
+}
+
+#uft {
+  width: 550px;
+  height: 550px;
+  border-color: #a5a1a1;
+  border: 2px;
+  margin: 10% 5% 10% 60%;
 }
 /*# sourceMappingURL=Close_Est2.css.map */
