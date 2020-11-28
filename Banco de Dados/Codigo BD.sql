@@ -203,16 +203,13 @@ CREATE PROCEDURE Novo_Look(dono INT,n CHAR(100), d CHAR(100))
 	BEGIN
 		INSERT INTO Look(Nome,Descricao) VALUES (n,d);
 		SELECT MAX(IdLook) INTO @idlook FROM Look;
-		INSERT INTO Usuario_Look_Roupa(fk_Usuario) VALUES (dono,@idlook);
-        SELECT MAX(idLook) FROM Look;
+		INSERT INTO Usuario_Look_Roupa(fk_Usuario,fk_Look) VALUES (dono,@idlook);
+        SELECT MAX(IdLook) FROM Look;
     END//
 /*Adiciona uma foto a um look*/
 CREATE PROCEDURE Nova_Foto(id INT, ft BLOB)
 	BEGIN
 		INSERT INTO fotos_look(fk_Look,Fotos_Look) VALUES (ft,id);
-    END//
-CREATE PROCEDURE Buscar_NovoLook()
-	BEGIN
     END//
 /*Retorna os Looks para a página de Guarda-Roupa*/
 CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
