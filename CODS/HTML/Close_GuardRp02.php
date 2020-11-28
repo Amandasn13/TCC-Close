@@ -249,13 +249,16 @@ $('#psps').click(function(e){
                                         <div class="modal-content" style="background-color: rgb(17, 14, 14);">
                                                 <ul class="nav nav-tabs" role="tablist">
                                                     <li role="presentation" class="active" style="padding-right: 30px; padding-left: 210px; margin-top: 7px; margin-bottom: 7px;">
-                                                        <a href="#VrFt<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Ver Peça</a>
+                                                        <a href="#VrFt<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" 
+                                                        style="color: whitesmoke; text-decoration: none;">Ver Peça</a>
                                                     </li>
                                                     <li role="presentation" style="padding-right: 30px; margin-top: 7px; margin-bottom: 7px;">
-                                                        <a href="#EdIn<?php echo $foto['IdRoupa'];?>" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
+                                                        <a href="#EdIn<?php echo $foto['IdRoupa'];?>" data-toggle="tab" role="button" 
+                                                        style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
                                                     </li>
-                                                    <li role="presentation" style="padding-right: 30px; padding-left: 210px; margin-top: 7px; margin-bottom: 7px;">
-                                                        <a href="#TkFt<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Trocar Foto</a>
+                                                    <li role="presentation" style="padding-right: 30px; margin-top: 7px; margin-bottom: 7px;">
+                                                        <a href="#TkFt<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" 
+                                                        style="color: whitesmoke; text-decoration: none;">Trocar Foto</a>
                                                     </li>
                                                     <li role="presentation" style="padding-right: 5px;  margin-top: 7px; margin-bottom: 7px;">
                                                         <a href="#ApDds<?php echo $foto['IdRoupa'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Peça</a>
@@ -273,87 +276,22 @@ $('#psps').click(function(e){
                                                                         <h5 style="color: azure; font-style: bold;">>></h5>
                                                                         <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $foto['Titulo'];  ?></h5>
                                                                         <a class="btn btn-outline-light popover-test col dropdown-toggle" data-toggle="dropdown" href="#" title="Descrição da peça" role="button" aria-haspopup="true" aria-expanded="false" style="font-style: bold; width: 70px;">↡</a>
-                                                                        <div class="dropdown-menu" style="width: 900px; margin-right: 100px; padding-left: 5px; padding-right: 5px;">
+                                                                        <div class="dropdown-menu" style="width: 400px; margin-right: 200px; background-size: cover; padding-left: 5px; padding-right: 5px; background-image: url(IMG/fnd.png);">
                                                                             <center><h3>Outras informações</h3></center>
-                                                                            <div style="border: 1px solid #ffbd00; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right, #ffbd00, #ffa20a, #ff871e, #ff6a2f, #ff4b3e, #ff365c, #ff297b, 
-                                                                                    #f72b99, #dc51c6, #b270e8, #7887fb, #0099ff); color: honeydew; color: azure;">
-                                                                                <a class="dropdown-item" href="#" style="color: white;"><h4>Descrição</h4></a>
+                                                                            <center><div style="background-color: white; width: 350px; border-radius: 10px; border: 2px solid;">
+                                                                                <p><?php   echo $foto['Categoria'];?><?php   echo $foto['Tipo'];?> de <?php   echo $foto['Material'];?>, tamanho 
+                                                                                <?php   echo $foto['Tamanho'];?> e cor <?php   echo $foto['Cor'];?>. <br>
+                                                                                <b>Marca:</b> <?php   echo $foto['Marca'];?>.
+                                                                            </p>
+                                                                            </div><br>
+                                                                            <div style="background-color: white; width: 350px; height:150px; max-height: 200px;
+                                                                             border-radius: 10px; border: 2px solid;">
+                                                                                <center><h4>Descrição:</h4></center>
                                                                                 <div class="dropdown-divider"></div>
-                                                                                <div class="blog-post">
-                                                                                    <p class="mb-0" href="#" style="margin: 10px; color: #151515; width: fill-parent;">
-                                                                                        <?php   echo $foto['Descricao'];?>
-                                                                                    </p>
+                                                                                <div data-spy="scroll" style="overflow: auto;">
+                                                                                    <p style="text-align: justify; padding: 5px;"><?php   echo $foto['Descricao'];?></p>
                                                                                 </div>
-                                                                            </div>
-                                                                            <br>
-                                                                            <div class="container">
-                                                                                <div class="row justify-content-around">
-                                                                                    <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
-                                                                                        #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
-                                                                                        <a class="dropdown-item" href="#" style="color: white;"><h4>Categoria</h4></a>
-                                                                                        <div class="dropdown-divider"></div>
-                                                                                        <div class="blog-post" style="width: inherit;">
-                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                                                                <?php   echo $foto['Categoria'];?>
-                                                                                            </p></center>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
-                                                                                        #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
-                                                                                        <a class="dropdown-item" href="#" style="color: white;"><h4>Tipo</h4></a>
-                                                                                        <div class="dropdown-divider"></div>
-                                                                                        <div class="blog-post" style="width: inherit;">
-                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                                                                <?php   echo $foto['Tipo'];?>
-                                                                                            </p><center>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div><br>
-                                                                                <div class="row justify-content-around">
-                                                                                    <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
-                                                                                        #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
-                                                                                        <a class="dropdown-item" href="#"  style="color: white;"><h4>Marca</h4></a>
-                                                                                        <div class="dropdown-divider"></div>
-                                                                                        <div class="blog-post" style="width: inherit;">
-                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                                                                <?php   echo $foto['Marca'];?>
-                                                                                            </p></center>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
-                                                                                            #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
-                                                                                        <a class="dropdown-item" href="#" style="color: white;"><h4>Tamanho</h4></a>
-                                                                                        <div class="dropdown-divider"></div>
-                                                                                        <div class="blog-post" style="width: inherit;">
-                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                                                                <?php   echo $foto['Tamanho'];?>
-                                                                                            </p></center>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div><br>
-                                                                                <div class="row justify-content-around">
-                                                                                    <div class="col" style="border: 1px solid #f85d10; border-radius: 10px; margin-left: 2px; margin-right: 2px; background-image: linear-gradient(to right bottom, #ffbd00, #ffab00, #ff9900, #ff8600, 
-                                                                                        #ff7200, #ff640e, #ff5518, #ff4421, #ff3730, #ff2a3d, #ff1948, #ff0054); color: honeydew; color: azure;">
-                                                                                        <a class="dropdown-item" href="#"  style="color: white;"><h4>Cor</h4></a>
-                                                                                        <div class="dropdown-divider"></div>
-                                                                                        <div class="blog-post" style="width: inherit;">
-                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                                                                <?php   echo $foto['Cor'];?>
-                                                                                            </p></center>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col" style="border: 1px solid #ff0054; border-radius: 10px; background-image: linear-gradient(to right bottom, #ff0054, #ee0058, #dc005a, #ca005b, 
-                                                                                            #b7005b, #b2166c, #ab267c, #a1338b, #984faf, #8369d0, #6082eb, #0099ff); color: honeydew;">
-                                                                                        <a class="dropdown-item" href="#" style="color: white;"><h4>Material</h4></a>
-                                                                                        <div class="dropdown-divider"></div>
-                                                                                        <div class="blog-post" style="width: inherit;">
-                                                                                            <center><p class="mb-0" href="#" style="margin: 10px;">
-                                                                                                <?php   echo $foto['Material'];?>
-                                                                                            </p></center>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                            </div></center><br>
                                                                         </div>                        
                                                                     </div>
                                                                 </div>
@@ -441,29 +379,18 @@ $('#psps').click(function(e){
                                                                              
                                                                            
                                                                     <form method="post" name="editarroupa">
-                                                                    <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
-                                                                        <div class="col-4"> <!--Campo Nome-->
-                                                                                <input type="hidden" name="idroupa" value="<?php echo $foto['IdRoupa'];?>"> 
-                                                                                <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
-                                                                                <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui" value="<?php echo $foto['Titulo'];?>"> 
-                                                                        </div>
+                                                                        <!--Campo Nome-->
+                                                                        <input type="hidden" name="idroupa" value="<?php echo $foto['IdRoupa'];?>"> 
+                                                                        <label for="nmpc" style="color: azure;">É só digitar o novo nome abaixo:</label><br><br>
+                                                                        <input type="text" id="nmpc" class="form-control" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui" value="<?php echo $foto['Titulo'];?>"> 
+                                                                    
                                                                         
-                                                                    </div><br>
-                                                                    <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
-                                                                        <div class="col-4"><!--Campo descrição-->
-                                                                                <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
-                                                                                <input type="textarea" maxlenght="250" id="descpc" style="width: 230px;" name="descrpeca" placeholder="Digite aqui" value="<?php echo $foto['Descricao'];?>">
-                                                                        </div>
-                                                                        <div class="col-4"><!-- Campo tags-->
-                                                                            <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
-                                                                            <input type="textarea" id="tagpc" name="tagspeca" style="width: 230px;" placeholder="Digite aqui">
-                                                                        </div>
-                                                                    </div><br>
+                                                                        <br>
                                                                     <div class="row justify-content-around" style="color: azure;">
                                                                         <div class="col-4">
                                                                             <div class="row justify-content-center">
                                                                                 <label for="cat_roupa" class="col-4">Tipo:</label>
-                                                                                <input type="text" list="tipo" class="col-4 col-sm-10" id="tip_roupa" name="tipo"   placeholder="Tipo de roupa (ex: calça)" maxlength="100" required value="<?php echo $foto['Tipo'];?>">
+                                                                                <input type="text" list="tipo" class="col-4 col-sm-10 form-control" id="tip_roupa" name="tipo"   placeholder="Tipo de roupa (ex: calça)" maxlength="100" required value="<?php echo $foto['Tipo'];?>">
                                                                                 <datalist id="tipo">
                                                                                     <!--Acessórios: -->
                                                                                     <option value="Anel"></option>
@@ -549,7 +476,7 @@ $('#psps').click(function(e){
                                                                         <div class="col-4">
                                                                             <div class="row justify-content-center">
                                                                                 <label for="cat_roupa" class="col-4">Categoria:</label>
-                                                                                <input type="text" list="cat" class="col-4 col-sm-10" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required value="<?php echo $foto['Categoria'];?>">
+                                                                                <input type="text" list="cat" class="col-4 col-sm-10 form-control" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required value="<?php echo $foto['Categoria'];?>">
                                                                                 <datalist id="cat">
                                                                                     <option value="Acessórios"></option>
                                                                                     <option value="Calçados"></option>
@@ -564,13 +491,13 @@ $('#psps').click(function(e){
                                                                         <div class="col-4">
                                                                             <div class="row justify-content-center">
                                                                                 <label for="tamanho_roupa" class="col-4">Tamanho:</label>
-                                                                                <input type="text" class="col-4 col-sm-10" id="tamanho_roupa" name="tamanho" placeholder="Tamanho da roupa" value="<?php echo $foto['Tamanho'];?>">
+                                                                                <input type="text" class="col-4 col-sm-10 form-control" id="tamanho_roupa" name="tamanho" placeholder="Tamanho da roupa" value="<?php echo $foto['Tamanho'];?>">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4">
                                                                             <div class="row justify-content-center">
                                                                                 <label for="cor_roupa" class="col-4">Cor:</label>
-                                                                                <input type="text" class="col-4 col-sm-10" id="cor_roupa" name="cor" placeholder="Digite a cor da roupa" required value="<?php echo $foto['Cor'];?>">
+                                                                                <input type="text" class="col-4 col-sm-10 form-control" id="cor_roupa" name="cor" placeholder="Digite a cor da roupa" required value="<?php echo $foto['Cor'];?>">
                                                                             </div><br>
                                                                         </div>
                                                                     </div>
@@ -578,17 +505,26 @@ $('#psps').click(function(e){
                                                                         <div class="col-4">
                                                                             <div class="row justify-content-center">
                                                                                 <label for="marc_roupa" class="col-4">Marca:</label>
-                                                                                <input type="text" class="col-4 col-sm-10" id="marc_roupa" name="marca" placeholder="Marca" value="<?php echo $foto['Marca'];?>">
+                                                                                <input type="text" class="col-4 col-sm-10 form-control" id="marc_roupa" name="marca" placeholder="Marca" value="<?php echo $foto['Marca'];?>">
                                                                             </div><br>  
                                                                         </div>
                                                                         <div class="col-4">
                                                                             <div class="row justify-content-center">
                                                                                 <label for="mat_roupa" class="col-4">Material:</label>
-                                                                                <input type="text" class="col-4 col-sm-10" id="mat_roupa" name="material" placeholder="Material da roupa" value="<?php echo $foto['Material'];?>">
+                                                                                <input type="text" class="col-4 col-sm-10 form-control" id="mat_roupa" name="material" placeholder="Material da roupa" value="<?php echo $foto['Material'];?>">
                                                                             </div><br>
                                                                         </div>
                                                                     </div>
-                                                                </div><br><br>
+                                                                </div><br>
+                                                                    <!--Campo descrição-->
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text" for="descpc">É só digitar a nova descrição abaixo:</span>
+                                                                            </div>
+                                                                            <textarea class="form-control" aria-label="Com textarea" maxlenght="250" id="descpc" style="width: 200px;" 
+                                                                                name="descrpeca" placeholder="Digite aqui" value="<?php echo $foto['Descricao'];?>"></textarea>
+                                                                        </div> 
+                                                                <br>
                                                                 <input type="submit" value="Confirmar" class="btn btn-primary">
                                                                 <?php
                                                                     if(isset($_POST['idroupa']))
