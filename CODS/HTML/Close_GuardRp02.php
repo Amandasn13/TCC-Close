@@ -13,6 +13,7 @@ $id = $_SESSION['IdUsuario'];
 $sql = "CALL Buscar_Usuario('$id')";
 $resultado = mysqli_query($connect, $sql);
 $dados1 = mysqli_fetch_array($resultado);
+mysqli_free_result($resultado);
 mysqli_next_result($connect);
 $u = new Usuario; 
 ?>
@@ -207,6 +208,7 @@ $('#psps').click(function(e){
                                         $sql = "CALL Buscar_Roupas('$idusuario',1)";
                                                 $resultado = mysqli_query($connect, $sql);
                                                 $total = mysqli_affected_rows($connect);
+                                                mysqli_free_result($resultado);
                                                 mysqli_next_result($connect);
                                                 if($total > 0){
                                                     $resultado = mysqli_query($connect, $sql);
@@ -531,13 +533,13 @@ $('#psps').click(function(e){
                                                                     {
                                                                     $id = addslashes($_POST['idroupa']);
                                                                     $titulo = addslashes($_POST['nomepeca']);
-                                                                    $categoria = addslashes($_POST['categoria']);
                                                                     $tipo = addslashes($_POST['tipo']);
-                                                                    $cor = addslashes($_POST['cor']);
-                                                                    $descricao = addslashes($_POST['descrpeca']);
+                                                                    $categoria = addslashes($_POST['categoria']);
                                                                     $tamanho = addslashes($_POST['tamanho']);
+                                                                    $cor = addslashes($_POST['cor']);
                                                                     $marca = addslashes($_POST['marca']);
                                                                     $material = addslashes($_POST['material']);
+                                                                    $descricao = addslashes($_POST['descrpeca']);
                                                                     
 
 
@@ -557,6 +559,7 @@ $('#psps').click(function(e){
                                                                                 </script>";
                                                                             }else{
                                                                                 echo "Não foi possivel editar!";
+    
 
                                                                             }
                                                                         }else

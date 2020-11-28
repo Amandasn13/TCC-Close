@@ -12,6 +12,8 @@ $id = $_SESSION['IdUsuario'];
 $sql = "CALL Buscar_Usuario('$id')";
 $resultado = mysqli_query($connect, $sql);
 $dados = mysqli_fetch_array($resultado);
+mysqli_free_result($resultado);
+mysqli_next_result($connect);
 $u = new Usuario; 
 
 ?>

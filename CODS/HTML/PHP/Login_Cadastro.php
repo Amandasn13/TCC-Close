@@ -150,8 +150,7 @@ public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, 
     global $msgErro;
    
         
-        $sql = $pdo->prepare("CALL Alterar_Roupa(:id, :tit, :cat, :tip, :c, :descr, :tam, :mar, 
-        :mat");
+        $sql = $pdo->prepare("CALL Alterar_Roupa(:id, :tit, :cat, :tip, :c, :descr, :tam, :mar, :mat)");
         $sql->bindValue(":id", $id);
         $sql->bindValue(":tit", $titulo); 
         $sql->bindValue(":cat", $categoria); 
@@ -161,13 +160,13 @@ public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, 
         $sql->bindValue(":tam", $tamanho); 
         $sql->bindValue(":mar", $marca);
         $sql->bindValue(":mat", $material);
-        
+        $sql->nextRowset(); 
         $sql->execute();
         if($sql->rowCount() > 0)
         {
             return true;
         }else{
-            return false;
+            echo $sql->errorCode();
         }
         
     
@@ -347,8 +346,8 @@ try {
 
         $sql = $pdo->prepare("CALL Apagar_Usuario(:id)");
         $sql->bindValue(":id", $id);
-        $sql->nextRowset(); 
         $sql->execute();
+        $sql->nextRowset(); 
         if($sql->rowCount() > 0)
         {
             return true;
