@@ -199,7 +199,7 @@ CREATE PROCEDURE Apagar_Roupa(id INT)
 	END//
 /*--Procedures de Looks e suas Fotos--*/
 /*Cria um novo look*/
-CREATE PROCEDURE Novo_Look(DONO CHAR(100),n CHAR(100), d CHAR(100),ft BLOB)
+CREATE PROCEDURE Novo_Look(dono INT,n CHAR(100), d CHAR(100))
 	BEGIN
 		INSERT INTO Look(Nome,Descricao) VALUES (n,d);
 		SELECT MAX(IdLook) into @idlook FROM Look;
