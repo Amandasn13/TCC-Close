@@ -13,7 +13,8 @@ $resultado = mysqli_query($connect, $sql);
 $total = mysqli_affected_rows($connect);
 if($total > 0){
 $dados1 = mysqli_fetch_array($resultado);
-
+mysqli_free_result($resultado);
+mysqli_next_result($connect);
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +48,9 @@ $dados1 = mysqli_fetch_array($resultado);
         $email = $dados1['email'];
         $sql = "CALL BuscarId_UsuarioE('$email')";
         $resultado1 = mysqli_query($connect, $sql);
-        $dados2 = mysqli_fetch_array($resultado1); 
+        $dados2 = mysqli_fetch_array($resultado1);
+        mysqli_free_result($resultado1);
+mysqli_next_result($connect); 
     ?>
     <center>
     <div class="jumbotron" style="width: 60%; background-color: #141414;">

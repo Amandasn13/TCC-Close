@@ -29,6 +29,7 @@ Class Usuario
         //verifica se o usuáio cadastrado já existe!
         $sql = $pdo->prepare("CALL BuscarId_UsuarioNu(:nu)");
         $sql->bindValue(":nu", $nomeusuario); 
+        $sql->nextRowset();
         $sql->execute();
         if($sql->rowCount() > 0)
         {
@@ -43,7 +44,8 @@ Class Usuario
             $sql->bindValue(":nu", $nomeusuario); 
             $sql->bindValue(":d", $nascimento);
             $sql->bindValue(":e", $email);
-            $sql->bindValue(":k", md5($senha)); 
+            $sql->bindValue(":k", md5($senha));
+            $sql->nextRowset(); 
             $sql->execute();
             return true;
         }
@@ -58,6 +60,7 @@ Class Usuario
         $sql->bindValue (":nu", $nomeusuario);
         $sql->bindValue (":s", md5($senha));
         $sql->bindValue (":e", $E_mail);
+        $sql->nextRowset();
         $sql->execute();
         //esse if ta fazendo a verificação se tá certo o user e a senha da pessoa.   
         if ($sql->rowCount() > 0) {
@@ -81,7 +84,8 @@ Class Usuario
         global $msgErro;
         //verifica se o email q a pessoa usar já nao ta sendo usado por nenhum outro usuario!
         $sql = $pdo->prepare("CALL BuscarId_UsuarioE(:e)");
-        $sql->bindValue(":e", $email); 
+        $sql->bindValue(":e", $email);
+        $sql->nextRowset(); 
         $sql->execute();
         if($sql->rowCount() > 0)
         {
@@ -102,6 +106,7 @@ public function editar1($id, $nome, $sobrenome, $nascimento)
         $sql->bindvalue(":n", $nome);              
         $sql->bindValue(":s", $sobrenome); 
         $sql->bindValue(":dn", $nascimento);
+        $sql->nextRowset();
         $sql->execute();
         return true;
        
@@ -115,6 +120,7 @@ public function editar1($id, $nome, $sobrenome, $nascimento)
         $sql = $pdo->prepare("CALL Alterar_Senha(:id, :s)");
         $sql->bindvalue(":s", md5($senha));                
         $sql->bindvalue(":id", $id);
+        $sql->nextRowset();
         $sql->execute();
         return true;
        
@@ -127,7 +133,8 @@ public function editar1($id, $nome, $sobrenome, $nascimento)
         global $msgErro;             
         $sql = $pdo->prepare("CALL Alterar_Email(:id, :e)");
         $sql->bindvalue(":e", $email);                
-        $sql->bindvalue(":id", $id); 
+        $sql->bindvalue(":id", $id);
+        $sql->nextRowset(); 
         $sql->execute();
         return true;
        
@@ -153,7 +160,8 @@ public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, 
         $sql->bindValue(":descr", $descricao);  
         $sql->bindValue(":tam", $tamanho); 
         $sql->bindValue(":mar", $marca);
-        $sql->bindValue(":mat", $material); 
+        $sql->bindValue(":mat", $material);
+        
         $sql->execute();
         if($sql->rowCount() > 0)
         {
@@ -174,6 +182,7 @@ public function apagarfoto($id)
    
         $sql = $pdo->prepare("CALL Apagar_Roupa(:id)");
         $sql->bindValue(":id", $id);
+        $sql->nextRowset();
         $sql->execute();
         return true;
     
@@ -186,6 +195,7 @@ public function esquecisenha($email){
 
         $sql = $pdo->prepare("CALL Buscar_UsuarioE(:e)");
         $sql->bindValue(":e", $email);
+        $sql->nextRowset();
         $sql->execute();
         if($sql->rowCount() > 0)
         {
@@ -216,6 +226,7 @@ public function esquecisenha($email){
         $sql = $pdo->prepare("CALL Nova_Recuperacao(:e, :r)");
         $sql->bindValue(":e", $email);
         $sql->bindValue(":r", $chave);
+        $sql->nextRowset();
         $sql->execute();
         if($sql->rowCount() > 0){
 			$this->enviar_email($email, $chave);
@@ -273,6 +284,7 @@ try {
 
         $sql = $pdo->prepare("CALL Apagar_Recuperacao(:r)");
         $sql->bindValue(":r", $rash);
+        $sql->nextRowset();
         $sql->execute();
         return true;
 
@@ -284,6 +296,7 @@ try {
         $sql = $pdo->prepare("CALL Alterar_Nome(:id, :n)");
         $sql->bindValue(":id", $id);
         $sql->bindValue(":n", $nomeusuario);
+        $sql->nextRowset();
         $sql->execute();
         return true;
 
@@ -295,7 +308,8 @@ try {
         global $msgErro;
         //verifica se o email q a pessoa usar já nao ta sendo usado por nenhum outro usuario!
         $sql = $pdo->prepare("CALL BuscarId_UsuarioNu(:nu)");
-        $sql->bindValue(":nu", $nomeusuario); 
+        $sql->bindValue(":nu", $nomeusuario);
+        $sql->nextRowset(); 
         $sql->execute();
         if($sql->rowCount() > 0)
         {
@@ -313,7 +327,8 @@ try {
         global $msgErro;
 
         $sql = $pdo->prepare("CALL Buscar_RecuperacaoE(:e)");
-        $sql->bindValue(":e", $email); 
+        $sql->bindValue(":e", $email);
+        $sql->nextRowset(); 
         $sql->execute();
         if($sql->rowCount() > 0)
         {
@@ -331,7 +346,8 @@ try {
         global $msgErro;
 
         $sql = $pdo->prepare("CALL Apagar_Usuario(:id)");
-        $sql->bindValue(":id", $id); 
+        $sql->bindValue(":id", $id);
+        $sql->nextRowset(); 
         $sql->execute();
         if($sql->rowCount() > 0)
         {
