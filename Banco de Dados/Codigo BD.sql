@@ -144,7 +144,7 @@ CREATE PROCEDURE AlterarFt_Usuario(id INT, ft BLOB)
 /*Remove a conta de um usuário e todos os seus dados*/
 CREATE PROCEDURE Apagar_Usuario(id INT)
 	BEGIN
-		SET @iduser=idU;
+		SET @iduser=id;
 		DROP VIEW IF EXISTS Guarda_Roupa;
 		CREATE VIEW Guarda_Roupa AS SELECT fk_Roupa FROM Usuario_Look_Roupa AS idroupa WHERE get_idu()=fk_Usuario;
         DELETE FROM Usuario_Look_Roupa WHERE fk_Roupa IN (SELECT * FROM Guarda_Roupa);
