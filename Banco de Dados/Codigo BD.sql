@@ -37,7 +37,7 @@ CREATE TABLE Look (
 CREATE TABLE Fotos_Look (
     IdFotosLook INT AUTO_INCREMENT PRIMARY KEY,
     fk_Look INT,
-    Fotos_Look BLOB,
+    Foto BLOB,
 	CONSTRAINT FOREIGN KEY (fk_Look) REFERENCES Look (IdLook)
 );
 /*Criação da tabela que relaciona Usuarios Looks e Roupas*/
@@ -231,12 +231,19 @@ CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
 /*Retorna todas as fotos de um Look*/
 CREATE PROCEDURE Buscar_Fotos(id INT)
 	BEGIN
-		SELECT * FROM Fotos_Look WHERE fk_Look = id;
+		SELECT * FROM Foto WHERE fk_Look = id;
     END//
+/*Altera um look*/
+CREATE PROCEDURE Alterar_Look(id INT,n CHAR(100), d CHAR(100))
+	 BEGIN
+		UPDATE Roupa SET Nome=n, Descricao=d WHERE IdLook = id;
+     END//
+/*Altera uma foto de um look*/
 /*Remove um Look*/
 CREATE PROCEDURE Apagar_Look(id INT)
 	BEGIN
 		DELETE FROM Usuario_Look_Roupa WHERE fk_Look=id;
+        DELETE FROM Fotos_Look WHERE fk_Look=id;
 		DELETE FROM Look WHERE IdLook=id;
 	END//
 DELIMITER ;
