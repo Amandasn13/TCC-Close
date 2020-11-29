@@ -5,13 +5,13 @@
 	</head>
 	</body>
         <?php
-            require_once 'Login_Cadastro.php';
+            require_once 'funcoes_usuario.php';
             session_start();
             if(!isset($_SESSION['IdUsuario']))
             {
-                header("location: Close_Log02.php");
+                header("location: ../Close_Log02.php");
                 exit;
-            }
+            }else{
 			require_once("Conexao.php");
             
                 $id = $_POST['id_user'];
@@ -61,6 +61,7 @@
                 window.location.href = '../Close_GuardRp02.php'
                 </script>";   
             }
+        }
 		?>
 		
 	</body>

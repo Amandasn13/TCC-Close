@@ -1,4 +1,5 @@
 <?php
+
 Class Roupa{
         
     private $pdo;
@@ -16,7 +17,7 @@ Class Roupa{
             $msgErro = $erro->getMessage();            
         }
     }
-    //ediçaõ do titulo/nome da roupa!
+    //edição das informações com textos da roupa
     public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material)
     {
         
@@ -43,6 +44,7 @@ Class Roupa{
                 return false;
             }      
     }
+    //função de apagar a roupa
     public function apagarfoto($id){
     
     global $pdo;

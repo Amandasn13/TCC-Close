@@ -1,21 +1,19 @@
 <?php
 require_once 'PHP/Conexao.php';
-
-require_once 'PHP/Login_Cadastro.php';
-session_start();
+require_once 'PHP/funcoes_roupa.php';
 if(!isset($_SESSION['IdUsuario']))
 {
     header("location: Close_Log02.php");
     exit;
-}
+}else{
  //logo aqui, criada uma forma de armazenar todos os dados do usuario em uma variavel.
 $id = $_SESSION['IdUsuario'];
 $sql = "CALL Buscar_Usuario('$id')";
 $resultado = mysqli_query($connect, $sql);
 $dados1 = mysqli_fetch_array($resultado);
 mysqli_free_result($resultado);
-mysqli_next_result($connect);
-$u = new Usuario; 
+mysqli_next_result($connect); 
+$r = new Roupa;
 ?>
 
 <!DOCTYPE html>
@@ -201,7 +199,7 @@ $('#psps').click(function(e){
 
                                     if(!isset($_SESSION['IdUsuario']))
                                     {
-                                        header("location: Close_Log02.php");
+                                        header("location: /Close_Log02.php");
                                         exit;
                                     }
                                         $idusuario = $dados1['IdUsuario'];
@@ -232,17 +230,7 @@ $('#psps').click(function(e){
                                                 fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width:
                                                 100%; display: block;" src="<?php echo"Fotos_Roupas/".$foto["Foto"].''; ?>" data-target="#RpMod<?php echo $foto['IdRoupa'];?>" data-holder-rendered="true" data-toggle="modal" role="dialog">
                                             
-                                            </div><!--Fecha card--><?php
-                                            $fotoid = $foto["IdRoupa"];
-                                            $fototitulo = $foto['Titulo'];
-                                            $fotocategoria = $foto['Categoria'];
-                                            $fototipo = $foto['Tipo'];
-                                            $fotocor = $foto['Cor'];
-                                            $fotodescricao = $foto['Descricao'];
-                                            $fototamanho = $foto['Tamanho'];
-                                            $fotomarca = $foto['Marca'];
-                                            $fotomaterial = $foto['Material'];
-                                            ?>
+                                            </div><!--Fecha card-->
                                         </div><!--Fecha componente da grid (alinhamento)-->
                                     </td>
                                     <!-- V. SEÇÃO DE MODAIS - Modal Roupas-->
@@ -315,9 +303,9 @@ $('#psps').click(function(e){
                                                                                     
 
                                                                         $u->conexao("Tiffanny", "localhost","root","");
-                                                                        if($u->msgErro == "")
+                                                                        if($r->msgErro == "")
                                                                         {
-                                                                            if($u->apagarfoto($id))
+                                                                            if($r->apagarfoto($id))
                                                                             {
                                                                                 echo "<script language=javascript type= 'text/javascript'>
                                                                                     window.alert('Roupa apagada com sucesso!')
@@ -330,7 +318,7 @@ $('#psps').click(function(e){
 
                                                                             }
                                                                         }else{
-                                                                            echo "Erro: ".$u->msgErro;
+                                                                            echo "Erro: ".$r->msgErro;
                                                                         }
                                                                     }
                                                                 ?>
@@ -546,10 +534,10 @@ $('#psps').click(function(e){
                                                                     
                                                                 
 
-                                                                        $u->conexao("Tiffanny", "localhost","root","");
-                                                                        if($u->msgErro == "")
+                                                                        $r->conexao("Tiffanny", "localhost","root","");
+                                                                        if($r->msgErro == "")
                                                                         {
-                                                                            if($u->editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material))
+                                                                            if($r->editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material))
                                                                             {
                                                                             echo "<script language=javascript type= 'text/javascript'>
                                                                             window.alert('Informações alteradas com sucesso!')
@@ -564,7 +552,7 @@ $('#psps').click(function(e){
                                                                             }
                                                                         }else
                                                                         {
-                                                                            echo "Erro: ".$u->msgErro;
+                                                                            echo "Erro: ".$r->msgErro;
                                                                         }
                                                                     }
                                                                 ?>
@@ -1099,3 +1087,4 @@ $('#psps').click(function(e){
 <!-- FIM DA SEÇÃO DE MODAIS-->
 </body>
 </html>
+                                                        <?php }?>

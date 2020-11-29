@@ -1,5 +1,5 @@
 <?php
-    require_once 'PHP/Login_Cadastro.php';
+    require_once 'PHP/funcoes_usuario.php';
     $u = new Usuario; 
 
 ?>

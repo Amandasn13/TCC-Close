@@ -9,13 +9,13 @@
 	</head>
 	</body>
         <?php
-            require_once 'Login_Cadastro.php';
+            require_once 'funcoes_usuario.php';
             session_start();
             if(!isset($_SESSION['IdUsuario']))
             {
-                header("location: Close_Log.php");
+                header("location: ../Close_Log02.php");
                 exit;
-            }
+            }else{
             $id = $_SESSION['IdUsuario'];
             $resultado = mysqli_query($connect, $sql);
             $dados = mysqli_fetch_array($resultado);
@@ -128,7 +128,7 @@
 				}
 			}
 			
-			
+			}	
 		?>
 		
 	</body>

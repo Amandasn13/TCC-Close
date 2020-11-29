@@ -6,24 +6,14 @@
 	</body>
         <?php
 		require_once 'Conexao.php';
-            require_once 'Login_Cadastro.php';
+            require_once 'funcoes_usuario.php';
             session_start();
             if(!isset($_SESSION['IdUsuario']))
             {
-                header("location: Close_Log02.php");
+                header("location: ../Close_Log02.php");
                 exit;
-            }
-			
-            
-
+            }else{
             $id = $_POST['id_roupa'];
-          
-            
-            
-        
-											
-            
-
 			include_once("Conexao.php");
             
 			$arquivo 	= $_FILES["arquivo$id"]['name'];
@@ -117,7 +107,7 @@
 		</script>";
 				}
 			}
-			
+		}
 			
 		?>
 		
