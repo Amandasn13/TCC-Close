@@ -1,6 +1,7 @@
 <?php
 require_once 'PHP/Conexao.php';
 require_once 'PHP/funcoes_usuario.php';
+session_start();
 if(!isset($_SESSION['IdUsuario']))
 {
     header("location: Close_Log02.php");
