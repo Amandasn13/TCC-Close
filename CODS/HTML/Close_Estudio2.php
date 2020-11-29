@@ -151,7 +151,7 @@ $u = new Usuario;
                               $u->conexao("Tiffanny", "localhost","root","");
                               if($u->msgErro == "")
                               {
-                                  if($u->editar1($id, $nome, $sobrenome, $nascimento
+                                  if($u->alterarDados($id, $nome, $sobrenome, $nascimento
                                   ))
                                   {
                                       echo "<script language=javascript type= 'text/javascript'>
@@ -189,8 +189,8 @@ $u = new Usuario;
                               $u->conexao("Tiffanny", "localhost","root","");
                               if($u->msgErro == "")
                               {
-                                  if($u->verifica($email)){
-                                      if($u->editar3($email, $id)){
+                                  if($u->verificarEmail($email)){
+                                      if($u->alterarEmail($email, $id)){
                                           echo "<script language=javascript type= 'text/javascript'>
                                           window.alert('E-mail alterado com sucesso!')
                                           </script>";
@@ -237,8 +237,8 @@ $u = new Usuario;
                                     $u->conexao("Tiffanny", "localhost","root","");
                                     if($u->msgErro == "")
                                     {
-                                        if($u->verifica2($nomeusuario)){
-                                            if($u->editaruser($id, $nomeusuario)){
+                                        if($u->VericarNome($nomeusuario)){
+                                            if($u->alterarNome($id, $nomeusuario)){
                                                 echo "<script language=javascript type= 'text/javascript'>
                                                 window.alert('Nome de usuário alterado com sucesso!')
                                                 </script>";
@@ -295,7 +295,7 @@ $u = new Usuario;
                                                                             if($u->msgErro == "")
                                                                             {
                                                                                 
-                                                                                if($u->editar2($senha, $id)){
+                                                                                if($u->alterarSenha($senha, $id)){
                                                                                     echo "<script language=javascript type= 'text/javascript'>
                                                                                     window.alert('Senha alterada!');
                                                                                     window.location.href = 'Close_Estudio2.php'
@@ -354,7 +354,7 @@ $u = new Usuario;
                                         if($u->msgErro == "")
                                         {
                                             
-                                            if($u->apagarusuario($id)){
+                                            if($u->apagarUsuario($id)){
                                                 echo "<script language=javascript type= 'text/javascript'>
                                                 window.alert('Usuario apagado!');
                                                 window.location.href = 'Close_Log02.php'

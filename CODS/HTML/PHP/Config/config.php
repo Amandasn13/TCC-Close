@@ -150,7 +150,7 @@ $u = new Usuario;
                 if($senha == $confirmarSenha)
                 {
                     if($u->msgErro == ""){
-                        if($u->editar2($senha, $id)){
+                        if($u->alterarSenha($senha, $id)){
                             echo "<script language=javascript type= 'text/javascript'>
                             window.alert('Senha alterada com sucesso!')
                             </script>";

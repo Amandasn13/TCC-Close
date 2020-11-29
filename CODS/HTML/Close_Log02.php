@@ -192,7 +192,7 @@
                             {
                                 if($senha == $confirmarSenha)
                                 {
-                                    if($u->verifica($email)){
+                                    if($u->verificarEmail($email)){
                                 if($u->cadastrar($nome, $sobrenome, $nomeusuario, $nascimento,
                                 $email, $senha, $confirmarSenha))
                                 {

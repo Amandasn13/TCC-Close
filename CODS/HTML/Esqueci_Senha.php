@@ -46,8 +46,8 @@
                         $u->conexao("Tiffanny", "localhost","root","");
                         if($u->msgErro == "")
                         {
-                            if($u->verificarash($email)){                            
-                            $u->esquecisenha($email);
+                            if($u->VericarRash($email)){                            
+                            $u->esqueciSenha($email);
                             }else{
                                 echo "<script language=javascript type= 'text/javascript'>
                                 window.alert('Você já solicitou a redefinição de senha, cheque a caixa de entrada no seu e-mail! (Verifique nos spams).')

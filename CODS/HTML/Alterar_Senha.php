@@ -87,7 +87,7 @@ mysqli_next_result($connect);
                                         if($u->msgErro == "")
                                         {
                                             
-                                            if($u->editar2($senha, $id) && $u->deletarash($rash)){
+                                            if($u->alterarSenha($senha, $id) && $u->deletarRash($rash)){
                                                 echo "<script language=javascript type= 'text/javascript'>
                                                 window.alert('Senha alterada!');
                                                 window.location.href = 'Close_Log02.php'
