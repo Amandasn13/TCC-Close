@@ -36,7 +36,7 @@
                         $total = mysqli_affected_rows($connect);
                         if($total > 0){
                                 echo "<script language=javascript type= 'text/javascript'>
-                                window.alert('Looks cadastrados com sucesso!')
+                                window.alert('Look cadastrado com sucesso!')
 							    </script>";
                                 echo "<script language=java script type= 'text/javascript'>
                                 window.location.href = '../Close_GuardRp02.php'

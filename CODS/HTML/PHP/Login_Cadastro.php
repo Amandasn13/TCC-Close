@@ -260,7 +260,7 @@ try {
     $corpo = '<!doctype html><head>
         <html>
         <meta charset="UTF-8">
-    </head><body><p>Foi solicitada a alteração da sua senha do Close, clique<a href="http://localhost/TCC%20Def/TCC-Close/CODS/HTML/Alterar_Senha.php?chave='.$chave.'"> aqui</a> para alterá-la. Caso não tenha sido você apenas ignore essa 
+    </head><body><p>Foi solicitada a alteração da sua senha do Close, clique<a href="http://localhost/TCC-Close/CODS/HTML/Alterar_Senha.php?chave='.$chave.'"> aqui</a> para alterá-la. Caso não tenha sido você apenas ignore essa 
     mensagem e mantenha-se alerta!</p></body></html>';
     $mail->isHTML(true);
 	$mail->Subject = 'Alterar senha';
