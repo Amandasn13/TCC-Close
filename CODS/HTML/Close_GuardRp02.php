@@ -810,7 +810,7 @@ $('#psps').click(function(e){
         <div class="modal-content" style="background-color: rgb(17, 14, 14); color: azure;">
             <header><center><h2 style="color: azure;"> Cadastro de looks</h2></center></header>
             <div>
-                <form method="post" class="px-4 py-3" action="PHP/cadastrarfotoroupas.php" id="est-f" enctype="multipart/form-data">
+                <form method="post" class="px-4 py-3" action="PHP/cadastrarfotolooks.php" id="est-f" enctype="multipart/form-data">
                     <br><h4>Por favor, preencha as lacunas abaixo com os dados necessários para o cadastro da peça de roupa</h4></center><br>
                     <div class="container">    
                         <div class="row justify-content-around">
@@ -822,9 +822,9 @@ $('#psps').click(function(e){
                             </div>
                             <div class="col-4">
                                 <div class="row justify-content-center">
-                                    <label for="arquivo" class="col-4" style="color: yellow; align-items: center;"> Escolha a(s) imagem(s) (clique aqui)</label>
-                                    <input type="hidden" name="id_user" value="?php Echo $dados1['IdUsuario']; ?>"class="form-control"  max="6" required multiple>
-                                    <input type="file" placeholder="Coloque aqui" name="arquivo" id="arquivo"> 
+                                    <label for="arquivo[]" class="col-4" style="color: yellow; align-items: center;"> Escolha a(s) imagem(s) (clique aqui)</label>
+                                    <input type="hidden" name="id_user" value="<?php Echo $dados1['IdUsuario']; ?>"class="form-control">
+                                    <input type="file" placeholder="Coloque aqui" name="arquivo[]" id="arquivo[]" multiple="multiple" required max="6"> 
                                 </div><br>
                             </div>
                         </div><br>
@@ -837,16 +837,11 @@ $('#psps').click(function(e){
                                     <textarea class="form-control" aria-label="Com textarea" maxlenght="250" width="100px" id="descpc2" name="descricao" placeholder="Digite uma descrição aqui"></textarea>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="row justify-content-center">
-                                    <label for="cat_roupa" class="col-4">Tags:</label>
-                                    <input type="text" class="col-4 col-sm-10" id="cat_roupa" name="tag" placeholder="Ex: verão, noite..." maxlength="100" required>
-                                </div><br>
-                            </div>
+                          
                         </div>
                     </div>
                     <br><br>
-                    <center><input type="submit" class="btn btn-primary" value="Confirmar"><br><br></center>
+                    <center><input type="submit" class="btn btn-primary" value="Confirmar" name="submit"><br><br></center>
                     <br>
                 </form>
             </div>

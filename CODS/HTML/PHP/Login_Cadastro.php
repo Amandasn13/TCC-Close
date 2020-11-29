@@ -166,7 +166,7 @@ public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, 
         {
             return true;
         }else{
-            echo $sql->errorCode();
+            return false;
         }
         
     
@@ -346,8 +346,8 @@ try {
 
         $sql = $pdo->prepare("CALL Apagar_Usuario(:id)");
         $sql->bindValue(":id", $id);
-        $sql->execute();
         $sql->nextRowset(); 
+        $sql->execute();
         if($sql->rowCount() > 0)
         {
             return true;
