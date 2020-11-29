@@ -1,6 +1,7 @@
 <?php
 require_once 'PHP/Conexao.php';
 require_once 'PHP/funcoes_roupa.php';
+session_start();
 if(!isset($_SESSION['IdUsuario']))
 {
     header("location: Close_Log02.php");
@@ -199,7 +200,7 @@ $('#psps').click(function(e){
 
                                     if(!isset($_SESSION['IdUsuario']))
                                     {
-                                        header("location: /Close_Log02.php");
+                                        header("location: Close_Log02.php");
                                         exit;
                                     }
                                         $idusuario = $dados1['IdUsuario'];
@@ -611,253 +612,44 @@ $('#psps').click(function(e){
                         <div class="album py-5 ">
                             <div class="container">
                               <div class="row">
+                                <?php
+
+                                    if(!isset($_SESSION['IdUsuario']))
+                                    {
+                                        header("location: Close_Log02.php");
+                                        exit;
+                                    }
+                                        $idusuario = $dados1['IdUsuario'];
+                                        $sql = "CALL Buscar_Looks('$idusuario',1)";
+                                                $resultado = mysqli_query($connect, $sql);
+                                                $total = mysqli_affected_rows($connect);
+                                                mysqli_free_result($resultado);
+                                                mysqli_next_result($connect);
+                                                if($total > 0){
+                                                    $resultado = mysqli_query($connect, $sql);
+                                                while($dadoslooks = mysqli_fetch_array($resultado)){
+                                                    $album[] = $dadoslooks; 
+                                                };
+
+                                ?>
+                                 <tr>
+                                    <?php
+                                        $cont = 0; 
+                                        foreach($album as $fotolook){
+                                            
+                                        $cont++;
+                                        
+                                    ?>
+                                  <td>  
                                 <div class="col">
                                         <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
-                                        data-target="#LkMod"> @nomelook </button>
+                                        data-target="#LkMod"> <?php echo $fotolook['Nome'];?> </button>
                                 </div><!--Fecha componente da grid (alinhamento)-->
-                                <div class="col">
-                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
-                                        data-target="#LkMod"> @nomelook </button>
-                                </div><!--Fecha componente da grid (alinhamento)-->
-                                <div class="col">
-                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
-                                        data-target="#LkMod"> @nomelook </button>
-                                </div><!--Fecha componente da grid (alinhamento)-->
+                                </td>
                               </div>
                             </div>
                         </div>
-                        <!--Grid do Guarda-Roupa termina aqui-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>    
-
-    </center>
-    <!--Começo do rodapé da página-->
-    <footer>
-        <nav class="navbar navbar-default" role="navigation" id="rodp">
-        <center>
-            <ul>
-                <li>
-                    <a href="Close_SbrNs.php">SOBRE NÓS E CONTATO</a>
-                </li>
-            </ul>
-        </center>
-        </nav>
-    </footer>
-</section>
-
-
-<!--Modal Cad de Roupas-->
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModCadRp">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content" style="background-color: rgb(17, 14, 14); color: azure;">
-        <header><center><h2 style="color: azure;"> Cadastro de roupas</h2></header>
-        <div>
-            <form method="post" class="px-4 py-3" action="PHP/cadastrarfotoroupas.php" id="est-f" enctype="multipart/form-data">
-                <br><h4>Por favor, preencha as lacunas abaixo com os dados necessários para o cadastro da peça de roupa</h4></center><br>
-                <div class="container">    
-                    <div class="row justify-content-around">
-                        <div class="col-4">
-                            <div class="row justify-content-center">
-                            <label for="cat_roupa" class="col-4">Categoria:</label>
-                            <input type="text" class="col-4 col-sm-10" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required>
-                            </div><br>
-                            <div class="row justify-content-center">
-                            <label for="cat_roupa" class="col-4">Tipo:</label>
-                            <input type="text" list="tipo" class="col-4 col-sm-10" id="tip_roupa" name="tipo"   placeholder="Tipo de roupa (ex: calça)" maxlength="100" required>
-                            <datalist id="tipo">
-                                <!--Acessórios: -->
-                                <option value="Anel"></option>
-                                <option value="Alargador"></option>
-                                <option value="Arco"></option>
-                                <option value="Bandana"></option>
-                                <option value="Bijuteria"></option>
-                                <option value="Bodies"></option>
-                                <option value="Bolsa"></option>
-                                <option value="Boné"></option>
-                                <option value="Bracelete"></option>
-                                <option value="Brinco"></option>
-                                <option value="Botton"></option>
-                                <option value="Carteira"></option>
-                                <option value="Cachecol"></option>
-                                <option value="Calça"></option>
-                                <option value="Cinto"></option>
-                                <option value="Chapéu"></option>
-                                <option value="Chupeta"></option>
-                                <option value="Colar"></option>
-                                <option value="Corrente"></option>
-                                <option value="Coroa"></option>
-                                <option value="Dedal"></option>
-                                <option value="Elmo"></option>
-                                <option value="Flanela"></option>
-                                <option value="Gargantilha"></option>
-                                <option value="Gravata"></option>
-                                <option value="Leque"></option>
-                                <option value="Luvas"></option>
-                                <option value="Máscara"></option>
-                                <option value="Mala"></option>
-                                <option value="Meia-Calça"></option>
-                                <option value="Mochila"></option>
-                                <option value="Miçanga"></option>
-                                <option value="Óculos"></option>
-                                <option value="Ombreira"></option>
-                                <option value="Piercing"></option>
-                                <option value="Pulseira"></option>
-                                <option value="Pochete"></option>
-                                <option value="Presilha"></option>
-                                <option value="Suspensório"></option>
-                                <option value="Relógio"></option>
-                                <option value="Tiara"></option>
-                                <option value="Tornozeleira"></option>
-                                <option value="Touca"></option>
-                                <option value="Turbante"></option>
-                                <!--Calçado: -->
-                                <option value="Bota"></option>
-                                <option value="Chinelo"></option>
-                                <option value="Crocs"></option>
-                                <option value="Mocassim"></option>
-                                <option value="Rasteira"></option>
-                                <option value="Sandália"></option>
-                                <option value="Salto"></option>
-                                <option value="Sapatenis"></option>
-                                <option value="Sapato"></option>
-                                <option value="Sapatilha"></option>
-                                <option value="Sider"></option>
-                                <option value="Tênis"></option>
-                                <!--Roupa: -->
-                                <option value="Bermuda"></option>
-                                <option value="Biquini"></option>
-                                <option value="Blazer"></option>
-                                <option value="Blusa"></option>
-                                <option value="Calcinha"></option>
-                                <option value="Calça"></option>
-                                <option value="Camisa"></option>
-                                <option value="Camiseta"></option>
-                                <option value="Camisola"></option>
-                                <option value="Capa de Chuva"></option>
-                                <option value="Colete"></option>
-                                <option value="Conjunto"></option>
-                                <option value="Cueca"></option>
-                                <option value="Esportiva"></option>
-                                <option value="Fantasia"></option>
-                                <option value="Jaqueta"></option>
-                                <option value="Legging"></option>
-                                <option value="Macacão"></option>
-                                <option value="Maio"></option>
-                            </datalist>
-                            </div><br>
-                            <div class="row justify-content-center">
-                            <label for="cor_roupa" class="col-4">Cor:</label>
-                            <input type="text" class="col-4 col-sm-10" id="cor_roupa" name="cor" placeholder="Digite a cor da roupa" required>
-                            </div><br>
-                            <div class="row justify-content-center">
-                            <label for="tamanho_roupa" class="col-4">Tamanho:</label>
-                            <input type="text" class="col-4 col-sm-10" id="tamanho_roupa" name="tamanho" placeholder="Tamanho da roupa">
-                            </div>
-                        </div><br>
-                        <div class="col-4">
-                            <div class="row justify-content-center">
-                            <label for="marc_roupa" class="col-4">Marca:</label>
-                            <input type="text" class="col-4 col-sm-10" id="marc_roupa" name="marca" placeholder="Marca">
-                            </div><br>
-                            <div class="row justify-content-center">
-                            <label for="mat_roupa" class="col-4">Material:</label>
-                            <input type="text" class="col-4 col-sm-10" id="mat_roupa" name="material" placeholder="Material da roupa">
-                            </div><br>
-                            <div class="row justify-content-center">
-                            <label for="tit_roupa" class="col-4">Título:</label>
-                            <input type="text" class="col-4 col-sm-10" id="tit_roupa" name="titulo" placeholder="Dê um título pra essa roupa">
-                            </div><br><br>
-                            <div class="row justify-content-center">
-                            <label for="arquivo" class="col-4" style="color: yellow;">Imagem (clique aqui)</label>
-                            <input type="hidden" name="id_user" value="<?php Echo $dados1['IdUsuario']; ?>"class="form-control" required>
-                            <input type="file" placeholder="Coloque aqui" name="arquivo" id="arquivo"> 
-                            </center></div><br>
-                        </div>   
-                        <center><div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text btn-light" for="descpc2">Descrição da peça (opcional):</span>
-                            </div>
-                            <textarea class="form-control" aria-label="Com textarea" maxlenght="250" id="descpc2" name="descricao" placeholder="Digite uma descrição aqui"></textarea>
-                        </div></center>
-                    </div>
-                </div><br><br>
-                <center><input type="submit" class="btn btn-primary" value="Confirmar"><br><br></center>
-                <br>
-            </form>
-        </div>
-      </div>
-    </div>
-</div>
-
-<!--Modal Cadastro de Looks-->
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModCadLk">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content" style="background-color: rgb(17, 14, 14); color: azure;">
-            <header><center><h2 style="color: azure;"> Cadastro de looks</h2></center></header>
-            <div>
-                <form method="post" class="px-4 py-3" action="PHP/cadastrarfotolooks.php" id="est-f" enctype="multipart/form-data">
-                    <br><h4>Por favor, preencha as lacunas abaixo com os dados necessários para o cadastro da peça de roupa</h4></center><br>
-                    <div class="container">    
-                        <div class="row justify-content-around">
-                            <div class="col-4">
-                                <div class="row justify-content-center">
-                                    <label for="cat_roupa" class="col-4">Nome/Título:</label>
-                                    <input type="text" class="col-4 col-sm-10" id="cat_roupa" name="titulo" placeholder="Digite o título do look aqui" maxlength="100" required>
-                                </div><br>
-                            </div>
-                            <div class="col-4">
-                                <div class="row justify-content-center">
-                                    <label for="arquivo[]" class="col-4" style="color: yellow; align-items: center;"> Escolha a(s) imagem(s) (clique aqui)</label>
-                                    <input type="hidden" name="id_user" value="<?php Echo $dados1['IdUsuario']; ?>"class="form-control">
-                                    <input type="file" placeholder="Coloque aqui" name="arquivo[]" id="arquivo[]" multiple="multiple" required max="6" accept="image/*"> 
-                                </div><br>
-                            </div>
-                        </div><br>
-                        <div class="row justify-content-around">
-                            <div class="col-4">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text btn-light" for="descpc2">Descrição do Look (opcional):</span>
-                                    </div>
-                                    <textarea class="form-control" aria-label="Com textarea" maxlenght="250" width="100px" id="descpc2" name="descricao" placeholder="Digite uma descrição aqui"></textarea>
-                                </div>
-                            </div>
-                          
-                        </div>
-                    </div>
-                    <br><br>
-                    <center><input type="submit" class="btn btn-primary" value="Confirmar" name="submit"><br><br></center>
-                    <br>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--Modais de Passo a Passo-->
-<div class="modal fade bd-example-modal-lg" style="background-color: black; opacity: 90%;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModPs">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="background-color: transparent; color: rgb(251, 255, 9);  border-style: none;">
-            <div class="modal-body" style="position: relative;">
-                <div class="modal-header" style="border-bottom: none;">
-                    <center><h4 style="padding-left: 100px;">Olá! Esse é seu Guarda-Roupa, para aprender um pouco mais sobre como ele funciona e como
-                        usá-lo é só seguir as dicas abaixo</center></h4><br>
-                        <button style="padding-left: 100px; margin-right: 10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" style="background-color: #E61818; color: white;">&times;</span>
-                        </button>
-                </div>
-                <img src="IMG\psps1.png" width= "1200px" height="600px"
-                 style="position: absolute; left:50%; top:50%; margin-top: -10px; margin-left:-600px;">
-            </div>
-           </div> 
-        </div>
-    </div>
-</div>
-
-<!--Modal de visualização e edição de Looks-->
+                         <!--Modal de visualização e edição de Looks-->
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="LkMod">
     <div class="modal-dialog modal-xl" style="max-height: 515px;">
       <div class="modal-content" style="background-color: rgb(17, 14, 14);">
@@ -1083,6 +875,254 @@ $('#psps').click(function(e){
         </div>
     </div>
 </div>
+
+                        <!--Grid do Guarda-Roupa termina aqui-->
+                        <?php
+                                        if($cont == 3){
+                                            echo"</tr>";
+                                            echo"<tr>";
+                                            $cont = 0;
+                                        } 
+                                        }
+                                    ?>
+                                </tr>
+                                <?php 
+                                                }else {echo "inhaaaaaaaaa";}
+                                ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    </center>
+           
+
+
+    <!--Começo do rodapé da página-->
+    <footer>
+        <nav class="navbar navbar-default" role="navigation" id="rodp">
+        <center>
+            <ul>
+                <li>
+                    <a href="Close_SbrNs.php">SOBRE NÓS E CONTATO</a>
+                </li>
+            </ul>
+        </center>
+        </nav>
+    </footer>
+</section>
+
+
+<!--Modal Cad de Roupas-->
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModCadRp">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content" style="background-color: rgb(17, 14, 14); color: azure;">
+        <header><center><h2 style="color: azure;"> Cadastro de roupas</h2></header>
+        <div>
+            <form method="post" class="px-4 py-3" action="PHP/cadastrarfotoroupas.php" id="est-f" enctype="multipart/form-data">
+                <br><h4>Por favor, preencha as lacunas abaixo com os dados necessários para o cadastro da peça de roupa</h4></center><br>
+                <div class="container">    
+                    <div class="row justify-content-around">
+                        <div class="col-4">
+                            <div class="row justify-content-center">
+                            <label for="cat_roupa" class="col-4">Categoria:</label>
+                            <input type="text" class="col-4 col-sm-10" id="cat_roupa" name="categoria" placeholder="Ex: Acessório" maxlength="100" required>
+                            </div><br>
+                            <div class="row justify-content-center">
+                            <label for="cat_roupa" class="col-4">Tipo:</label>
+                            <input type="text" list="tipo" class="col-4 col-sm-10" id="tip_roupa" name="tipo"   placeholder="Tipo de roupa (ex: calça)" maxlength="100" required>
+                            <datalist id="tipo">
+                                <!--Acessórios: -->
+                                <option value="Anel"></option>
+                                <option value="Alargador"></option>
+                                <option value="Arco"></option>
+                                <option value="Bandana"></option>
+                                <option value="Bijuteria"></option>
+                                <option value="Bodies"></option>
+                                <option value="Bolsa"></option>
+                                <option value="Boné"></option>
+                                <option value="Bracelete"></option>
+                                <option value="Brinco"></option>
+                                <option value="Botton"></option>
+                                <option value="Carteira"></option>
+                                <option value="Cachecol"></option>
+                                <option value="Calça"></option>
+                                <option value="Cinto"></option>
+                                <option value="Chapéu"></option>
+                                <option value="Chupeta"></option>
+                                <option value="Colar"></option>
+                                <option value="Corrente"></option>
+                                <option value="Coroa"></option>
+                                <option value="Dedal"></option>
+                                <option value="Elmo"></option>
+                                <option value="Flanela"></option>
+                                <option value="Gargantilha"></option>
+                                <option value="Gravata"></option>
+                                <option value="Leque"></option>
+                                <option value="Luvas"></option>
+                                <option value="Máscara"></option>
+                                <option value="Mala"></option>
+                                <option value="Meia-Calça"></option>
+                                <option value="Mochila"></option>
+                                <option value="Miçanga"></option>
+                                <option value="Óculos"></option>
+                                <option value="Ombreira"></option>
+                                <option value="Piercing"></option>
+                                <option value="Pulseira"></option>
+                                <option value="Pochete"></option>
+                                <option value="Presilha"></option>
+                                <option value="Suspensório"></option>
+                                <option value="Relógio"></option>
+                                <option value="Tiara"></option>
+                                <option value="Tornozeleira"></option>
+                                <option value="Touca"></option>
+                                <option value="Turbante"></option>
+                                <!--Calçado: -->
+                                <option value="Bota"></option>
+                                <option value="Chinelo"></option>
+                                <option value="Crocs"></option>
+                                <option value="Mocassim"></option>
+                                <option value="Rasteira"></option>
+                                <option value="Sandália"></option>
+                                <option value="Salto"></option>
+                                <option value="Sapatenis"></option>
+                                <option value="Sapato"></option>
+                                <option value="Sapatilha"></option>
+                                <option value="Sider"></option>
+                                <option value="Tênis"></option>
+                                <!--Roupa: -->
+                                <option value="Bermuda"></option>
+                                <option value="Biquini"></option>
+                                <option value="Blazer"></option>
+                                <option value="Blusa"></option>
+                                <option value="Calcinha"></option>
+                                <option value="Calça"></option>
+                                <option value="Camisa"></option>
+                                <option value="Camiseta"></option>
+                                <option value="Camisola"></option>
+                                <option value="Capa de Chuva"></option>
+                                <option value="Colete"></option>
+                                <option value="Conjunto"></option>
+                                <option value="Cueca"></option>
+                                <option value="Esportiva"></option>
+                                <option value="Fantasia"></option>
+                                <option value="Jaqueta"></option>
+                                <option value="Legging"></option>
+                                <option value="Macacão"></option>
+                                <option value="Maio"></option>
+                            </datalist>
+                            </div><br>
+                            <div class="row justify-content-center">
+                            <label for="cor_roupa" class="col-4">Cor:</label>
+                            <input type="text" class="col-4 col-sm-10" id="cor_roupa" name="cor" placeholder="Digite a cor da roupa" required>
+                            </div><br>
+                            <div class="row justify-content-center">
+                            <label for="tamanho_roupa" class="col-4">Tamanho:</label>
+                            <input type="text" class="col-4 col-sm-10" id="tamanho_roupa" name="tamanho" placeholder="Tamanho da roupa">
+                            </div>
+                        </div><br>
+                        <div class="col-4">
+                            <div class="row justify-content-center">
+                            <label for="marc_roupa" class="col-4">Marca:</label>
+                            <input type="text" class="col-4 col-sm-10" id="marc_roupa" name="marca" placeholder="Marca">
+                            </div><br>
+                            <div class="row justify-content-center">
+                            <label for="mat_roupa" class="col-4">Material:</label>
+                            <input type="text" class="col-4 col-sm-10" id="mat_roupa" name="material" placeholder="Material da roupa">
+                            </div><br>
+                            <div class="row justify-content-center">
+                            <label for="tit_roupa" class="col-4">Título:</label>
+                            <input type="text" class="col-4 col-sm-10" id="tit_roupa" name="titulo" placeholder="Dê um título pra essa roupa">
+                            </div><br><br>
+                            <div class="row justify-content-center">
+                            <label for="arquivo" class="col-4" style="color: yellow;">Imagem (clique aqui)</label>
+                            <input type="hidden" name="id_user" value="<?php Echo $dados1['IdUsuario']; ?>"class="form-control" required>
+                            <input type="file" placeholder="Coloque aqui" name="arquivo" id="arquivo"> 
+                            </center></div><br>
+                        </div>   
+                        <center><div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text btn-light" for="descpc2">Descrição da peça (opcional):</span>
+                            </div>
+                            <textarea class="form-control" aria-label="Com textarea" maxlenght="250" id="descpc2" name="descricao" placeholder="Digite uma descrição aqui"></textarea>
+                        </div></center>
+                    </div>
+                </div><br><br>
+                <center><input type="submit" class="btn btn-primary" value="Confirmar"><br><br></center>
+                <br>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Modal Cadastro de Looks-->
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModCadLk">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" style="background-color: rgb(17, 14, 14); color: azure;">
+            <header><center><h2 style="color: azure;"> Cadastro de looks</h2></center></header>
+            <div>
+                <form method="post" class="px-4 py-3" action="PHP/cadastrarfotolooks.php" id="est-f" enctype="multipart/form-data">
+                    <br><h4>Por favor, preencha as lacunas abaixo com os dados necessários para o cadastro da peça de roupa</h4></center><br>
+                    <div class="container">    
+                        <div class="row justify-content-around">
+                            <div class="col-4">
+                                <div class="row justify-content-center">
+                                    <label for="cat_roupa" class="col-4">Nome/Título:</label>
+                                    <input type="text" class="col-4 col-sm-10" id="cat_roupa" name="titulo" placeholder="Digite o título do look aqui" maxlength="100" required>
+                                </div><br>
+                            </div>
+                            <div class="col-4">
+                                <div class="row justify-content-center">
+                                    <label for="arquivo[]" class="col-4" style="color: yellow; align-items: center;"> Escolha a(s) imagem(s) (clique aqui)</label>
+                                    <input type="hidden" name="id_user" value="<?php Echo $dados1['IdUsuario']; ?>"class="form-control">
+                                    <input type="file" placeholder="Coloque aqui" name="arquivo[]" id="arquivo[]" multiple="multiple" required max="6" accept="image/*"> 
+                                </div><br>
+                            </div>
+                        </div><br>
+                        <div class="row justify-content-around">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text btn-light" for="descpc2">Descrição do Look (opcional):</span>
+                                    </div>
+                                    <textarea class="form-control" aria-label="Com textarea" maxlenght="250" width="100px" id="descpc2" name="descricao" placeholder="Digite uma descrição aqui"></textarea>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <br><br>
+                    <center><input type="submit" class="btn btn-primary" value="Confirmar" name="submit"><br><br></center>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modais de Passo a Passo-->
+<div class="modal fade bd-example-modal-lg" style="background-color: black; opacity: 90%;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="ModPs">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="background-color: transparent; color: rgb(251, 255, 9);  border-style: none;">
+            <div class="modal-body" style="position: relative;">
+                <div class="modal-header" style="border-bottom: none;">
+                    <center><h4 style="padding-left: 100px;">Olá! Esse é seu Guarda-Roupa, para aprender um pouco mais sobre como ele funciona e como
+                        usá-lo é só seguir as dicas abaixo</center></h4><br>
+                        <button style="padding-left: 100px; margin-right: 10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="background-color: #E61818; color: white;">&times;</span>
+                        </button>
+                </div>
+                <img src="IMG\psps1.png" width= "1200px" height="600px"
+                 style="position: absolute; left:50%; top:50%; margin-top: -10px; margin-left:-600px;">
+            </div>
+           </div> 
+        </div>
+    </div>
+</div>
+
+
 
 <!-- FIM DA SEÇÃO DE MODAIS-->
 </body>
