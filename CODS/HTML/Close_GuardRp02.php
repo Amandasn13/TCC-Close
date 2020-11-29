@@ -612,7 +612,8 @@ $('#psps').click(function(e){
                         <div class="album py-5 ">
                             <div class="container">
                               <div class="row">
-                                <?php
+
+                              <?php
 
                                     if(!isset($_SESSION['IdUsuario']))
                                     {
@@ -620,275 +621,330 @@ $('#psps').click(function(e){
                                         exit;
                                     }
                                         $idusuario = $dados1['IdUsuario'];
-                                        $sql = "CALL Buscar_Looks('$idusuario',1)";
-                                                $resultado = mysqli_query($connect, $sql);
-                                                $total = mysqli_affected_rows($connect);
-                                                mysqli_free_result($resultado);
+                                        $sql2 = "CALL Buscar_Looks('$idusuario',1)";
+                                                $resultado2 = mysqli_query($connect, $sql2);
+                                                $total2 = mysqli_affected_rows($connect);
                                                 mysqli_next_result($connect);
-                                                if($total > 0){
-                                                    $resultado = mysqli_query($connect, $sql);
-                                                while($dadoslooks = mysqli_fetch_array($resultado)){
-                                                    $album[] = $dadoslooks; 
+                                                if($total2 > 0){
+                                                    $resultado2 = mysqli_query($connect, $sql2);
+                                                while($dadoslook = mysqli_fetch_array($resultado2)){
+                                                    $album2[] = $dadoslook; 
                                                 };
-
+                                    
                                 ?>
-                                 <tr>
+                                <tr>
                                     <?php
-                                        $cont = 0; 
-                                        foreach($album as $fotolook){
+                                        $cont6 = 0; 
+                                        foreach($album2 as $fotolook){
                                             
-                                        $cont++;
+                                        $cont6++;
                                         
                                     ?>
-                                  <td>  
+                                    <td>
                                 <div class="col">
                                         <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
-                                        data-target="#LkMod"> <?php echo $fotolook['Nome'];?> </button>
+                                        data-target="#LkMod<?php echo $fotolook['IdLook'];?>"> <?php  echo $fotolook['Nome'];?> </button>
                                 </div><!--Fecha componente da grid (alinhamento)-->
-                                </td>
-                              </div>
-                            </div>
-                        </div>
-                         <!--Modal de visualização e edição de Looks-->
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="LkMod">
-    <div class="modal-dialog modal-xl" style="max-height: 515px;">
-      <div class="modal-content" style="background-color: rgb(17, 14, 14);">
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active" style="padding-right: 30px; padding-left: 210px; margin-top: 7px; margin-bottom: 7px;">
-                    <a href="#VrLk" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Ver Look</a>
-                </li>
-                <li role="presentation" style="padding-right: 30px; margin-top: 7px; margin-bottom: 7px;">
-                    <a href="#EdLk" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
-                </li>
-                <li role="presentation" style="padding-right: 5px;  margin-top: 7px; margin-bottom: 7px;">
-                    <a href="#ApLk" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Look</a>
-                </li>
-            </ul>
-            <!--Divs de Conteúdo de cada Aba de navegação-->
-            <div class="container-fluid">
-                <div class="tab-content">
-                    <!--Ver foto-->
-                    <div id="VrLk" role="tabpanel" class="tab-pane fade in active">
-                        <header>
-                            <div class="container">
-                                <div class="row">
-                                    <h5 name="unm" class="col" style="color: azure;">@nome_usuario</h5>
-                                    <h5 style="color: azure; font-style: bold; padding: 2px;">>></h5>
-                                    <h5 name="rnm" class="col-6" style="color: azure;">@nome_roupa</h5>
-                                    <a class="btn btn-outline-light popover-test col dropdown-toggle"
-                                    data-toggle="dropdown" href="#" title="Descrição da peça" role="button"
-                                    aria-haspopup="true" aria-expanded="false" style="font-style: bold; width:
-                                    70px;">↡</a>
-                                    <div class="dropdown-menu" style="width: 500px;">
-                                        <a class="dropdown-item" href="#"><h4>Descrição</h4></a>
-                                        <div class="dropdown-divider"></div>
-                                        <div class="blog-post" style="width: inherit;">
-                                            <p class="mb-0" href="#" style="margin: 10px;">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus illum, aut, vitae provident tempora porro, dicta vero rerum saepe iusto quasi voluptate dolore nesciunt odio eum laborum hic repudiandae voluptas?
-                                            </p>
+                                        </td>
+                                                                        <!--Modal de visualização e edição de Looks-->
+                                        <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="LkMod<?php echo $fotolook['IdLook'];?>">
+                                            <div class="modal-dialog modal-xl" style="max-height: 515px;">
+                                            <div class="modal-content" style="background-color: rgb(17, 14, 14);">
+                                                    <ul class="nav nav-tabs" role="tablist">
+                                                        <li role="presentation" class="active" style="padding-right: 30px; padding-left: 210px; margin-top: 7px; margin-bottom: 7px;">
+                                                            <a href="#VrLk<?php echo $fotolook['IdLook'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Ver Look</a>
+                                                        </li>
+                                                        <li role="presentation" style="padding-right: 30px; margin-top: 7px; margin-bottom: 7px;">
+                                                            <a href="#EdLk<?php echo $fotolook['IdLook'];?>" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
+                                                        </li>
+                                                        <li role="presentation" style="padding-right: 5px;  margin-top: 7px; margin-bottom: 7px;">
+                                                            <a href="#ApLk<?php echo $fotolook['IdLook'];?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Look</a>
+                                                        </li>
+                                                    </ul>
+                                                    <!--Divs de Conteúdo de cada Aba de navegação-->
+                                                    <div class="container-fluid">
+                                                        <div class="tab-content">
+                                                            <!--Ver foto-->
+                                                            <div id="VrLk<?php echo $fotolook['IdLook'];?>" role="tabpanel" class="tab-pane fade in active">
+                                                                <header>
+                                                                    <div class="container">
+                                                                        <div class="row">
+                                                                            <h5 name="unm" class="col" style="color: azure;">@<?php echo $dados1['Nome_de_Usuario'];?></h5>
+                                                                            <h5 style="color: azure; font-style: bold; padding: 2px;">>></h5>
+                                                                            <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $fotolook['Nome'];?></h5>
+                                                                            <a class="btn btn-outline-light popover-test col dropdown-toggle"
+                                                                            data-toggle="dropdown" href="#" title="Descrição da peça" role="button"
+                                                                            aria-haspopup="true" aria-expanded="false" style="font-style: bold; width:
+                                                                            70px;">↡</a>
+                                                                            <div class="dropdown-menu" style="width: 500px;">
+                                                                                <a class="dropdown-item" href="#"><h4>Descrição</h4></a>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <div class="blog-post" style="width: inherit;">
+                                                                                    <p class="mb-0" href="#" style="margin: 10px;">
+                                                                                        <?php echo $fotolook['Descricao'];?>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </header> 
+                                                                <div class="gallery" id="gallery" style="margin: 10px;">
+                                                                    <?php
+
+                                                                        if(!isset($_SESSION['IdUsuario']))
+                                                                        {
+                                                                            header("location: Close_Log02.php");
+                                                                            exit;
+                                                                        }
+                                                                            $idlook = $fotolook['IdLook'];
+                                                                            $sql3 = "CALL Buscar_Fotos('$idlook')";
+                                                                                    $resultado3 = mysqli_query($connect, $sql3);
+                                                                                    $total3 = mysqli_affected_rows($connect);
+                                                                                    mysqli_next_result($connect);
+                                                                                    if($total3 > 0){
+                                                                                        $resultado3 = mysqli_query($connect, $sql3);
+                                                                                    while($dadosfotos4 = mysqli_fetch_array($resultado3)){
+                                                                                        $album3[] = $dadosfotos4;
+                                                                                        
+                                                                                    };
+
+                                                                    ?>
+                                                                <tr>
+                                                                                        <?php
+                                                                                            $cont3 = 0; 
+                                                                                            foreach($album3 as $fotodolook){
+                                                                                                
+                                                                                            $cont3++;
+                                                                                            
+                                                                                        ?>
+                                                                    <td>
+                                                                    <!-- Grid column -->
+                                                                    <div class="mb-3 pics animation all 2">
+                                                                    <img class="img-fluid" src="<?php echo"Fotos_Looks/".$fotodolook["Foto"].''; ?>" alt="Card image cap">
+                                                                    </div>
+                                                                    <!-- Grid column -->
+                                                                    </td>
+                                                                    <?php
+                                                                            if($cont3 == 2){
+                                                                                echo"</tr>";
+                                                                                echo"<tr>";
+                                                                                $cont3 = 0;
+                                                                            } 
+                                                                            }
+                                                                    ?>
+                                                                     </tr>
+                                                                     <?php 
+                                                                                    }else{
+
+                                                                                        echo'<!-- Grid column -->
+                                                                                        <div class="mb-3 pics animation all 2">
+                                                                                          <img class="img-fluid" src="IMG\Samples\IMG1.png" alt="Card image cap">
+                                                                                        </div>
+                                                                                        <!-- Grid column -->
+                                                                                      
+                                                                                        <!-- Grid column -->
+                                                                                        <div class="mb-3 pics animation all 1">
+                                                                                          <img class="img-fluid" src="IMG\Samples\IMG2.png" alt="Card image cap">
+                                                                                        </div>
+                                                                                        <!-- Grid column -->
+                                                                                      
+                                                                                        <!-- Grid column -->
+                                                                                        <div class="mb-3 pics animation all 1">
+                                                                                          <img class="img-fluid" src="IMG\Samples\IMG3.png" alt="Card image cap">
+                                                                                        </div>
+                                                                                        <!-- Grid column -->
+                                                                                      
+                                                                                        <!-- Grid column -->
+                                                                                        <div class="mb-3 pics animation all 2">
+                                                                                          <img class="img-fluid" src="IMG\Samples\IMG4.png" alt="Card image cap">
+                                                                                        </div>
+                                                                                        <!-- Grid column -->
+                                                                                      
+                                                                                        <!-- Grid column -->
+                                                                                        <div class="mb-3 pics animation all 2">
+                                                                                          <img class="img-fluid" src="IMG\Samples\IMG5.png" alt="Card image cap">
+                                                                                        </div>
+                                                                                        <!-- Grid column -->
+                                                                                      
+                                                                                        <!-- Grid column -->
+                                                                                        <div class="mb-3 pics animation all 1">
+                                                                                          <img class="img-fluid" src="IMG\Samples\IMG6.png" alt="Card image cap">
+                                                                                        </div>';
+                                                                                    }
+                                                                     
+                                                                     ?>
+                                                                </div>
+                                                            </div>
+                                                            <!--Apagar Roupa-->
+                                                            <div id="ApLk<?php echo $fotolook['IdLook'];?>" role="tabpanel" class="tab-pane fade in">
+                                                                <br><center><h5 style="color:wheat;">Deseja mesmo apagar o look e todas suas informações? 
+                                                                    Essa ação não podera ser desfeita no futuro</h5><br>
+                                                                        <!--<input type="hidden" value="<?php Echo $dados5["Titulo"]; ?>" name="tit_roupa">
+                                                                        <input type="hidden" value="<?php Echo $dados5["IdRoupa"]; ?>" name="id_roupa">-->
+                                                                        <input type="submit" value="Sim, desejo apagar" class="btn btn-primary"></center><br>
+                                                                        <!--PHP de Apagar dados do guarda roupa:
+                                                                            
+                                                                            <?php
+                                                                            if(isset($_POST['tit_roupa']))
+                                                                            {
+                                                                                $id = addslashes($_POST['id_roupa']);
+                                                                                            
+                                                                                        
+
+                                                                                $u->conexao("Tiffanny", "localhost","root","");
+                                                                                if($u->msgErro == "")
+                                                                                {
+                                                                                    if($u->apagarfoto($id))
+                                                                                    {
+                                                                                        echo "<script language=javascript type= 'text/javascript'>
+                                                                                        window.alert('Roupa apagada com sucesso!')
+                                                                                        </script>";
+                                                                                        echo "<script language=java script type= 'text/javascript'>
+                                                                                        window.location.href = 'Close_GuardRp.php'
+                                                                                        </script>";
+                                                                                    }else{
+                                                                                        echo "Não foi possivel apagar!";
+
+                                                                                    }
+                                                                                }else
+                                                                                {
+                                                                                    echo "Erro: ".$u->msgErro;
+                                                                                }
+                                                                            }
+                                                                        ?>-->
+                                                            </div>
+                                                            <!--Editar Look-->
+                                                            <div id="EdLk" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
+                                                                <center><br>
+                                                                    <h6 style="color:wheat;"> *você pode alterar só uma caracterísca do look ou até mais,
+                                                                        apenas preencha os campos que desejar e selecione "confirmar".
+                                                                    </h6><br>
+                                                                    <div class="container">
+                                                                        <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
+                                                                            <div class="col-4"><!--Campo Nome-->
+                                                                                <form method="post" name="editartitulo">
+                                                                                    <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
+                                                                                    <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
+                                                                                    <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui">  
+                                                                                    <!--<?php
+                                                                                        if(isset($_POST['nomepeca']))
+                                                                                        {
+                                                                                        $id = addslashes($_POST['id_roupa']);
+                                                                                        $titulo = addslashes($_POST['nomepeca']);
+                                                                                    
+
+                                                                                            $u->conexao("Tiffanny", "localhost","root","");
+                                                                                            if($u->msgErro == "")
+                                                                                            {
+                                                                                                if($u->editartitulo($titulo, $id))
+                                                                                                {
+                                                                                                echo "<script language=javascript type= 'text/javascript'>
+                                                                                                window.alert('Titulo alterado com sucesso!')
+                                                                                                </script>";
+                                                                                                echo "<script language=java script type= 'text/javascript'>
+                                                                                                    window.location.href = 'Close_GuardRp.php'
+                                                                                                    </script>";
+                                                                                                }else{
+                                                                                                    echo "Não foi possivel editar!";
+
+                                                                                                }
+                                                                                            }else
+                                                                                            {
+                                                                                                echo "Erro: ".$u->msgErro;
+                                                                                            }
+                                                                                        }
+                                                                                    ?>-->
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="col-4"><!-- Campo Arquivo/Imagem-->
+                                                                                <form method="post" name="editarfoto" enctype="multipart/form-data" action="PHP/atualizarfotoroupa.php"> 
+                                                                                    <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
+                                                                                    <label for="imgpc">É só selecionar o(s) novo(s) arquivo(s) abaixo:<br>
+                                                                                    <input type="file" id="imgpc" name="imgpeca" multiple/>
+                                                                                    <p style="color:yellow;">Clique aqui para selecionar arquivo</p></label><br>
+                                                                                </form> 
+                                                                            </div>
+                                                                        </div><br>
+                                                                        <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
+                                                                            <div class="col-4"><!--Campo descrição-->
+                                                                                <form method="post" name="editardescricao">
+                                                                                    <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
+                                                                                    <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
+                                                                                    <input type="textarea" maxlenght="250" id="descpc" style="width: 230px;" name="descrpeca" placeholder="Digite aqui">
+                                                                                    <!--<?php
+                                                                                                if(isset($_POST['descrpeca']))
+                                                                                                {
+                                                                                                $id = addslashes($_POST['id_roupa']);
+                                                                                                $titulo = addslashes($_POST['descrpeca']);
+                                                                                            
+
+                                                                                                    $u->conexao("Tiffanny", "localhost","root","");
+                                                                                                    if($u->msgErro == "")
+                                                                                                    {
+                                                                                                        if($u->editardescricao($titulo, $id))
+                                                                                                        {
+                                                                                                        echo "<script language=javascript type= 'text/javascript'>
+                                                                                                        window.alert('Descrição alterada com sucesso!')
+                                                                                                        </script>";
+                                                                                                        echo "<script language=java script type= 'text/javascript'>
+                                                                                            window.location.href = 'Close_GuardRp.php'
+                                                                                        </script>";
+                                                                                                        }else{
+                                                                                                            echo "Não foi possivel editar!";
+
+                                                                                                        }
+                                                                                                    }else
+                                                                                                    {
+                                                                                                        echo "Erro: ".$u->msgErro;
+                                                                                                    }
+                                                                                                    }
+                                                                                    ?>-->
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="col-4"><!-- Campo tags-->
+                                                                                <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
+                                                                                <input type="textarea" id="tagpc" name="tagspeca" style="width: 230px;" placeholder="Digite aqui">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><br><br>
+                                                                    <input type="submit" value="Confirmar" class="btn btn-primary">
+                                                                </center><br><br>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <a class="dropdown-item" href="#"><h4>Tags</h4></a>
-                                        <div class="dropdown-divider"></div>
-                                        <div class="blog-post" style="width: inherit;">
-                                            <p class="mb-0" href="#" style="margin: 10px;">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus illum, aut, vitae provident tempora porro, dicta vero rerum saepe iusto quasi voluptate dolore nesciunt odio eum laborum hic repudiandae voluptas?
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </header> 
-                        <div class="gallery" id="gallery" style="margin: 10px;">
-                            <!-- Grid column -->
-                            <div class="mb-3 pics animation all 2">
-                              <img class="img-fluid" src="IMG\Samples\IMG1.png" alt="Card image cap">
-                            </div>
-                            <!-- Grid column -->
-                          
-                            <!-- Grid column -->
-                            <div class="mb-3 pics animation all 1">
-                              <img class="img-fluid" src="IMG\Samples\IMG2.png" alt="Card image cap">
-                            </div>
-                            <!-- Grid column -->
-                          
-                            <!-- Grid column -->
-                            <div class="mb-3 pics animation all 1">
-                              <img class="img-fluid" src="IMG\Samples\IMG3.png" alt="Card image cap">
-                            </div>
-                            <!-- Grid column -->
-                          
-                            <!-- Grid column -->
-                            <div class="mb-3 pics animation all 2">
-                              <img class="img-fluid" src="IMG\Samples\IMG4.png" alt="Card image cap">
-                            </div>
-                            <!-- Grid column -->
-                          
-                            <!-- Grid column -->
-                            <div class="mb-3 pics animation all 2">
-                              <img class="img-fluid" src="IMG\Samples\IMG5.png" alt="Card image cap">
-                            </div>
-                            <!-- Grid column -->
-                          
-                            <!-- Grid column -->
-                            <div class="mb-3 pics animation all 1">
-                              <img class="img-fluid" src="IMG\Samples\IMG6.png" alt="Card image cap">
-                            </div>
-                        </div>
-                    </div>
-                    <!--Apagar Roupa-->
-                    <div id="ApLk" role="tabpanel" class="tab-pane fade in">
-                        <br><center><h5 style="color:wheat;">Deseja mesmo apagar o look e todas suas informações? 
-                            Essa ação não podera ser desfeita no futuro</h5><br>
-                                <!--<input type="hidden" value="<?php Echo $dados5["Titulo"]; ?>" name="tit_roupa">
-                                <input type="hidden" value="<?php Echo $dados5["IdRoupa"]; ?>" name="id_roupa">-->
-                                <input type="submit" value="Sim, desejo apagar" class="btn btn-primary"></center><br>
-                                <!--PHP de Apagar dados do guarda roupa:
-                                    
-                                    <?php
-                                    if(isset($_POST['tit_roupa']))
-                                    {
-                                        $id = addslashes($_POST['id_roupa']);
-                                                    
-                                                
-
-                                        $u->conexao("Tiffanny", "localhost","root","");
-                                        if($u->msgErro == "")
-                                        {
-                                            if($u->apagarfoto($id))
-                                            {
-                                                echo "<script language=javascript type= 'text/javascript'>
-                                                window.alert('Roupa apagada com sucesso!')
-                                                </script>";
-                                                echo "<script language=java script type= 'text/javascript'>
-                                                window.location.href = 'Close_GuardRp.php'
-                                                </script>";
-                                            }else{
-                                                echo "Não foi possivel apagar!";
-
-                                            }
-                                        }else
-                                        {
-                                            echo "Erro: ".$u->msgErro;
-                                        }
-                                    }
-                                ?>-->
-                    </div>
-                    <!--Editar Look-->
-                    <div id="EdLk" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
-                        <center><br>
-                            <h6 style="color:wheat;"> *você pode alterar só uma caracterísca do look ou até mais,
-                                 apenas preencha os campos que desejar e selecione "confirmar".
-                            </h6><br>
-                            <div class="container">
-                                <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
-                                    <div class="col-4"><!--Campo Nome-->
-                                        <form method="post" name="editartitulo">
-                                            <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
-                                            <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
-                                            <input type="text" id="nmpc" name="nomepeca" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui">  
-                                            <!--<?php
-                                                if(isset($_POST['nomepeca']))
-                                                {
-                                                $id = addslashes($_POST['id_roupa']);
-                                                $titulo = addslashes($_POST['nomepeca']);
-                                            
-
-                                                    $u->conexao("Tiffanny", "localhost","root","");
-                                                    if($u->msgErro == "")
-                                                    {
-                                                        if($u->editartitulo($titulo, $id))
-                                                        {
-                                                        echo "<script language=javascript type= 'text/javascript'>
-                                                        window.alert('Titulo alterado com sucesso!')
-                                                        </script>";
-                                                        echo "<script language=java script type= 'text/javascript'>
-                                                            window.location.href = 'Close_GuardRp.php'
-                                                            </script>";
-                                                        }else{
-                                                            echo "Não foi possivel editar!";
-
-                                                        }
-                                                    }else
-                                                    {
-                                                        echo "Erro: ".$u->msgErro;
-                                                    }
-                                                }
-                                            ?>-->
-                                        </form>
-                                    </div>
-                                    <div class="col-4"><!-- Campo Arquivo/Imagem-->
-                                        <form method="post" name="editarfoto" enctype="multipart/form-data" action="PHP/atualizarfotoroupa.php"> 
-                                            <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
-                                            <label for="imgpc">É só selecionar o(s) novo(s) arquivo(s) abaixo:<br>
-                                            <input type="file" id="imgpc" name="imgpeca" multiple/>
-                                            <p style="color:yellow;">Clique aqui para selecionar arquivo</p></label><br>
-                                        </form> 
-                                    </div>
-                                </div><br>
-                                <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
-                                    <div class="col-4"><!--Campo descrição-->
-                                        <form method="post" name="editardescricao">
-                                            <!--<input type="hidden" value="<?php Echo $dados4["IdRoupa"]; ?>" name="id_roupa">-->
-                                            <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
-                                            <input type="textarea" maxlenght="250" id="descpc" style="width: 230px;" name="descrpeca" placeholder="Digite aqui">
-                                            <!--<?php
-                                                        if(isset($_POST['descrpeca']))
-                                                        {
-                                                        $id = addslashes($_POST['id_roupa']);
-                                                        $titulo = addslashes($_POST['descrpeca']);
-                                                    
-
-                                                            $u->conexao("Tiffanny", "localhost","root","");
-                                                            if($u->msgErro == "")
-                                                            {
-                                                                if($u->editardescricao($titulo, $id))
-                                                                {
-                                                                echo "<script language=javascript type= 'text/javascript'>
-                                                                window.alert('Descrição alterada com sucesso!')
-                                                                </script>";
-                                                                echo "<script language=java script type= 'text/javascript'>
-                                                    window.location.href = 'Close_GuardRp.php'
-                                                </script>";
-                                                                }else{
-                                                                    echo "Não foi possivel editar!";
-
-                                                                }
-                                                            }else
-                                                            {
-                                                                echo "Erro: ".$u->msgErro;
-                                                            }
-                                                            }
-                                            ?>-->
-                                        </form>
-                                    </div>
-                                    <div class="col-4"><!-- Campo tags-->
-                                        <label for="tagpc">É só digitar as novas tags abaixo:</label><br><br>
-                                        <input type="textarea" id="tagpc" name="tagspeca" style="width: 230px;" placeholder="Digite aqui">
-                                    </div>
-                                </div>
-                            </div><br><br>
-                            <input type="submit" value="Confirmar" class="btn btn-primary">
-                        </center><br><br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-                        <!--Grid do Guarda-Roupa termina aqui-->
-                        <?php
-                                        if($cont == 3){
+                                        
+                                        <?php
+                                        if($cont6 == 3){
                                             echo"</tr>";
                                             echo"<tr>";
-                                            $cont = 0;
+                                            $cont6 = 0;
                                         } 
                                         }
                                     ?>
                                 </tr>
                                 <?php 
-                                                }else {echo "inhaaaaaaaaa";}
-                                ?>
+                                        }else{
+                                        echo'<div class="col">
+                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
+                                        data-target="#LkMod"> @nomelook </button>
+                                </div><!--Fecha componente da grid (alinhamento)-->
+                                <div class="col">
+                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
+                                        data-target="#LkMod"> @nomelook </button>
+                                </div><!--Fecha componente da grid (alinhamento)-->
+                                <div class="col">
+                                        <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
+                                        data-target="#LkMod"> @nomelook </button>
+                                </div><!--Fecha componente da grid (alinhamento)-->';
+                                    }
+                                ?>    
+                              </div>
+                            </div>
+                        </div>
+                        <!--Grid do Guarda-Roupa termina aqui-->
                     </div>
                 </div>
             </div>
@@ -896,9 +952,6 @@ $('#psps').click(function(e){
     </div>    
 
     </center>
-           
-
-
     <!--Começo do rodapé da página-->
     <footer>
         <nav class="navbar navbar-default" role="navigation" id="rodp">

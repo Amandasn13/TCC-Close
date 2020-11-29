@@ -16,6 +16,8 @@ Class Usuario{
         }
     }
     public function cadastrar($nome, $sobrenome, $nomeUsuario, $nascimento, $email, $senha){
+        global $pdo; 
+        global $msgErro;
         //verifica se o usuário cadastrado já existe!
         $sql = $pdo->prepare("CALL BuscarId_UsuarioNu(:nu)");
         $sql->bindValue(":nu", $nomeUsuario); 
@@ -38,6 +40,9 @@ Class Usuario{
         }
     }
     public function logar($nomeUsuario, $senha, $email){
+        global $pdo; 
+        global $msgErro;
+
         $sql = $pdo->prepare("CALL Logar_Usuario(:nu, :e, :s)");
         $sql->bindValue (":nu", $nomeUsuario);
         $sql->bindValue (":s", md5($senha));
@@ -55,6 +60,8 @@ Class Usuario{
         }
     }
     public function esqueciSenha($email){
+        global $pdo; 
+        global $msgErro;
         $sql = $pdo->prepare("CALL Buscar_UsuarioE(:e)");
         $sql->bindValue(":e", $email);
         $sql->nextRowset();
@@ -77,6 +84,8 @@ Class Usuario{
         }
     }
     public function novaRedefinicao($email, $chave){
+        global $pdo; 
+        global $msgErro;
         $sql = $pdo->prepare("CALL Nova_Recuperacao(:e, :r)");
         $sql->bindValue(":e", $email);
         $sql->bindValue(":r", $chave);
@@ -117,6 +126,8 @@ Class Usuario{
         }
     }
     public function VericarNome($nomeUsuario){
+        global $pdo; 
+        global $msgErro;
         //verifica se o nomeUsuario q a pessoa usar já nao ta sendo usado por nenhum outro usuario!
         $sql = $pdo->prepare("CALL BuscarId_UsuarioNu(:nu)");
         $sql->bindValue(":nu", $nomeUsuario);
@@ -129,6 +140,8 @@ Class Usuario{
         }
     }
     public function verificarEmail($email){
+        global $pdo; 
+        global $msgErro;
         //verifica se o email q a pessoa usar já nao ta sendo usado por nenhum outro usuario!
         $sql = $pdo->prepare("CALL BuscarId_UsuarioE(:e)");
         $sql->bindValue(":e", $email);
@@ -141,6 +154,8 @@ Class Usuario{
         }
     }
     public function VericarRash($email){
+        global $pdo; 
+        global $msgErro;
         $sql = $pdo->prepare("CALL Buscar_RecuperacaoE(:e)");
         $sql->bindValue(":e", $email);
         $sql->nextRowset(); 
@@ -151,7 +166,9 @@ Class Usuario{
             return true;
         }
     }
-    public function alterarDados($id, $nome, $sobrenome, $nascimento){            
+    public function alterarDados($id, $nome, $sobrenome, $nascimento){         
+        global $pdo; 
+        global $msgErro;   
         $sql = $pdo->prepare("CALL Alterar_Usuario(:id, :n, :s, :dn)");
         $sql->bindvalue(":id", $id);
         $sql->bindvalue(":n", $nome);              
@@ -162,6 +179,8 @@ Class Usuario{
         return true;
     }
     public function alterarNome($id, $nomeUsuario){
+        global $pdo; 
+        global $msgErro;
         $sql = $pdo->prepare("CALL Alterar_Nome(:id, :n)");
         $sql->bindValue(":id", $id);
         $sql->bindValue(":n", $nomeUsuario);
@@ -169,7 +188,9 @@ Class Usuario{
         $sql->execute();
         return true;
     }
-    public function alterarEmail($email, $id){     
+    public function alterarEmail($email, $id){
+        global $pdo; 
+        global $msgErro;     
         $sql = $pdo->prepare("CALL Alterar_Email(:id, :e)");
         $sql->bindvalue(":e", $email);                
         $sql->bindvalue(":id", $id);
@@ -177,7 +198,9 @@ Class Usuario{
         $sql->execute();
         return true;
     }
-    public function alterarSenha($senha, $id){             
+    public function alterarSenha($senha, $id){  
+        global $pdo; 
+        global $msgErro;           
         $sql = $pdo->prepare("CALL Alterar_Senha(:id, :s)");
         $sql->bindvalue(":s", md5($senha));                
         $sql->bindvalue(":id", $id);
@@ -195,6 +218,8 @@ Class Usuario{
         return true;
     }
     public function apagarUsuario($id){
+        global $pdo; 
+        global $msgErro;
         $sql = $pdo->prepare("CALL Apagar_Usuario(:id)");
         $sql->bindValue(":id", $id);
         $sql->nextRowset(); 
