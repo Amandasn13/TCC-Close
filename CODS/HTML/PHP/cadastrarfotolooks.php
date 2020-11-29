@@ -20,6 +20,8 @@
                 $arquivo = $_FILES['arquivo'];
                 $sql = "CALL Novo_Look('$id','$titulo','$descricao')";
                 $resultado = mysqli_query($connect, $sql);
+                $total = mysqli_affected_rows($connect);
+                if($total > 0){
                 $dados1 = mysqli_fetch_array($resultado);
                 $id = $dados1['MAX(IdLook)'];
                 mysqli_next_result($connect);
@@ -30,15 +32,35 @@
                     if (move_uploaded_file($arquivo['tmp_name'][$cont], $destino)) {
                         
                             $nome_final = $arquivo['name'][$cont];
-                            echo $nome_final;
                         $query = mysqli_query($connect, "CALL Nova_Foto('$id', '$nome_final')");
-                        
+                        $total = mysqli_affected_rows($connect);
+                        if($total > 0){
+                                echo "<script language=javascript type= 'text/javascript'>
+                                window.alert('Looks cadastrados com sucesso!')
+							    </script>";
+                                echo "<script language=java script type= 'text/javascript'>
+                                window.location.href = '../Close_GuardRp02.php'
+                                </script>";
+                        }
                     
                         
                     } else {
-                        echo "oooooooo";
+                        echo "<script language=javascript type= 'text/javascript'>
+                        window.alert('Não foi possível cadastrar o look!')
+                        </script>";
+                        echo "<script language=java script type= 'text/javascript'>
+                        window.location.href = '../Close_GuardRp02.php'
+                        </script>";                    
                     }
                 }
+            }else{
+                echo "<script language=javascript type= 'text/javascript'>
+                window.alert('Não foi possível cadastrar o look!')
+                </script>";
+                echo "<script language=java script type= 'text/javascript'>
+                window.location.href = '../Close_GuardRp02.php'
+                </script>";   
+            }
 		?>
 		
 	</body>

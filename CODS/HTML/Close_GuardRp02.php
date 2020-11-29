@@ -824,7 +824,7 @@ $('#psps').click(function(e){
                                 <div class="row justify-content-center">
                                     <label for="arquivo[]" class="col-4" style="color: yellow; align-items: center;"> Escolha a(s) imagem(s) (clique aqui)</label>
                                     <input type="hidden" name="id_user" value="<?php Echo $dados1['IdUsuario']; ?>"class="form-control">
-                                    <input type="file" placeholder="Coloque aqui" name="arquivo[]" id="arquivo[]" multiple="multiple" required max="6"> 
+                                    <input type="file" placeholder="Coloque aqui" name="arquivo[]" id="arquivo[]" multiple="multiple" required max="6" accept="image/*"> 
                                 </div><br>
                             </div>
                         </div><br>
