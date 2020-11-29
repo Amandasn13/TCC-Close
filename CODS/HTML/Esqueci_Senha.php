@@ -38,7 +38,7 @@
                 <button class="btn btn-success" name="Enviar" type="submit" id="button-addon2"
                 style="height: 38px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">Enviar</button>
                 <?php
-                    require_once 'PHP/Login_Cadastro.php';
+                    require_once 'PHP/funcoes_usuario.php';
                     $u = new Usuario; 
                     if(isset($_POST['Email']))
                     {
