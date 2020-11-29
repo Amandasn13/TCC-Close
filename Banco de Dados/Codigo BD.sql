@@ -214,21 +214,24 @@ CREATE PROCEDURE Nova_Foto(id INT, ft BLOB)
 /*Retorna os Looks para a página de Guarda-Roupa*/
 CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
     BEGIN
-		SET @iduser=1;
+		SET @iduser=idU;
 		DROP VIEW IF EXISTS Guarda_Look;
 		CREATE VIEW Guarda_Look AS SELECT fk_Look FROM Usuario_Look_Roupa AS idlook WHERE get_idu()=fk_Usuario;
 		CASE e /*Modos de Ordenação no Guarda-Roupa*/
 			WHEN 1 THEN /*A a Z*/
-            SELECT * FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Look) ORDER BY Nome ASC;
-				/*SELECT Nome,Descricao,Fotos_Look FROM Look JOIN Fotos_Look WHERE IdLook IN (SELECT * FROM Guarda_Look) ORDER BY Nome ASC;*/
+				SELECT * FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Look) ORDER BY Nome ASC;
 			WHEN 2 THEN /*Z a A*/
-            /*JOIN Fotos_Look WHERE IdLook IN (SELECT * FROM Guarda_Look) AND fk_Look IN (SELECT * FROM Guarda_Look)*/
 				SELECT * FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Look) ORDER BY Nome DESC;
             WHEN 3 THEN /*Mais novos*/
 				SELECT * FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Look) ORDER BY IdLook ASC;
             WHEN 4 THEN /*Mais Antigos*/
 				SELECT * FROM Look WHERE IdLook IN (SELECT * FROM Guarda_Look) ORDER BY IdLook DESC;
         END CASE;
+    END//
+/*Retorna todas as fotos de um Look*/
+CREATE PROCEDURE Buscar_Fotos(id INT)
+	BEGIN
+		SELECT * FROM Fotos_Look WHERE fk_Look = id;
     END//
 /*Remove um Look*/
 CREATE PROCEDURE Apagar_Look(id INT)
