@@ -1,11 +1,8 @@
 <?php
-
-Class Roupa{
-        
+Class Roupa{   
     private $pdo;
     public $msgErro = "";
-    public function conexao($nome, $host, $usuario, $senha)
-    {
+    public function conexao($nome, $host, $usuario, $senha){
         global $pdo; 
         global $msgErro;
         try
@@ -18,13 +15,9 @@ Class Roupa{
         }
     }
     //edição das informações com textos da roupa
-    public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material)
-    {
-        
+    public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material){ 
         global $pdo;
         global $msgErro;
-       
-            
             $sql = $pdo->prepare("CALL Alterar_Roupa(:id, :tit, :cat, :tip, :c, :descr, :tam, :mar, :mat)");
             $sql->bindValue(":id", $id);
             $sql->bindValue(":tit", $titulo); 
@@ -37,8 +30,7 @@ Class Roupa{
             $sql->bindValue(":mat", $material);
             $sql->nextRowset(); 
             $sql->execute();
-            if($sql->rowCount() > 0)
-            {
+            if($sql->rowCount() > 0){
                 return true;
             }else{
                 return false;
@@ -46,10 +38,8 @@ Class Roupa{
     }
     //função de apagar a roupa
     public function apagarfoto($id){
-    
     global $pdo;
     global $msgErro;
-   
         $sql = $pdo->prepare("CALL Apagar_Roupa(:id)");
         $sql->bindValue(":id", $id);
         $sql->nextRowset();

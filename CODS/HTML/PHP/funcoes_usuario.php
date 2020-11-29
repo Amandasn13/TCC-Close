@@ -16,8 +16,6 @@ Class Usuario{
         }
     }
     public function cadastrar($nome, $sobrenome, $nomeUsuario, $nascimento, $email, $senha){
-        global $pdo;
-        global $msgErro;
         //verifica se o usuário cadastrado já existe!
         $sql = $pdo->prepare("CALL BuscarId_UsuarioNu(:nu)");
         $sql->bindValue(":nu", $nomeUsuario); 
@@ -40,8 +38,6 @@ Class Usuario{
         }
     }
     public function logar($nomeUsuario, $senha, $email){
-        global $msgErro;
-        global $pdo;
         $sql = $pdo->prepare("CALL Logar_Usuario(:nu, :e, :s)");
         $sql->bindValue (":nu", $nomeUsuario);
         $sql->bindValue (":s", md5($senha));
@@ -58,55 +54,7 @@ Class Usuario{
             return false;
         }
     }
-    public function verificarEmail($email){
-        global $pdo;
-        global $msgErro;
-        //verifica se o email q a pessoa usar já nao ta sendo usado por nenhum outro usuario!
-        $sql = $pdo->prepare("CALL BuscarId_UsuarioE(:e)");
-        $sql->bindValue(":e", $email);
-        $sql->nextRowset(); 
-        $sql->execute();
-        if($sql->rowCount() > 0){
-            return false; 
-        }else{
-            return true;
-        }
-    }
-    public function alterarDados($id, $nome, $sobrenome, $nascimento){
-        global $pdo;
-        global $msgErro;             
-        $sql = $pdo->prepare("CALL Alterar_Usuario(:id, :n, :s, :dn)");
-        $sql->bindvalue(":id", $id);
-        $sql->bindvalue(":n", $nome);              
-        $sql->bindValue(":s", $sobrenome); 
-        $sql->bindValue(":dn", $nascimento);
-        $sql->nextRowset();
-        $sql->execute();
-        return true;
-    }
-    public function alterarSenha($senha, $id){
-        global $pdo;
-        global $msgErro;             
-        $sql = $pdo->prepare("CALL Alterar_Senha(:id, :s)");
-        $sql->bindvalue(":s", md5($senha));                
-        $sql->bindvalue(":id", $id);
-        $sql->nextRowset();
-        $sql->execute();
-        return true;
-    }
-    public function alterarEmail($email, $id){
-        global $pdo;
-        global $msgErro;             
-        $sql = $pdo->prepare("CALL Alterar_Email(:id, :e)");
-        $sql->bindvalue(":e", $email);                
-        $sql->bindvalue(":id", $id);
-        $sql->nextRowset(); 
-        $sql->execute();
-        return true;
-    }
     public function esqueciSenha($email){
-        global $pdo;
-        global $msgErro;
         $sql = $pdo->prepare("CALL Buscar_UsuarioE(:e)");
         $sql->bindValue(":e", $email);
         $sql->nextRowset();
@@ -129,8 +77,6 @@ Class Usuario{
         }
     }
     public function novaRedefinicao($email, $chave){
-        global $pdo;
-        global $msgErro;
         $sql = $pdo->prepare("CALL Nova_Recuperacao(:e, :r)");
         $sql->bindValue(":e", $email);
         $sql->bindValue(":r", $chave);
@@ -143,8 +89,6 @@ Class Usuario{
         }
     }
     public function enviarEmail($email, $chave){    
-        global $pdo;
-        global $msgErro;
         require_once('src/PHPMailer.php');
         require_once('src/SMTP.php');
         require_once('src/Exception.php');
@@ -172,28 +116,7 @@ Class Usuario{
 	        echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
         }
     }
-    public function deletarRash($rash){
-        global $pdo;
-        global $msgErro;
-        $sql = $pdo->prepare("CALL Apagar_Recuperacao(:r)");
-        $sql->bindValue(":r", $rash);
-        $sql->nextRowset();
-        $sql->execute();
-        return true;
-    }
-    public function alterarNome($id, $nomeUsuario){
-        global $pdo;
-        global $msgErro;
-        $sql = $pdo->prepare("CALL Alterar_Nome(:id, :n)");
-        $sql->bindValue(":id", $id);
-        $sql->bindValue(":n", $nomeUsuario);
-        $sql->nextRowset();
-        $sql->execute();
-        return true;
-    }
     public function VericarNome($nomeUsuario){
-        global $pdo;
-        global $msgErro;
         //verifica se o nomeUsuario q a pessoa usar já nao ta sendo usado por nenhum outro usuario!
         $sql = $pdo->prepare("CALL BuscarId_UsuarioNu(:nu)");
         $sql->bindValue(":nu", $nomeUsuario);
@@ -205,9 +128,19 @@ Class Usuario{
             return true;
         }
     }
+    public function verificarEmail($email){
+        //verifica se o email q a pessoa usar já nao ta sendo usado por nenhum outro usuario!
+        $sql = $pdo->prepare("CALL BuscarId_UsuarioE(:e)");
+        $sql->bindValue(":e", $email);
+        $sql->nextRowset(); 
+        $sql->execute();
+        if($sql->rowCount() > 0){
+            return false; 
+        }else{
+            return true;
+        }
+    }
     public function VericarRash($email){
-        global $pdo;
-        global $msgErro;
         $sql = $pdo->prepare("CALL Buscar_RecuperacaoE(:e)");
         $sql->bindValue(":e", $email);
         $sql->nextRowset(); 
@@ -218,9 +151,50 @@ Class Usuario{
             return true;
         }
     }
-    public function apagarUsuario($id){
+    public function alterarDados($id, $nome, $sobrenome, $nascimento){            
+        $sql = $pdo->prepare("CALL Alterar_Usuario(:id, :n, :s, :dn)");
+        $sql->bindvalue(":id", $id);
+        $sql->bindvalue(":n", $nome);              
+        $sql->bindValue(":s", $sobrenome); 
+        $sql->bindValue(":dn", $nascimento);
+        $sql->nextRowset();
+        $sql->execute();
+        return true;
+    }
+    public function alterarNome($id, $nomeUsuario){
+        $sql = $pdo->prepare("CALL Alterar_Nome(:id, :n)");
+        $sql->bindValue(":id", $id);
+        $sql->bindValue(":n", $nomeUsuario);
+        $sql->nextRowset();
+        $sql->execute();
+        return true;
+    }
+    public function alterarEmail($email, $id){     
+        $sql = $pdo->prepare("CALL Alterar_Email(:id, :e)");
+        $sql->bindvalue(":e", $email);                
+        $sql->bindvalue(":id", $id);
+        $sql->nextRowset(); 
+        $sql->execute();
+        return true;
+    }
+    public function alterarSenha($senha, $id){             
+        $sql = $pdo->prepare("CALL Alterar_Senha(:id, :s)");
+        $sql->bindvalue(":s", md5($senha));                
+        $sql->bindvalue(":id", $id);
+        $sql->nextRowset();
+        $sql->execute();
+        return true;
+    }
+    public function apagarRash($rash){
         global $pdo;
         global $msgErro;
+        $sql = $pdo->prepare("CALL Apagar_Recuperacao(:r)");
+        $sql->bindValue(":r", $rash);
+        $sql->nextRowset();
+        $sql->execute();
+        return true;
+    }
+    public function apagarUsuario($id){
         $sql = $pdo->prepare("CALL Apagar_Usuario(:id)");
         $sql->bindValue(":id", $id);
         $sql->nextRowset(); 
