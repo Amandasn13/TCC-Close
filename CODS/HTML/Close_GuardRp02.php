@@ -1,6 +1,7 @@
 <?php
 require_once 'PHP/Conexao.php';
 require_once 'PHP/funcoes_roupa.php';
+require_once 'PHP/funcoes_look.php';
 session_start();
 if(!isset($_SESSION['IdUsuario']))
 {
@@ -15,6 +16,7 @@ $dados1 = mysqli_fetch_array($resultado);
 mysqli_free_result($resultado);
 mysqli_next_result($connect); 
 $r = new Roupa;
+$l = new Look;
 ?>
 
 <!DOCTYPE html>
@@ -624,6 +626,7 @@ $('#psps').click(function(e){
                                         $sql2 = "CALL Buscar_Looks('$idusuario',1)";
                                                 $resultado2 = mysqli_query($connect, $sql2);
                                                 $total2 = mysqli_affected_rows($connect);
+                                                mysqli_free_result($resultado2);
                                                 mysqli_next_result($connect);
                                                 if($total2 > 0){
                                                     $resultado2 = mysqli_query($connect, $sql2);
@@ -698,15 +701,16 @@ $('#psps').click(function(e){
                                                                         }
                                                                             $idlook = $fotolook['IdLook'];
                                                                             $sql3 = "CALL Buscar_Fotos('$idlook')";
-                                                                                    $resultado3 = mysqli_query($connect, $sql3);
-                                                                                    $total3 = mysqli_affected_rows($connect);
-                                                                                    mysqli_next_result($connect);
-                                                                                    if($total3 > 0){
-                                                                                        $resultado3 = mysqli_query($connect, $sql3);
-                                                                                    while($dadosfotos4 = mysqli_fetch_array($resultado3)){
-                                                                                        $album3[] = $dadosfotos4;
+                                                                            $resultado3 = mysqli_query($connect, $sql3);
+                                                                            $total3 = mysqli_affected_rows($connect);
+                                                                    
+                                                                            mysqli_next_result($connect);
+                                                                            if($total3 > 0){
+                                                                                $resultado3 = mysqli_query($connect, $sql3);
+                                                                                while($dadosfotos4 = mysqli_fetch_array($resultado3)){
+                                                                                    $album3[] = $dadosfotos4;
                                                                                         
-                                                                                    };
+                                                                            };
 
                                                                     ?>
                                                                 <tr>
@@ -717,13 +721,13 @@ $('#psps').click(function(e){
                                                                                             $cont3++;
                                                                                             
                                                                                         ?>
-                                                                    <td>
+                                                                    
                                                                     <!-- Grid column -->
                                                                     <div class="mb-3 pics animation all 2">
-                                                                    <img class="img-fluid" src="<?php echo"Fotos_Looks/".$fotodolook["Foto"].''; ?>" alt="Card image cap">
+                                                                        <td><img class="img-fluid" src="<?php echo"Fotos_Looks/".$fotodolook["Foto"].''; ?>" alt="Card image cap"></td>
                                                                     </div>
                                                                     <!-- Grid column -->
-                                                                    </td>
+                                                                    
                                                                     <?php
                                                                             if($cont3 == 2){
                                                                                 echo"</tr>";
@@ -779,42 +783,40 @@ $('#psps').click(function(e){
                                                             <div id="ApLk<?php echo $fotolook['IdLook'];?>" role="tabpanel" class="tab-pane fade in">
                                                                 <br><center><h5 style="color:wheat;">Deseja mesmo apagar o look e todas suas informações? 
                                                                     Essa ação não podera ser desfeita no futuro</h5><br>
-                                                                        <!--<input type="hidden" value="<?php Echo $dados5["Titulo"]; ?>" name="tit_roupa">
-                                                                        <input type="hidden" value="<?php Echo $dados5["IdRoupa"]; ?>" name="id_roupa">-->
-                                                                        <input type="submit" value="Sim, desejo apagar" class="btn btn-primary"></center><br>
-                                                                        <!--PHP de Apagar dados do guarda roupa:
-                                                                            
+                                                                    <form method="post" name="apagarlook">
+                                                                        <input type="hidden" value="<?php echo $fotolook['IdLook'];?>" name="idluk">
+                                                                        <input type="submit" value="Sim, desejo apagar" class="btn btn-primary" name="vai"></center><br>
+                                                                        <!--PHP de Apagar dados do guarda roupa:-->
                                                                             <?php
-                                                                            if(isset($_POST['tit_roupa']))
+                                                                            if(isset($_POST['idluk']))
                                                                             {
-                                                                                $id = addslashes($_POST['id_roupa']);
-                                                                                            
-                                                                                        
-
-                                                                                $u->conexao("Tiffanny", "localhost","root","");
-                                                                                if($u->msgErro == "")
+                                                                                $id = addslashes($_POST['idluk']);
+                                                                                $l->conexao("Tiffanny", "localhost","root","");
+                                                                                if($l->msgErro == "")
                                                                                 {
-                                                                                    if($u->apagarfoto($id))
-                                                                                    {
+                                                                                    if($l->apagarlook($id)){
                                                                                         echo "<script language=javascript type= 'text/javascript'>
-                                                                                        window.alert('Roupa apagada com sucesso!')
+                                                                                        window.alert('Look apagado com sucesso!')
                                                                                         </script>";
                                                                                         echo "<script language=java script type= 'text/javascript'>
-                                                                                        window.location.href = 'Close_GuardRp.php'
+                                                                                        window.location.href = 'Close_GuardRp02.php'
                                                                                         </script>";
                                                                                     }else{
-                                                                                        echo "Não foi possivel apagar!";
-
+                                                                                        echo "<script language=javascript type= 'text/javascript'>
+                                                                                        window.alert('Não foi apagado com sucesso!')
+                                                                                        </script>";
                                                                                     }
+                                                                                   
                                                                                 }else
                                                                                 {
-                                                                                    echo "Erro: ".$u->msgErro;
+                                                                                    echo "Erro: ".$l->msgErro;
                                                                                 }
                                                                             }
-                                                                        ?>-->
+                                                                        ?>
+                                                                    </form>
                                                             </div>
                                                             <!--Editar Look-->
-                                                            <div id="EdLk" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
+                                                            <div id="EdLk<?php echo $fotolook['IdLook'];?>" role="tabpanel" class="tab-pane fade in"><!--Conteúdo prinipal da aba principal-->
                                                                 <center><br>
                                                                     <h6 style="color:wheat;"> *você pode alterar só uma caracterísca do look ou até mais,
                                                                         apenas preencha os campos que desejar e selecione "confirmar".

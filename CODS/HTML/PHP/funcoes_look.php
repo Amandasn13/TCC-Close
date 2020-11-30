@@ -1,9 +1,12 @@
 <?php
-class Roupa
+class Look
 {
     private $pdo;
     public $msgErro = "";
-    public function conexao($nome, $host, $usuario, $senha){
+
+    public function conexao($nome, $host, $usuario, $senha)
+    {
+
         global $pdo;
         global $msgErro;
         try {
@@ -11,12 +14,28 @@ class Roupa
         } catch (PDOException $erro) {
             $msgErro = $erro->getMessage();
         }
-}
-    //edição das informações com textos da roupa
+    }
+    //função de apagar o look
+    public function apagarlook($id)
+    {
+        global $pdo;
+        global $msgErro;
+        $sql = $pdo->prepare("CALL Apagar_Look(:id)");
+        $sql->bindValue(":id", $id);
+        $sql->nextRowset();
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+           return false;
+        }
+        
+    }
+
     public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material){
         global $pdo;
         global $msgErro;
-        $sql = $pdo->prepare("CALL Alterar_Roupa(:id, :tit, :cat, :tip, :c, :descr, :tam, :mar, :mat)");
+        $sql = $pdo->prepare("CALL Alterar_Look(:id, :tit, :cat, :tip, :c, :descr, :tam, :mar, :mat)");
         $sql->bindValue(":id", $id);
         $sql->bindValue(":tit", $titulo);
         $sql->bindValue(":cat", $categoria);
@@ -34,16 +53,8 @@ class Roupa
             return false;
         }
     }
-    //função de apagar a roupa
-    public function apagarfoto($id)
-    {
-        global $pdo;
-        global $msgErro;
-        $sql = $pdo->prepare("CALL Apagar_Roupa(:id)");
-        $sql->bindValue(":id", $id);
-        $sql->nextRowset();
-        $sql->execute();
-        return true;
-    }
+
+
+
 }
 ?>
