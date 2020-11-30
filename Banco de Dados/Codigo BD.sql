@@ -231,7 +231,7 @@ CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
 /*Retorna todas as fotos de um Look*/
 CREATE PROCEDURE Buscar_Fotos(id INT)
 	BEGIN
-		SELECT * FROM Foto WHERE fk_Look = id;
+		SELECT * FROM Fotos_look WHERE fk_Look = id;
     END//
 /*Altera um look*/
 CREATE PROCEDURE Alterar_Look(id INT,n CHAR(100), d CHAR(100))
