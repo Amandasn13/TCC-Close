@@ -236,7 +236,7 @@ CREATE PROCEDURE Buscar_Fotos(id INT)
 /*Altera um look*/
 CREATE PROCEDURE Alterar_Look(id INT,n CHAR(100), d CHAR(100))
 	 BEGIN
-		UPDATE Roupa SET Nome=n, Descricao=d WHERE IdLook = id;
+		UPDATE Look SET Nome=n, Descricao=d WHERE IdLook = id;
      END//
 /*Altera uma foto de um look*/
 CREATE PROCEDURE Alterar_Foto(id INT,ft BLOB)
