@@ -154,13 +154,52 @@ $u = new Usuario;
                                   if($u->alterarDados($id, $nome, $sobrenome, $nascimento
                                   ))
                                   {
-                                      echo "<script language=javascript type= 'text/javascript'>
-                                      window.alert('Alterações concluidas com sucesso!')
+                                      echo "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                      left: 805px; border-left: 7px solid #58D68D;'>
+                                          <span class='fa fa-check-circle'></span>
+                                          <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                          <span class='msg'>Alterações concluidas com sucesso! </span>
+                                          <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                              <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                          </button>
+                                      </div>
+                                  <script language=javascript type= 'text/javascript'>
+                                      var close = document.getElementsByClassName('close');
+                                      var i;
+      
+                                      for (i = 0; i < close.length; i++) {
+                                          close[i].onclick = function(){
+                                              var div = this.parentElement;
+                                              div.style.opacity = '0';
+                                              setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                          }
+                                      }
+                                      //window.alert('Alterações concluidas com sucesso!')
                                       </script>";
                                       echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
 
                                   }else{
-                                      echo "Não foi possivel editar!";
+                                      echo "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                      left: 1015px; border-left: 7px solid #C0392B ;'>
+                                          <span class='fa fa-meh-o'></span>
+                                          <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                          <span class='msg'>Não foi possível editar! </span>
+                                          <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                              <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                          </button>
+                                      </div>
+                                  <script language=javascript type= 'text/javascript'>
+                                      var close = document.getElementsByClassName('close');
+                                      var i;
+  
+                                      for (i = 0; i < close.length; i++) {
+                                          close[i].onclick = function(){
+                                              var div = this.parentElement;
+                                              div.style.opacity = '0';
+                                              setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                          }
+                                      }
+                                      //Não foi possivel editar!";
 
                                   }
                               }else
@@ -191,20 +230,77 @@ $u = new Usuario;
                               {
                                   if($u->verificarEmail($email)){
                                       if($u->alterarEmail($email, $id)){
-                                          echo "<script language=javascript type= 'text/javascript'>
-                                          window.alert('E-mail alterado com sucesso!')
+                                          echo "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                          left: 805px; border-left: 7px solid #58D68D;'>
+                                              <span class='fa fa-check-circle'></span>
+                                              <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                              <span class='msg'>Email alterado com sucesso! </span>
+                                              <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                  <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                              </button>
+                                          </div>
+                                      <script language=javascript type= 'text/javascript'>
+                                          var close = document.getElementsByClassName('close');
+                                          var i;
+          
+                                          for (i = 0; i < close.length; i++) {
+                                              close[i].onclick = function(){
+                                                  var div = this.parentElement;
+                                                  div.style.opacity = '0';
+                                                  setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                              }
+                                          }
+                                          //window.alert('E-mail alterado com sucesso!')
                                           </script>";
                                           echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
                                   }  else{
-                                      echo "<script language=javascript type= 'text/javascript'>
-                                              window.alert('Falha em alterar e-mail!')
+                                      echo "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                      left: 1015px; border-left: 7px solid #C0392B ;'>
+                                          <span class='fa fa-meh-o'></span>
+                                          <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                          <span class='msg'>Falha em alterar email! </span>
+                                          <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                              <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                          </button>
+                                      </div>
+                                  <script language=javascript type= 'text/javascript'>
+                                      var close = document.getElementsByClassName('close');
+                                      var i;
+  
+                                      for (i = 0; i < close.length; i++) {
+                                          close[i].onclick = function(){
+                                              var div = this.parentElement;
+                                              div.style.opacity = '0';
+                                              setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                          }
+                                      }
+                                      //window.alert('Falha em alterar e-mail!')
                                               </script>";
                                               echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";       
                               }
 
                                   }else{
-                                      echo "<script language=javascript type= 'text/javascript'>
-                                      window.alert('E-mail já está sendo utilizado por outro usuário!')
+                                      echo "<div class='alert alert-warning' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                      left: 805px; border-left: 7px solid #F1C40F;'>
+                                          <span class='fa fa-exclamation-circle'></span>
+                                          <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                          <span class='msg'>Este email ja está sendo utilizado por outro usuário! </span>
+                                          <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                              <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                          </button>
+                                      </div>
+                                  <script language=javascript type= 'text/javascript'>
+                                      var close = document.getElementsByClassName('close');
+                                      var i;
+      
+                                      for (i = 0; i < close.length; i++) {
+                                          close[i].onclick = function(){
+                                              var div = this.parentElement;
+                                              div.style.opacity = '0';
+                                              setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                          }
+                                      }
+                                      //window.alert('E-mail já está sendo utilizado por outro usuário!')
                                       </script>";
                                   }
 
@@ -239,20 +335,77 @@ $u = new Usuario;
                                     {
                                         if($u->VericarNome($nomeusuario)){
                                             if($u->alterarNome($id, $nomeusuario)){
-                                                echo "<script language=javascript type= 'text/javascript'>
-                                                window.alert('Nome de usuário alterado com sucesso!')
+                                                echo "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                                left: 805px; border-left: 7px solid #58D68D;'>
+                                                    <span class='fa fa-check-circle'></span>
+                                                    <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                    <span class='msg'>Nome de usuário com sucesso! </span>
+                                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                        <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                    </button>
+                                                </div>
+                                            <script language=javascript type= 'text/javascript'>
+                                                var close = document.getElementsByClassName('close');
+                                                var i;
+                
+                                                for (i = 0; i < close.length; i++) {
+                                                    close[i].onclick = function(){
+                                                        var div = this.parentElement;
+                                                        div.style.opacity = '0';
+                                                        setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                                    }
+                                                }
+                                                //window.alert('Nome de usuário alterado com sucesso!')
                                                 </script>";
                                                 echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";
                                         }  else{
-                                            echo "<script language=javascript type= 'text/javascript'>
-                                                    window.alert('Falha em alterar nome de usuário!')
+                                            echo "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                            left: 1015px; border-left: 7px solid #C0392B ;'>
+                                                <span class='fa fa-meh-o'></span>
+                                                <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                <span class='msg'>Falha em alterar nome de usuário! </span>
+                                                <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                    <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                </button>
+                                            </div>
+                                        <script language=javascript type= 'text/javascript'>
+                                            var close = document.getElementsByClassName('close');
+                                            var i;
+        
+                                            for (i = 0; i < close.length; i++) {
+                                                close[i].onclick = function(){
+                                                    var div = this.parentElement;
+                                                    div.style.opacity = '0';
+                                                    setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                                }
+                                            }
+                                            //window.alert('Falha em alterar nome de usuário!')
                                                     </script>";
                                                     echo "<meta HTTP-EQUIV='refresh' CONTENT='0'>";       
                                     }
 
                                         }else{
-                                            echo "<script language=javascript type= 'text/javascript'>
-                                            window.alert('Nome de usuário já está sendo utilizado por outra pessoa!')
+                                            echo "<div class='alert alert-warning' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                            left: 805px; border-left: 7px solid #F1C40F;'>
+                                                <span class='fa fa-exclamation-circle'></span>
+                                                <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                <span class='msg'>Essenome de usuário ja está sendo usado por outro usuário! </span>
+                                                <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                    <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                </button>
+                                            </div>
+                                        <script language=javascript type= 'text/javascript'>
+                                            var close = document.getElementsByClassName('close');
+                                            var i;
+            
+                                            for (i = 0; i < close.length; i++) {
+                                                close[i].onclick = function(){
+                                                    var div = this.parentElement;
+                                                    div.style.opacity = '0';
+                                                    setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                                }
+                                            }
+                                            //window.alert('Nome de usuário já está sendo utilizado por outra pessoa!')
                                             </script>";
                                         }
 
@@ -296,14 +449,52 @@ $u = new Usuario;
                                                                             {
                                                                                 
                                                                                 if($u->alterarSenha($senha, $id)){
-                                                                                    echo "<script language=javascript type= 'text/javascript'>
-                                                                                    window.alert('Senha alterada!');
+                                                                                    echo "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                                                                    left: 1025px; border-left: 7px solid #58D68D;'>
+                                                                                        <span class='fa fa-user-plus'></span>
+                                                                                        <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                                        <span class='msg'>Senha alterada! </span>
+                                                                                        <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                            <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                <script language=javascript type= 'text/javascript'>
+                                                                                    var close = document.getElementsByClassName('close');
+                                                                                    var i;
+                                                
+                                                                                    for (i = 0; i < close.length; i++) {
+                                                                                        close[i].onclick = function(){
+                                                                                            var div = this.parentElement;
+                                                                                            div.style.opacity = '0';
+                                                                                            setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                                                                        }
+                                                                                    }
+                                                                                    //window.alert('Senha alterada!');
                                                                                     window.location.href = 'Close_Estudio2.php'
                                                                                     </script>";
                                                                                     
                                                                                 }else{
-                                                                                    echo "<script language=javascript type= 'text/javascript'>
-                                                                        window.alert('Não foi possível alterar a senha!')
+                                                                                    echo "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                                                                    left: 1015px; border-left: 7px solid #C0392B ;'>
+                                                                                        <span class='fa fa-address-book'></span>
+                                                                                        <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                                        <span class='msg'>Não foi possível alterar a senha! </span>
+                                                                                        <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                            <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                <script language=javascript type= 'text/javascript'>
+                                                                                    var close = document.getElementsByClassName('close');
+                                                                                    var i;
+                                                
+                                                                                    for (i = 0; i < close.length; i++) {
+                                                                                        close[i].onclick = function(){
+                                                                                            var div = this.parentElement;
+                                                                                            div.style.opacity = '0';
+                                                                                            setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                                                                        }
+                                                                                    }
+                                                                                    //window.alert('Não foi possível alterar a senha!')
                                                                         </script>";
                                                                                     }
 
@@ -313,13 +504,51 @@ $u = new Usuario;
                                                                             }
                                                                         }
                                                                         else{
-                                                                        echo "<script language=javascript type= 'text/javascript'>
-                                                                        window.alert('Senha atual incorreta!')
+                                                                        echo "<div class='alert alert-warning' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                                                        left: 1035px; border-left: 7px solid #F1C40F;'>
+                                                                            <span class='fa fa-exclamation-circle'></span>
+                                                                            <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                            <span class='msg'> Senha atual incorreta! </span>
+                                                                            <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    <script language=javascript type= 'text/javascript'>
+                                                                        var close = document.getElementsByClassName('close');
+                                                                        var i;
+                                        
+                                                                        for (i = 0; i < close.length; i++) {
+                                                                            close[i].onclick = function(){
+                                                                                var div = this.parentElement;
+                                                                                div.style.opacity = '0';
+                                                                                setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                                                            }
+                                                                        }
+                                                                        //window.alert('Senha atual incorreta!')
                                                                         </script>";
                                                                         }
                                                                       }else{
-                                                                        echo "<script language=javascript type= 'text/javascript'>
-                                                                        window.alert('A senha nova e a conmfirmação dela diferem!')
+                                                                        echo "<div class='alert alert-warning' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                                                        left: 805px; border-left: 7px solid #F1C40F;'>
+                                                                            <span class='fa fa-exclamation-circle'></span>
+                                                                            <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                            <span class='msg'> Nova senha e/ou confirmação diferentes! </span>
+                                                                            <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    <script language=javascript type= 'text/javascript'>
+                                                                        var close = document.getElementsByClassName('close');
+                                                                        var i;
+                                        
+                                                                        for (i = 0; i < close.length; i++) {
+                                                                            close[i].onclick = function(){
+                                                                                var div = this.parentElement;
+                                                                                div.style.opacity = '0';
+                                                                                setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                                                            }
+                                                                        }
+                                                                        //window.alert('A senha nova e a conmfirmação dela diferem!')
                                                                         </script>";
                                                                       }
                                                               }
@@ -355,14 +584,52 @@ $u = new Usuario;
                                         {
                                             
                                             if($u->apagarUsuario($id)){
-                                                echo "<script language=javascript type= 'text/javascript'>
-                                                window.alert('Usuario apagado!');
+                                                echo "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                                left: 1025px; border-left: 7px solid #58D68D;'>
+                                                    <span class='fa fa-user-plus'></span>
+                                                    <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                    <span class='msg'>Usuário apagado! </span>
+                                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                        <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                    </button>
+                                                </div>
+                                            <script language=javascript type= 'text/javascript'>
+                                                var close = document.getElementsByClassName('close');
+                                                var i;
+            
+                                                for (i = 0; i < close.length; i++) {
+                                                    close[i].onclick = function(){
+                                                        var div = this.parentElement;
+                                                        div.style.opacity = '0';
+                                                        setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                                    }
+                                                }
+                                                //window.alert('Usuario apagado!');
                                                 window.location.href = 'Close_Log02.php'
                                                 </script>";
                                                 
                                             }else{
-                                                echo "<script language=javascript type= 'text/javascript'>
-                                    window.alert('Não foi possível apagar usuario')
+                                                echo "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                                left: 1015px; border-left: 7px solid #C0392B ;'>
+                                                    <span class='fa fa-address-book'></span>
+                                                    <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                    <span class='msg'>Não foi possível apagar usuário! </span>
+                                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                        <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                    </button>
+                                                </div>
+                                            <script language=javascript type= 'text/javascript'>
+                                                var close = document.getElementsByClassName('close');
+                                                var i;
+            
+                                                for (i = 0; i < close.length; i++) {
+                                                    close[i].onclick = function(){
+                                                        var div = this.parentElement;
+                                                        div.style.opacity = '0';
+                                                        setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                                    }
+                                                }
+                                                //window.alert('Não foi possível apagar usuario')
                                     </script>";
                                             }
                                     
@@ -372,8 +639,27 @@ $u = new Usuario;
                                         }
                                     }
                                 else{
-                                    echo "<script language=javascript type= 'text/javascript'>
-                                    window.alert('Senha incorreeta!')
+                                    echo "<div class='alert alert-warning' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                    left: 1035px; border-left: 7px solid #F1C40F;'>
+                                        <span class='fa fa-exclamation-circle'></span>
+                                        <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                        <span class='msg'>Senha incorreta! </span>
+                                        <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                            <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                        </button>
+                                    </div>
+                                <script language=javascript type= 'text/javascript'>
+                                    var close = document.getElementsByClassName('close');
+                                    var i;
+    
+                                    for (i = 0; i < close.length; i++) {
+                                        close[i].onclick = function(){
+                                            var div = this.parentElement;
+                                            div.style.opacity = '0';
+                                            setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                        }
+                                    }
+                                    //window.alert('Senha incorreeta!')
                                     </script>";
                                 }
                             }
@@ -551,7 +837,7 @@ $u = new Usuario;
           <div id="lkcd2">
             <strong class="d-inline-block mb-2 text-primary">Desapegos</strong>
             <h3 class="mb-0">
-              <a class="text-light" href="#">Algo no fundo do guarda-roupa que não usa mais?</a>
+              <a class="text-light" href="Close_Desp.php">Algo no fundo do guarda-roupa que não usa mais?</a>
             </h3>
             <p class="card-text mb-auto">Veja instituições e organizações que podem ser a resposta ideial pro seu desapego</p>
           </div>

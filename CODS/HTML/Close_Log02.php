@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="CSS/Close_Log2.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-	
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src='https://code.jquery.com/jquery-3.4.1.js'></script>
     <link rel="icon" type="imagem/png" href="IMG\Vetores\Close_Logo.png">
     <style>
       @import url('CSS/Close_Log2.css');
@@ -61,8 +62,27 @@
                                     header("location: Close_Estudio2.php");
                                 }else
                                 {
-                                    echo "<script language=javascript type= 'text/javascript'>
-                                    window.alert('Email e/ou senha incorretos, ou usuário não cadastrado!')
+                                    echo "<div class='alert alert-warning' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                    left: 805px; border-left: 7px solid #F1C40F;'>
+                                        <span class='fa fa-exclamation-circle'></span>
+                                        <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                        <span class='msg'>Email e/ou senha incorretos, ou usuário não cadastrado! </span>
+                                        <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                            <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                        </button>
+                                    </div>
+                                <script language=javascript type= 'text/javascript'>
+                                    var close = document.getElementsByClassName('close');
+                                    var i;
+    
+                                    for (i = 0; i < close.length; i++) {
+                                        close[i].onclick = function(){
+                                            var div = this.parentElement;
+                                            div.style.opacity = '0';
+                                            setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                        }
+                                    }
+                                    //window.alert('Email e/ou senha incorretos, ou usuário não cadastrado!')
                                     </script>";
                                 }
                                 }else
@@ -173,8 +193,17 @@
                         <input type="password" name="ccsenha" id="pwr2"style="width: 365px; border-radius: 25px;" 
                             placeholder="Confirme sua senha" class="form-control" maxlength="100" required>
                         <a onclick="verSen()" style="text-decoration: none; color: black; font-size: 15px;"> 👁 Clique aqui para ver as senhas</a><br><br>
-                    <input type="submit" name="cadastro" value="Cadastrar" style="width: 365px;" class="botao" onclick="Mensagem()"></center>
+                    <input type="submit" id="btn-alert" name="cadastro" value="Cadastrar" style="width: 365px;" class="botao" onclick="Mensagem()"></center>
                 </div>
+            </div>
+            <div class='alert alert-warning' id="msg-alert1" style="position: fixed; margin-top: 5px; bottom: 85%;
+             left: 1025px; border-left: 7px solid #F1C40F; display: none">
+                <span class='fa fa-user-plus'></span>
+                <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                <span class='msg'>Cadastro realizado com sucesso! </span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-left: 9px; padding-bottom:9px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <!--Verifica se a pessoa clicou no botao-->
             <?php
@@ -202,25 +231,102 @@
                                 if($u->cadastrar($nome, $sobrenome, $nomeusuario, $nascimento,
                                 $email, $senha, $confirmarSenha))
                                 {
-                                    echo "<script language=javascript type= 'text/javascript'>
-                                    window.alert('Cadastrado!')
+                                    echo "
+                                    <div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                    left: 1025px; border-left: 7px solid #58D68D;'>
+                                        <span class='fa fa-user-plus'></span>
+                                        <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                        <span class='msg'>Cadastro realizado com sucesso! </span>
+                                        <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                            <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                        </button>
+                                    </div>
+                                <script language=javascript type= 'text/javascript'>
+                                    var close = document.getElementsByClassName('close');
+                                    var i;
+
+                                    for (i = 0; i < close.length; i++) {
+                                        close[i].onclick = function(){
+                                            var div = this.parentElement;
+                                            div.style.opacity = '0';
+                                            setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                        }
+                                    }
+                                    //window.alert('Usuario cadastrado com sucesso!')
                                     </script>";
                                 }
                                 else
                                 {
-                                    echo "<script language=javascript type= 'text/javascript'>
-                                    window.alert('Usuario já cadastrado!')
+                                    echo "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                    left: 1030px; border-left: 7px solid #C0392B ;'>
+                                        <span class='fa fa-address-book'></span>
+                                        <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                        <span class='msg'>Usuário ja cadastrado! </span>
+                                        <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                            <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                        </button>
+                                    </div>
+                                <script language=javascript type= 'text/javascript'>
+                                    var close = document.getElementsByClassName('close');
+                                    var i;
+
+                                    for (i = 0; i < close.length; i++) {
+                                        close[i].onclick = function(){
+                                            var div = this.parentElement;
+                                            div.style.opacity = '0';
+                                            setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                        }
+                                    }
+                                    //window.alert('Usuario já cadastrado!')
                                     </script>";
                                 }
                             }else{
-                                echo "<script language=javascript type= 'text/javascript'>
-                                window.alert('Esse e-mail já está sendo usado por outro usuário')
+                                echo "<div class='alert alert-warning' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                left: 805px; border-left: 7px solid #F1C40F;'>
+                                    <span class='fa fa-exclamation-circle'></span>
+                                    <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                    <span class='msg'>Esse endereço de e-mail ja está sendo usado por outro usuário! </span>
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                        <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                    </button>
+                                </div>
+                            <script language=javascript type= 'text/javascript'>
+                                var close = document.getElementsByClassName('close');
+                                var i;
+
+                                for (i = 0; i < close.length; i++) {
+                                    close[i].onclick = function(){
+                                        var div = this.parentElement;
+                                        div.style.opacity = '0';
+                                        setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                    }
+                                }
+                                //window.alert('Esse e-mail já está sendo usado por outro usuário')
                                 </script>";
                             }
                                 }      
                                 else{
-                                    echo "<script language=javascript type= 'text/javascript'>
-                                    window.alert('As senhas diferem!')
+                                    echo "<div class='alert alert-warning' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                    left: 1035px; border-left: 7px solid #F1C40F;'>
+                                        <span class='fa fa-exclamation-circle'></span>
+                                        <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                        <span class='msg'>Senhas diferentes! </span>
+                                        <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                            <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                        </button>
+                                    </div>
+                                <script language=javascript type= 'text/javascript'>
+                                    var close = document.getElementsByClassName('close');
+                                    var i;
+    
+                                    for (i = 0; i < close.length; i++) {
+                                        close[i].onclick = function(){
+                                            var div = this.parentElement;
+                                            div.style.opacity = '0';
+                                            setTimeout(function(){ div.style.display = 'none'; }, 600);
+                                        }
+                                    }
+                                    //window.alert('As senhas diferem!')
                                     </script>";
                                 } 
                             }
