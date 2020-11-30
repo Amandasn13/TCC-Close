@@ -38,7 +38,8 @@
                     <label for="l1">Usuário:</label><br>
                     <input type="text" id="l1" name="usuário" placeholder="Digite o nome de usuário ou e-mail" required ><br><br>
                     <label for="l2">Senha:</label><br>
-                    <input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha" required><br><br><!-- lembra da vizualização da senha-->
+                    <input type="password" id="l2" style="width: 280px;" name="senha" placeholder="Digite sua senha" required><br>
+                    <a onclick="verSenLg()" style="text-decoration: none; color: azure; font-size: 15px;"> 👁 Clique aqui para ver a senha</a><br><br>
                     <input type="submit" value="Entrar" class="botao" onclick="MostrarNome()">
                     <br><br><a href="Esqueci_Senha.php" id="fgs">Esqueci minha senha</a><br><br>
                     <a href="#hpnv" id="fgs">Desejo me cadastrar</a><br><br></center>
@@ -76,7 +77,7 @@
                         }
             ?>
             <style>
-                            .wave-1 {
+                .wave-1 {
                     animation: moveWave1 2s ease-in-out infinite alternate;
                 }
 
@@ -162,11 +163,16 @@
             </div><br>
             <div class="row justify-content-around">
                 <div class=col-4>
-                    <input type="email" name="Email" id="all-in" placeholder="Digite seu email" class="em" style="width: 365px;" maxlength="100" required><br><br>
-                    <input type="password" name="csenha" id="passC" style="width: 365px;" placeholder="Digite sua senha" maxlength="100" required><br><br>
+                    <input type="email" name="Email" id="all-in" placeholder="Digite seu email" onblur="validateEmail(this);" class="em" style="width: 365px;" maxlength="100" required><br><br>
+                    <input type="password" name="csenha" id="pwr" onkeyup="validatePassword(this.value);" style="width: 365px;" placeholder="Digite sua senha (use simbolos, letras e números)" maxlength="100" 
+                        class="form-control" required>
+                    <span id="msg" class="input-group-text" style="font-family: Segoe UI; font-style: bold; width: 365px;"></span>
+                    <br><br>
                 </div><br>
                 <div class="col-4">
-                    <input type="password" name="ccsenha" id="passC" style="width: 365px;" placeholder="Confirme sua senha" maxlength="100" required><br><br>
+                        <input type="password" name="ccsenha" id="pwr2"style="width: 365px; border-radius: 25px;" 
+                            placeholder="Confirme sua senha" class="form-control" maxlength="100" required>
+                        <a onclick="verSen()" style="text-decoration: none; color: black; font-size: 15px;"> 👁 Clique aqui para ver as senhas</a><br><br>
                     <input type="submit" name="cadastro" value="Cadastrar" style="width: 365px;" class="botao" onclick="Mensagem()"></center>
                 </div>
             </div>
@@ -234,13 +240,109 @@
         <br><br>    
     </form>
 </div>
+
+<script>
+//Validação de email
+function validateEmail(emailField){
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (reg.test(emailField.value) == false) 
+        {
+            alert('Endereço de email inválido! Por favor tente de novo.');
+            return false;
+        }
+
+    return true;
+
+}
+
+//Validação de senha
+function validatePassword(password) {
+                
+    //Não fazer nada quando tamanho da senha = 0
+    if (password.length === 0) {
+        document.getElementById("msg").innerHTML = "";
+        return;
+    }
+				
+    // Criação de array com todos valores possíveis pra senha
+    var matchedCase = new Array();
+    matchedCase.push("[$@$!%*#?&]"); // Special Charector
+    matchedCase.push("[A-Z]");      // Uppercase Alpabates
+    matchedCase.push("[0-9]");      // Numbers
+    matchedCase.push("[a-z]");     // Lowercase Alphabates
+
+	//Checar tamanho da senha
+	if(ctr > 2 && password.length > 7){
+		ctr++
+    }
+
+    //Checando progresso
+    var ctr = 0;
+	for (var i = 0; i < matchedCase.length; i++) {
+		if (new RegExp(matchedCase[i]).test(password)) {
+			ctr++;
+		}
+	}
+				
+                // Display
+                var color = "";
+                var strength = "";
+                switch (ctr) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        strength = "Hm senha meio fraca :/";
+                        color = "red";
+                        break;
+                    case 3:
+                        strength = "Quase lá hein";
+                        color = "orange";
+                        break;
+                    case 4:
+                        strength = "Muito boa!";
+                        color = "green";
+                        break;
+                }
+                document.getElementById("msg").innerHTML = strength;
+                document.getElementById("msg").style.color = color;
+            }
+
+//Visualizador de input[password]
+//Login
+function verSenLg() {
+  var w = document.getElementById("l2");
+  if (w.type === "password") {
+    w.type = "text";
+  } else {
+    w.type = "password";
+  }
+}
+
+//Cadastro
+function verSen() {
+  var x = document.getElementById("pwr");
+  var y = document.getElementById("pwr2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+  if (y.type === "password") {
+    y.type = "text";
+  } else {
+    y.type = "password";
+  }
+}
+
+</script>
 </center>
 <footer>
         <nav class="navbar navbar-default" role="navigation" id="rodp">
         <center>
           <ul>
             <li>
-                <a href="Close_SbrNs.html">SOBRE NÓS E CONTATO</a>
+                <a href="Close_SbrNs.html" style="font-size: 25px;">SOBRE NÓS E CONTATO</a>
             </li>
         </ul>
       </center>

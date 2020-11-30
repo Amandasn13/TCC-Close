@@ -565,7 +565,7 @@ $u = new Usuario;
     <center>
       <ul>
         <li>
-          <a href="Close_SbrNs.php">SOBRE NÓS E CONTATO</a>
+          <a href="Close_SbrNs.php"  style="font-size: 25px;">SOBRE NÓS E CONTATO</a>
         </li>
     </ul>
   </center>

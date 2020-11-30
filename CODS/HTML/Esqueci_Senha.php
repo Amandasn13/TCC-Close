@@ -33,7 +33,7 @@
     <form method="post" name="esquecisenha">
         <div class="input-group mb-3">
             <input type="email" name ="Email" class="form-control" placeholder="Digite seu email aqui" 
-            aria-label="Recipient's username" aria-describedby="button-addon2">
+            aria-label="Recipient's username" onblur="validateEmail(this);" aria-describedby="button-addon2">
             <div class="input-group-append">
                 <button class="btn btn-success" name="Enviar" type="submit" id="button-addon2"
                 style="height: 38px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">Enviar</button>
@@ -60,6 +60,21 @@
                     }
                 ?>
             </form>    
+            <script>
+            //Validação de email
+            function validateEmail(emailField){
+                var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+                    if (reg.test(emailField.value) == false) 
+                    {
+                        alert('Endereço de email inválido! Por favor tente de novo.');
+                        return false;
+                    }
+
+                return true;
+
+            }
+            </script>
             </div><br><br>
         </div>
 </div>

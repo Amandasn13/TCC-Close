@@ -1,6 +1,6 @@
 <?php
 require_once 'PHP/Conexao.php';
-require_once 'PHP/funcoes_usuario.php';
+require_once 'PHP/Login_Cadastro.php';
 session_start();
 if(!isset($_SESSION['IdUsuario']))
 {

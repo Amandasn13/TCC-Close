@@ -1,6 +1,7 @@
 <?php
 require_once 'PHP/Conexao.php';
-require_once 'PHP/funcoes_usuario.php';
+require_once 'PHP/Login_Cadastro.php';
+session_start();
 if(!isset($_SESSION['IdUsuario']))
 {
     header("location: Close_Log02.php");
@@ -149,7 +150,7 @@ Nós da equipe Close separamos algumas informações sobre instituições que po
     <center>
         <ul>
             <li>
-                <a href="Close_SbrNs.php">SOBRE NÓS E CONTATO</a>
+                <a href="Close_SbrNs.php"  style="font-size: 25px;">SOBRE NÓS E CONTATO</a>
             </li>
         </ul>
   </center>
