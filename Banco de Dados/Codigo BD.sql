@@ -209,7 +209,7 @@ CREATE PROCEDURE Novo_Look(dono INT,n CHAR(100), d CHAR(100))
 /*Adiciona uma foto a um look*/
 CREATE PROCEDURE Nova_Foto(id INT, ft BLOB)
 	BEGIN
-		INSERT INTO fotos_look(fk_Look,Fotos_Look) VALUES (id,ft);
+		INSERT INTO fotos_look(fk_Look,Foto) VALUES (id,ft);
     END//
 /*Retorna os Looks para a página de Guarda-Roupa*/
 CREATE PROCEDURE Buscar_Looks(idU INT,e INT)
@@ -239,6 +239,10 @@ CREATE PROCEDURE Alterar_Look(id INT,n CHAR(100), d CHAR(100))
 		UPDATE Roupa SET Nome=n, Descricao=d WHERE IdLook = id;
      END//
 /*Altera uma foto de um look*/
+CREATE PROCEDURE Alterar_Foto(id INT,ft BLOB)
+	BEGIN
+		UPDATE Fotos_Look SET Foto = ft WHERE fk_Look=id LIMIT 1;
+    END//
 /*Remove um Look*/
 CREATE PROCEDURE Apagar_Look(id INT)
 	BEGIN
