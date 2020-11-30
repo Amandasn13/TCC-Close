@@ -176,9 +176,9 @@ CREATE PROCEDURE Buscar_Roupas(idU INT, e INT)
 			WHEN 2 THEN /*Z a A*/
 				SELECT * FROM Roupa WHERE IdRoupa IN (SELECT * FROM Guarda_Roupa) ORDER BY Titulo DESC;
             WHEN 3 THEN /*Mais novos*/
-				SELECT * FROM Roupa WHERE IdRoupa IN (SELECT * FROM Guarda_Roupa) ORDER BY IdRoupa DESC;
-            WHEN 4 THEN /*Mais Antigos*/
 				SELECT * FROM Roupa WHERE IdRoupa IN (SELECT * FROM Guarda_Roupa) ORDER BY IdRoupa ASC;
+            WHEN 4 THEN /*Mais Antigos*/
+				SELECT * FROM Roupa WHERE IdRoupa IN (SELECT * FROM Guarda_Roupa) ORDER BY IdRoupa DESC;
         END CASE;
     END//
 /*Altera alguns dados do usuário*/
