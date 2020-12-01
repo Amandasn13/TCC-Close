@@ -364,7 +364,7 @@ $u = new Usuario;
                                 <input type="password" name="senha" class="form-control" id="pwr" onkeyup="validatePassword(this.value);" placeholder="Nova senha" maxlength="100" required>
                                 <span id="msg" class="input-group-text" style="font-family: Segoe UI; font-style: bold;"></span><br><br>
                                 <label style="color: aliceblue;">Confirme a senha:</label><br>
-                                <input type="password" name="confirmasenha" class="form-control"  id="pwr2" placeholder="Nova senha" maxlength="100" required><br><br>
+                                <input type="password" name="confirmasenha" class="form-control" id="pwr2" placeholder="Nova senha" maxlength="100" required><br><br>
                                 <label style="color: aliceblue;">Senha antiga para confirmação:</label><br>
                                 <input type="password" name="senhaantiga" class="form-control" id="pwr3" placeholder="Senha antiga" maxlength="100" required><br>
                                 <a onclick="verSen()" style="text-decoration: none; color: azure; font-size: 15px;"> 👁 Clique aqui para ver as senhas</a><br><br>
@@ -383,7 +383,7 @@ $u = new Usuario;
                                     if ($confirmasenhaatual == $senhatual) {
                                       if ($u->msgErro == "") {
 
-                                        if ($u->alterarSenha($senha, $id)) {
+                                        if ($u->alterarSenha($id, $senha)) {
                                           $_SESSION['msg'] = "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
                                                                                     right: 20px; border-left: 7px solid #58D68D;'>
                                                                                         <span class='fa fa-user-plus'></span>
@@ -713,112 +713,110 @@ $u = new Usuario;
     </div>
   </div>
   <script>
-//Validação de email
-function validateEmail(emailField){
-    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    //Validação de email
+    function validateEmail(emailField) {
+      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
-        if (reg.test(emailField.value) == false) 
-        {
-            alert('Endereço de email inválido! Por favor tente de novo.');
-            return false;
-        }
+      if (reg.test(emailField.value) == false) {
+        alert('Endereço de email inválido! Por favor tente de novo.');
+        return false;
+      }
 
-    return true;
+      return true;
 
-}
+    }
 
-//Validação de senha
-function validatePassword(password) {
-                
-    //Não fazer nada quando tamanho da senha = 0
-    if (password.length === 0) {
+    //Validação de senha
+    function validatePassword(password) {
+
+      //Não fazer nada quando tamanho da senha = 0
+      if (password.length === 0) {
         document.getElementById("msg").innerHTML = "";
         return;
+      }
+
+      // Criação de array com todos valores possíveis pra senha
+      var matchedCase = new Array();
+      matchedCase.push("[$@$!%*#?&]"); // Special Charector
+      matchedCase.push("[A-Z]"); // Uppercase Alpabates
+      matchedCase.push("[0-9]"); // Numbers
+      matchedCase.push("[a-z]"); // Lowercase Alphabates
+
+      //Checar tamanho da senha
+      if (ctr > 2 && password.length > 7) {
+        ctr++
+      }
+
+      //Checando progresso
+      var ctr = 0;
+      for (var i = 0; i < matchedCase.length; i++) {
+        if (new RegExp(matchedCase[i]).test(password)) {
+          ctr++;
+        }
+      }
+
+      // Display
+      var color = "";
+      var strength = "";
+      switch (ctr) {
+        case 0:
+        case 1:
+        case 2:
+          strength = "Hm senha meio fraca ";
+          color = "red";
+          break;
+        case 3:
+          strength = "Quase lá hein";
+          color = "orange";
+          break;
+        case 4:
+          strength = "Muito boa!";
+          color = "green";
+          break;
+      }
+      document.getElementById("msg").innerHTML = strength;
+      document.getElementById("msg").style.color = color;
     }
-				
-    // Criação de array com todos valores possíveis pra senha
-    var matchedCase = new Array();
-    matchedCase.push("[$@$!%*#?&]"); // Special Charector
-    matchedCase.push("[A-Z]");      // Uppercase Alpabates
-    matchedCase.push("[0-9]");      // Numbers
-    matchedCase.push("[a-z]");     // Lowercase Alphabates
 
-	//Checar tamanho da senha
-	if(ctr > 2 && password.length > 7){
-		ctr++
+    //Visualizador de input[password]
+    //Login
+    function verSenLg() {
+      var w = document.getElementById("l2");
+      if (w.type === "password") {
+        w.type = "text";
+      } else {
+        w.type = "password";
+      }
     }
 
-    //Checando progresso
-    var ctr = 0;
-	for (var i = 0; i < matchedCase.length; i++) {
-		if (new RegExp(matchedCase[i]).test(password)) {
-			ctr++;
-		}
-	}
-				
-                // Display
-                var color = "";
-                var strength = "";
-                switch (ctr) {
-                    case 0:
-                    case 1:
-                    case 2:
-                        strength = "Hm senha meio fraca ";
-                        color = "red";
-                        break;
-                    case 3:
-                        strength = "Quase lá hein";
-                        color = "orange";
-                        break;
-                    case 4:
-                        strength = "Muito boa!";
-                        color = "green";
-                        break;
-                }
-                document.getElementById("msg").innerHTML = strength;
-                document.getElementById("msg").style.color = color;
-            }
-
-//Visualizador de input[password]
-//Login
-function verSenLg() {
-  var w = document.getElementById("l2");
-  if (w.type === "password") {
-    w.type = "text";
-  } else {
-    w.type = "password";
-  }
-}
-
-//Cadastro
-function verSen() {
-  var x = document.getElementById("pwr");
-  var y = document.getElementById("pwr2");
-  var z = document.getElementById("pwr3");
-  var k = document.getElementById("pwr4");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-  if (y.type === "password") {
-    y.type = "text";
-  } else {
-    y.type = "password";
-  }
-  if (z.type === "password") {
-    z.type = "text";
-  } else {
-    z.type = "password";
-  }
-  if (k.type === "password") {
-    k.type = "text";
-  } else {
-    k.type = "password";
-  }
-}
-
-</script>
+    //Cadastro
+    function verSen() {
+      var x = document.getElementById("pwr");
+      var y = document.getElementById("pwr2");
+      var z = document.getElementById("pwr3");
+      var k = document.getElementById("pwr4");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+      if (y.type === "password") {
+        y.type = "text";
+      } else {
+        y.type = "password";
+      }
+      if (z.type === "password") {
+        z.type = "text";
+      } else {
+        z.type = "password";
+      }
+      if (k.type === "password") {
+        k.type = "text";
+      } else {
+        k.type = "password";
+      }
+    }
+  </script>
   <footer>
     <nav class="navbar navbar-default" role="navigation" id="rodp">
       <center>
