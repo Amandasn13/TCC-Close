@@ -83,7 +83,6 @@ CREATE PROCEDURE BuscarE_RecuperacaoR(r VARCHAR(200))
 CREATE PROCEDURE Apagar_Recuperacao(r VARCHAR(200))
 	BEGIN
 		DELETE FROM Recuperacao_de_Senha WHERE Rash = r;
-		DELETE FROM Usuario WHERE IdUsuario=id;
 	END//
 /*--Procedures com a tabela usuário--*/
 /*Cadastra o Usuário*/
