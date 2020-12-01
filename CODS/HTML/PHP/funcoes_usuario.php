@@ -225,13 +225,13 @@ class Usuario
             return false;
         }
     }
-    public function alterarSenha($senha, $id)
+    public function alterarSenha($id, $senha)
     {
         global $pdo;
         global $msgErro;
         $sql = $pdo->prepare("CALL Alterar_Senha(:id, :s)");
-        $sql->bindvalue(":s", md5($senha));
         $sql->bindvalue(":id", $id);
+        $sql->bindvalue(":s", md5($senha));
         $sql->nextRowset();
         $sql->execute();
         if ($sql->rowCount() > 0) {

@@ -91,11 +91,11 @@ if (!isset($_SESSION['IdUsuario'])) {
         </header>
         <br><br>
         <?php
-          if (isset($_SESSION['msg'])) {
+        if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
-          }
-          ?>
+        }
+        ?>
         <section>
             <center>
                 <h1 style="font-size: 90px;" id="tt">Guarda-Roupa</h1>
@@ -240,6 +240,8 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                 $resultado = mysqli_query($connect, $sql);
                                                 while ($dados = mysqli_fetch_array($resultado)) {
                                                     $album[] = $dados;
+
+                                                    mysqli_next_result($connect);
                                                 };
 
                                             ?>
@@ -299,7 +301,7 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                                 </center>
                                                                                                 <center>
                                                                                                     <div style="background-color: white; width: 350px; border-radius: 10px; border: 2px solid;">
-                                                                                                        <p><?php echo $foto['Categoria']; ?><?php echo $foto['Tipo']; ?> de <?php echo $foto['Material']; ?>, tamanho
+                                                                                                        <p><?php echo $foto['Categoria']; ?> <?php echo $foto['Tipo']; ?> de <?php echo $foto['Material']; ?>, tamanho
                                                                                                             <?php echo $foto['Tamanho']; ?> e cor <?php echo $foto['Cor']; ?>. <br>
                                                                                                             <b>Marca:</b> <?php echo $foto['Marca']; ?>.
                                                                                                         </p>
@@ -337,7 +339,7 @@ if (!isset($_SESSION['IdUsuario'])) {
 
 
 
-                                                                                    $u->conexao("Tiffanny", "localhost", "root", "");
+                                                                                    $r->conexao("Tiffanny", "localhost", "root", "");
                                                                                     if ($r->msgErro == "") {
                                                                                         if ($r->apagarfoto($id)) {
                                                                                             $_SESSION['msg'] = "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
@@ -557,7 +559,7 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                         <div class="input-group-prepend">
                                                                                             <span class="input-group-text" for="descpc">É só digitar a nova descrição abaixo:</span>
                                                                                         </div>
-                                                                                        <textarea class="form-control" aria-label="Com textarea" maxlenght="250" id="descpc" style="width: 200px;" name="descrpeca" placeholder="Digite aqui" value="<?php echo $foto['Descricao']; ?>"></textarea>
+                                                                                        <textarea class="form-control" aria-label="Com textarea" maxlenght="250" id="descpc" style="width: 200px;" name="descrpeca" placeholder="Digite aqui"><?php echo $foto['Descricao']; ?></textarea>
                                                                                     </div>
                                                                                     <br>
                                                                                     <input type="submit" value="Confirmar" class="btn btn-primary">
@@ -594,14 +596,14 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                 window.location.href = 'Close_GuardRp02.php'
                                                                                 </script>";
                                                                                             } else {
-                                                                                                $_SESSION['msg'] = "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                                                                                $_SESSION['msg'] = "<div class='alert alert-danger' id='msg-alert2' style='position: fixed; margin-top: 5px; bottom: 85%;
                                                                                                 right: 20px; border-left: 7px solid #C0392B ;'>
-                                                                                                    <span class='fa fa-meh-o'></span>
-                                                                                                    <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
-                                                                                                    <span class='msg'> Não foi possivel editar! </span>
-                                                                                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
-                                                                                                        <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
-                                                                                                    </button>
+                                                                                                <span class='fa fa-meh-o'></span>
+                                                                                                <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                                                <span class='msg'> Não foi possivel editar! </span>
+                                                                                                <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                                <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                                                </button>
                                                                                                 </div>";
                                                                                             }
                                                                                         } else {
@@ -727,16 +729,21 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                                 <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $fotolook['Nome']; ?></h5>
                                                                                                 <a class="btn btn-outline-light popover-test col dropdown-toggle" data-toggle="dropdown" href="#" title="Descrição da peça" role="button" aria-haspopup="true" aria-expanded="false" style="font-style: bold; width:
                                                                                                 70px;">↡</a>
-                                                                                                 <div class="dropdown-menu" style="width: 400px; margin-right: 200px; background-size: cover; padding-left: 5px; padding-right: 5px; background-image: url(IMG/fnd.png);">
-                                                                                                    <center> <h3>Outras informações</h3> </center>
-                                                                                                    <center> <div style="background-color: white; width: 350px; height:150px; max-height: 200px;
+                                                                                                <div class="dropdown-menu" style="width: 400px; margin-right: 200px; background-size: cover; padding-left: 5px; padding-right: 5px; background-image: url(IMG/fnd.png);">
+                                                                                                    <center>
+                                                                                                        <h3>Outras informações</h3>
+                                                                                                    </center>
+                                                                                                    <center>
+                                                                                                        <div style="background-color: white; width: 350px; height:150px; max-height: 200px;
                                                                                                         border-radius:  10px; border: 2px solid;">
-                                                                                                        <center> <h4>Descrição:</h4> </center>
-                                                                                                        <div class="dropdown-divider"></div>
-                                                                                                        <div data-spy="scroll" style="overflow: auto;">
-                                                                                                            <p style="text-align: justify; padding: 5px;"><?php echo $fotolook['Descricao']; ?></p>
+                                                                                                            <center>
+                                                                                                                <h4>Descrição:</h4>
+                                                                                                            </center>
+                                                                                                            <div class="dropdown-divider"></div>
+                                                                                                            <div data-spy="scroll" style="overflow: auto;">
+                                                                                                                <p style="text-align: justify; padding: 5px;"><?php echo $fotolook['Descricao']; ?></p>
+                                                                                                            </div>
                                                                                                         </div>
-                                                                                                    </div>
                                                                                                     </center><br>
                                                                                                 </div>
                                                                                             </div>
