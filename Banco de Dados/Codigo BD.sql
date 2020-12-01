@@ -94,7 +94,7 @@ CREATE PROCEDURE Cadastrar_Usuario(n CHAR(200), s CHAR(200), nu CHAR(200), dn DA
 /*Retorna o id de um usuário de acordo com seu dados de login*/
 CREATE PROCEDURE Logar_Usuario(nu CHAR(100), e CHAR(100), k CHAR(100))
 	BEGIN
-		SELECT IdUsuario FROM Usuario WHERE Nome_de_Usuario = nu OR Email = e  AND Senha = k LIMIT 1;
+		SELECT IdUsuario FROM Usuario WHERE (Nome_de_Usuario = nu OR Email = e)  AND Senha = k LIMIT 1;
 	END//
 /*Retorna todos os dados de um usuário de acordo com seu id*/
 CREATE PROCEDURE Buscar_Usuario(id INT)

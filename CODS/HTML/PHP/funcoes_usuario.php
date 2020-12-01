@@ -47,7 +47,6 @@ class Usuario
     {
         global $pdo;
         global $msgErro;
-
         $sql = $pdo->prepare("CALL Logar_Usuario(:nu, :e, :s)");
         $sql->bindValue(":nu", $nomeUsuario);
         $sql->bindValue(":s", md5($senha));
