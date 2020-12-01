@@ -17,6 +17,7 @@ if (!isset($_SESSION['IdUsuario'])) {
     mysqli_next_result($connect);
     $r = new Roupa;
     $l = new Look;
+    $filtro = 4;
 ?>
 
     <!DOCTYPE html>
@@ -186,16 +187,25 @@ if (!isset($_SESSION['IdUsuario'])) {
         </section>
         <section style="background-color: #ffd700; color: whitesmoke;" id="ses2">
             <center>
-                <div class="input-group" style="width: 70%;">
-                    <select class="custom-select" id="inputGroupSelect04" aria-label="Exemplo de select com botão addon" rows="5">
-                        <option selected>Filtrar organização das peças</option>
-                        <option value="1">Cadastros recentes</option>
-                        <option value="2">Ordem alfabética A-Z</option>
-                        <option value="3">Ordem alfabética Z-A</option>
-                    </select>
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">Filtrar</button>
-                    </div>
+                <form method="get" name="filtro">
+                    <div class="input-group" style="width: 70%;">
+
+                        <select class="custom-select" id="inputGroupSelect04" aria-label="Exemplo de select com botão addon" rows="5" name="filtroo">
+                            <option selected value="22">Filtrar organização das peças</option>
+                            <option value="1">Ordem alfabética A-Z</option>
+                            <option value="2">Ordem alfabética Z-A</option>
+                            <option value="3">Cadastros mais antigos</option>
+                            <option value="4">Cadastros mais recentes</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Filtrar</button>
+                        </div>
+                </form>
+                <?php
+                if (!empty($_GET) && $_SERVER['REQUEST_METHOD'] == 'GET') {
+                    $filtro = $_GET['filtroo'];
+                }
+                ?>
                 </div><br><br>
 
                 <div class="container-fluid">
@@ -214,7 +224,7 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                 exit;
                                             }
                                             $idusuario = $dados1['IdUsuario'];
-                                            $sql = "CALL Buscar_Roupas('$idusuario',1)";
+                                            $sql = "CALL Buscar_Roupas('$idusuario','$filtro')";
                                             $resultado = mysqli_query($connect, $sql);
                                             mysqli_use_result($connect);
                                             $total = mysqli_affected_rows($connect);
@@ -631,11 +641,11 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                     exit;
                                                 }
                                                 $idusuario = $dados1['IdUsuario'];
-                                                $sql2 = "CALL Buscar_Looks('$idusuario',3)";
+                                                $sql2 = "CALL Buscar_Looks('$idusuario','$filtro')";
                                                 $resultado2 = mysqli_query($connect, $sql2);
                                                 mysqli_use_result($connect);
+                                                //mysqli_free_result($resultado2);
                                                 $total2 = mysqli_affected_rows($connect);
-                                                mysqli_free_result($resultado2);
                                                 mysqli_next_result($connect);
                                                 if ($total2 > 0) {
                                                     $resultado2 = mysqli_query($connect, $sql2);
@@ -668,9 +678,6 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                         <ul class="nav nav-tabs" role="tablist">
                                                                             <li role="presentation" class="active" style="padding-right: 30px; padding-left: 210px; margin-top: 7px; margin-bottom: 7px;">
                                                                                 <a href="#VrLk<?php echo $fotolook['IdLook']; ?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Ver Look</a>
-                                                                            </li>
-                                                                            <li role="presentation" style="padding-right: 30px; margin-top: 7px; margin-bottom: 7px;">
-                                                                                <a href="#EdLk<?php echo $fotolook['IdLook']; ?>" data-toggle="tab" role="button" style="color: whitesmoke; text-decoration: none;">Alterar Dados</a>
                                                                             </li>
                                                                             <li role="presentation" style="padding-right: 5px;  margin-top: 7px; margin-bottom: 7px;">
                                                                                 <a href="#ApLk<?php echo $fotolook['IdLook']; ?>" role="tab" data-toggle="tab" style="color: whitesmoke; text-decoration: none;">Apagar Look</a>
@@ -709,15 +716,20 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                         header("location: Close_Log02.php");
                                                                                         exit;
                                                                                     }
-                                                                                    // mysqli_free_result($resultado2);
+                                                                                    //mysqli_free_result($resultado2);
                                                                                     mysqli_next_result($connect);
                                                                                     $idlook = $fotolook['IdLook'];
                                                                                     $sql3 = "CALL Buscar_Fotos('$idlook')";
                                                                                     $resultado3 = mysqli_query($connect, $sql3);
                                                                                     mysqli_use_result($connect);
                                                                                     $total3 = mysqli_affected_rows($connect);
-                                                                                    mysqli_free_result($resultado3);
+                                                                                    //mysqli_free_result($resultado3);
                                                                                     mysqli_next_result($connect);
+                                                                                    if (isset($album3)) {
+                                                                                        foreach ($album3 as $lala => $lolo) {
+                                                                                            unset($album3[$lala]);
+                                                                                        }
+                                                                                    }
                                                                                     if ($total3 > 0) {
                                                                                         $resultado3 = mysqli_query($connect, $sql3);
                                                                                         mysqli_use_result($connect);
@@ -731,27 +743,25 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                         <div class="gallery" id="gallery" style="margin: 10px;">
 
                                                             <?php
-                                                                                        $cont3 = 0;
+
                                                                                         foreach ($album3 as $fotodolook) {
 
-                                                                                            $cont3++;
+
 
 
                                                             ?>
 
                                                                 <!-- Grid column -->
                                                                 <div class="mb-3 pics animation all 2">
-                                                                    <img class="img-fluid" src="<?php echo "Fotos_Looks/" . $fotodolook['Foto'] . ''; ?>" alt="Card image cap">
+                                                                    <img class="img-fluid" src="<?php echo "Fotos_Looks/" . $fotodolook['Foto'] . '';
+                                                                                                ?>" alt="Card image cap">
                                                                 </div>
-                                                                <!-- Grid column -->
-                                                                < <?php
-                                                                                            if ($cont3 == 3) {
-                                                                                                echo "</tr>";
-                                                                                                echo "<tr>";
-                                                                                                $cont3 = 0;
-                                                                                            }
+
+                                                            <?php
+
                                                                                         }
-                                                                    ?> </tr> <?php
+                                                            ?>
+                                                    </tr> <?php
                                                                                     } else {
 
                                                                                         echo '<!-- Grid column -->
@@ -790,109 +800,60 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                         </div>';
                                                                                     }
 
-                                                                                ?> </div> </div> <!--Apagar Look-->
-                                                                    <div id="ApLk<?php echo $fotolook['IdLook']; ?>" role="tabpanel" class="tab-pane fade in">
-                                                                        <br>
-                                                                        <center>
-                                                                            <h5 style="color:wheat;">Deseja mesmo apagar o look e todas suas informações?
-                                                                                Essa ação não podera ser desfeita no futuro</h5><br>
-                                                                            <form method="post" name="apagarlook">
-                                                                                <input type="hidden" value="<?php echo $fotolook['IdLook']; ?>" name="idluk">
-                                                                                <input type="submit" value="Sim, desejo apagar" class="btn btn-primary" name="vai">
-                                                                        </center><br>
-                                                                        <!--PHP de Apagar dados do look-->
-                                                                        <?php
-                                                                        if (isset($_POST['idluk'])) {
-                                                                            $id = addslashes($_POST['idluk']);
-                                                                            $l->conexao("Tiffanny", "localhost", "root", "");
-                                                                            if ($l->msgErro == "") {
-                                                                                if ($l->apagarlook($id)) {
-                                                                                    echo "<script language=javascript type= 'text/javascript'>
+                                                            ?>
+                                            </div>
+                                        </div>
+                                        <!--Apagar Look-->
+                                        <div id="ApLk<?php echo $fotolook['IdLook']; ?>" role="tabpanel" class="tab-pane fade in">
+                                            <br>
+                                            <center>
+                                                <h5 style="color:wheat;">Deseja mesmo apagar o look e todas suas informações?
+                                                    Essa ação não podera ser desfeita no futuro</h5><br>
+                                                <form method="post" name="apagarlook">
+                                                    <input type="hidden" value="<?php echo $fotolook['IdLook']; ?>" name="idluk">
+                                                    <input type="submit" value="Sim, desejo apagar" class="btn btn-primary" name="vai">
+                                            </center><br>
+                                            <!--PHP de Apagar dados do look-->
+                                            <?php
+                                                            if (isset($_POST['idluk'])) {
+                                                                $id = addslashes($_POST['idluk']);
+                                                                $l->conexao("Tiffanny", "localhost", "root", "");
+                                                                if ($l->msgErro == "") {
+                                                                    if ($l->apagarlook($id)) {
+                                                                        echo "<script language=javascript type= 'text/javascript'>
                                                                                         window.alert('Look apagado com sucesso!')
                                                                                         </script>";
-                                                                                    echo "<script language=java script type= 'text/javascript'>
+                                                                        echo "<script language=java script type= 'text/javascript'>
                                                                                         window.location.href = 'Close_GuardRp02.php'
                                                                                         </script>";
-                                                                                } else {
-                                                                                    echo "<script language=javascript type= 'text/javascript'>
+                                                                    } else {
+                                                                        echo "<script language=javascript type= 'text/javascript'>
                                                                                         window.alert('Não foi apagado com sucesso!')
                                                                                         </script>";
-                                                                                }
-                                                                            } else {
-                                                                                echo "Erro: " . $l->msgErro;
-                                                                            }
-                                                                        }
-                                                                        ?>
-                                                                        </form>
-                                                                    </div>
-                                                                    <!--Editar Look-->
-                                                                    <div id="EdLk<?php echo $fotolook['IdLook']; ?>" role="tabpanel" class="tab-pane fade in">
-                                                                        <!--Conteúdo prinipal da aba principal-->
-                                                                        <center><br>
-                                                                            <h6 style="color:wheat;"> *você pode alterar só uma caracterísca do look ou até mais,
-                                                                                apenas preencha os campos que desejar e selecione "confirmar".
-                                                                            </h6><br>
-                                                                            <div class="container">
-                                                                                <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
-                                                                                    <div class="col-4">
-                                                                                        <!--Campo Nome-->
-                                                                                        <form method="post" name="editartitulo">
-                                                                                            <input type="hidden" value="<?php echo $fotodolook["IdLook"]; ?>" name="id_look">
-                                                                                            <label for="nmpc">É só digitar o novo nome abaixo:</label><br><br>
-                                                                                            <input type="text" id="nmpc" name="nomelook" style="width: 230px; margin-left: 1px;" placeholder="Digite aqui" value="<?php echo $fotolook['Nome']; ?>">
-                                                                                    </div>
-                                                                                </div><br>
-                                                                                <div class="row justify-content-around" style="color: whitesmoke; font-style: bold;">
-                                                                                    <div class="col-4">
-                                                                                        <!--Campo descrição-->
-                                                                                        <label for="descpc">É só digitar a nova descrição abaixo:</label><br><br>
-                                                                                        <input type="textarea" maxlenght="250" id="descpc" style="width: 230px;" name="descrlook" placeholder="Digite aqui" value="<?php echo $fotolook['Descricao']; ?>">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div><br><br>
-                                                                            <input type="submit" value="Confirmar" class="btn btn-primary">
-                                                                            <?php
-                                                                            if (isset($_POST['nomelook'])) {
-                                                                                $id = addslashes($_POST['id_look']);
-                                                                                $nome = addslashes($_POST['nomelook']);
-                                                                                $descricao = addslashes($_POST['descrlook']);
-
-                                                                                $l->conexao("Tiffanny", "localhost", "root", "");
-                                                                                if ($l->msgErro == "") {
-                                                                                    if ($l->editarlook($id, $nome, $descricao)) {
-                                                                                        echo "<script language=javascript type= 'text/javascript'>
-                                                                                                        window.alert('Look alterado comsucesso!')
-                                                                                                        </script>";
-                                                                                        echo "<script language=java script type= 'text/javascript'>
-                                                                                            window.location.href = 'Close_GuardRp02.php'
-                                                                                        </script>";
-                                                                                    } else {
-                                                                                        echo "Não foi possivel editar!";
-                                                                                    }
-                                                                                } else {
-                                                                                    echo "Erro: " . $l->msgErro;
-                                                                                }
-                                                                            }
-                                                                            ?>
-                                                                            </form>
-                                                                        </center><br><br>
-                                                                    </div>
-                                                        </div>
-                                            </div>
+                                                                    }
+                                                                } else {
+                                                                    echo "Erro: " . $l->msgErro;
+                                                                }
+                                                            }
+                                            ?>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <?php
+                <?php
                                                             if ($cont6 == 3) {
                                                                 echo "</tr>";
                                                                 echo "<tr>";
                                                                 $cont6 = 0;
                                                             }
                                                         }
-                            ?>
-                            </tr>
-                        <?php
+                ?>
+                </tr>
+            <?php
                                                 } else {
                                                     echo '<div class="col">
                                         <button class="btn btn-dark" style="width: 350px;" data-toggle="modal"
@@ -907,11 +868,11 @@ if (!isset($_SESSION['IdUsuario'])) {
                                         data-target="#LkMod"> @nomelook </button>
                                 </div><!--Fecha componente da grid (alinhamento)-->';
                                                 }
-                        ?>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Grid do Guarda-Roupa termina aqui-->
+            ?>
+                </div>
+                </div>
+                </div>
+                <!--Grid do Guarda-Roupa termina aqui-->
                 </div>
                 </div>
                 </div>
