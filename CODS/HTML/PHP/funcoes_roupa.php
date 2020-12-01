@@ -3,7 +3,8 @@ class Roupa
 {
     private $pdo;
     public $msgErro = "";
-    public function conexao($nome, $host, $usuario, $senha){
+    public function conexao($nome, $host, $usuario, $senha)
+    {
         global $pdo;
         global $msgErro;
         try {
@@ -11,9 +12,10 @@ class Roupa
         } catch (PDOException $erro) {
             $msgErro = $erro->getMessage();
         }
-}
+    }
     //edição das informações com textos da roupa
-    public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material){
+    public function editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material)
+    {
         global $pdo;
         global $msgErro;
         $sql = $pdo->prepare("CALL Alterar_Roupa(:id, :tit, :cat, :tip, :c, :descr, :tam, :mar, :mat)");
@@ -43,7 +45,10 @@ class Roupa
         $sql->bindValue(":id", $id);
         $sql->nextRowset();
         $sql->execute();
-        return true;
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
-?>

@@ -190,7 +190,11 @@ class Usuario
         $sql->bindValue(":dn", $nascimento);
         $sql->nextRowset();
         $sql->execute();
-        return true;
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public function alterarNome($id, $nomeUsuario)
     {
@@ -201,7 +205,11 @@ class Usuario
         $sql->bindValue(":n", $nomeUsuario);
         $sql->nextRowset();
         $sql->execute();
-        return true;
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public function alterarEmail($email, $id)
     {
@@ -212,7 +220,11 @@ class Usuario
         $sql->bindvalue(":id", $id);
         $sql->nextRowset();
         $sql->execute();
-        return true;
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public function alterarSenha($senha, $id)
     {
@@ -223,7 +235,11 @@ class Usuario
         $sql->bindvalue(":id", $id);
         $sql->nextRowset();
         $sql->execute();
-        return true;
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public function apagarRash($rash)
     {
@@ -233,7 +249,11 @@ class Usuario
         $sql->bindValue(":r", $rash);
         $sql->nextRowset();
         $sql->execute();
-        return true;
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public function apagarUsuario($id)
     {

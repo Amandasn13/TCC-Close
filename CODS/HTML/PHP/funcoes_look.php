@@ -30,21 +30,4 @@ class Look
             return false;
         }
     }
-
-    public function editarlook($id, $nome, $descricao)
-    {
-        global $pdo;
-        global $msgErro;
-        $sql = $pdo->prepare("CALL Alterar_Look(:id, :no, :des)");
-        $sql->bindValue(":id", $id);
-        $sql->bindValue(":no", $nome);
-        $sql->bindValue(":des", $descricao);
-        $sql->nextRowset();
-        $sql->execute();
-        if ($sql->rowCount() > 0) {
-            return true;
-        } else {
-            echo $sql->errorCode();
-        }
-    }
 }
