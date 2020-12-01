@@ -221,7 +221,7 @@ $u = new Usuario;
                           <form class="px-4 py-3" method="post" name="edit3">
                             <input type="hidden" name="id_user" value="<?php echo $dados['IdUsuario']; ?>">
                             <label style="color: aliceblue;">E-mail</label><br>
-                            <input type="email" name="Email" class="form-control" id="Email" value="<?php echo $dados['Email'] ?>" placeholder="Email" maxlength="100" required><br><br><br>
+                            <input type="email" name="Email" onblur="validateEmail(this);" class="form-control" id="Email" value="<?php echo $dados['Email'] ?>" placeholder="Email" maxlength="100" required><br><br><br>
                             <button type="submit" name="editar2" class="btn btn-primary">Alterar email</button>
                             <?php
                             if (isset($_POST['Email'])) {
@@ -361,11 +361,13 @@ $u = new Usuario;
                                 <input type="hidden" name="senhavelha" value="<?php echo $dados['Senha']; ?>">
                                 <input type="hidden" name="iduser" value="<?php echo $dados['IdUsuario']; ?>">
                                 <label style="color: aliceblue;">Senha nova:</label><br>
-                                <input type="password" name="senha" class="form-control" id="" placeholder="Nova senha" maxlength="100" required><br><br>
+                                <input type="password" name="senha" class="form-control" id="pwr" onkeyup="validatePassword(this.value);" placeholder="Nova senha" maxlength="100" required>
+                                <span id="msg" class="input-group-text" style="font-family: Segoe UI; font-style: bold;"></span><br><br>
                                 <label style="color: aliceblue;">Confirme a senha:</label><br>
-                                <input type="password" name="confirmasenha" class="form-control" id="" placeholder="Nova senha" maxlength="100" required><br><br>
+                                <input type="password" name="confirmasenha" class="form-control"  id="pwr2" placeholder="Nova senha" maxlength="100" required><br><br>
                                 <label style="color: aliceblue;">Senha antiga para confirmação:</label><br>
-                                <input type="password" name="senhaantiga" class="form-control" id="" placeholder="Senha antiga" maxlength="100" required><br><br>
+                                <input type="password" name="senhaantiga" class="form-control" id="pwr3" placeholder="Senha antiga" maxlength="100" required><br>
+                                <a onclick="verSen()" style="text-decoration: none; color: azure; font-size: 15px;"> 👁 Clique aqui para ver as senhas</a><br><br>
                                 <button type="submit" name="" class="btn btn-primary">Alterar Senha</button>
                                 <?php
 
@@ -457,7 +459,8 @@ $u = new Usuario;
                           <input type="hidden" name="senha" value="<?php echo $dados['Senha']; ?>">
                           <input type="hidden" name="iduser" value="<?php echo $dados['IdUsuario']; ?>">
                           <label style="color: yellow;">Confirme sua senha para confirmação:</label><br>
-                          <input type="password" name="senhaa" class="form-control" id="" placeholder="" maxlength="100" required><br>
+                          <input type="password" name="senhaa" class="form-control" id="pwr4" placeholder="" maxlength="100" required><br>
+                          <a onclick="verSen()" style="text-decoration: none; color: azure; font-size: 15px;"> 👁 Clique aqui para ver as senhas</a><br><br>
                           <br><button type="submit" name="" class="btn btn-danger">Apagar Conta</button>
                           <?php
 
@@ -709,6 +712,113 @@ $u = new Usuario;
       </div>
     </div>
   </div>
+  <script>
+//Validação de email
+function validateEmail(emailField){
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (reg.test(emailField.value) == false) 
+        {
+            alert('Endereço de email inválido! Por favor tente de novo.');
+            return false;
+        }
+
+    return true;
+
+}
+
+//Validação de senha
+function validatePassword(password) {
+                
+    //Não fazer nada quando tamanho da senha = 0
+    if (password.length === 0) {
+        document.getElementById("msg").innerHTML = "";
+        return;
+    }
+				
+    // Criação de array com todos valores possíveis pra senha
+    var matchedCase = new Array();
+    matchedCase.push("[$@$!%*#?&]"); // Special Charector
+    matchedCase.push("[A-Z]");      // Uppercase Alpabates
+    matchedCase.push("[0-9]");      // Numbers
+    matchedCase.push("[a-z]");     // Lowercase Alphabates
+
+	//Checar tamanho da senha
+	if(ctr > 2 && password.length > 7){
+		ctr++
+    }
+
+    //Checando progresso
+    var ctr = 0;
+	for (var i = 0; i < matchedCase.length; i++) {
+		if (new RegExp(matchedCase[i]).test(password)) {
+			ctr++;
+		}
+	}
+				
+                // Display
+                var color = "";
+                var strength = "";
+                switch (ctr) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        strength = "Hm senha meio fraca ";
+                        color = "red";
+                        break;
+                    case 3:
+                        strength = "Quase lá hein";
+                        color = "orange";
+                        break;
+                    case 4:
+                        strength = "Muito boa!";
+                        color = "green";
+                        break;
+                }
+                document.getElementById("msg").innerHTML = strength;
+                document.getElementById("msg").style.color = color;
+            }
+
+//Visualizador de input[password]
+//Login
+function verSenLg() {
+  var w = document.getElementById("l2");
+  if (w.type === "password") {
+    w.type = "text";
+  } else {
+    w.type = "password";
+  }
+}
+
+//Cadastro
+function verSen() {
+  var x = document.getElementById("pwr");
+  var y = document.getElementById("pwr2");
+  var z = document.getElementById("pwr3");
+  var k = document.getElementById("pwr4");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+  if (y.type === "password") {
+    y.type = "text";
+  } else {
+    y.type = "password";
+  }
+  if (z.type === "password") {
+    z.type = "text";
+  } else {
+    z.type = "password";
+  }
+  if (k.type === "password") {
+    k.type = "text";
+  } else {
+    k.type = "password";
+  }
+}
+
+</script>
   <footer>
     <nav class="navbar navbar-default" role="navigation" id="rodp">
       <center>
