@@ -35,9 +35,14 @@
                         $query = mysqli_query($connect, "CALL Nova_Foto('$id', '$nome_final')");
                         $total = mysqli_affected_rows($connect);
                         if($total > 0){
-                                echo "<script language=javascript type= 'text/javascript'>
-                                window.alert('Look cadastrado com sucesso!')
-							    </script>";
+                            $_SESSION['msg'] = "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                            right: 20px; border-left: 7px solid #58D68D;'>
+                                <span class='fa fa-check-circle'></span>
+                                <span class='msg'> Look cadastrado com sucesso! </span>
+                                <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                    <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                </button>
+                            </div>";
                                 echo "<script language=java script type= 'text/javascript'>
                                 window.location.href = '../Close_GuardRp02.php'
                                 </script>";
@@ -45,18 +50,28 @@
                     
                         
                     } else {
-                        echo "<script language=javascript type= 'text/javascript'>
-                        window.alert('Não foi possível cadastrar o look!')
-                        </script>";
+                        $_SESSION['msg'] = "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                        right: 20px; border-left: 7px solid #C0392B ;'>
+                            <span class='fa fa-meh-o'></span>
+                            <span class='msg'> Não foi possível cadastrar o look! </span>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                            </button>
+                        </div>";
                         echo "<script language=java script type= 'text/javascript'>
                         window.location.href = '../Close_GuardRp02.php'
                         </script>";                    
                     }
                 }
             }else{
-                echo "<script language=javascript type= 'text/javascript'>
-                window.alert('Não foi possível cadastrar o look!')
-                </script>";
+                $_SESSION['msg'] = "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                        right: 20px; border-left: 7px solid #C0392B ;'>
+                            <span class='fa fa-meh-o'></span>
+                            <span class='msg'> Não foi possível cadastrar o look! </span>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                            </button>
+                        </div>";
                 echo "<script language=java script type= 'text/javascript'>
                 window.location.href = '../Close_GuardRp02.php'
                 </script>";   

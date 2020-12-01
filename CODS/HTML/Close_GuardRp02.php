@@ -90,6 +90,12 @@ if (!isset($_SESSION['IdUsuario'])) {
             </nav>
         </header>
         <br><br>
+        <?php
+          if (isset($_SESSION['msg'])) {
+            echo $_SESSION['msg'];
+            unset($_SESSION['msg']);
+          }
+          ?>
         <section>
             <center>
                 <h1 style="font-size: 90px;" id="tt">Guarda-Roupa</h1>
@@ -299,7 +305,7 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                                         </p>
                                                                                                     </div><br>
                                                                                                     <div style="background-color: white; width: 350px; height:150px; max-height: 200px;
-                                                                             border-radius: 10px; border: 2px solid;">
+                                                                                                        border-radius:  10px; border: 2px solid;">
                                                                                                         <center>
                                                                                                             <h4>Descrição:</h4>
                                                                                                         </center>
@@ -334,14 +340,28 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                     $u->conexao("Tiffanny", "localhost", "root", "");
                                                                                     if ($r->msgErro == "") {
                                                                                         if ($r->apagarfoto($id)) {
-                                                                                            echo "<script language=javascript type= 'text/javascript'>
-                                                                                    window.alert('Roupa apagada com sucesso!')
-                                                                                    </script>";
+                                                                                            $_SESSION['msg'] = "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                                                                            right: 20px; border-left: 7px solid #58D68D;'>
+                                                                                                <span class='fa fa-check-circle'></span>
+                                                                                                <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                                                <span class='msg'>Roupa apagada com sucesso! </span>
+                                                                                                <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                                    <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                                                </button>
+                                                                                            </div>";
                                                                                             echo "<script language=java script type= 'text/javascript'>
                                                                                     window.location.href = 'Close_GuardRp02.php'
                                                                                     </script>";
                                                                                         } else {
-                                                                                            echo "Não foi possivel apagar!";
+                                                                                            $_SESSION['msg'] = "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                                                                            right: 20px; border-left: 7px solid #C0392B ;'>
+                                                                                                <span class='fa fa-meh-o'></span>
+                                                                                                <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                                                <span class='msg'> Não foi possivel apagar! </span>
+                                                                                                <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                                    <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                                                </button>
+                                                                                            </div>";
                                                                                         }
                                                                                     } else {
                                                                                         echo "Erro: " . $r->msgErro;
@@ -394,9 +414,6 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                         apenas preencha os campos que desejar e selecione "confirmar".
                                                                                     </h6><br>
                                                                                     <div class="container">
-
-
-
                                                                                         <form method="post" name="editarroupa">
                                                                                             <!--Campo Nome-->
                                                                                             <input type="hidden" name="idroupa" value="<?php echo $foto['IdRoupa']; ?>">
@@ -564,14 +581,28 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                         $r->conexao("Tiffanny", "localhost", "root", "");
                                                                                         if ($r->msgErro == "") {
                                                                                             if ($r->editartitulo($id, $titulo, $categoria, $tipo, $cor, $descricao, $tamanho, $marca, $material)) {
-                                                                                                echo "<script language=javascript type= 'text/javascript'>
-                                                                            window.alert('Informações alteradas com sucesso!')
-                                                                            </script>";
+                                                                                                $_SESSION['msg'] = "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                                                                                right: 20px; border-left: 7px solid #58D68D;'>
+                                                                                                    <span class='fa fa-check-circle'></span>
+                                                                                                    <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                                                    <span class='msg'> Informações alteradas com sucesso! </span>
+                                                                                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                                        <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                                                    </button>
+                                                                                                </div>";
                                                                                                 echo "<script language=java script type= 'text/javascript'>
                                                                                 window.location.href = 'Close_GuardRp02.php'
                                                                                 </script>";
                                                                                             } else {
-                                                                                                echo "Não foi possivel editar!";
+                                                                                                $_SESSION['msg'] = "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                                                                                right: 20px; border-left: 7px solid #C0392B ;'>
+                                                                                                    <span class='fa fa-meh-o'></span>
+                                                                                                    <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                                                    <span class='msg'> Não foi possivel editar! </span>
+                                                                                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                                        <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                                                    </button>
+                                                                                                </div>";
                                                                                             }
                                                                                         } else {
                                                                                             echo "Erro: " . $r->msgErro;
@@ -695,17 +726,18 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                                                 <h5 style="color: azure; font-style: bold; padding: 2px;">>></h5>
                                                                                                 <h5 name="rnm" class="col-6" style="color: azure;"><?php echo $fotolook['Nome']; ?></h5>
                                                                                                 <a class="btn btn-outline-light popover-test col dropdown-toggle" data-toggle="dropdown" href="#" title="Descrição da peça" role="button" aria-haspopup="true" aria-expanded="false" style="font-style: bold; width:
-                                                                            70px;">↡</a>
-                                                                                                <div class="dropdown-menu" style="width: 500px;">
-                                                                                                    <a class="dropdown-item" href="#">
-                                                                                                        <h4>Descrição</h4>
-                                                                                                    </a>
-                                                                                                    <div class="dropdown-divider"></div>
-                                                                                                    <div class="blog-post" style="width: inherit;">
-                                                                                                        <p class="mb-0" href="#" style="margin: 10px;">
-                                                                                                            <?php echo $fotolook['Descricao']; ?>
-                                                                                                        </p>
+                                                                                                70px;">↡</a>
+                                                                                                 <div class="dropdown-menu" style="width: 400px; margin-right: 200px; background-size: cover; padding-left: 5px; padding-right: 5px; background-image: url(IMG/fnd.png);">
+                                                                                                    <center> <h3>Outras informações</h3> </center>
+                                                                                                    <center> <div style="background-color: white; width: 350px; height:150px; max-height: 200px;
+                                                                                                        border-radius:  10px; border: 2px solid;">
+                                                                                                        <center> <h4>Descrição:</h4> </center>
+                                                                                                        <div class="dropdown-divider"></div>
+                                                                                                        <div data-spy="scroll" style="overflow: auto;">
+                                                                                                            <p style="text-align: justify; padding: 5px;"><?php echo $fotolook['Descricao']; ?></p>
+                                                                                                        </div>
                                                                                                     </div>
+                                                                                                    </center><br>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -820,16 +852,28 @@ if (!isset($_SESSION['IdUsuario'])) {
                                                                 $l->conexao("Tiffanny", "localhost", "root", "");
                                                                 if ($l->msgErro == "") {
                                                                     if ($l->apagarlook($id)) {
-                                                                        echo "<script language=javascript type= 'text/javascript'>
-                                                                                        window.alert('Look apagado com sucesso!')
-                                                                                        </script>";
+                                                                        $_SESSION['msg'] = "<div class='alert alert-success' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 80%;
+                                                                        right: 20px; border-left: 7px solid #58D68D;'>
+                                                                            <span class='fa fa-check-circle'></span>
+                                                                            <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                            <span class='msg'>Look apagado com sucesso! </span>
+                                                                            <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                            </button>
+                                                                        </div>";
                                                                         echo "<script language=java script type= 'text/javascript'>
                                                                                         window.location.href = 'Close_GuardRp02.php'
                                                                                         </script>";
                                                                     } else {
-                                                                        echo "<script language=javascript type= 'text/javascript'>
-                                                                                        window.alert('Não foi apagado com sucesso!')
-                                                                                        </script>";
+                                                                        $_SESSION['msg'] = "<div class='alert alert-danger' id='msg-alert1' style='position: fixed; margin-top: 5px; bottom: 85%;
+                                                                        right: 20px; border-left: 7px solid #C0392B ;'>
+                                                                            <span class='fa fa-meh-o'></span>
+                                                                            <!--Na linha acima a class indica qual o icone a ser utilizado você pode conferir todos os icones disponiveis em: https://fontawesome.com/v4.7.0/icons/ -->
+                                                                            <span class='msg'> Não foi apagado com sucesso! </span>
+                                                                            <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='padding-left: 9px; padding-bottom:9px;'>
+                                                                                <span aria-hidden='true' onclick='this.parentElement.style.display='none';'>&times;</span>
+                                                                            </button>
+                                                                        </div>";
                                                                     }
                                                                 } else {
                                                                     echo "Erro: " . $l->msgErro;
