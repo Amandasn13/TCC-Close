@@ -44,7 +44,7 @@ class Look
         if ($sql->rowCount() > 0) {
             return true;
         } else {
-            return false;
+            echo $sql->errorCode();
         }
     }
 }
